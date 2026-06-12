@@ -931,6 +931,30 @@
       "actor": "BURHAN-MOP",
       "kind": "merge-approved",
       "summary": "origin/dev/moon approved and merged to main."
+    },
+    {
+      "at": "2026-06-12T15:01:37.193Z",
+      "actor": "moon",
+      "agent": "Loli",
+      "agentRole": "frontend",
+      "agentId": "agent-loli",
+      "kind": "memory",
+      "summary": "Update footer to new layout with nav, social links, brand wordmark, and back-to-top button."
+    },
+    {
+      "at": "2026-06-12T15:04:42.329Z",
+      "actor": "moon",
+      "agent": "Loli",
+      "agentRole": "frontend",
+      "agentId": "agent-loli",
+      "kind": "memory",
+      "summary": "Update footer to new layout with nav, social links, brand wordmark, and back-to-top button."
+    },
+    {
+      "at": "2026-06-12T15:04:49.092Z",
+      "actor": "BURHAN-MOP",
+      "kind": "merge-approved",
+      "summary": "origin/dev/moon approved and merged to main."
     }
   ]
 }
