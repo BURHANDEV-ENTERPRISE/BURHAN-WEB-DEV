@@ -883,6 +883,39 @@
       "actor": "BURHAN-MOP",
       "kind": "merge-approved",
       "summary": "origin/dev/moon approved and merged to main."
+    },
+    {
+      "at": "2026-06-12T14:31:41.862Z",
+      "actor": "moon",
+      "agent": "Loli",
+      "agentRole": "frontend",
+      "agentId": "agent-loli",
+      "kind": "agent-route",
+      "summary": "Routed task to Loli: Matched keywords for Frontend Developer: page."
+    },
+    {
+      "at": "2026-06-12T14:33:17.802Z",
+      "actor": "moon",
+      "agent": "Loli",
+      "agentRole": "frontend",
+      "agentId": "agent-loli",
+      "kind": "memory",
+      "summary": "Remove header navigation strip from landing page"
+    },
+    {
+      "at": "2026-06-12T14:34:42.078Z",
+      "actor": "moon",
+      "agent": "Loli",
+      "agentRole": "frontend",
+      "agentId": "agent-loli",
+      "kind": "memory",
+      "summary": "Remove header navigation strip from landing page"
+    },
+    {
+      "at": "2026-06-12T14:36:08.697Z",
+      "actor": "BURHAN-MOP",
+      "kind": "merge-approved",
+      "summary": "origin/dev/moon approved and merged to main."
     }
   ]
 }
