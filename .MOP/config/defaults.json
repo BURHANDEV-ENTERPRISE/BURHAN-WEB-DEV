@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "0.1.0",
+  "workflow": {
+    "enabled": true,
+    "defaultStartPhase": "idea",
+    "requireReadinessBeforeImplementation": true,
+    "requireAdversarialReviewBeforeMerge": true
+  },
+  "help": {
+    "defaultQuestion": "lepas ni buat apa?",
+    "answerStyle": "short-actionable",
+    "includeAgentRoute": true,
+    "includeNextArtifact": true,
+    "includeGateStatus": true
+  },
+  "artifacts": {
+    "directory": ".MOP/artifacts",
+    "templateDirectory": ".MOP/templates/artifacts",
+    "layout": "category/artifact-slug/type.md",
+    "defaultCategory": "general",
+    "folderByType": {
+      "product-brief": "plan",
+      "prd": "plan",
+      "ux-spec": "design",
+      "architecture": "architecture",
+      "story": "plan",
+      "readiness-report": "readiness",
+      "implementation-notes": "implementation",
+      "review": "review",
+      "adversarial-review": "review",
+      "release-notes": "release",
+      "handoff": "release",
+      "decision-log": "decisions"
+    },
+    "writeMode": "create-only"
+  },
+  "projectRootPolicy": {
+    "workInWorkspaceRoot": true,
+    "forbidNestedProjectFolder": true
+  },
+  "partyMode": {
+    "showBanner": true,
+    "minimumParticipants": 3,
+    "preferredMinimumParticipants": 4
+  }
+}

@@ -1,0 +1,39 @@
+# Project-local Codex defaults for MOP Core.
+
+project_doc_fallback_filenames = ["GEMINI.md", "CLAUDE.md"]
+project_doc_max_bytes = 65536
+
+[mcp_servers.ruflo]
+enabled = true
+command = "cmd"
+args = ["/c", "npx", "-y", "ruflo@latest", "mcp", "start"]
+startup_timeout_sec = 20
+tool_timeout_sec = 60
+
+[mcp_servers.ruflo.env]
+npm_config_update_notifier = "false"
+CLAUDE_FLOW_MODE = "v3"
+CLAUDE_FLOW_HOOKS_ENABLED = "true"
+CLAUDE_FLOW_TOPOLOGY = "adaptive"
+CLAUDE_FLOW_MAX_AGENTS = "50"
+CLAUDE_FLOW_MEMORY_BACKEND = "hybrid"
+
+[mcp_servers."ruv-swarm"]
+enabled = false
+command = "cmd"
+args = ["/c", "npx", "-y", "ruv-swarm", "mcp", "start"]
+startup_timeout_sec = 20
+tool_timeout_sec = 60
+
+[mcp_servers."ruv-swarm".env]
+npm_config_update_notifier = "false"
+
+[mcp_servers."flow-nexus"]
+enabled = false
+command = "cmd"
+args = ["/c", "npx", "-y", "flow-nexus@latest", "mcp", "start"]
+startup_timeout_sec = 20
+tool_timeout_sec = 60
+
+[mcp_servers."flow-nexus".env]
+npm_config_update_notifier = "false"

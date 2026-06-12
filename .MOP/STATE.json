@@ -1,0 +1,835 @@
+{
+  "schemaVersion": "0.1.0",
+  "initialized": true,
+  "projectName": "BURHAN-WEB-DEV",
+  "projectNameDefault": "BURHAN-WEB-DEV",
+  "ownerCodename": "moon",
+  "activeMember": "moon",
+  "activeAgents": {
+    "moon": "agent-nami"
+  },
+  "agentPolicy": {
+    "requiredAfterAuth": true,
+    "requireForEveryConversation": true,
+    "defaultRole": "core",
+    "defaultTitle": "Core Agent",
+    "gateOrder": "AUTH_GATE_THEN_AGENT_ROUTER_THEN_AGENT_GATE_THEN_ACTION"
+  },
+  "agentRouter": {
+    "enabled": true,
+    "primaryAgentLimit": 1,
+    "supportAgentLimit": null,
+    "clarifyBeforeActionWhenAmbiguous": true,
+    "preferHighReasoningForNewSystems": true,
+    "defaultHighReasoningRole": "architect",
+    "defaultHighReasoningTitle": "System Architect",
+    "rules": [
+      "Route every authenticated conversation through one primary named agent.",
+      "For new systems, unclear product ideas, or multi-step builds, route first to a high-reasoning architect/planner agent.",
+      "If the task is ambiguous, ask concise clarifying questions before implementation.",
+      "Do not activate irrelevant agents, but there is no maximum support-agent limit when the task genuinely needs more expertise.",
+      "Keep the user's original intent visible in the route reason so the agent does not drift from context."
+    ]
+  },
+  "partyMode": {
+    "enabled": true,
+    "autoActivateWhenNeeded": true,
+    "banner": "PARTY MODE",
+    "bannerRequired": true,
+    "minimumParticipants": 3,
+    "preferredMinimumParticipants": 4,
+    "participantLimit": null,
+    "showAgentDialogueToUser": true,
+    "format": {
+      "banner": "PARTY MODE",
+      "agentToAgent": "agent: <from-name> (<from-role>) to agent: <to-name> (<to-role>)",
+      "agentToUser": "agent: <from-name> (<from-role>) to <user>",
+      "explanation": "agent: <from-name> (<from-role>)",
+      "messageIndent": "          ",
+      "blankLineBeforeMessage": true
+    },
+    "rules": [
+      "Party mode activates automatically when a task needs several specialist agents to reason together.",
+      "When Party mode is active, show PARTY MODE in large uppercase before the agent dialogue.",
+      "Normal Party mode should use at least 3 participants and prefer 4 when the task has enough relevant roles.",
+      "The primary agent coordinates the party and keeps the user intent visible.",
+      "Every visible agent message must use the configured dialogue format.",
+      "Agents should ask each other focused questions, answer directly, then hand a clear result to the user."
+    ]
+  },
+  "workflow": {
+    "enabled": true,
+    "name": "MOP Workflow",
+    "style": "BMAD-inspired, MOP-native",
+    "currentPhase": null,
+    "phaseOrder": [
+      "idea",
+      "brief",
+      "prd",
+      "ux-spec",
+      "architecture",
+      "story",
+      "readiness",
+      "implementation",
+      "review",
+      "release"
+    ],
+    "phases": [
+      {
+        "id": "idea",
+        "title": "Idea Capture",
+        "primaryRole": "planner",
+        "partyRoles": [
+          "architect",
+          "researcher"
+        ],
+        "artifact": "product-brief",
+        "goal": "Clarify the user's intent, outcome, audience, constraints, and unknowns."
+      },
+      {
+        "id": "brief",
+        "title": "Product Brief",
+        "primaryRole": "planner",
+        "partyRoles": [
+          "ux",
+          "architect",
+          "prompt"
+        ],
+        "artifact": "product-brief",
+        "goal": "Turn the idea into a concise product direction and first scope."
+      },
+      {
+        "id": "prd",
+        "title": "PRD",
+        "primaryRole": "planner",
+        "partyRoles": [
+          "ux",
+          "architect",
+          "reviewer"
+        ],
+        "artifact": "prd",
+        "goal": "Define users, requirements, user stories, acceptance criteria, and risks."
+      },
+      {
+        "id": "ux-spec",
+        "title": "UX Spec",
+        "primaryRole": "ux",
+        "partyRoles": [
+          "design",
+          "frontend",
+          "accessibility"
+        ],
+        "artifact": "ux-spec",
+        "goal": "Define flows, states, layout behavior, visual references, and accessibility expectations."
+      },
+      {
+        "id": "architecture",
+        "title": "Architecture",
+        "primaryRole": "architect",
+        "partyRoles": [
+          "frontend",
+          "backend",
+          "database",
+          "security",
+          "devops",
+          "performance"
+        ],
+        "artifact": "architecture",
+        "goal": "Choose the system shape, data contracts, boundaries, dependencies, and deployment path."
+      },
+      {
+        "id": "story",
+        "title": "Implementation Story",
+        "primaryRole": "planner",
+        "partyRoles": [
+          "coder",
+          "tester",
+          "reviewer"
+        ],
+        "artifact": "story",
+        "goal": "Break approved scope into implementable tasks with acceptance checks."
+      },
+      {
+        "id": "readiness",
+        "title": "Readiness Gate",
+        "primaryRole": "reviewer",
+        "partyRoles": [
+          "architect",
+          "tester",
+          "security"
+        ],
+        "artifact": "readiness-report",
+        "goal": "Confirm the work is clear enough to code without guessing."
+      },
+      {
+        "id": "implementation",
+        "title": "Implementation",
+        "primaryRole": "coder",
+        "partyRoles": [
+          "frontend",
+          "backend",
+          "database",
+          "tester"
+        ],
+        "artifact": "implementation-notes",
+        "goal": "Build the approved story with small safe changes and autosycn."
+      },
+      {
+        "id": "review",
+        "title": "Review",
+        "primaryRole": "reviewer",
+        "partyRoles": [
+          "tester",
+          "security",
+          "performance",
+          "ux"
+        ],
+        "artifact": "review",
+        "goal": "Find defects, regressions, missing tests, UX mismatch, and security/performance risks."
+      },
+      {
+        "id": "release",
+        "title": "Release",
+        "primaryRole": "devops",
+        "partyRoles": [
+          "github",
+          "deploy",
+          "reviewer",
+          "memory"
+        ],
+        "artifact": "release-notes",
+        "goal": "Prepare deploy, handoff, changelog, and merge/release confirmation."
+      }
+    ]
+  },
+  "artifacts": {
+    "enabled": true,
+    "directory": ".MOP/artifacts",
+    "templateDirectory": ".MOP/templates/artifacts",
+    "layout": "category/artifact-slug/type.md",
+    "defaultCategory": "general",
+    "folderByType": {
+      "product-brief": "plan",
+      "prd": "plan",
+      "ux-spec": "design",
+      "architecture": "architecture",
+      "story": "plan",
+      "readiness-report": "readiness",
+      "implementation-notes": "implementation",
+      "review": "review",
+      "adversarial-review": "review",
+      "release-notes": "release",
+      "handoff": "release",
+      "decision-log": "decisions"
+    },
+    "types": [
+      "product-brief",
+      "prd",
+      "ux-spec",
+      "architecture",
+      "story",
+      "readiness-report",
+      "implementation-notes",
+      "review",
+      "adversarial-review",
+      "release-notes",
+      "handoff",
+      "decision-log"
+    ]
+  },
+  "customization": {
+    "enabled": true,
+    "layerOrder": [
+      "defaults",
+      "team",
+      "member"
+    ],
+    "files": {
+      "defaults": ".MOP/config/defaults.json",
+      "team": ".MOP/config/team.json",
+      "memberPattern": ".MOP/config/members/<codename>.json"
+    },
+    "rules": [
+      "Defaults define safe project behavior.",
+      "Team config may override workflow preferences and agent policy.",
+      "Member config may override language, preferred agents, and UI verbosity.",
+      "Customization must not bypass auth, agent gate, autosycn identity, or BURHAN-MOP review."
+    ]
+  },
+  "projectRootPolicy": {
+    "enabled": true,
+    "workInWorkspaceRoot": true,
+    "forbidNestedProjectFolder": true,
+    "rootPathMeaning": "The current workspace root is the app/project root.",
+    "forbiddenExamples": [
+      "portfolio/",
+      "my-app/",
+      "<project-name>/"
+    ],
+    "allowedTopLevelDirs": [
+      "src",
+      "app",
+      "pages",
+      "components",
+      "public",
+      "assets",
+      "tests",
+      "docs",
+      "config",
+      "scripts",
+      ".github",
+      ".MOP",
+      ".agents",
+      ".claude",
+      ".codex",
+      ".gemini"
+    ],
+    "rules": [
+      "When building or scaffolding a user project, create files directly in the workspace root.",
+      "Do not create a nested folder named after the app, product, or project and place the implementation there.",
+      "Use normal top-level app folders such as src, app, pages, components, public, assets, tests, docs, config, and scripts.",
+      "If a framework command wants to create a new project directory, use the current-directory mode or move generated files to root before continuing.",
+      "Ask for explicit permission only when the user truly wants a monorepo or multiple apps."
+    ]
+  },
+  "readinessGate": {
+    "enabled": true,
+    "requiredBeforeImplementation": true,
+    "minimumStatusToCode": "ready",
+    "checks": [
+      "intent-clear",
+      "user-and-success-defined",
+      "scope-bounded",
+      "artifacts-current",
+      "data-contract-clear",
+      "acceptance-criteria-present",
+      "risks-reviewed",
+      "tests-planned",
+      "rollback-or-undo-known"
+    ]
+  },
+  "adversarialReview": {
+    "enabled": true,
+    "name": "Adversarial Review",
+    "defaultMode": "constructive-red-team",
+    "triggers": [
+      "before-implementation",
+      "before-merge",
+      "security-sensitive",
+      "architecture-change",
+      "user-asks-review"
+    ],
+    "reviewRoles": [
+      "reviewer",
+      "security",
+      "performance",
+      "ux",
+      "tester"
+    ],
+    "rules": [
+      "Challenge assumptions without dismissing the user's goal.",
+      "Find failure modes, edge cases, hidden scope, and missing tests.",
+      "Propose fixes or safer alternatives for each serious finding.",
+      "Block implementation when requirements are too unclear."
+    ]
+  },
+  "installer": {
+    "enabled": true,
+    "packageName": "burhan-mop",
+    "command": "npx burhan-mop install",
+    "entrypoint": ".MOP/scripts/burhan-mop.mjs",
+    "installTargets": [
+      "provider entrypoints",
+      "MOP state",
+      "skills",
+      "workflow config",
+      "artifact templates"
+    ]
+  },
+  "mode": "team",
+  "joinMode": "owner-approved",
+  "githubUrl": "https://github.com/BURHANDEV-ENTERPRISE/BURHAN-WEB-DEV.git",
+  "autosync": {
+    "enabled": true,
+    "targetMainBranch": "main",
+    "workBranchPrefix": "dev",
+    "preflightBeforeWork": true,
+    "autoMergeToMain": true,
+    "mergeGuardian": {
+      "enabled": true,
+      "name": "BURHAN-MOP",
+      "autoReviewAfterPush": true,
+      "decision": "required",
+      "commitAsGuardianWhenIdentityConfigured": false,
+      "gitIdentity": {
+        "name": "BURHAN-MOP",
+        "email": ""
+      },
+      "checks": {
+        "workingTreeCleanAfterCommit": true,
+        "branchUpToDateWithMain": true,
+        "stateValid": true,
+        "secretScan": true,
+        "mergeConflict": true,
+        "testCommand": "",
+        "buildCommand": ""
+      }
+    },
+    "requireUserGitEmail": true,
+    "verifyGhUserWhenConfigured": true
+  },
+  "members": {
+    "moon": {
+      "codename": "moon",
+      "displayName": "MoonWiRaja",
+      "role": "owner",
+      "passwordHash": "bf1a9a288780bf407b7897376d4a45bc82bdee68c4ffc47005ee45df330b571d970bd6c3c803bbd9e6707db5c774c2840c02aabcaee07f711b0239b5bfc379fa",
+      "passwordSalt": "1600c258329528357d920f2d6ebb4d7b",
+      "languagePreferences": {
+        "conversation": "Melayu",
+        "coding": "Nest.js"
+      },
+      "gitIdentity": {
+        "name": "MoonWiRaja",
+        "email": "hakimmikah191@gmail.com",
+        "githubUsername": "MoonWiRaja"
+      },
+      "joinedAt": "2026-06-12T12:09:38.573Z"
+    },
+    "amad": {
+      "codename": "amad",
+      "displayName": "Amad",
+      "role": "member",
+      "passwordHash": "7fd83ab5c0aa645b5f386e9878db524b59ee407a2c627b28c04d5e605743b21a5548a38a4cf3f0504ecb4743ba8346e8558a6cec06f7535ee0bb50ed8600f3ca",
+      "passwordSalt": "d287d9d7b79a6ef1a4b75ebd344c39e3",
+      "languagePreferences": {
+        "conversation": "Melayu",
+        "coding": "Nest.js"
+      },
+      "gitIdentity": {
+        "name": "Amad",
+        "email": "naimjamalullail@gmail.com",
+        "githubUsername": "AmadReally"
+      },
+      "joinedAt": "2026-06-12T12:16:03.114Z"
+    }
+  },
+  "installedSkills": [
+    {
+      "name": "autosycn",
+      "purpose": "Identity-safe memory + git autosync flow. Commits and merges as the active user, never as the AI tool."
+    },
+    {
+      "name": "auto-deploy",
+      "purpose": "Opt-in deployment setup for GitHub Pages or Actions, Docker, and Vercel. Must ask before activation."
+    },
+    {
+      "name": "mop-help",
+      "purpose": "Workflow-aware help skill. Answers what to do next, which agent should lead, and which artifact or gate applies."
+    }
+  ],
+  "deployment": {
+    "enabled": false,
+    "requireConfirmation": true,
+    "providers": {
+      "github": {
+        "enabled": false,
+        "mode": "pages-or-actions"
+      },
+      "docker": {
+        "enabled": false,
+        "mode": "dockerfile-compose"
+      },
+      "vercel": {
+        "enabled": false,
+        "mode": "project-link"
+      }
+    }
+  },
+  "agentRoster": [
+    {
+      "id": "agent-kid",
+      "role": "core",
+      "title": "Core Agent",
+      "name": "KID",
+      "owners": [
+        "moon"
+      ],
+      "createdBy": "moon",
+      "createdAt": "2026-06-12T12:27:09.475Z"
+    },
+    {
+      "id": "agent-nami",
+      "role": "github",
+      "title": "GitHub Coordinator",
+      "name": "nAMI",
+      "owners": [
+        "moon"
+      ],
+      "createdBy": "moon",
+      "createdAt": "2026-06-12T12:43:30.845Z"
+    },
+    {
+      "id": "agent-kimi",
+      "role": "researcher",
+      "title": "Web Researcher",
+      "name": "Kimi",
+      "owners": [
+        "moon"
+      ],
+      "createdBy": "moon",
+      "createdAt": "2026-06-12T13:22:00.194Z"
+    },
+    {
+      "id": "agent-nomi",
+      "role": "design",
+      "title": "UI/UX Designer",
+      "name": "NOMI",
+      "owners": [
+        "moon"
+      ],
+      "createdBy": "moon",
+      "createdAt": "2026-06-12T13:59:23.959Z"
+    }
+  ],
+  "agentCatalog": [
+    {
+      "role": "core",
+      "title": "Core Agent",
+      "kind": "orchestrator",
+      "purpose": "Default high-context conversation owner and final coordinator."
+    },
+    {
+      "role": "planner",
+      "title": "Product Planner",
+      "kind": "thinking",
+      "purpose": "Clarifies ideas, scopes products, asks questions, and turns vague requests into workable plans."
+    },
+    {
+      "role": "researcher",
+      "title": "Researcher",
+      "kind": "thinking",
+      "purpose": "Finds requirements, references, constraints, and missing context."
+    },
+    {
+      "role": "architect",
+      "title": "System Architect",
+      "kind": "thinking",
+      "purpose": "High-reasoning system design, architecture, tradeoffs, and context control."
+    },
+    {
+      "role": "coder",
+      "title": "Coder",
+      "kind": "implementation",
+      "purpose": "General code implementation after requirements are clear."
+    },
+    {
+      "role": "frontend",
+      "title": "Frontend Developer",
+      "kind": "implementation",
+      "purpose": "UI, React, Next.js, styling, state, responsive behavior, and browser UX."
+    },
+    {
+      "role": "backend",
+      "title": "Backend Developer",
+      "kind": "implementation",
+      "purpose": "APIs, server logic, authentication, integrations, and business rules."
+    },
+    {
+      "role": "database",
+      "title": "Database Engineer",
+      "kind": "implementation",
+      "purpose": "Schemas, migrations, queries, indexes, and data lifecycle."
+    },
+    {
+      "role": "mobile",
+      "title": "Mobile Developer",
+      "kind": "implementation",
+      "purpose": "iOS, Android, React Native, Flutter, PWA, offline workflows."
+    },
+    {
+      "role": "tester",
+      "title": "Tester",
+      "kind": "quality",
+      "purpose": "Test strategy, unit/integration/e2e coverage, regression checks, and bug reproduction."
+    },
+    {
+      "role": "reviewer",
+      "title": "Reviewer",
+      "kind": "quality",
+      "purpose": "Code review, risk review, maintainability, and final quality gate."
+    },
+    {
+      "role": "security",
+      "title": "Security Specialist",
+      "kind": "quality",
+      "purpose": "Threat modelling, auth, secrets, permissions, dependency risk, and hardening."
+    },
+    {
+      "role": "performance",
+      "title": "Performance Engineer",
+      "kind": "quality",
+      "purpose": "Speed, memory, bundle size, database/query performance, and profiling."
+    },
+    {
+      "role": "github",
+      "title": "GitHub Coordinator",
+      "kind": "operations",
+      "purpose": "GitHub repo, branch, PR, issue, release, and merge workflow."
+    },
+    {
+      "role": "devops",
+      "title": "DevOps Engineer",
+      "kind": "operations",
+      "purpose": "CI/CD, Docker, infrastructure, environment config, and deployment pipeline."
+    },
+    {
+      "role": "deploy",
+      "title": "Deployment Specialist",
+      "kind": "operations",
+      "purpose": "GitHub Pages/Actions, Docker deployment, Vercel setup, and release handoff."
+    },
+    {
+      "role": "memory",
+      "title": "Memory Keeper",
+      "kind": "memory",
+      "purpose": "Save, recall, summarize, search, and clean long-term MOP records."
+    },
+    {
+      "role": "ux",
+      "title": "UX Researcher",
+      "kind": "design",
+      "purpose": "User flows, pain points, personas, usability, and product behavior."
+    },
+    {
+      "role": "design",
+      "title": "UI/UX Designer",
+      "kind": "design",
+      "purpose": "Visual design, layouts, components, accessibility, and interaction polish."
+    },
+    {
+      "role": "accessibility",
+      "title": "Accessibility Specialist",
+      "kind": "quality",
+      "purpose": "Keyboard flow, screen reader behavior, contrast, reduced motion, and inclusive interaction checks."
+    },
+    {
+      "role": "docs",
+      "title": "Documentation Writer",
+      "kind": "communication",
+      "purpose": "README, guides, prompts, specs, changelogs, and concise user-facing docs."
+    },
+    {
+      "role": "prompt",
+      "title": "Prompt Engineer",
+      "kind": "ai",
+      "purpose": "Prompt systems, AI workflow design, context discipline, and model behavior."
+    },
+    {
+      "role": "seo",
+      "title": "SEO Strategist",
+      "kind": "marketing",
+      "purpose": "Technical SEO, metadata, schema, content structure, and search readiness."
+    }
+  ],
+  "ledger": [
+    {
+      "at": "2026-06-11T00:00:00.000Z",
+      "actor": "system",
+      "kind": "state-created",
+      "summary": "MOP state scaffold created; setup pending."
+    },
+    {
+      "at": "2026-06-12T12:09:38.596Z",
+      "actor": "moon",
+      "kind": "setup",
+      "summary": "Initialized BURHAN-WEB-DEV in team mode."
+    },
+    {
+      "at": "2026-06-12T12:27:09.475Z",
+      "actor": "moon",
+      "kind": "agent-activate",
+      "summary": "Named Core Agent as KID."
+    },
+    {
+      "at": "2026-06-12T12:27:09.475Z",
+      "actor": "moon",
+      "agent": "KID",
+      "agentRole": "core",
+      "agentId": "agent-kid",
+      "kind": "agent-use",
+      "summary": "Set active agent to KID."
+    },
+    {
+      "at": "2026-06-12T12:41:23.661Z",
+      "actor": "moon",
+      "agent": "KID",
+      "agentRole": "core",
+      "agentId": "agent-kid",
+      "kind": "agent-route",
+      "summary": "Routed task to KID: No strong specialist match; using Core Agent."
+    },
+    {
+      "at": "2026-06-12T12:43:30.845Z",
+      "actor": "moon",
+      "agent": "KID",
+      "agentRole": "core",
+      "agentId": "agent-kid",
+      "kind": "agent-activate",
+      "summary": "Named GitHub Coordinator as nAMI."
+    },
+    {
+      "at": "2026-06-12T12:43:30.845Z",
+      "actor": "moon",
+      "agent": "nAMI",
+      "agentRole": "github",
+      "agentId": "agent-nami",
+      "kind": "agent-use",
+      "summary": "Set active agent to nAMI."
+    },
+    {
+      "at": "2026-06-12T12:43:46.707Z",
+      "actor": "moon",
+      "agent": "nAMI",
+      "agentRole": "github",
+      "agentId": "agent-nami",
+      "kind": "agent-route",
+      "summary": "Routed task to nAMI: Matched keywords for GitHub Coordinator: github, git, pr."
+    },
+    {
+      "at": "2026-06-12T13:19:19.834Z",
+      "actor": "moon",
+      "agent": "nAMI",
+      "agentRole": "github",
+      "agentId": "agent-nami",
+      "kind": "memory",
+      "summary": "Build BURHANDEV landing page with scroll animation"
+    },
+    {
+      "at": "2026-06-12T13:22:00.194Z",
+      "actor": "moon",
+      "agent": "nAMI",
+      "agentRole": "github",
+      "agentId": "agent-nami",
+      "kind": "agent-activate",
+      "summary": "Named Web Researcher as Kimi."
+    },
+    {
+      "at": "2026-06-12T13:22:00.194Z",
+      "actor": "moon",
+      "agent": "Kimi",
+      "agentRole": "researcher",
+      "agentId": "agent-kimi",
+      "kind": "agent-use",
+      "summary": "Set active agent to Kimi."
+    },
+    {
+      "at": "2026-06-12T13:22:30.602Z",
+      "actor": "moon",
+      "agent": "Kimi",
+      "agentRole": "researcher",
+      "agentId": "agent-kimi",
+      "kind": "agent-share",
+      "summary": "moon joined agent Kimi."
+    },
+    {
+      "at": "2026-06-12T13:22:30.603Z",
+      "actor": "moon",
+      "agent": "Kimi",
+      "agentRole": "researcher",
+      "agentId": "agent-kimi",
+      "kind": "agent-use",
+      "summary": "Set active agent to Kimi."
+    },
+    {
+      "at": "2026-06-12T13:37:01.232Z",
+      "actor": "moon",
+      "agent": "Kimi",
+      "agentRole": "researcher",
+      "agentId": "agent-kimi",
+      "kind": "memory",
+      "summary": "Add Kimi web research agent and install BrowserAct skill"
+    },
+    {
+      "at": "2026-06-12T13:59:23.959Z",
+      "actor": "moon",
+      "agent": "Kimi",
+      "agentRole": "researcher",
+      "agentId": "agent-kimi",
+      "kind": "agent-activate",
+      "summary": "Named UI/UX Designer as NOMI."
+    },
+    {
+      "at": "2026-06-12T13:59:23.959Z",
+      "actor": "moon",
+      "agent": "NOMI",
+      "agentRole": "design",
+      "agentId": "agent-nomi",
+      "kind": "agent-use",
+      "summary": "Set active agent to NOMI."
+    },
+    {
+      "at": "2026-06-12T14:01:07.924Z",
+      "actor": "moon",
+      "agent": "NOMI",
+      "agentRole": "design",
+      "agentId": "agent-nomi",
+      "kind": "agent-route",
+      "summary": "Routed task to NOMI: Matched keywords for UI/UX Designer: design, ui/ux, visual, color."
+    },
+    {
+      "at": "2026-06-12T14:11:14.914Z",
+      "actor": "moon",
+      "agent": "NOMI",
+      "agentRole": "design",
+      "agentId": "agent-nomi",
+      "kind": "memory",
+      "summary": "NOMI redesigned BURHANDEV landing page with BikeBear-like scroll behavior and Burhan visual system"
+    },
+    {
+      "at": "2026-06-12T14:12:17.701Z",
+      "actor": "moon",
+      "agent": "nAMI",
+      "agentRole": "github",
+      "agentId": "agent-nami",
+      "kind": "agent-route",
+      "summary": "Routed task to nAMI: Matched keywords for GitHub Coordinator: autosycn."
+    },
+    {
+      "at": "2026-06-12T14:13:30.494Z",
+      "actor": "moon",
+      "agent": "nAMI",
+      "agentRole": "github",
+      "agentId": "agent-nami",
+      "kind": "agent-route",
+      "summary": "Routed task to nAMI: Matched keywords for GitHub Coordinator: git, commit, push, autosycn."
+    },
+    {
+      "at": "2026-06-12T14:18:40.661Z",
+      "actor": "moon",
+      "agent": "nAMI",
+      "agentRole": "github",
+      "agentId": "agent-nami",
+      "kind": "agent-route",
+      "summary": "Routed task to nAMI: Matched keywords for GitHub Coordinator: github, git, push, pr, autosycn."
+    },
+    {
+      "at": "2026-06-12T14:25:49.301Z",
+      "actor": "moon",
+      "agent": "nAMI",
+      "agentRole": "github",
+      "agentId": "agent-nami",
+      "kind": "agent-route",
+      "summary": "Routed task to nAMI: Matched keywords for GitHub Coordinator: github, git, commit, push, repo, repository, autosycn."
+    },
+    {
+      "at": "2026-06-12T14:25:58.239Z",
+      "actor": "moon",
+      "agent": "nAMI",
+      "agentRole": "github",
+      "agentId": "agent-nami",
+      "kind": "autosycn-init",
+      "summary": "Initialized autosycn remote https://github.com/BURHANDEV-ENTERPRISE/BURHAN-WEB-DEV.git."
+    }
+  ]
+}
