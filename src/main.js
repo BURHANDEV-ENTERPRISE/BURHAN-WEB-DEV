@@ -91,3 +91,7 @@ window.addEventListener("resize", updateHeroProgress);
 reduceMotion.addEventListener("change", updateHeroProgress);
 
 updateHeroProgress();
+
+requestAnimationFrame(() => {
+  document.documentElement.classList.remove("is-booting");
+});
