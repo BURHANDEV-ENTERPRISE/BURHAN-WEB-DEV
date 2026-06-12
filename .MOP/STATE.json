@@ -6,7 +6,7 @@
   "ownerCodename": "moon",
   "activeMember": "moon",
   "activeAgents": {
-    "moon": "agent-nami"
+    "moon": "agent-loli"
   },
   "agentPolicy": {
     "requiredAfterAuth": true,
@@ -490,6 +490,17 @@
       ],
       "createdBy": "moon",
       "createdAt": "2026-06-12T13:59:23.959Z"
+    },
+    {
+      "id": "agent-loli",
+      "role": "frontend",
+      "title": "Frontend Developer",
+      "name": "Loli",
+      "owners": [
+        "moon"
+      ],
+      "createdBy": "moon",
+      "createdAt": "2026-06-12T14:28:14.528Z"
     }
   ],
   "agentCatalog": [
@@ -830,6 +841,42 @@
       "agentId": "agent-nami",
       "kind": "autosycn-init",
       "summary": "Initialized autosycn remote https://github.com/BURHANDEV-ENTERPRISE/BURHAN-WEB-DEV.git."
+    },
+    {
+      "at": "2026-06-12T14:28:14.528Z",
+      "actor": "moon",
+      "agent": "nAMI",
+      "agentRole": "github",
+      "agentId": "agent-nami",
+      "kind": "agent-activate",
+      "summary": "Named Frontend Developer as Loli."
+    },
+    {
+      "at": "2026-06-12T14:28:14.528Z",
+      "actor": "moon",
+      "agent": "Loli",
+      "agentRole": "frontend",
+      "agentId": "agent-loli",
+      "kind": "agent-use",
+      "summary": "Set active agent to Loli."
+    },
+    {
+      "at": "2026-06-12T14:29:16.651Z",
+      "actor": "moon",
+      "agent": "Loli",
+      "agentRole": "frontend",
+      "agentId": "agent-loli",
+      "kind": "memory",
+      "summary": "Fix refresh flash by hiding app until CSS module boot completes"
+    },
+    {
+      "at": "2026-06-12T14:29:52.493Z",
+      "actor": "moon",
+      "agent": "Loli",
+      "agentRole": "frontend",
+      "agentId": "agent-loli",
+      "kind": "memory",
+      "summary": "Fix refresh flash by hiding app until CSS module boot completes"
     }
   ]
 }

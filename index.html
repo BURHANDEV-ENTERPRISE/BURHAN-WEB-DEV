@@ -7,6 +7,23 @@
       name="description"
       content="BURHANDEV builds landing pages, business websites, product UI, and custom web tools for Malaysian teams."
     />
+    <script>
+      document.documentElement.classList.add("is-booting");
+    </script>
+    <style>
+      html.is-booting {
+        background: #fff6dc;
+      }
+
+      html.is-booting #app {
+        visibility: hidden;
+      }
+
+      noscript #app,
+      html:not(.is-booting) #app {
+        visibility: visible;
+      }
+    </style>
     <title>BURHANDEV | Web Developer Services</title>
   </head>
   <body>
