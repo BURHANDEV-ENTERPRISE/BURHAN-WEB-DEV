@@ -1,11 +1,16 @@
 node_modules/
+.next/
+out/
 dist/
 coverage/
 .cache/
-.vite/
 
 .env
 .env.*
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 
 npm-debug.log*
 yarn-debug.log*
@@ -14,3 +19,5 @@ pnpm-debug.log*
 
 *.local
 *.log
+
+next-env.d.ts
