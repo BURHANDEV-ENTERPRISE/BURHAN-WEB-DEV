@@ -4,9 +4,10 @@
   "projectName": "BURHAN-WEB-DEV",
   "projectNameDefault": "BURHAN-WEB-DEV",
   "ownerCodename": "moon",
-  "activeMember": "moon",
+  "activeMember": "amad",
   "activeAgents": {
-    "moon": "agent-loli"
+    "moon": "agent-loli",
+    "amad": "agent-anis"
   },
   "agentPolicy": {
     "requiredAfterAuth": true,
@@ -501,6 +502,39 @@
       ],
       "createdBy": "moon",
       "createdAt": "2026-06-12T14:28:14.528Z"
+    },
+    {
+      "id": "agent-madszz",
+      "role": "backend",
+      "title": "Backend Developer",
+      "name": "madszz",
+      "owners": [
+        "amad"
+      ],
+      "createdBy": "amad",
+      "createdAt": "2026-06-12T15:47:02.038Z"
+    },
+    {
+      "id": "agent-mad",
+      "role": "frontend",
+      "title": "Frontend Developer",
+      "name": "mad",
+      "owners": [
+        "amad"
+      ],
+      "createdBy": "amad",
+      "createdAt": "2026-06-12T15:47:06.723Z"
+    },
+    {
+      "id": "agent-anis",
+      "role": "core",
+      "title": "Core Agent",
+      "name": "anis",
+      "owners": [
+        "amad"
+      ],
+      "createdBy": "amad",
+      "createdAt": "2026-06-12T15:48:06.128Z"
     }
   ],
   "agentCatalog": [
@@ -955,6 +989,81 @@
       "actor": "BURHAN-MOP",
       "kind": "merge-approved",
       "summary": "origin/dev/moon approved and merged to main."
+    },
+    {
+      "at": "2026-06-12T15:37:39.581Z",
+      "actor": "amad",
+      "kind": "login",
+      "summary": "Member authenticated."
+    },
+    {
+      "at": "2026-06-12T15:47:02.039Z",
+      "actor": "amad",
+      "kind": "agent-activate",
+      "summary": "Named Backend Developer as madszz."
+    },
+    {
+      "at": "2026-06-12T15:47:02.039Z",
+      "actor": "amad",
+      "agent": "madszz",
+      "agentRole": "backend",
+      "agentId": "agent-madszz",
+      "kind": "agent-use",
+      "summary": "Set active agent to madszz."
+    },
+    {
+      "at": "2026-06-12T15:47:06.724Z",
+      "actor": "amad",
+      "agent": "madszz",
+      "agentRole": "backend",
+      "agentId": "agent-madszz",
+      "kind": "agent-activate",
+      "summary": "Named Frontend Developer as mad."
+    },
+    {
+      "at": "2026-06-12T15:47:06.724Z",
+      "actor": "amad",
+      "agent": "mad",
+      "agentRole": "frontend",
+      "agentId": "agent-mad",
+      "kind": "agent-use",
+      "summary": "Set active agent to mad."
+    },
+    {
+      "at": "2026-06-12T15:48:06.129Z",
+      "actor": "amad",
+      "agent": "mad",
+      "agentRole": "frontend",
+      "agentId": "agent-mad",
+      "kind": "agent-activate",
+      "summary": "Named Core Agent as anis."
+    },
+    {
+      "at": "2026-06-12T15:48:06.129Z",
+      "actor": "amad",
+      "agent": "anis",
+      "agentRole": "core",
+      "agentId": "agent-anis",
+      "kind": "agent-use",
+      "summary": "Set active agent to anis."
+    },
+    {
+      "at": "2026-06-12T15:48:10.419Z",
+      "actor": "amad",
+      "agent": "anis",
+      "agentRole": "core",
+      "agentId": "agent-anis",
+      "kind": "agent-route",
+      "summary": "Routed task to anis: No strong specialist match; using Core Agent."
+    },
+    {
+      "at": "2026-06-12T16:05:20.363Z",
+      "actor": "amad",
+      "agent": "anis",
+      "agentRole": "core",
+      "agentId": "agent-anis",
+      "kind": "memory",
+      "summary": "Migrate from Vite vanilla JS to Next.js 15 with TypeScript and React 19"
     }
   ]
 }
