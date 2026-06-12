@@ -916,6 +916,15 @@
       "actor": "BURHAN-MOP",
       "kind": "merge-approved",
       "summary": "origin/dev/moon approved and merged to main."
+    },
+    {
+      "at": "2026-06-12T14:56:01.447Z",
+      "actor": "moon",
+      "agent": "Loli",
+      "agentRole": "frontend",
+      "agentId": "agent-loli",
+      "kind": "memory",
+      "summary": "Make hero full screen 100vh and simplify hero markup/copy."
     }
   ]
 }
