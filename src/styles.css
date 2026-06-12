@@ -173,8 +173,8 @@ p {
 
 .hero-stage {
   position: relative;
-  height: 610vh;
-  min-height: 240rem;
+  height: 100vh;
+  min-height: 100svh;
   background:
     radial-gradient(circle at 50% 18%, rgba(255, 90, 42, 0.14), transparent 22rem),
     linear-gradient(180deg, var(--cream) 0%, #f7edcf 62%, var(--sand) 100%);
@@ -183,6 +183,7 @@ p {
 .hero-pin {
   position: sticky;
   top: 0;
+  min-height: 100vh;
   min-height: 100svh;
   overflow: hidden;
   display: grid;
@@ -1210,11 +1211,12 @@ p {
   }
 
   .hero-stage {
-    height: 540vh;
-    min-height: 190rem;
+    height: 100vh;
+    min-height: 100svh;
   }
 
   .hero-pin {
+    min-height: 100vh;
     min-height: 100svh;
     padding: 5.4rem 0.8rem 4rem;
   }
@@ -1402,8 +1404,9 @@ p {
   }
 
   .hero-pin {
-    position: relative;
-    min-height: 48rem;
+    position: sticky;
+    min-height: 100vh;
+    min-height: 100svh;
   }
 
   .reveal {
