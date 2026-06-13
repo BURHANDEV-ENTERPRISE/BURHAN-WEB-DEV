@@ -1,6 +1,6 @@
 # MOP Session Brief
 
-Updated: 2026-06-13T19:59:50.776Z
+Updated: 2026-06-13T20:02:03.078Z
 Actor: moon
 Active agent: Numero (browser)
 Current month: 2026-06
@@ -15,9 +15,6 @@ Current month: 2026-06
 
 ## Recent Memory
 
-- 2026-06-13T14:07:21.750Z - anis (core): Completed full Cinnamon-style hero: dual-span button text hover animation (translateY slide), fixed SVG clone transition property missing, build OK, pushed to dev/amad
-- 2026-06-13T16:22:30.693Z - anis (core): sync MOP config, scripts, skills, and tooling updates
-- 2026-06-13T16:24:12.153Z - anis (core): sync MOP config, scripts, skills, and tooling updates; fix secret scan false positive on sk- pattern
 - 2026-06-13T16:26:36.902Z - anis (core): fix secret scan: exclude .MOP/scripts from self-referencing false positive, tighten sk- and token patterns
 - 2026-06-13T19:17:11.184Z - nAMI (github): Login and route to nAMI
 - 2026-06-13T19:28:40.330Z - nAMI (github): Synced dev/moon with origin/main and resolved conflicts
@@ -35,3 +32,6 @@ Current month: 2026-06
 - 2026-06-13T19:55:17.353Z - Numero (browser): fix hero CSS secret scanner false positive
 - 2026-06-13T19:57:36.724Z - Numero (browser): preserve readable hero heading spacing
 - 2026-06-13T19:59:50.768Z - Numero (browser): preserve spaces between split heading lines
+- 2026-06-13T20:01:09.410Z - Numero (browser): Replaced hero with Cinnamon-inspired connected hero/open-capsule section, verified build/render, and merged to main
+- 2026-06-13T20:01:17.195Z - Numero (browser): save memory for Cinnamon-inspired hero work
+- 2026-06-13T20:02:03.070Z - Numero (browser): save memory for Cinnamon-inspired hero work
