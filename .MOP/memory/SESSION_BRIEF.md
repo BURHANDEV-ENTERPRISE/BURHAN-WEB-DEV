@@ -1,8 +1,8 @@
 # MOP Session Brief
 
-Updated: 2026-06-13T19:38:05.503Z
+Updated: 2026-06-13T19:46:10.623Z
 Actor: moon
-Active agent: KID (core)
+Active agent: Numero (browser)
 Current month: 2026-06
 
 ## Required Session Flow
@@ -10,7 +10,7 @@ Current month: 2026-06
 1. Read `.MOP/STATE.json` and follow `.MOP/PROTOCOL.md`.
 2. Restore memory with `node .MOP/scripts/mop-core.mjs memory brief --actor <codename>`.
 3. Run `agent route` for the user task before answering.
-4. Start every authenticated answer with: `agent: KID (core) to moon`
+4. Start every authenticated answer with: `agent: Numero (browser) to moon`
 5. Save a one-line memory after meaningful work.
 
 ## Recent Memory
@@ -30,3 +30,6 @@ Current month: 2026-06
 - 2026-06-13T19:36:50.744Z - KID (core): sync MOP config, scripts, skills, and tooling updates from installer
 - 2026-06-13T19:38:03.661Z - KID (core): Explained Amad's recent activities on the Cinnamon hero section and secret scanner fixes
 - 2026-06-13T19:38:05.496Z - KID (core): Save memory: Explained Amad's recent activities
+- 2026-06-13T19:39:56.355Z - KID (core): Greeted moon and confirmed Codex is ready to help
+- 2026-06-13T19:44:42.350Z - KID (core): Asked moon to name missing Browser and UX agents before Cinnamon-inspired hero scraping work
+- 2026-06-13T19:46:10.615Z - Numero (browser): activate Browser and UX agents for Cinnamon hero work
