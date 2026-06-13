@@ -1,6 +1,6 @@
 # MOP Session Brief
 
-Updated: 2026-06-13T19:53:36.214Z
+Updated: 2026-06-13T19:55:17.361Z
 Actor: moon
 Active agent: Numero (browser)
 Current month: 2026-06
@@ -34,3 +34,4 @@ Current month: 2026-06
 - 2026-06-13T19:44:42.350Z - KID (core): Asked moon to name missing Browser and UX agents before Cinnamon-inspired hero scraping work
 - 2026-06-13T19:46:10.615Z - Numero (browser): activate Browser and UX agents for Cinnamon hero work
 - 2026-06-13T19:53:36.207Z - Numero (browser): replace hero with Cinnamon-inspired connected hero and capsule section
+- 2026-06-13T19:55:17.353Z - Numero (browser): fix hero CSS secret scanner false positive
