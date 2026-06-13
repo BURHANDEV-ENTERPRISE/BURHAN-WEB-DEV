@@ -4,9 +4,9 @@
   "projectName": "BURHAN-WEB-DEV",
   "projectNameDefault": "BURHAN-WEB-DEV",
   "ownerCodename": "moon",
-  "activeMember": "amad",
+  "activeMember": "moon",
   "activeAgents": {
-    "moon": "agent-loli",
+    "moon": "agent-nami",
     "amad": "agent-anis"
   },
   "agentPolicy": {
@@ -1064,6 +1064,60 @@
       "agentId": "agent-anis",
       "kind": "memory",
       "summary": "Migrate from Vite vanilla JS to Next.js 15 with TypeScript and React 19"
+    },
+    {
+      "at": "2026-06-12T17:51:44.431Z",
+      "actor": "moon",
+      "agent": "KID",
+      "agentRole": "core",
+      "agentId": "agent-kid",
+      "kind": "agent-route",
+      "summary": "Routed task to KID: No strong specialist match; using Core Agent."
+    },
+    {
+      "at": "2026-06-13T16:22:00.270Z",
+      "actor": "amad",
+      "agent": "anis",
+      "agentRole": "core",
+      "agentId": "agent-anis",
+      "kind": "agent-route",
+      "summary": "Routed task to anis: No strong specialist match; using Core Agent."
+    },
+    {
+      "at": "2026-06-13T16:25:01.788Z",
+      "actor": "moon",
+      "agent": "KID",
+      "agentRole": "core",
+      "agentId": "agent-kid",
+      "kind": "login",
+      "summary": "Member authenticated."
+    },
+    {
+      "at": "2026-06-13T16:29:13.804Z",
+      "actor": "moon",
+      "agent": "KID",
+      "agentRole": "core",
+      "agentId": "agent-kid",
+      "kind": "agent-route",
+      "summary": "Routed task to KID: No strong specialist match; using Core Agent."
+    },
+    {
+      "at": "2026-06-13T16:33:32.854Z",
+      "actor": "moon",
+      "agent": "nAMI",
+      "agentRole": "github",
+      "agentId": "agent-nami",
+      "kind": "agent-route",
+      "summary": "Routed task to nAMI: Matched keywords for GitHub Coordinator: autosycn."
+    },
+    {
+      "at": "2026-06-13T16:43:30.098Z",
+      "actor": "moon",
+      "agent": "nAMI",
+      "agentRole": "github",
+      "agentId": "agent-nami",
+      "kind": "memory",
+      "summary": "Login and route to GitHub Coordinator"
     }
   ]
 }
