@@ -161,14 +161,11 @@ function identityEnv(identity) {
 function mergeIdentityFor(state, actorIdentity) {
   const guardian = guardianConfig(state);
   const guardianIdentity = guardian.gitIdentity || {};
-  if (guardian.commitAsGuardianWhenIdentityConfigured && guardianIdentity.email) {
-    return {
-      name: guardianIdentity.name || guardian.name || 'BURHAN-MOP',
-      email: guardianIdentity.email,
-      githubUsername: guardianIdentity.githubUsername || ''
-    };
-  }
-  return actorIdentity;
+  return {
+    name: guardianIdentity.name || guardian.name || 'BURHAN-MOP',
+    email: guardianIdentity.email || 'burhan-mop@users.noreply.github.com',
+    githubUsername: guardianIdentity.githubUsername || 'BURHAN-MOP'
+  };
 }
 
 function ensureGitRepo() {

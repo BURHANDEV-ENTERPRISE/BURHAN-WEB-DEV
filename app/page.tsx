@@ -1,4 +1,5 @@
 import ScrollEffects from "../src/components/ScrollEffects";
+import HeroSection from "../src/components/HeroSection";
 import Image from "next/image";
 
 export default function Home() {
@@ -21,85 +22,7 @@ export default function Home() {
       </header>
 
       <main>
-        <section
-          id="top"
-          className="hero-stage"
-          data-scroll-stage=""
-          data-frame="0"
-          aria-labelledby="hero-title"
-        >
-          <div className="hero-pin">
-            <aside className="side-badge" aria-hidden="true">
-              <strong>W.</strong>
-              <span>Builds</span>
-            </aside>
-
-            <div className="build-scene" aria-hidden="true">
-              <div className="screen-card screen-card-one">
-                <div className="browser-dots"><i></i><i></i><i></i></div>
-                <strong>BRIEF</strong>
-                <span></span>
-                <span></span>
-              </div>
-              <div className="screen-card screen-card-two">
-                <div className="browser-dots"><i></i><i></i><i></i></div>
-                <strong>DESIGN</strong>
-                <span></span>
-                <span></span>
-              </div>
-              <div className="screen-card screen-card-three">
-                <div className="browser-dots"><i></i><i></i><i></i></div>
-                <strong>LIVE</strong>
-                <span></span>
-                <span></span>
-              </div>
-
-              <div className="build-core">
-                <div className="core-glow"></div>
-                <div className="core-shell">
-                  <Image src="/brand/burhan-logo2.png" alt="" width={48} height={48} />
-                </div>
-                <div className="core-smile"></div>
-                <div className="core-badge">DEV</div>
-              </div>
-
-              <div className="cursor-mark"></div>
-              <div className="code-chip">
-                <span>&lt;build&gt;</span>
-                <span></span>
-                <span></span>
-                <span></span>
-              </div>
-            </div>
-
-            <div className="frame-panel" aria-label="Hero animation frame status">
-              <p>Frame <strong data-frame-label="">Scope</strong></p>
-              <ol>
-                <li><span>01</span>Scope</li>
-                <li><span>02</span>Design</li>
-                <li><span>03</span>Build</li>
-                <li><span>04</span>Polish</li>
-                <li><span>05</span>Launch</li>
-                <li><span>06</span>Care</li>
-              </ol>
-            </div>
-
-            <div className="bottom-ticker" aria-hidden="true">
-              <div className="ticker-track">
-                <span>WEBSITE UNTUK BISNES MALAYSIA</span>
-                <span>LANDING PAGE</span>
-                <span>PRODUCT UI</span>
-                <span>CUSTOM WEB TOOL</span>
-                <span>FAST HANDOFF</span>
-                <span>WEBSITE UNTUK BISNES MALAYSIA</span>
-                <span>LANDING PAGE</span>
-                <span>PRODUCT UI</span>
-                <span>CUSTOM WEB TOOL</span>
-                <span>FAST HANDOFF</span>
-              </div>
-            </div>
-          </div>
-        </section>
+        <HeroSection />
 
         <section className="manifesto-section reveal" aria-labelledby="manifesto-title">
           <p className="eyebrow">Digital Craft</p>
