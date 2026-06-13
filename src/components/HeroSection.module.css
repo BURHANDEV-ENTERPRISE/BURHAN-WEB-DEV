@@ -1,168 +1,309 @@
-/* tall container — captures scroll distance while hero stays pinned */
-.scrollStage {
+.scene {
+  --scene-progress: 0;
   position: relative;
-  height: 400vh;
+  overflow: clip;
+  min-height: 245vh;
+  background: #020d0d;
+  color: #fff;
 }
 
 .hero {
   position: sticky;
   top: 0;
-  height: 100vh;
-  overflow: visible;
-  background: #151510;
-  clip-path: inset(0);
-}
-
-.canvas {
-  position: absolute;
-  inset: 0;
-  display: block;
+  z-index: 1;
   width: 100%;
-  height: 100%;
+  height: 100vh;
+  min-height: 100svh;
+  overflow: hidden;
+  background:
+    radial-gradient(60rem 34rem at 50% 114%, rgba(143, 255, 255, 0.18), transparent 68%),
+    radial-gradient(42rem 24rem at 18% 20%, rgba(255, 82, 0, 0.15), transparent 68%),
+    radial-gradient(46rem 24rem at 82% 18%, rgba(0, 190, 255, 0.13), transparent 68%),
+    #020d0d;
 }
 
-.avatarLayer {
+.heroTexture {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  /* no z-index — DOM order (after curtainInner) keeps avatars on top without creating
-     an isolated stacking context that would break mix-blend-mode on the canvas */
+  opacity: 0.45;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 42px 42px;
+  mask-image: radial-gradient(circle at 50% 44%, black 0, transparent 72%);
 }
 
-.curtainInner {
+.orbitField {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: #7f1d1d;
-  transform: translateY(100%);
-  /* no z-index — DOM order (before avatarLayer) is enough to keep curtain below avatars */
-  box-shadow: 0 -8px 40px rgba(200, 40, 40, 0);
+  inset: 0;
+  pointer-events: none;
+  opacity: clamp(0.22, calc(1 - var(--scene-progress) * 1.7), 1);
+  transform: translateY(calc(var(--scene-progress) * -7rem));
+  transition: opacity 0.2s linear;
 }
 
-.avatarCard {
+.orbitRing,
+.energyDot,
+.capsuleSeed {
   position: absolute;
-  transform: translate(-50%, -50%);
-  mix-blend-mode: screen;
-}
-
-.avatarCanvas {
   display: block;
-  height: 38vh;
-  width: auto;
-  image-rendering: pixelated;
 }
 
-/* ── Hero title overlay (Cinnamon-style) ────────────── */
-.heroOverlay {
+.orbitRing {
+  border: 1px solid rgba(151, 255, 245, 0.35);
+  border-radius: 50%;
+  box-shadow:
+    inset 0 0 36px rgba(143, 255, 255, 0.05),
+    0 0 42px rgba(0, 199, 255, 0.08);
+  animation: orbitDrift 12s linear infinite;
+}
+
+.orbitRing::before,
+.orbitRing::after {
+  content: "";
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 10;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.orbitRing::before {
+  inset: 18%;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.orbitRing::after {
+  width: 0.7rem;
+  height: 0.7rem;
+  right: 14%;
+  top: 10%;
+  background: #ff6b35;
+  box-shadow: 0 0 24px rgba(255, 107, 53, 0.65);
+}
+
+.orbitRingOne {
+  width: clamp(18rem, 34vw, 42rem);
+  height: clamp(18rem, 34vw, 42rem);
+  left: -8rem;
+  top: 10%;
+}
+
+.orbitRingTwo {
+  width: clamp(16rem, 28vw, 34rem);
+  height: clamp(16rem, 28vw, 34rem);
+  right: -7rem;
+  top: 4%;
+  animation-duration: 15s;
+  animation-direction: reverse;
+}
+
+.orbitRingThree {
+  width: clamp(16rem, 30vw, 40rem);
+  height: clamp(16rem, 30vw, 40rem);
+  left: 50%;
+  bottom: -20rem;
+  transform: translateX(-50%);
+  animation-duration: 18s;
+}
+
+.energyDot {
+  width: clamp(4.5rem, 9vw, 8.5rem);
+  height: clamp(4.5rem, 9vw, 8.5rem);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 38% 34%, rgba(255, 255, 255, 0.95) 0 6%, transparent 7%),
+    radial-gradient(circle at 50% 50%, rgba(255, 107, 53, 0.9), rgba(255, 107, 53, 0.08) 58%, transparent 68%);
+  filter: blur(0.1px);
+  opacity: 0.82;
+  animation: floatDot 6s ease-in-out infinite;
+}
+
+.energyDotOne {
+  left: 17%;
+  bottom: 16%;
+}
+
+.energyDotTwo {
+  right: 19%;
+  bottom: 20%;
+  width: clamp(3rem, 6vw, 5.4rem);
+  height: clamp(3rem, 6vw, 5.4rem);
+  animation-delay: -1.6s;
+}
+
+.energyDotThree {
+  right: 31%;
+  top: 18%;
+  width: clamp(2.2rem, 4.5vw, 4rem);
+  height: clamp(2.2rem, 4.5vw, 4rem);
+  background:
+    radial-gradient(circle at 36% 34%, rgba(255, 255, 255, 0.8) 0 7%, transparent 8%),
+    radial-gradient(circle at 50% 50%, rgba(143, 255, 255, 0.95), rgba(0, 190, 255, 0.1) 62%, transparent 72%);
+  animation-delay: -3.1s;
+}
+
+.capsuleSeed {
+  left: 50%;
+  bottom: clamp(4rem, 9vw, 7rem);
+  width: clamp(12rem, 22vw, 18rem);
+  height: clamp(4rem, 7vw, 6rem);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  background:
+    linear-gradient(90deg, rgba(255, 82, 0, 0.2), rgba(143, 255, 255, 0.12)),
+    rgba(255, 255, 255, 0.03);
+  box-shadow:
+    inset 0 0 36px rgba(255, 255, 255, 0.04),
+    0 0 52px rgba(143, 255, 255, 0.14);
+  transform: translateX(-50%) translateY(calc(var(--scene-progress) * 5rem)) scale(calc(1 + var(--scene-progress) * 0.15));
+  opacity: clamp(0.1, calc(1 - var(--scene-progress) * 1.25), 0.72);
+}
+
+.capsuleSeed span {
+  position: absolute;
+  inset: 0.65rem;
+  border: 1px solid rgba(143, 255, 255, 0.26);
+  border-radius: inherit;
+}
+
+.heroRail {
+  position: absolute;
+  left: 50%;
+  bottom: -8%;
+  width: min(132rem, 150vw);
+  min-width: 70rem;
+  transform: translateX(-50%);
+  pointer-events: none;
+  opacity: clamp(0, calc(0.56 - var(--scene-progress) * 0.74), 0.56);
+}
+
+.heroRail path,
+.capsuleCurve path {
+  stroke-linecap: round;
+  stroke-width: 42;
+  fill: none;
+  stroke-dasharray: 1;
+  stroke-dashoffset: calc(1 - var(--scene-progress));
+}
+
+.heroContent {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0 1rem;
   pointer-events: none;
+  opacity: clamp(0, calc(1 - var(--scene-progress) * 4.1), 1);
+  transform: translateY(calc(var(--scene-progress) * -8rem));
 }
 
-.heroCenterContent {
-  text-align: center;
-  position: relative;
-  top: clamp(-30px, -5vw, -100px);
-  pointer-events: none;
-}
-
-.heroTitle {
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-
-
-.heroLetter {
-  position: relative;
-  display: inline-block;
-  font-family: var(--font-bebas), sans-serif;
-  font-size: clamp(4rem, 10vw, 9rem);
-  font-weight: 400;
-  color: #fff;
-  letter-spacing: 0.02em;
-  line-height: 1;
-  opacity: 0;
-  transform: translateY(0px);
-  animation: heroLetterUp 0.9s cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
-}
-
-@keyframes heroLetterUp {
-  from { opacity: 0; transform: translateY(0.6em); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-/* ── Button ──────────────────────────────────────────── */
-.heroCta {
-  margin-top: clamp(1.5rem, 3vw, 2rem);
-  display: flex;
-  justify-content: center;
-  opacity: 0;
-  animation: heroLetterUp 0.9s 1.4s cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
+.heroContent > * {
   pointer-events: auto;
 }
 
-.heroBtnWrap {
-  position: relative;
-  font-weight: 500;
+.heroContent {
+  flex-direction: column;
+  text-align: center;
 }
 
-.heroBtn {
-  display: flex;
+.heroTitle,
+.capsuleTitle {
+  margin: 0;
+  font-family: var(--font-bebas), "Arial Narrow", sans-serif;
+  font-weight: 400;
+  line-height: 0.93;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.heroTitle {
+  max-width: min(940px, 96vw);
+  font-size: clamp(4.4rem, 10vw, 9.6rem);
+}
+
+.capsuleTitle {
+  max-width: min(1000px, 96vw);
+  font-size: clamp(4rem, 9vw, 9rem);
+  line-height: 1.02;
+}
+
+.headingLine {
+  display: block;
+  text-align: center;
+}
+
+.headingWord {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.headingWord + .headingWord {
+  margin-left: 0.18em;
+}
+
+.headingLetter {
+  position: relative;
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(0.58em);
+  animation: letterRise 0.92s cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
+}
+
+.heroCta {
+  margin-top: clamp(1.5rem, 3vw, 2.2rem);
+  opacity: 0;
+  animation: letterRise 0.92s 1.36s cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
+}
+
+.magneticButton {
+  position: relative;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   width: fit-content;
-  height: 100%;
-  border-radius: 4px;
-  cursor: pointer;
-  position: relative;
-  background: transparent;
-  border: none;
+  min-height: 3.75rem;
   padding: 0;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
   color: #fff;
-  transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.45s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
-.heroBtnBg {
+.buttonBase {
   position: absolute;
-  border-radius: 4px;
   inset: 0;
+  border-radius: inherit;
   background: transparent;
 }
 
-.heroBtnInner {
+.buttonInner {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 1rem;
   width: 100%;
   height: 100%;
-  padding: 0.625rem 1rem 0.625rem 0.625rem;
-  gap: 1rem;
-  transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  padding: 0.625rem 1rem;
+  transition: transform 0.45s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
-.heroBtnIconBox {
-  margin-right: 0;
+.buttonIconBox {
   position: relative;
+  display: grid;
+  place-items: center;
   width: 2.5rem;
   height: 2.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  flex: 0 0 auto;
 }
 
-.heroBtnIconBorder {
+.buttonIconBorder {
   position: absolute;
   inset: 0;
   border: 1px solid #fff;
@@ -170,86 +311,265 @@
   filter: blur(1.6px);
 }
 
-.heroBtnIconSlider {
+.buttonIconTrack {
   position: relative;
+  display: grid;
+  place-items: center;
   width: 100%;
   height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   overflow: hidden;
 }
 
-.heroBtnSvg {
-  position: relative;
+.playIcon {
+  color: currentColor;
   transition: transform 0.5s cubic-bezier(0.625, 0.05, 0, 1);
 }
 
-.heroBtnSvgClone {
+.playIcon + .playIcon {
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-300%, -50%);
-  transition: transform 0.5s cubic-bezier(0.625, 0.05, 0, 1);
 }
 
-.heroBtn:hover .heroBtnSvg:not(.heroBtnSvgClone) {
+.magneticButton:hover .playIcon:first-child,
+.magneticButton:focus-visible .playIcon:first-child {
   transform: translateX(220%);
 }
 
-.heroBtn:hover .heroBtnSvgClone {
+.magneticButton:hover .playIcon + .playIcon,
+.magneticButton:focus-visible .playIcon + .playIcon {
   transform: translate(-50%, -50%);
 }
 
-.heroBtnTextWrap {
+.buttonTextTrack {
   position: relative;
-  overflow: hidden;
   display: inline-flex;
+  overflow: hidden;
 }
 
-.heroBtnTextPrimary {
-  text-align: center;
-  font-size: 0.875rem;
-  font-weight: 500;
-  line-height: 1.5rem;
+.buttonText,
+.buttonTextClone {
   color: #fff;
-  text-transform: uppercase;
+  font-size: 0.92rem;
+  font-weight: 800;
+  line-height: 1.5rem;
   letter-spacing: 0.08em;
-  position: relative;
+  text-transform: uppercase;
   transition: transform 0.5s cubic-bezier(0.625, 0.05, 0, 1);
 }
 
-.heroBtnTextClone {
+.buttonTextClone {
   position: absolute;
   left: 0;
   top: 0;
-  text-align: center;
-  font-size: 0.875rem;
-  font-weight: 500;
-  line-height: 1.5rem;
-  color: #fff;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
   transform: translateY(100%);
-  transition: transform 0.5s cubic-bezier(0.625, 0.05, 0, 1);
+  white-space: nowrap;
 }
 
-.heroBtn:hover .heroBtnTextPrimary {
+.magneticButton:hover .buttonText,
+.magneticButton:focus-visible .buttonText {
   transform: translateY(-100%);
 }
 
-.heroBtn:hover .heroBtnTextClone {
+.magneticButton:hover .buttonTextClone,
+.magneticButton:focus-visible .buttonTextClone {
   transform: translateY(0);
 }
 
-.curtain {
-  position: fixed;
-  top: 0;
+.openCapsule {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  min-height: 158vh;
+  margin-top: -1px;
+  padding: 24vh 1rem clamp(12rem, 24vw, 26rem);
+  overflow: hidden;
+  background:
+    radial-gradient(63.68% 30.76% at 50% 103.08%, rgba(143, 255, 255, 0.16) 0%, rgba(2, 13, 13, 0) 100%),
+    radial-gradient(46rem 26rem at 18% 35%, rgba(255, 82, 0, 0.1), transparent 72%),
+    #020d0d;
+}
+
+.openCapsule::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: clamp(9rem, 18vw, 19rem);
+  width: clamp(18rem, 48vw, 44rem);
+  height: clamp(18rem, 48vw, 44rem);
+  border: 1px solid rgba(143, 255, 255, 0.18);
+  border-radius: 50%;
+  transform: translateX(-50%) scale(calc(0.86 + var(--scene-progress) * 0.18));
+  box-shadow:
+    inset 0 0 60px rgba(143, 255, 255, 0.03),
+    0 0 90px rgba(143, 255, 255, 0.07);
+  opacity: clamp(0.22, calc(var(--scene-progress) * 1.6), 0.9);
+}
+
+.openCapsule::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: clamp(13rem, 23vw, 23rem);
+  width: clamp(10rem, 28vw, 25rem);
+  height: clamp(3.5rem, 8vw, 7rem);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 999px;
+  background:
+    linear-gradient(90deg, rgba(255, 82, 0, 0.18), rgba(143, 255, 255, 0.13)),
+    rgba(255, 255, 255, 0.025);
+  transform: translateX(-50%) rotate(calc(-3deg + var(--scene-progress) * 6deg));
+  box-shadow: 0 0 58px rgba(143, 255, 255, 0.13);
+  opacity: 0.78;
+}
+
+.capsuleContent {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(1rem, 2vw, 1.25rem);
+  text-align: center;
+  opacity: clamp(0, calc(var(--scene-progress) * 2.3 - 0.55), 1);
+  transform: translateY(clamp(0rem, calc((1 - var(--scene-progress)) * 7rem), 7rem));
+}
+
+.capsuleContent p {
+  max-width: 800px;
+  margin: 0 0 clamp(1rem, 2vw, 1.5rem);
+  color: rgba(255, 255, 255, 0.82);
+  font-size: clamp(1.08rem, 2vw, 1.55rem);
+  line-height: 1.45;
+  font-weight: 650;
+}
+
+.capsuleCurveWrap {
+  position: absolute;
   left: 0;
-  width: 100%;
-  height: 100%;
-  background: #7f1d1d;
-  transform: translateY(100%);
+  bottom: -1.5rem;
+  z-index: 1;
+  width: 220vw;
+  height: auto;
   pointer-events: none;
-  z-index: 9999;
+}
+
+.capsuleCurve {
+  display: block;
+  width: 100%;
+  min-width: 72rem;
+}
+
+.capsuleCurve path {
+  stroke-width: 53;
+  opacity: 0.86;
+}
+
+@keyframes letterRise {
+  from {
+    opacity: 0;
+    transform: translateY(0.58em);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes orbitDrift {
+  to {
+    rotate: 360deg;
+  }
+}
+
+@keyframes floatDot {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(0.7rem, -1.1rem, 0) scale(1.04);
+  }
+}
+
+@media (max-width: 760px) {
+  .scene {
+    min-height: 230vh;
+  }
+
+  .heroTitle,
+  .capsuleTitle {
+    max-width: 98vw;
+  }
+
+  .heroTitle {
+    font-size: clamp(3.9rem, 20vw, 5.8rem);
+  }
+
+  .capsuleTitle {
+    font-size: clamp(3.45rem, 16vw, 5.2rem);
+  }
+
+  .orbitRingOne {
+    left: -13rem;
+    top: 17%;
+  }
+
+  .orbitRingTwo {
+    right: -12rem;
+    top: 10%;
+  }
+
+  .energyDotOne {
+    left: 9%;
+    bottom: 18%;
+  }
+
+  .energyDotTwo {
+    right: 10%;
+    bottom: 27%;
+  }
+
+  .capsuleSeed {
+    bottom: 6rem;
+  }
+
+  .openCapsule {
+    min-height: 136vh;
+    padding-bottom: 13rem;
+  }
+
+  .capsuleCurveWrap {
+    width: 250vw;
+    left: -44vw;
+  }
+
+  .buttonText,
+  .buttonTextClone {
+    font-size: 0.82rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .headingLetter,
+  .heroCta,
+  .orbitRing,
+  .energyDot,
+  .playIcon,
+  .buttonText,
+  .buttonTextClone,
+  .magneticButton,
+  .buttonInner {
+    animation: none;
+    transition: none;
+  }
+
+  .headingLetter,
+  .heroCta {
+    opacity: 1;
+    transform: none;
+  }
 }
