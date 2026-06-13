@@ -14,8 +14,23 @@ Before doing anything, read `.MOP/STATE.json` and follow
 - After login, run the Agent Router: every conversation and action must route
   to one primary named agent. Check with `mop-core.mjs agent route --actor
   <codename> --task "<user task>"`.
+- Before answering, restore monthly memory with
+  `mop-core.mjs memory brief --actor <codename>`.
+- Every authenticated user-facing answer must start with the routed
+  `answerContract.firstLine`, for example:
+  `agent: <agent-name> (<agent-role>) to <user>`.
+- After meaningful work, save memory with
+  `mop-core.mjs memory add --actor <codename> --kind conversation --summary "<outcome>"`.
 - If the router says clarification is needed, ask the clarifying questions
   before implementation.
+- If the router returns `nextAction: "name-required-party-agents"`, ask every
+  question in `missingAgentQuestions` and stop until those agents are named.
+- Before browser, scraping, extraction, click automation, login flow,
+  bot-detection, or form-filling work, run `mop-core.mjs browser preflight`. If
+  it reports Edge, Brave, or Opera, use browser-act `chrome-direct` mode and
+  guide the user to start remote debugging (`--remote-debugging-port`). If it
+  cannot detect a supported browser, ask which browser they use before doing
+  browser work.
 - If the router activates Party Mode, show visible agent-to-agent dialogue using
   the exact format in `.MOP/PROTOCOL.md`, with `PARTY MODE` shown in
   large uppercase before the dialogue. Party Mode normally uses at least 3
@@ -27,6 +42,10 @@ Before doing anything, read `.MOP/STATE.json` and follow
 - For risky changes, run adversarial review before implementation or merge.
 - When a role agent first appears, ask the user to name it before using it as a
   personal agent.
+- Autosycn member commits must use the active member GitHub account. By default,
+  MOP derives `ID+USERNAME@users.noreply.github.com` from `gh api user` and
+  refuses mismatched GitHub accounts. `BURHAN-MOP` identity is reserved for
+  merge guardian commits only.
 
 ## Operating Rules
 
