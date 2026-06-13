@@ -1,5 +1,13 @@
 import type { Metadata } from "next";
+import { Bebas_Neue } from "next/font/google";
 import "../src/styles.css";
+
+const bebasNeue = Bebas_Neue({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-bebas",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "BURHANDEV | Web Developer Services",
@@ -13,7 +21,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning className={bebasNeue.variable}>
       <head>
         <script
           dangerouslySetInnerHTML={{
@@ -26,7 +34,7 @@ export default function RootLayout({
           noscript #app, html:not(.is-booting) #app { visibility: visible; }
         `}</style>
       </head>
-      <body>{children}</body>
+      <body suppressHydrationWarning>{children}</body>
     </html>
   );
 }

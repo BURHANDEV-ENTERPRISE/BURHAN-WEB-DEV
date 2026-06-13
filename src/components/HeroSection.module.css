@@ -1,0 +1,255 @@
+/* tall container — captures scroll distance while hero stays pinned */
+.scrollStage {
+  position: relative;
+  height: 400vh;
+}
+
+.hero {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: visible;
+  background: #151510;
+  clip-path: inset(0);
+}
+
+.canvas {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.avatarLayer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  /* no z-index — DOM order (after curtainInner) keeps avatars on top without creating
+     an isolated stacking context that would break mix-blend-mode on the canvas */
+}
+
+.curtainInner {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #7f1d1d;
+  transform: translateY(100%);
+  /* no z-index — DOM order (before avatarLayer) is enough to keep curtain below avatars */
+  box-shadow: 0 -8px 40px rgba(200, 40, 40, 0);
+}
+
+.avatarCard {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: screen;
+}
+
+.avatarCanvas {
+  display: block;
+  height: 38vh;
+  width: auto;
+  image-rendering: pixelated;
+}
+
+/* ── Hero title overlay (Cinnamon-style) ────────────── */
+.heroOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1rem;
+  pointer-events: none;
+}
+
+.heroCenterContent {
+  text-align: center;
+  position: relative;
+  top: clamp(-30px, -5vw, -100px);
+  pointer-events: none;
+}
+
+.heroTitle {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+
+
+.heroLetter {
+  position: relative;
+  display: inline-block;
+  font-family: var(--font-bebas), sans-serif;
+  font-size: clamp(4rem, 10vw, 9rem);
+  font-weight: 400;
+  color: #fff;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  opacity: 0;
+  transform: translateY(0px);
+  animation: heroLetterUp 0.9s cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
+}
+
+@keyframes heroLetterUp {
+  from { opacity: 0; transform: translateY(0.6em); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Button ──────────────────────────────────────────── */
+.heroCta {
+  margin-top: clamp(1.5rem, 3vw, 2rem);
+  display: flex;
+  justify-content: center;
+  opacity: 0;
+  animation: heroLetterUp 0.9s 1.4s cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
+  pointer-events: auto;
+}
+
+.heroBtnWrap {
+  position: relative;
+  font-weight: 500;
+}
+
+.heroBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  height: 100%;
+  border-radius: 4px;
+  cursor: pointer;
+  position: relative;
+  background: transparent;
+  border: none;
+  padding: 0;
+  color: #fff;
+  transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.heroBtnBg {
+  position: absolute;
+  border-radius: 4px;
+  inset: 0;
+  background: transparent;
+}
+
+.heroBtnInner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 0.625rem 1rem 0.625rem 0.625rem;
+  gap: 1rem;
+  transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.heroBtnIconBox {
+  margin-right: 0;
+  position: relative;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.heroBtnIconBorder {
+  position: absolute;
+  inset: 0;
+  border: 1px solid #fff;
+  border-radius: 4px;
+  filter: blur(1.6px);
+}
+
+.heroBtnIconSlider {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.heroBtnSvg {
+  position: relative;
+  transition: transform 0.5s cubic-bezier(0.625, 0.05, 0, 1);
+}
+
+.heroBtnSvgClone {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-300%, -50%);
+  transition: transform 0.5s cubic-bezier(0.625, 0.05, 0, 1);
+}
+
+.heroBtn:hover .heroBtnSvg:not(.heroBtnSvgClone) {
+  transform: translateX(220%);
+}
+
+.heroBtn:hover .heroBtnSvgClone {
+  transform: translate(-50%, -50%);
+}
+
+.heroBtnTextWrap {
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+}
+
+.heroBtnTextPrimary {
+  text-align: center;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.5rem;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  position: relative;
+  transition: transform 0.5s cubic-bezier(0.625, 0.05, 0, 1);
+}
+
+.heroBtnTextClone {
+  position: absolute;
+  left: 0;
+  top: 0;
+  text-align: center;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.5rem;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  transform: translateY(100%);
+  transition: transform 0.5s cubic-bezier(0.625, 0.05, 0, 1);
+}
+
+.heroBtn:hover .heroBtnTextPrimary {
+  transform: translateY(-100%);
+}
+
+.heroBtn:hover .heroBtnTextClone {
+  transform: translateY(0);
+}
+
+.curtain {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #7f1d1d;
+  transform: translateY(100%);
+  pointer-events: none;
+  z-index: 9999;
+}

@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { existsSync, readFileSync, renameSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readFileSync, readdirSync, renameSync, writeFileSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { spawnSync } from 'node:child_process';
@@ -109,6 +109,123 @@ function agentLedgerFields(agent) {
   } : {};
 }
 
+function memoryPolicy(state) {
+  return state.memoryPolicy || {
+    enabled: true,
+    directory: '.MOP/memory',
+    sessionBrief: '.MOP/memory/SESSION_BRIEF.md',
+    monthlyPattern: 'YYYY-MM.jsonl',
+    recentLimit: 20
+  };
+}
+
+function answerPolicy(state) {
+  return state.answerPolicy || {
+    requireVisibleAgent: true,
+    visibleAgentFormat: 'agent: <agent-name> (<agent-role>) to <user>'
+  };
+}
+
+function monthKey(date = new Date()) {
+  return date.toISOString().slice(0, 7);
+}
+
+function memoryDirFor(state) {
+  return join(rootDir, memoryPolicy(state).directory || '.MOP/memory');
+}
+
+function monthlyMemoryPath(state, month = monthKey()) {
+  const policy = memoryPolicy(state);
+  const filename = (policy.monthlyPattern || 'YYYY-MM.jsonl').replace('YYYY-MM', month);
+  return join(memoryDirFor(state), filename);
+}
+
+function sessionBriefPath(state) {
+  return join(rootDir, memoryPolicy(state).sessionBrief || '.MOP/memory/SESSION_BRIEF.md');
+}
+
+function readJsonl(path) {
+  if (!existsSync(path)) return [];
+  return readFileSync(path, 'utf8')
+    .split(/\r?\n/)
+    .filter(Boolean)
+    .map((line) => {
+      try {
+        return JSON.parse(line);
+      } catch {
+        return null;
+      }
+    })
+    .filter(Boolean);
+}
+
+function memoryMonths(state) {
+  const dir = memoryDirFor(state);
+  if (!existsSync(dir)) return [];
+  return readdirSync(dir)
+    .filter((name) => /^\d{4}-\d{2}\.jsonl$/.test(name))
+    .map((name) => name.replace(/\.jsonl$/, ''))
+    .sort();
+}
+
+function latestMemoryEntries(state, limit = memoryPolicy(state).recentLimit || 20) {
+  const months = memoryMonths(state);
+  const selected = months.length ? months.slice(-3) : [monthKey()];
+  return selected
+    .flatMap((month) => readJsonl(monthlyMemoryPath(state, month)))
+    .sort((a, b) => String(a.at || '').localeCompare(String(b.at || '')))
+    .slice(-limit);
+}
+
+function answerLineFor(state, actor, agent = activeAgentFor(state, actor)) {
+  if (!agent) return 'agent: <name> (<role>) to <user>';
+  return (answerPolicy(state).visibleAgentFormat || 'agent: <agent-name> (<agent-role>) to <user>')
+    .replace('<agent-name>', agent.name)
+    .replace('<agent-role>', agent.role)
+    .replace('<agent-title>', agent.title || agent.role)
+    .replace('<user>', actor || 'user');
+}
+
+function appendMonthlyMemory(state, actor, kind, summary, agent = activeAgentFor(state, actor)) {
+  if (memoryPolicy(state).enabled === false) return;
+  const entry = { at: now(), actor, ...agentLedgerFields(agent), kind, summary };
+  const monthlyPath = monthlyMemoryPath(state);
+  mkdirSync(dirname(monthlyPath), { recursive: true });
+  writeFileSync(monthlyPath, `${JSON.stringify(entry)}\n`, { encoding: 'utf8', flag: 'a' });
+  writeSessionBrief(state, actor);
+}
+
+function writeSessionBrief(state, actor) {
+  const path = sessionBriefPath(state);
+  const agent = activeAgentFor(state, actor);
+  const entries = latestMemoryEntries(state, memoryPolicy(state).recentLimit || 20);
+  const lines = [
+    '# MOP Session Brief',
+    '',
+    `Updated: ${now()}`,
+    `Actor: ${actor || state.activeMember || 'unknown'}`,
+    `Active agent: ${agent ? `${agent.name} (${agent.role})` : 'none'}`,
+    `Current month: ${monthKey()}`,
+    '',
+    '## Required Session Flow',
+    '',
+    '1. Read `.MOP/STATE.json` and follow `.MOP/PROTOCOL.md`.',
+    '2. Restore memory with `node .MOP/scripts/mop-core.mjs memory brief --actor <codename>`.',
+    '3. Run `agent route` for the user task before answering.',
+    `4. Start every authenticated answer with: \`${answerLineFor(state, actor, agent)}\``,
+    '5. Save a one-line memory after meaningful work.',
+    '',
+    '## Recent Memory',
+    '',
+    ...entries.map((entry) => {
+      const who = entry.agent ? `${entry.agent} (${entry.agentRole || 'agent'})` : entry.actor;
+      return `- ${entry.at} - ${who}: ${entry.summary}`;
+    })
+  ];
+  mkdirSync(dirname(path), { recursive: true });
+  writeFileSync(path, `${lines.join('\n')}\n`, 'utf8');
+}
+
 function appendLedger(state, actor, kind, summary, agent = activeAgentFor(state, actor)) {
   state.ledger ||= [];
   state.ledger.push({ at: now(), actor, ...agentLedgerFields(agent), kind, summary });
@@ -130,22 +247,59 @@ function getMember(state, actor) {
   return member;
 }
 
+function githubIdentityPolicy(state) {
+  return state.autosync?.githubIdentity || {
+    requireMatchedGhUser: true,
+    useNoreplyForMemberCommits: true,
+    noreplyFormat: 'id-plus-login'
+  };
+}
+
+function currentGhUser() {
+  const result = runOptional('gh', ['api', 'user', '--jq', '{login:.login,id:.id,email:.email}']);
+  if (!result.ok) return null;
+  try {
+    return JSON.parse(result.stdout || '{}');
+  } catch {
+    return null;
+  }
+}
+
+function githubNoreplyEmail(user) {
+  if (!user?.login || !user?.id) return '';
+  return `${user.id}+${user.login}@users.noreply.github.com`;
+}
+
 function identityFor(state, actor) {
   const member = getMember(state, actor);
   const identity = member.gitIdentity || {};
+  const policy = githubIdentityPolicy(state);
+  const gh = currentGhUser();
   const name = identity.name || member.displayName || actor;
-  const email = identity.email || member.github?.noreplyEmail || '';
+  const githubUsername = identity.githubUsername || member.github?.username || gh?.login || '';
+  if (gh?.login && githubUsername && policy.requireMatchedGhUser !== false && gh.login.toLowerCase() !== githubUsername.toLowerCase()) {
+    throw new Error(`GitHub CLI authenticated as ${gh.login}, expected ${githubUsername}. Refusing to commit or push as the wrong user.`);
+  }
+  let email = identity.email || member.github?.noreplyEmail || '';
+  if (policy.useNoreplyForMemberCommits !== false) {
+    email = githubNoreplyEmail(gh);
+    if (!email) {
+      throw new Error('GitHub noreply identity is required for member commits. Run gh auth login as the real user, or set autosync.githubIdentity.useNoreplyForMemberCommits=false.');
+    }
+  }
   if (!email && state.autosync?.requireUserGitEmail !== false) {
     throw new Error([
       `Missing git email for ${actor}.`,
-      'Set a GitHub-verified email or noreply email first:',
-      `node .MOP/scripts/mop-core.mjs member git-identity --actor ${actor} --name "${name}" --email "<github-verified-email>" [--github-username "<username>"]`
+      'Set a GitHub-verified email or let MOP derive GitHub noreply from gh:',
+      `node .MOP/scripts/mop-core.mjs member git-identity --actor ${actor} --name "${name}" --email github-noreply [--github-username "<username>"]`
     ].join(' '));
   }
   return {
     name,
     email,
-    githubUsername: identity.githubUsername || member.github?.username || ''
+    githubUsername,
+    githubUserId: gh?.login?.toLowerCase() === githubUsername.toLowerCase() ? gh.id : identity.githubUserId,
+    emailSource: policy.useNoreplyForMemberCommits !== false ? 'github-noreply' : (identity.emailSource || 'manual')
   };
 }
 
@@ -161,14 +315,11 @@ function identityEnv(identity) {
 function mergeIdentityFor(state, actorIdentity) {
   const guardian = guardianConfig(state);
   const guardianIdentity = guardian.gitIdentity || {};
-  if (guardian.commitAsGuardianWhenIdentityConfigured && guardianIdentity.email) {
-    return {
-      name: guardianIdentity.name || guardian.name || 'BURHAN-MOP',
-      email: guardianIdentity.email,
-      githubUsername: guardianIdentity.githubUsername || ''
-    };
-  }
-  return actorIdentity;
+  return {
+    name: guardianIdentity.name || guardian.name || 'BURHAN-MOP',
+    email: guardianIdentity.email || 'burhan-mop@users.noreply.github.com',
+    githubUsername: guardianIdentity.githubUsername || 'BURHAN-MOP'
+  };
 }
 
 function ensureGitRepo() {
@@ -221,15 +372,16 @@ function configureRemote(url, replaceRemote = false) {
 }
 
 function verifyGhUser(identity, state) {
-  if (!identity.githubUsername || state.autosync?.verifyGhUserWhenConfigured === false) return 'skipped';
-  const gh = runOptional('gh', ['api', 'user', '--jq', '.login']);
-  if (!gh.ok) {
+  const policy = githubIdentityPolicy(state);
+  if (state.autosync?.verifyGhUserWhenConfigured === false && policy.requireMatchedGhUser === false) return 'skipped';
+  const gh = currentGhUser();
+  if (!gh?.login) {
     throw new Error('GitHub username is configured, but gh could not verify the active account. Run gh auth login as the real user or set autosync.verifyGhUserWhenConfigured=false for SSH-only workflows.');
   }
-  if (gh.stdout.toLowerCase() !== identity.githubUsername.toLowerCase()) {
-    throw new Error(`GitHub CLI authenticated as ${gh.stdout}, expected ${identity.githubUsername}. Refusing to push as the wrong account.`);
+  if (identity.githubUsername && gh.login.toLowerCase() !== identity.githubUsername.toLowerCase()) {
+    throw new Error(`GitHub CLI authenticated as ${gh.login}, expected ${identity.githubUsername}. Refusing to push as the wrong account.`);
   }
-  return `verified:${gh.stdout}`;
+  return `verified:${gh.login}:${githubNoreplyEmail(gh) || 'email-unavailable'}`;
 }
 
 function runProjectCommand(command, env) {
@@ -291,8 +443,8 @@ function guardianReview(state, sourceRef, env) {
   }
 
   if (checks.secretScan !== false) {
-    const pattern = '(AIza|ghp_|github_pat_|sk-[A-Za-z0-9]|xox[baprs]-|password\\s*[:=]|secret\\s*[:=]|api[_-]?key\\s*[:=]|token\\s*[:=])';
-    const scan = runOptional('git', ['diff', '--name-only', '-G', pattern, `origin/${mainBranch}..${sourceRef}`, '--', '.']);
+    const pattern = '(AIza|ghp_|github_pat_|sk-[A-Za-z0-9]{40,}|xox[baprs]-[A-Za-z0-9]{10,}|password\\s*[:=]\\s*["\'][^"\']{4}|secret\\s*[:=]\\s*["\'][^"\']{4}|api[_-]?key\\s*[:=]\\s*["\'][^"\']{4})';
+    const scan = runOptional('git', ['diff', '--name-only', '-G', pattern, `origin/${mainBranch}..${sourceRef}`, '--', '.', ':(exclude).MOP/scripts/']);
     if (scan.ok && scan.stdout) {
       guardianReject(`possible secret pattern found in changed files:\n${scan.stdout}`);
     }
@@ -395,10 +547,11 @@ function preflight(args) {
   }, null, 2));
 }
 
-function saveMemory(actor, summary) {
+function saveMemory(actor, summary, kind = 'conversation') {
   const state = readState();
   const agent = requireActiveAgent(state, actor);
   appendLedger(state, actor, 'memory', summary, agent);
+  appendMonthlyMemory(state, actor, kind, summary, agent);
   writeState(state);
   return state;
 }
@@ -562,6 +715,7 @@ function status() {
     workBranchPrefix: state.autosync?.workBranchPrefix || 'dev',
     autoMergeToMain: state.autosync?.autoMergeToMain !== false,
     mergeGuardian: guardianConfig(state),
+    githubIdentity: githubIdentityPolicy(state),
     preflightBeforeWork: state.autosync?.preflightBeforeWork !== false,
     requireUserGitEmail: state.autosync?.requireUserGitEmail !== false,
     initialized: state.initialized,
@@ -576,7 +730,8 @@ function status() {
         displayName: member.displayName,
         gitIdentityConfigured: Boolean(member.gitIdentity?.email || member.github?.noreplyEmail),
         gitName: member.gitIdentity?.name || member.displayName || key,
-        gitEmail: member.gitIdentity?.email || member.github?.noreplyEmail || ''
+        gitEmail: member.gitIdentity?.email || member.github?.noreplyEmail || '',
+        githubUsername: member.gitIdentity?.githubUsername || member.github?.username || ''
       }
     ]))
   }, null, 2));
@@ -591,7 +746,8 @@ function main() {
   if (command === 'memory') {
     const actor = requireArg(args, 'actor');
     const summary = String(args.summary || args.reason || 'MOP conversation');
-    saveMemory(actor, summary);
+    const kind = String(args.kind || 'conversation');
+    saveMemory(actor, summary, kind);
     console.log(`Memory saved for ${actor}.`);
     return;
   }

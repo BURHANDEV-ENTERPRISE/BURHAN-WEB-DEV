@@ -14,8 +14,23 @@ follow `.MOP/PROTOCOL.md`.
   It selects one primary role and may recommend any number of support roles
   when genuinely needed. If no named agent exists for a needed role, ask the
   user to name it and save it with `agent activate`.
+- Before answering an authenticated task, restore monthly memory:
+  `mop-core.mjs memory brief --actor <codename>`.
+- Every authenticated user-facing answer must start with the routed named agent
+  line from `answerContract.firstLine`, for example:
+  `agent: <agent-name> (<agent-role>) to <user>`.
+- After meaningful work or a useful answer, save memory:
+  `mop-core.mjs memory add --actor <codename> --kind conversation --summary "<one-line outcome>"`.
 - If the router marks the task as ambiguous, the named primary agent must ask
   clarifying questions before implementation.
+- If the router returns `nextAction: "name-required-party-agents"`, ask every
+  question in `missingAgentQuestions` and stop until those agents are named.
+- Before browser, scraping, extraction, click automation, login flow,
+  bot-detection, or form-filling work, run `mop-core.mjs browser preflight`. If
+  it reports Edge, Brave, or Opera, use browser-act `chrome-direct` mode and
+  guide the user to start remote debugging (`--remote-debugging-port`). If it
+  cannot detect a supported browser, ask which browser they use before doing
+  browser work.
 - If the router returns `partyMode.active: true`, use Party Mode. Show
   `PARTY MODE` in large uppercase before the dialogue, then show
   agent-to-agent and agent-to-user dialogue with the exact format from
@@ -34,10 +49,15 @@ different agents.
 The active named agent must be recorded on every memory/ledger action. Do not
 activate irrelevant agents; route to one primary agent first, then add support
 agents through Party Mode only when useful.
+If the assistant cannot show the active agent line, it must stop and repair the
+agent route instead of answering invisibly.
 
 Default skill: `autosycn`. After meaningful changes, use
 `.MOP/scripts/mop-autosycn.mjs`. It must commit and merge with the
 real member Git identity from state, never with the AI tool identity.
+Member commits must use the active member GitHub account; by default MOP derives
+`ID+USERNAME@users.noreply.github.com` from `gh api user` and refuses mismatched
+GitHub accounts. `BURHAN-MOP` identity is only for merge guardian commits.
 In team mode, run `preflight --actor <codename>` before starting work; work goes
 to `dev/<codename>`. Every small or large change is pushed there first, then
 BURHAN-MOP reviews and merges to `main` only when checks pass.

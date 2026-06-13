@@ -112,7 +112,16 @@ function copyPath(entry, source, target, force = false) {
   if (!existsSync(source)) return { entry, source, target, status: 'missing-source' };
   if (existsSync(target) && !force) return { entry, source, target, status: 'skipped-existing' };
   mkdirSync(dirname(target), { recursive: true });
-  cpSync(source, target, { recursive: true, force: true });
+  
+  const filterFn = (src, dest) => {
+    // Never overwrite an existing STATE.json, even during --force
+    if (src.endsWith('STATE.json') && existsSync(dest)) {
+      return false;
+    }
+    return true;
+  };
+  
+  cpSync(source, target, { recursive: true, force: true, filter: filterFn });
   return { entry, source, target, status: 'installed' };
 }
 
