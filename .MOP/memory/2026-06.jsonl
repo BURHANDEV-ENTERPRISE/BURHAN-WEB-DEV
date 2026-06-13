@@ -5,3 +5,5 @@
 {"at":"2026-06-13T16:24:12.153Z","actor":"amad","agent":"anis","agentRole":"core","agentId":"agent-anis","kind":"conversation","summary":"sync MOP config, scripts, skills, and tooling updates; fix secret scan false positive on sk- pattern"}
 {"at":"2026-06-13T16:26:36.902Z","actor":"amad","agent":"anis","agentRole":"core","agentId":"agent-anis","kind":"conversation","summary":"fix secret scan: exclude .MOP/scripts from self-referencing false positive, tighten sk- and token patterns"}
 {"at":"2026-06-13T19:17:11.184Z","actor":"moon","agent":"nAMI","agentRole":"github","agentId":"agent-nami","kind":"conversation","summary":"Login and route to nAMI"}
+{"at":"2026-06-13T19:28:40.330Z","actor":"moon","agent":"nAMI","agentRole":"github","agentId":"agent-nami","kind":"conversation","summary":"Synced dev/moon with origin/main and resolved conflicts"}
+{"at":"2026-06-13T19:31:32.669Z","actor":"moon","agent":"nAMI","agentRole":"github","agentId":"agent-nami","kind":"conversation","summary":"Save memory: Synced dev/moon with origin/main and resolved conflicts"}

@@ -1,6 +1,6 @@
 # MOP Session Brief
 
-Updated: 2026-06-13T19:17:11.192Z
+Updated: 2026-06-13T19:31:32.676Z
 Actor: moon
 Active agent: nAMI (github)
 Current month: 2026-06
@@ -22,3 +22,5 @@ Current month: 2026-06
 - 2026-06-13T16:24:12.153Z - anis (core): sync MOP config, scripts, skills, and tooling updates; fix secret scan false positive on sk- pattern
 - 2026-06-13T16:26:36.902Z - anis (core): fix secret scan: exclude .MOP/scripts from self-referencing false positive, tighten sk- and token patterns
 - 2026-06-13T19:17:11.184Z - nAMI (github): Login and route to nAMI
+- 2026-06-13T19:28:40.330Z - nAMI (github): Synced dev/moon with origin/main and resolved conflicts
+- 2026-06-13T19:31:32.669Z - nAMI (github): Save memory: Synced dev/moon with origin/main and resolved conflicts
