@@ -6,7 +6,7 @@
   "ownerCodename": "moon",
   "activeMember": "moon",
   "activeAgents": {
-    "moon": "agent-loli",
+    "moon": "agent-dobi",
     "amad": "agent-anis"
   },
   "agentPolicy": {
@@ -2016,6 +2016,48 @@
     },
     {
       "at": "2026-06-13T20:09:26.978Z",
+      "actor": "BURHAN-MOP",
+      "kind": "merge-approved",
+      "summary": "origin/dev/moon approved and merged to main."
+    },
+    {
+      "at": "2026-06-13T20:12:04.927Z",
+      "actor": "moon",
+      "agent": "Loli",
+      "agentRole": "frontend",
+      "agentId": "agent-loli",
+      "kind": "login",
+      "summary": "Member authenticated."
+    },
+    {
+      "at": "2026-06-13T20:12:04.962Z",
+      "actor": "moon",
+      "agent": "dobi",
+      "agentRole": "coder",
+      "agentId": "agent-dobi",
+      "kind": "agent-route",
+      "summary": "Routed task to dobi: Matched keywords for Coder: code."
+    },
+    {
+      "at": "2026-06-13T20:19:32.786Z",
+      "actor": "moon",
+      "agent": "dobi",
+      "agentRole": "coder",
+      "agentId": "agent-dobi",
+      "kind": "memory",
+      "summary": "Rebuilt BURHANDEV hero to closely match arcade and capsule reference with original CSS shapes"
+    },
+    {
+      "at": "2026-06-13T20:19:32.824Z",
+      "actor": "moon",
+      "agent": "dobi",
+      "agentRole": "coder",
+      "agentId": "agent-dobi",
+      "kind": "memory",
+      "summary": "redo hero with arcade and capsule recreation"
+    },
+    {
+      "at": "2026-06-13T20:19:40.979Z",
       "actor": "BURHAN-MOP",
       "kind": "merge-approved",
       "summary": "origin/dev/moon approved and merged to main."

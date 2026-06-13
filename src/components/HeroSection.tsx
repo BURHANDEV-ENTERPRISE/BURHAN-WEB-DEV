@@ -3,87 +3,89 @@
 import { useEffect, useRef } from "react";
 import styles from "./HeroSection.module.css";
 
-const heroLines = [["BURHANDEV."], ["Experience", "the"], ["next", "big", "web"]];
-const capsuleLines = [["Enter", "the"], ["World", "of", "BURHANDEV"]];
+const heroLines = [
+  ["BURHANDEV."],
+  ["EXPERIENCE", "THE"],
+  ["NEXT", "BIG", "WEB"],
+];
 
-type AnimatedHeadingProps = {
-  as: "h1" | "h2";
-  lines: string[][];
-  label: string;
-  className?: string;
-  delayOffset?: number;
-};
+const worldLines = [
+  ["ENTER", "THE"],
+  ["WORLD", "OF", "BURHANDEV"],
+];
 
 function AnimatedHeading({
-  as: Tag,
   lines,
-  label,
   className,
-  delayOffset = 0,
-}: AnimatedHeadingProps) {
+  label,
+  level = "h1",
+}: {
+  lines: string[][];
+  className: string;
+  label: string;
+  level?: "h1" | "h2";
+}) {
   let letterIndex = 0;
+  const HeadingTag = level;
 
   return (
-    <Tag className={className} aria-label={label}>
-      {lines.map((words, lineIndex) => (
-        <span key={lineIndex} className={styles.headingLine} aria-hidden="true">
-          {words.map((word, wordIndex) => (
-            <span key={`${word}-${wordIndex}`} className={styles.headingWord}>
-              {wordIndex > 0 && <span className={styles.wordGap}> </span>}
-              {word.split("").map((char, charIndex) => {
-                const delay = `${delayOffset + letterIndex * 0.035}s`;
-                letterIndex += 1;
+    <HeadingTag className={className} aria-label={label}>
+      {lines.map((line, lineIndex) => (
+        <span className={styles.headingLine} aria-hidden="true" key={`${label}-${lineIndex}`}>
+          {line.map((word, wordIndex) => (
+            <span className={styles.headingWord} key={`${word}-${wordIndex}`}>
+              {word.split("").map((letter) => {
+                const delay = `${0.03 * letterIndex++}s`;
                 return (
-                  <span
-                    key={`${char}-${charIndex}`}
-                    className={styles.headingLetter}
-                    style={{ animationDelay: delay }}
-                  >
-                    {char}
+                  <span className={styles.headingLetter} style={{ animationDelay: delay }} key={`${letter}-${letterIndex}`}>
+                    {letter}
                   </span>
                 );
               })}
+              {wordIndex < line.length - 1 ? (
+                <span className={styles.wordGap} aria-hidden="true">
+                  {" "}
+                </span>
+              ) : null}
             </span>
           ))}
-          {lineIndex < lines.length - 1 && <span className={styles.lineTextGap}> </span>}
         </span>
       ))}
-    </Tag>
+    </HeadingTag>
   );
 }
 
-type MagneticButtonProps = {
-  children: string;
-  href?: string;
-  onClick?: () => void;
-};
-
 function PlayIcon() {
   return (
-    <svg
-      className={styles.playIcon}
-      xmlns="http://www.w3.org/2000/svg"
-      width="12"
-      height="16"
-      viewBox="0 0 12 16"
-      fill="none"
-      aria-hidden="true"
-    >
-      <path d="M10.9 8 1.1 14.3V1.7L10.9 8Z" fill="currentColor" />
+    <svg width="12" height="16" viewBox="0 0 12 16" fill="none" aria-hidden="true">
+      <path
+        d="M11.49 8.18.77 15.05a.5.5 0 0 1-.77-.43L.25.49A.5.5 0 0 1 1.04.09l10.47 7.25a.5.5 0 0 1-.02.84Z"
+        fill="currentColor"
+      />
     </svg>
   );
 }
 
-function MagneticButton({ children, href, onClick }: MagneticButtonProps) {
+function MagneticButton({
+  children,
+  href,
+}: {
+  children: string;
+  href?: string;
+}) {
   const content = (
     <>
       <span className={styles.buttonBase} aria-hidden="true" />
       <span className={styles.buttonInner} data-magnetic-inner-target="">
-        <span className={styles.buttonIconBox}>
+        <span className={styles.buttonIconBox} aria-hidden="true">
           <span className={styles.buttonIconBorder} />
           <span className={styles.buttonIconTrack}>
-            <PlayIcon />
-            <PlayIcon />
+            <span className={styles.playIcon}>
+              <PlayIcon />
+            </span>
+            <span className={styles.playIcon}>
+              <PlayIcon />
+            </span>
           </span>
         </span>
         <span className={styles.buttonTextTrack}>
@@ -98,16 +100,104 @@ function MagneticButton({ children, href, onClick }: MagneticButtonProps) {
 
   if (href) {
     return (
-      <a className={styles.magneticButton} href={href} data-magnetic-button="">
+      <a className={styles.magneticButton} href={href} data-magnetic-strength="50" data-magnetic-strength-inner="25">
         {content}
       </a>
     );
   }
 
   return (
-    <button className={styles.magneticButton} onClick={onClick} data-magnetic-button="">
+    <button className={styles.magneticButton} type="button" data-magnetic-strength="50" data-magnetic-strength-inner="25">
       {content}
     </button>
+  );
+}
+
+function LocalNav() {
+  return (
+    <nav className={styles.localNav} aria-label="Hero navigation">
+      <a className={styles.localBrand} href="#top" aria-label="BURHANDEV home">
+        <span className={styles.brandMark} aria-hidden="true">
+          <span />
+        </span>
+        <span className={styles.brandText}>
+          <strong>BURHANDEV</strong>
+          <small>SOFTWARE</small>
+        </span>
+      </a>
+      <div className={styles.navActions}>
+        <a href="#services">Games</a>
+        <a href="#work">Careers</a>
+        <a className={styles.navHello} href="#contact">
+          Say Hello
+        </a>
+      </div>
+    </nav>
+  );
+}
+
+function ClawRig() {
+  return (
+    <div className={styles.clawRig} aria-hidden="true">
+      <span className={styles.clawSmoke} />
+      <span className={styles.clawCord} />
+      <span className={styles.clawCap} />
+      <span className={styles.clawBodyTop} />
+      <span className={styles.clawBodyMid} />
+      <span className={styles.clawJointLeft} />
+      <span className={styles.clawJointRight} />
+      <span className={styles.clawArmLeft} />
+      <span className={styles.clawArmRight} />
+      <span className={styles.clawGripLeft} />
+      <span className={styles.clawGripRight} />
+    </div>
+  );
+}
+
+function ArcadeConsole() {
+  return (
+    <div className={styles.arcadeWrap} aria-hidden="true">
+      <div className={styles.arcadeSlot} />
+      <div className={styles.arcadeDeck}>
+        <div className={styles.buttonPanel}>
+          <span className={styles.smallButtonOne} />
+          <span className={styles.smallButtonTwo} />
+          <span className={styles.panelTextTop}>Boom!</span>
+          <span className={styles.panelTextBottom}>Fly!</span>
+        </div>
+        <div className={styles.joystickBase}>
+          <span className={styles.joystickStick} />
+          <span className={styles.joystickBall} />
+        </div>
+        <div className={styles.bigDropButton}>
+          <span>Drop!</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function CapsuleCar() {
+  return (
+    <div className={styles.car} aria-hidden="true">
+      <span className={styles.carRoof} />
+      <span className={styles.carWindowFront} />
+      <span className={styles.carWindowBack} />
+      <span className={styles.carBody} />
+      <span className={styles.carWheelFront} />
+      <span className={styles.carWheelBack} />
+    </div>
+  );
+}
+
+function CapsuleShowcase({ final = false }: { final?: boolean }) {
+  return (
+    <div className={final ? `${styles.capsuleShowcase} ${styles.capsuleShowcaseFinal}` : styles.capsuleShowcase} aria-hidden="true">
+      <span className={styles.capsuleShadow} />
+      <span className={styles.capsuleHalfPink} />
+      <span className={styles.capsuleHalfSilver} />
+      <CapsuleCar />
+    </div>
   );
 }
 
@@ -116,152 +206,113 @@ export default function HeroSection() {
 
   useEffect(() => {
     const scene = sceneRef.current;
-    if (!scene) return;
-
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-
-    function clamp(value: number, min: number, max: number) {
-      return Math.min(Math.max(value, min), max);
+    if (!scene) {
+      return;
     }
 
-    function updateProgress() {
-      if (!scene) return;
-      if (reduceMotion.matches) {
-        scene.style.setProperty("--scene-progress", "1");
-        return;
-      }
-
-      const bounds = scene.getBoundingClientRect();
-      const travel = Math.max(1, bounds.height - window.innerHeight);
-      const progress = clamp(-bounds.top / travel, 0, 1);
-      scene.style.setProperty("--scene-progress", progress.toFixed(4));
-    }
-
-    const magneticItems = Array.from(
-      scene.querySelectorAll<HTMLElement>("[data-magnetic-button]")
-    );
-
-    function onMove(event: MouseEvent) {
-      const target = event.currentTarget as HTMLElement;
-      const inner = target.querySelector<HTMLElement>("[data-magnetic-inner-target]");
-      const rect = target.getBoundingClientRect();
-      const centerX = rect.left + rect.width / 2;
-      const centerY = rect.top + rect.height / 2;
-      const deltaX = event.clientX - centerX;
-      const deltaY = event.clientY - centerY;
-      const distance = Math.hypot(deltaX, deltaY);
-      const radius = Math.max(rect.width, rect.height) * 0.95;
-
-      if (distance > radius) return;
-
-      const pull = 1 - distance / radius;
-      const moveX = deltaX * pull * 0.42;
-      const moveY = deltaY * pull * 0.42;
-      target.style.transform = `translate(${moveX}px, ${moveY}px)`;
-      if (inner) inner.style.transform = `translate(${moveX * 0.48}px, ${moveY * 0.48}px)`;
-    }
-
-    function onLeave(event: MouseEvent) {
-      const target = event.currentTarget as HTMLElement;
-      const inner = target.querySelector<HTMLElement>("[data-magnetic-inner-target]");
-      target.style.transform = "";
-      if (inner) inner.style.transform = "";
-    }
-
-    magneticItems.forEach((item) => {
-      item.addEventListener("mousemove", onMove);
-      item.addEventListener("mouseleave", onLeave);
-    });
+    let frame = 0;
+    const updateProgress = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        const rect = scene.getBoundingClientRect();
+        const distance = Math.max(1, rect.height - window.innerHeight);
+        const progress = Math.min(1, Math.max(0, -rect.top / distance));
+        scene.style.setProperty("--scene-progress", progress.toFixed(4));
+      });
+    };
 
     updateProgress();
     window.addEventListener("scroll", updateProgress, { passive: true });
     window.addEventListener("resize", updateProgress);
-    reduceMotion.addEventListener("change", updateProgress);
-
     return () => {
+      cancelAnimationFrame(frame);
       window.removeEventListener("scroll", updateProgress);
       window.removeEventListener("resize", updateProgress);
-      reduceMotion.removeEventListener("change", updateProgress);
-      magneticItems.forEach((item) => {
-        item.removeEventListener("mousemove", onMove);
-        item.removeEventListener("mouseleave", onLeave);
-      });
     };
   }, []);
 
+  useEffect(() => {
+    const buttons = Array.from(document.querySelectorAll<HTMLElement>("[data-magnetic-strength]"));
+
+    const cleanups = buttons.map((button) => {
+      const inner = button.querySelector<HTMLElement>("[data-magnetic-inner-target]");
+      const strength = Number(button.dataset.magneticStrength || 50);
+      const innerStrength = Number(button.dataset.magneticStrengthInner || 25);
+
+      const move = (event: PointerEvent) => {
+        const rect = button.getBoundingClientRect();
+        const x = event.clientX - rect.left - rect.width / 2;
+        const y = event.clientY - rect.top - rect.height / 2;
+        button.style.transform = `translate(${x / strength}px, ${y / strength}px)`;
+        if (inner) {
+          inner.style.transform = `translate(${x / innerStrength}px, ${y / innerStrength}px)`;
+        }
+      };
+
+      const leave = () => {
+        button.style.transform = "";
+        if (inner) {
+          inner.style.transform = "";
+        }
+      };
+
+      button.addEventListener("pointermove", move);
+      button.addEventListener("pointerleave", leave);
+      return () => {
+        button.removeEventListener("pointermove", move);
+        button.removeEventListener("pointerleave", leave);
+      };
+    });
+
+    return () => cleanups.forEach((cleanup) => cleanup());
+  }, []);
+
   return (
-    <div id="top" ref={sceneRef} className={styles.scene} data-scroll-stage="">
-      <section id="hero" className={styles.hero} data-hero-section="true">
-        <div className={styles.heroTexture} aria-hidden="true" />
-        <div className={styles.orbitField} aria-hidden="true">
-          <span className={`${styles.orbitRing} ${styles.orbitRingOne}`} />
-          <span className={`${styles.orbitRing} ${styles.orbitRingTwo}`} />
-          <span className={`${styles.orbitRing} ${styles.orbitRingThree}`} />
-          <span className={`${styles.energyDot} ${styles.energyDotOne}`} />
-          <span className={`${styles.energyDot} ${styles.energyDotTwo}`} />
-          <span className={`${styles.energyDot} ${styles.energyDotThree}`} />
-          <span className={styles.capsuleSeed}>
-            <span />
-          </span>
+    <div id="top" className={styles.scene} ref={sceneRef}>
+      <LocalNav />
+
+      <section id="hero" className={styles.hero} data-hero-section="true" aria-label="BURHANDEV hero">
+        <div className={styles.screenFrame} aria-hidden="true" />
+        <ClawRig />
+        <div className={styles.heroContent}>
+          <AnimatedHeading
+            className={styles.heroTitle}
+            label="BURHANDEV. Experience the next big web"
+            lines={heroLines}
+          />
+          <div className={styles.heroCta}>
+            <MagneticButton>Click to play</MagneticButton>
+          </div>
         </div>
-        <svg className={styles.heroRail} viewBox="0 0 1440 620" fill="none" aria-hidden="true">
-          <defs>
-            <linearGradient id="heroRailGradient" x1="-94" y1="500" x2="1534" y2="250" gradientUnits="userSpaceOnUse">
-              <stop stopColor="#ffffff" stopOpacity="0.02" />
-              <stop offset="0.46" stopColor="#8fffff" stopOpacity="0.34" />
-              <stop offset="1" stopColor="#ff5200" stopOpacity="0.12" />
-            </linearGradient>
-          </defs>
+        <ArcadeConsole />
+      </section>
+
+      <section className={styles.capsuleBridge} aria-label="Capsule reveal">
+        <div className={styles.consoleUnderside} aria-hidden="true" />
+        <CapsuleShowcase />
+      </section>
+
+      <section id="open-capsule" className={styles.openCapsule} aria-label="Enter the World of BURHANDEV">
+        <svg className={styles.worldCurve} viewBox="0 0 1428 748" fill="none" aria-hidden="true">
           <path
-            d="M-94 554C37 442 178 442 303 506C447 580 579 540 671 412C760 288 843 204 992 236C1113 262 1160 348 1261 329C1364 309 1413 218 1534 218"
-            stroke="url(#heroRailGradient)"
+            d="M27 804c86-34 171-77 224-156 26-39 43-88 35-135-9-57-63-100-118-74-34 16-50 55-42 91 10 41 42 71 81 88 45 21 95 24 145 16 147-25 258-132 370-222 47-38 96-74 148-104 116-69 250-114 386-105 157 10 318 98 381 248 56 131 29 302-88 390-137 104-342 49-434-91-98-145-75-349 28-486 88-120 227-195 372-223 217-41 453 8 651 102 51 25 99 54 143 89 43 33 81 71 119 110"
             pathLength="1"
           />
         </svg>
 
-        <div className={styles.heroContent}>
-          <AnimatedHeading
-            as="h1"
-            lines={heroLines}
-            label="BURHANDEV. Experience the next big web"
-            className={styles.heroTitle}
-          />
-          <div className={styles.heroCta}>
-            <MagneticButton onClick={() => document.getElementById("open-capsule")?.scrollIntoView({ behavior: "smooth" })}>
-              Click to enter
-            </MagneticButton>
-          </div>
+        <div className={styles.finalCapsule}>
+          <CapsuleShowcase final />
         </div>
-      </section>
 
-      <section id="open-capsule" className={styles.openCapsule}>
         <div className={styles.capsuleContent}>
           <AnimatedHeading
-            as="h2"
-            lines={capsuleLines}
-            label="Enter the World of BURHANDEV"
             className={styles.capsuleTitle}
-            delayOffset={0.28}
+            label="Enter the World of BURHANDEV"
+            lines={worldLines}
+            level="h2"
           />
-          <p>We do not just make websites, we create experiences.</p>
-          <MagneticButton href="#contact">Start project now!</MagneticButton>
-        </div>
-
-        <div className={styles.capsuleCurveWrap} aria-hidden="true">
-          <svg className={styles.capsuleCurve} viewBox="0 0 1428 748" fill="none">
-            <defs>
-              <linearGradient id="capsuleCurveGradient" x1="-124" y1="570" x2="1500" y2="320" gradientUnits="userSpaceOnUse">
-                <stop stopColor="#ffffff" stopOpacity="0.26" />
-                <stop offset="0.62" stopColor="#8fffff" stopOpacity="0.18" />
-                <stop offset="1" stopColor="#ff5200" stopOpacity="0.05" />
-              </linearGradient>
-            </defs>
-            <path
-              d="M-124 758C-12 687 137 665 244 547C322 462 301 328 201 327C141 326 99 380 116 444C138 528 236 580 351 553C513 514 605 344 754 275C904 206 1074 190 1217 268C1377 355 1407 531 1311 642C1191 781 948 721 917 552C889 397 1011 227 1167 145C1331 59 1529 64 1686 142C1770 184 1830 237 1901 312"
-              stroke="url(#capsuleCurveGradient)"
-              pathLength="1"
-            />
-          </svg>
+          <p>We do not just build pages, we create web experiences.</p>
+          <MagneticButton href="#contact">Play project now!</MagneticButton>
         </div>
       </section>
     </div>
