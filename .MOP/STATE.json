@@ -6,7 +6,7 @@
   "ownerCodename": "moon",
   "activeMember": "moon",
   "activeAgents": {
-    "moon": "agent-nami",
+    "moon": "agent-ramus",
     "amad": "agent-anis"
   },
   "agentPolicy": {
@@ -568,6 +568,61 @@
       ],
       "createdBy": "moon",
       "createdAt": "2026-06-13T20:04:50.913Z"
+    },
+    {
+      "id": "agent-dux",
+      "role": "architect",
+      "title": "System Architect",
+      "name": "dux",
+      "owners": [
+        "moon"
+      ],
+      "createdBy": "moon",
+      "createdAt": "2026-06-13T20:08:00.562Z"
+    },
+    {
+      "id": "agent-kali",
+      "role": "planner",
+      "title": "Product Planner",
+      "name": "kali",
+      "owners": [
+        "moon"
+      ],
+      "createdBy": "moon",
+      "createdAt": "2026-06-13T20:08:05.474Z"
+    },
+    {
+      "id": "agent-kilo",
+      "role": "prompt",
+      "title": "Prompt Engineer",
+      "name": "kilo",
+      "owners": [
+        "moon"
+      ],
+      "createdBy": "moon",
+      "createdAt": "2026-06-13T20:08:10.798Z"
+    },
+    {
+      "id": "agent-dobi",
+      "role": "coder",
+      "title": "Coder",
+      "name": "dobi",
+      "owners": [
+        "moon"
+      ],
+      "createdBy": "moon",
+      "createdAt": "2026-06-13T20:08:15.406Z"
+    },
+    {
+      "id": "agent-ramus",
+      "role": "reviewer",
+      "title": "Reviewer",
+      "name": "ramus",
+      "owners": [
+        "moon"
+      ],
+      "createdBy": "moon",
+      "createdAt": "2026-06-13T20:08:19.917Z"
     }
   ],
   "agentCatalog": [
@@ -1832,6 +1887,111 @@
     },
     {
       "at": "2026-06-13T20:07:02.491Z",
+      "actor": "BURHAN-MOP",
+      "kind": "merge-approved",
+      "summary": "origin/dev/moon approved and merged to main."
+    },
+    {
+      "at": "2026-06-13T20:08:00.562Z",
+      "actor": "moon",
+      "agent": "nAMI",
+      "agentRole": "github",
+      "agentId": "agent-nami",
+      "kind": "agent-activate",
+      "summary": "Named System Architect as dux."
+    },
+    {
+      "at": "2026-06-13T20:08:00.562Z",
+      "actor": "moon",
+      "agent": "dux",
+      "agentRole": "architect",
+      "agentId": "agent-dux",
+      "kind": "agent-use",
+      "summary": "Set active agent to dux."
+    },
+    {
+      "at": "2026-06-13T20:08:05.474Z",
+      "actor": "moon",
+      "agent": "dux",
+      "agentRole": "architect",
+      "agentId": "agent-dux",
+      "kind": "agent-activate",
+      "summary": "Named Product Planner as kali."
+    },
+    {
+      "at": "2026-06-13T20:08:05.474Z",
+      "actor": "moon",
+      "agent": "kali",
+      "agentRole": "planner",
+      "agentId": "agent-kali",
+      "kind": "agent-use",
+      "summary": "Set active agent to kali."
+    },
+    {
+      "at": "2026-06-13T20:08:10.799Z",
+      "actor": "moon",
+      "agent": "kali",
+      "agentRole": "planner",
+      "agentId": "agent-kali",
+      "kind": "agent-activate",
+      "summary": "Named Prompt Engineer as kilo."
+    },
+    {
+      "at": "2026-06-13T20:08:10.799Z",
+      "actor": "moon",
+      "agent": "kilo",
+      "agentRole": "prompt",
+      "agentId": "agent-kilo",
+      "kind": "agent-use",
+      "summary": "Set active agent to kilo."
+    },
+    {
+      "at": "2026-06-13T20:08:15.406Z",
+      "actor": "moon",
+      "agent": "kilo",
+      "agentRole": "prompt",
+      "agentId": "agent-kilo",
+      "kind": "agent-activate",
+      "summary": "Named Coder as dobi."
+    },
+    {
+      "at": "2026-06-13T20:08:15.406Z",
+      "actor": "moon",
+      "agent": "dobi",
+      "agentRole": "coder",
+      "agentId": "agent-dobi",
+      "kind": "agent-use",
+      "summary": "Set active agent to dobi."
+    },
+    {
+      "at": "2026-06-13T20:08:19.917Z",
+      "actor": "moon",
+      "agent": "dobi",
+      "agentRole": "coder",
+      "agentId": "agent-dobi",
+      "kind": "agent-activate",
+      "summary": "Named Reviewer as ramus."
+    },
+    {
+      "at": "2026-06-13T20:08:19.917Z",
+      "actor": "moon",
+      "agent": "ramus",
+      "agentRole": "reviewer",
+      "agentId": "agent-ramus",
+      "kind": "agent-use",
+      "summary": "Set active agent to ramus."
+    },
+    {
+      "at": "2026-06-13T20:08:49.497Z",
+      "actor": "moon",
+      "agent": "ramus",
+      "agentRole": "reviewer",
+      "agentId": "agent-ramus",
+      "kind": "memory",
+      "summary": "activate remaining agents for Cinnamon hero correction"
+    },
+    {
+      "at": "2026-06-13T20:08:56.370Z",
       "actor": "BURHAN-MOP",
       "kind": "merge-approved",
       "summary": "origin/dev/moon approved and merged to main."
