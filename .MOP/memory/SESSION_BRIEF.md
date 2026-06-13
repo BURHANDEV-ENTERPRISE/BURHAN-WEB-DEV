@@ -1,6 +1,6 @@
 # MOP Session Brief
 
-Updated: 2026-06-13T19:55:17.361Z
+Updated: 2026-06-13T19:57:36.731Z
 Actor: moon
 Active agent: Numero (browser)
 Current month: 2026-06
@@ -15,7 +15,6 @@ Current month: 2026-06
 
 ## Recent Memory
 
-- 2026-06-13T13:57:21.130Z - anis (core): MOP auth gate completed for session — login verified, memory restored, agent anis active
 - 2026-06-13T14:05:30.435Z - anis (core): Complete Cinnamon-style hero: dual-span button text hover animation, fix SVG clone transition
 - 2026-06-13T14:07:21.750Z - anis (core): Completed full Cinnamon-style hero: dual-span button text hover animation (translateY slide), fixed SVG clone transition property missing, build OK, pushed to dev/amad
 - 2026-06-13T16:22:30.693Z - anis (core): sync MOP config, scripts, skills, and tooling updates
@@ -35,3 +34,4 @@ Current month: 2026-06
 - 2026-06-13T19:46:10.615Z - Numero (browser): activate Browser and UX agents for Cinnamon hero work
 - 2026-06-13T19:53:36.207Z - Numero (browser): replace hero with Cinnamon-inspired connected hero and capsule section
 - 2026-06-13T19:55:17.353Z - Numero (browser): fix hero CSS secret scanner false positive
+- 2026-06-13T19:57:36.724Z - Numero (browser): preserve readable hero heading spacing
