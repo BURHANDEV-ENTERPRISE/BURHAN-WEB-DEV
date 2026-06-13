@@ -6,7 +6,7 @@
   "ownerCodename": "moon",
   "activeMember": "moon",
   "activeAgents": {
-    "moon": "agent-numero",
+    "moon": "agent-halkin",
     "amad": "agent-anis"
   },
   "agentPolicy": {
@@ -557,6 +557,17 @@
       ],
       "createdBy": "moon",
       "createdAt": "2026-06-13T19:45:36.419Z"
+    },
+    {
+      "id": "agent-halkin",
+      "role": "tester",
+      "title": "Tester",
+      "name": "Halkin",
+      "owners": [
+        "moon"
+      ],
+      "createdBy": "moon",
+      "createdAt": "2026-06-13T20:04:50.913Z"
     }
   ],
   "agentCatalog": [
@@ -1728,6 +1739,42 @@
       "actor": "BURHAN-MOP",
       "kind": "merge-approved",
       "summary": "origin/dev/moon approved and merged to main."
+    },
+    {
+      "at": "2026-06-13T20:04:50.913Z",
+      "actor": "moon",
+      "agent": "Numero",
+      "agentRole": "browser",
+      "agentId": "agent-numero",
+      "kind": "agent-activate",
+      "summary": "Named Tester as Halkin."
+    },
+    {
+      "at": "2026-06-13T20:04:50.913Z",
+      "actor": "moon",
+      "agent": "Halkin",
+      "agentRole": "tester",
+      "agentId": "agent-halkin",
+      "kind": "agent-use",
+      "summary": "Set active agent to Halkin."
+    },
+    {
+      "at": "2026-06-13T20:04:56.948Z",
+      "actor": "moon",
+      "agent": "Halkin",
+      "agentRole": "tester",
+      "agentId": "agent-halkin",
+      "kind": "memory",
+      "summary": "activate Tester agent Halkin for Cinnamon hero correction"
+    },
+    {
+      "at": "2026-06-13T20:05:16.409Z",
+      "actor": "moon",
+      "agent": "Halkin",
+      "agentRole": "tester",
+      "agentId": "agent-halkin",
+      "kind": "memory",
+      "summary": "activate Tester agent Halkin for Cinnamon hero correction"
     }
   ]
 }
