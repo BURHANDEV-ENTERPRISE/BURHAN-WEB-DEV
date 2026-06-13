@@ -47,6 +47,7 @@ export default function HeroSection() {
   const sv3dRef           = useRef<any>(null);
   const liftProgRef       = useRef<number>(0);
   const heroOverlayRef    = useRef<HTMLDivElement>(null);
+  const heroBtnRef        = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     // ── Particles background ─────────────────────────────────
@@ -282,6 +283,42 @@ export default function HeroSection() {
     };
   }, []);
 
+  // Magnetic button effect — button follows cursor like Cinnamon
+  useEffect(() => {
+    const btn = heroBtnRef.current;
+    if (!btn) return;
+    const inner = btn.querySelector<HTMLElement>("[data-magnetic-inner]");
+
+    function onMove(e: MouseEvent) {
+      const r  = btn!.getBoundingClientRect();
+      const cx = r.left + r.width  / 2;
+      const cy = r.top  + r.height / 2;
+      const dx = e.clientX - cx;
+      const dy = e.clientY - cy;
+      const dist   = Math.sqrt(dx * dx + dy * dy);
+      const radius = Math.max(r.width, r.height) * 0.9;
+      if (dist < radius) {
+        const p  = 1 - dist / radius;
+        const mx = dx * p * 0.45;
+        const my = dy * p * 0.45;
+        btn!.style.transform  = `translate(${mx}px, ${my}px)`;
+        if (inner) inner.style.transform = `translate(${mx * 0.5}px, ${my * 0.5}px)`;
+      }
+    }
+
+    function onLeave() {
+      btn!.style.transform  = "";
+      if (inner) inner.style.transform = "";
+    }
+
+    btn.addEventListener("mousemove", onMove);
+    btn.addEventListener("mouseleave", onLeave);
+    return () => {
+      btn.removeEventListener("mousemove", onMove);
+      btn.removeEventListener("mouseleave", onLeave);
+    };
+  }, []);
+
   return (
     <>
     <div id="top" className={styles.scrollStage} data-scroll-stage="">
@@ -341,9 +378,9 @@ export default function HeroSection() {
 
             <div className={styles.heroCta}>
               <div className={styles.heroBtnWrap}>
-                <button className={styles.heroBtn} onClick={() => document.getElementById("services")?.scrollIntoView({ behavior: "smooth" })}>
+                <button ref={heroBtnRef} className={styles.heroBtn} onClick={() => document.getElementById("services")?.scrollIntoView({ behavior: "smooth" })}>
                   <div className={styles.heroBtnBg} />
-                  <div className={styles.heroBtnInner}>
+                  <div className={styles.heroBtnInner} data-magnetic-inner="">
                     <div className={styles.heroBtnIconBox}>
                       <div className={styles.heroBtnIconBorder} />
                       <div className={styles.heroBtnIconSlider}>
