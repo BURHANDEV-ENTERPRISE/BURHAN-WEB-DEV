@@ -1,8 +1,8 @@
 # MOP Session Brief
 
-Updated: 2026-06-13T20:06:54.344Z
+Updated: 2026-06-13T20:08:49.504Z
 Actor: moon
-Active agent: nAMI (github)
+Active agent: ramus (reviewer)
 Current month: 2026-06
 
 ## Required Session Flow
@@ -10,12 +10,11 @@ Current month: 2026-06
 1. Read `.MOP/STATE.json` and follow `.MOP/PROTOCOL.md`.
 2. Restore memory with `node .MOP/scripts/mop-core.mjs memory brief --actor <codename>`.
 3. Run `agent route` for the user task before answering.
-4. Start every authenticated answer with: `agent: nAMI (github) to moon`
+4. Start every authenticated answer with: `agent: ramus (reviewer) to moon`
 5. Save a one-line memory after meaningful work.
 
 ## Recent Memory
 
-- 2026-06-13T19:36:50.744Z - KID (core): sync MOP config, scripts, skills, and tooling updates from installer
 - 2026-06-13T19:38:03.661Z - KID (core): Explained Amad's recent activities on the Cinnamon hero section and secret scanner fixes
 - 2026-06-13T19:38:05.496Z - KID (core): Save memory: Explained Amad's recent activities
 - 2026-06-13T19:39:56.355Z - KID (core): Greeted moon and confirmed Codex is ready to help
@@ -35,3 +34,4 @@ Current month: 2026-06
 - 2026-06-13T20:05:49.218Z - nAMI (github): save routing memory before Cinnamon hero correction redo
 - 2026-06-13T20:06:23.413Z - nAMI (github): save wide route memory before focused frontend correction
 - 2026-06-13T20:06:54.337Z - nAMI (github): save focused route block memory before naming required agents
+- 2026-06-13T20:08:49.497Z - ramus (reviewer): activate remaining agents for Cinnamon hero correction
