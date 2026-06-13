@@ -19,3 +19,4 @@
 {"at":"2026-06-13T19:53:36.207Z","actor":"moon","agent":"Numero","agentRole":"browser","agentId":"agent-numero","kind":"conversation","summary":"replace hero with Cinnamon-inspired connected hero and capsule section"}
 {"at":"2026-06-13T19:55:17.353Z","actor":"moon","agent":"Numero","agentRole":"browser","agentId":"agent-numero","kind":"conversation","summary":"fix hero CSS secret scanner false positive"}
 {"at":"2026-06-13T19:57:36.724Z","actor":"moon","agent":"Numero","agentRole":"browser","agentId":"agent-numero","kind":"conversation","summary":"preserve readable hero heading spacing"}
+{"at":"2026-06-13T19:59:50.768Z","actor":"moon","agent":"Numero","agentRole":"browser","agentId":"agent-numero","kind":"conversation","summary":"preserve spaces between split heading lines"}

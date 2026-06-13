@@ -45,6 +45,7 @@ function AnimatedHeading({
               })}
             </span>
           ))}
+          {lineIndex < lines.length - 1 && <span className={styles.lineTextGap}> </span>}
         </span>
       ))}
     </Tag>

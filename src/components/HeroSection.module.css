@@ -245,6 +245,10 @@
   width: 0.18em;
 }
 
+.lineTextGap {
+  font-size: 0;
+}
+
 .headingLetter {
   position: relative;
   display: inline-block;
