@@ -194,6 +194,11 @@ const routeRules = [
     keywords: ['code', 'coding', 'implement', 'buat file', 'ubah file', 'fix code', 'script', 'function']
   },
   {
+    role: 'browser',
+    support: ['researcher', 'tester'],
+    keywords: ['browser', 'browse', 'scrape', 'scraping', 'extract', 'click', 'login flow', 'fill form', 'captcha', 'bot detection', 'website', 'url', 'webpage']
+  },
+  {
     role: 'researcher',
     support: ['planner'],
     keywords: ['research', 'kaji', 'compare', 'pilih', 'cari info', 'best practice']
