@@ -6,7 +6,7 @@
   "ownerCodename": "moon",
   "activeMember": "moon",
   "activeAgents": {
-    "moon": "agent-halkin",
+    "moon": "agent-nami",
     "amad": "agent-anis"
   },
   "agentPolicy": {
@@ -1781,6 +1781,24 @@
       "actor": "BURHAN-MOP",
       "kind": "merge-approved",
       "summary": "origin/dev/moon approved and merged to main."
+    },
+    {
+      "at": "2026-06-13T20:05:37.201Z",
+      "actor": "moon",
+      "agent": "nAMI",
+      "agentRole": "github",
+      "agentId": "agent-nami",
+      "kind": "agent-route",
+      "summary": "Routed task to nAMI: Matched keywords for GitHub Coordinator: pr."
+    },
+    {
+      "at": "2026-06-13T20:05:49.217Z",
+      "actor": "moon",
+      "agent": "nAMI",
+      "agentRole": "github",
+      "agentId": "agent-nami",
+      "kind": "memory",
+      "summary": "save routing memory before Cinnamon hero correction redo"
     }
   ]
 }
