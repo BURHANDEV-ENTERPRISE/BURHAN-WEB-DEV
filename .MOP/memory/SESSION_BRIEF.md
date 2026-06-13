@@ -1,8 +1,8 @@
 # MOP Session Brief
 
-Updated: 2026-06-13T20:09:18.881Z
+Updated: 2026-06-13T20:19:32.831Z
 Actor: moon
-Active agent: Loli (frontend)
+Active agent: dobi (coder)
 Current month: 2026-06
 
 ## Required Session Flow
@@ -10,13 +10,11 @@ Current month: 2026-06
 1. Read `.MOP/STATE.json` and follow `.MOP/PROTOCOL.md`.
 2. Restore memory with `node .MOP/scripts/mop-core.mjs memory brief --actor <codename>`.
 3. Run `agent route` for the user task before answering.
-4. Start every authenticated answer with: `agent: Loli (frontend) to moon`
+4. Start every authenticated answer with: `agent: dobi (coder) to moon`
 5. Save a one-line memory after meaningful work.
 
 ## Recent Memory
 
-- 2026-06-13T19:38:05.496Z - KID (core): Save memory: Explained Amad's recent activities
-- 2026-06-13T19:39:56.355Z - KID (core): Greeted moon and confirmed Codex is ready to help
 - 2026-06-13T19:44:42.350Z - KID (core): Asked moon to name missing Browser and UX agents before Cinnamon-inspired hero scraping work
 - 2026-06-13T19:46:10.615Z - Numero (browser): activate Browser and UX agents for Cinnamon hero work
 - 2026-06-13T19:53:36.207Z - Numero (browser): replace hero with Cinnamon-inspired connected hero and capsule section
@@ -35,3 +33,5 @@ Current month: 2026-06
 - 2026-06-13T20:06:54.337Z - nAMI (github): save focused route block memory before naming required agents
 - 2026-06-13T20:08:49.497Z - ramus (reviewer): activate remaining agents for Cinnamon hero correction
 - 2026-06-13T20:09:18.873Z - Loli (frontend): route Cinnamon hero correction to frontend
+- 2026-06-13T20:19:32.786Z - dobi (coder): Rebuilt BURHANDEV hero to closely match arcade and capsule reference with original CSS shapes
+- 2026-06-13T20:19:32.824Z - dobi (coder): redo hero with arcade and capsule recreation
