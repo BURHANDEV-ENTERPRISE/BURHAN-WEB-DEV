@@ -24,12 +24,15 @@ const GROUND_Y  = 100;
 const CW        = 260;
 const CH        = 380;
 // Clear colour to match hero background so WebGL canvas blends in
-const BG_HEX    = 0x151510;
+const BG_HEX    = 0x000000;
+// Index of the character that stays last and pulls the curtain up
+const PULLER    = 2;
 
 export default function HeroSection() {
   const bgCanvasRef     = useRef<HTMLCanvasElement>(null);
   const charCanvasRefs  = useRef<(HTMLCanvasElement | null)[]>([]);
   const avatarRefs      = useRef<(HTMLDivElement | null)[]>([]);
+  const curtainInnerRef = useRef<HTMLDivElement>(null);
   const animFrameRef    = useRef<number>(0);
 
   const scrollProgressRef = useRef<number>(0);
@@ -40,6 +43,10 @@ export default function HeroSection() {
   const prevProgressRef   = useRef<number>(0);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const viewersRef        = useRef<any[]>([]);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const sv3dRef           = useRef<any>(null);
+  const liftProgRef       = useRef<number>(0);
+  const heroOverlayRef    = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // ── Particles background ─────────────────────────────────
@@ -67,6 +74,7 @@ export default function HeroSection() {
 
     // ── skinview3d 3D models ─────────────────────────────────
     import("skinview3d").then((sv3d) => {
+      sv3dRef.current = sv3d;
       PLAYERS.forEach((player, i) => {
         const canvas = charCanvasRefs.current[i];
         if (!canvas) return;
@@ -109,15 +117,23 @@ export default function HeroSection() {
       if (isRunningRef.current && now - lastScrollRef.current > 200) {
         isRunningRef.current = false;
         frozenAtRef.current  = now;
-        viewersRef.current.forEach((v) => {
-          if (v?.animation) v.animation.paused = true;
+        viewersRef.current.forEach((v, idx) => {
+          if (!v?.animation) return;
+          // Keep puller animating while actively pulling curtain
+          if (idx === PULLER && liftProgRef.current > 0.05) return;
+          v.animation.paused = true;
         });
       }
 
       // Update facing direction on viewers
       const facingRight = facingRightRef.current;
-      viewersRef.current.forEach((v) => {
+      viewersRef.current.forEach((v, idx) => {
         if (!v) return;
+        // Puller faces more directly toward viewer during pull
+        if (idx === PULLER && liftProgRef.current > 0.05) {
+          v.playerObject.rotation.y = Math.PI / 2;
+          return;
+        }
         // slight toward camera on both directions (22.5° tilt)
         v.playerObject.rotation.y = facingRight
           ? Math.PI - Math.PI / 8   // running right, face slightly toward camera
@@ -166,16 +182,92 @@ export default function HeroSection() {
         });
       }
 
+      // Phase timings
+      const reachStart  = 0.70;
+      const liftStart   = 0.85;
+
+      // ease-out on lift
+      const liftRaw   = Math.max(0, (progress - liftStart) / (1 - liftStart));
+      const liftProg  = 1 - Math.pow(1 - Math.min(1, liftRaw), 2);
+      liftProgRef.current = liftProg;
+
       avatarRefs.current.forEach((el, i) => {
         if (!el) return;
         const c    = CHARS[i];
         const runX = (c.entry + progress * 2.8) * window.innerWidth * c.scroll;
-        // guarantee invisible when off-screen right OR scroll fully done
+
+        if (i === PULLER && progress >= reachStart) {
+          // Position at curtain top edge — rises with curtain (the "pull" effect)
+          const curtainTopPx = liftProg > 0
+            ? window.innerHeight * (1 - liftProg)
+            : window.innerHeight * (GROUND_Y / 100);
+          const centerX = window.innerWidth / 2 - CW / 2;
+
+          el.style.top        = `${curtainTopPx}px`;
+          el.style.left       = "0px";
+          el.style.opacity    = "1";
+          el.style.transition = "opacity 0.3s ease";
+          el.style.transform  = `translateX(${centerX}px) translateY(-85%)`;
+
+          // Switch to pulling pose when curtain is rising
+          if (liftProg > 0.05) {
+            const sv3d = sv3dRef.current;
+            const v = viewersRef.current[PULLER];
+            if (sv3d && v && sv3d.FunctionAnimation && !(v.animation instanceof sv3d.FunctionAnimation)) {
+              const pullAnim = new sv3d.FunctionAnimation((player: any, ctx: any) => {
+                const osc = Math.sin(ctx.elapsed * 2.5) * 0.5;
+                // Reset body/head/legs to neutral so they stay visible
+                player.skin.head.rotation.set(0, 0, 0);
+                player.skin.body.rotation.set(0, 0, 0);
+                player.skin.rightLeg.rotation.set(0.15 - osc * 0.2, 0, 0);
+                player.skin.leftLeg.rotation.set(-0.1 + osc * 0.2, 0, 0);
+                // Arms: alternating pull on X axis (same axis running animation uses)
+                player.skin.rightArm.rotation.set(0.3 + osc, 0,  0.15);
+                player.skin.leftArm.rotation.set( 0.3 - osc, 0, -0.15);
+              });
+              v.animation = pullAnim;
+              v.animation.paused = false;
+            }
+          }
+          return;
+        }
+
+        // Reset puller when scrolling back up
+        if (i === PULLER && progress < reachStart) {
+          el.style.top  = `${GROUND_Y}%`;
+          el.style.left = "50%";
+          // Restore running animation
+          const sv3d = sv3dRef.current;
+          const v = viewersRef.current[PULLER];
+          if (sv3d && v && !(v.animation instanceof sv3d.RunningAnimation)) {
+            const runAnim = new sv3d.RunningAnimation();
+            runAnim.speed = CHARS[PULLER].runSpeed;
+            runAnim.paused = !isRunningRef.current;
+            v.animation = runAnim;
+          }
+        }
+
         const hide = progress <= 0.02 || progress >= 0.97 || runX > window.innerWidth * 0.75;
         el.style.transition = "opacity 0.3s ease";
         el.style.opacity    = hide ? "0" : "1";
         el.style.transform  = `translate(calc(-50% + ${runX}px), -85%)`;
       });
+
+      // Fade hero overlay text as user starts scrolling
+      const overlay = heroOverlayRef.current;
+      if (overlay) {
+        overlay.style.opacity = String(Math.max(0, 1 - progress * 6));
+        overlay.style.pointerEvents = progress > 0.1 ? "none" : "auto";
+      }
+
+      // Curtain rises after character grabs (inside hero, above dark bg, below avatars)
+      const curtain = curtainInnerRef.current;
+      if (curtain) {
+        curtain.style.transform = `translateY(${(1 - liftProg) * 100}%)`;
+        curtain.style.boxShadow = liftProg > 0.05
+          ? `0 -10px 50px rgba(200,40,40,${0.7 * liftProg})`
+          : "none";
+      }
     }
     updateScroll();
     window.addEventListener("scroll", updateScroll, { passive: true });
@@ -191,9 +283,11 @@ export default function HeroSection() {
   }, []);
 
   return (
+    <>
     <div id="top" className={styles.scrollStage} data-scroll-stage="">
       <section className={styles.hero}>
         <canvas ref={bgCanvasRef} className={styles.canvas} />
+        <div ref={curtainInnerRef} className={styles.curtainInner} />
         <div className={styles.avatarLayer}>
           {PLAYERS.map((player, i) => (
             <div
@@ -215,7 +309,64 @@ export default function HeroSection() {
             </div>
           ))}
         </div>
+
+        {/* Hero title overlay — fades on scroll */}
+        <div ref={heroOverlayRef} className={styles.heroOverlay}>
+          <div className={styles.heroCenterContent}>
+            <h1 className={styles.heroTitle} aria-label="BURHANDEV. Web yang berani, rasa laju.">
+              {(() => {
+                let idx = 0;
+                return [
+                  ["BURHANDEV."],
+                  ["Web", "yang", "berani,"],
+                  ["rasa", "laju."],
+                ].map((words, li) => (
+                  <div key={li} aria-hidden="true" className={styles.heroTitleLine}>
+                    {words.map((word, wi) => (
+                      <span key={wi} className={styles.heroTitleWord}>
+                        {word.split("").map((ch, ci) => {
+                          const delay = `${idx++ * 0.038 + 0.15}s`;
+                          return (
+                            <span key={ci} className={styles.heroLetter} style={{ animationDelay: delay }}>
+                              {ch}
+                            </span>
+                          );
+                        })}
+                      </span>
+                    ))}
+                  </div>
+                ));
+              })()}
+            </h1>
+
+            <div className={styles.heroCta}>
+              <div className={styles.heroBtnWrap}>
+                <button className={styles.heroBtn} onClick={() => document.getElementById("services")?.scrollIntoView({ behavior: "smooth" })}>
+                  <div className={styles.heroBtnBg} />
+                  <div className={styles.heroBtnInner}>
+                    <div className={styles.heroBtnIconBox}>
+                      <div className={styles.heroBtnIconBorder} />
+                      <div className={styles.heroBtnIconSlider}>
+                        <svg className={styles.heroBtnSvg} xmlns="http://www.w3.org/2000/svg" width="12" height="16" viewBox="0 0 12 16" fill="none">
+                          <path d="M11.4931 8.17516L0.769825 15.0502C0.537362 15.1992 0.228082 15.1316 0.0790342 14.8992C0.025763 14.816-0.00172645 14.719 3.87638e-05 14.6203L0.252776 0.491131C0.257715 0.215025 0.485543-0.00478539 0.761639 0.000153306C0.860333 0.00191871 0.956305 0.0328602 1.03744 0.0890703L11.508 7.34319C11.735 7.50048 11.7915 7.81204 11.6342 8.03896C11.5966 8.0932 11.5487 8.13955 11.4931 8.17516Z" fill="white"/>
+                        </svg>
+                        <svg className={`${styles.heroBtnSvg} ${styles.heroBtnSvgClone}`} xmlns="http://www.w3.org/2000/svg" width="12" height="16" viewBox="0 0 12 16" fill="none">
+                          <path d="M11.4931 8.17516L0.769825 15.0502C0.537362 15.1992 0.228082 15.1316 0.0790342 14.8992C0.025763 14.816-0.00172645 14.719 3.87638e-05 14.6203L0.252776 0.491131C0.257715 0.215025 0.485543-0.00478539 0.761639 0.000153306C0.860333 0.00191871 0.956305 0.0328602 1.03744 0.0890703L11.508 7.34319C11.735 7.50048 11.7915 7.81204 11.6342 8.03896C11.5966 8.0932 11.5487 8.13955 11.4931 8.17516Z" fill="white"/>
+                        </svg>
+                      </div>
+                    </div>
+                    <span className={styles.heroBtnTextWrap}>
+                      <span className={styles.heroBtnTextPrimary}>Mulakan Projek</span>
+                      <span aria-hidden="true" className={styles.heroBtnTextClone}>Mulakan Projek</span>
+                    </span>
+                  </div>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
     </div>
+    </>
   );
 }
