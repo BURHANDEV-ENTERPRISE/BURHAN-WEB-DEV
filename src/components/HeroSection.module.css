@@ -8,8 +8,9 @@
   position: sticky;
   top: 0;
   height: 100vh;
-  overflow: hidden;
+  overflow: visible;
   background: #151510;
+  clip-path: inset(0);
 }
 
 .canvas {
@@ -33,7 +34,7 @@
 
 .avatarCanvas {
   display: block;
-  height: 44vh;
+  height: 38vh;
   width: auto;
   image-rendering: pixelated;
 }

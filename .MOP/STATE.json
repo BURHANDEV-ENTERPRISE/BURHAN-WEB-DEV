@@ -1214,6 +1214,21 @@
       "actor": "BURHAN-MOP",
       "kind": "merge-approved",
       "summary": "origin/dev/amad approved and merged to main."
+    },
+    {
+      "at": "2026-06-13T08:55:39.337Z",
+      "actor": "amad",
+      "agent": "anis",
+      "agentRole": "core",
+      "agentId": "agent-anis",
+      "kind": "memory",
+      "summary": "fix hero character position: ground level, canvas width, and transform adjustments"
+    },
+    {
+      "at": "2026-06-13T08:55:46.501Z",
+      "actor": "BURHAN-MOP",
+      "kind": "merge-approved",
+      "summary": "origin/dev/amad approved and merged to main."
     }
   ]
 }

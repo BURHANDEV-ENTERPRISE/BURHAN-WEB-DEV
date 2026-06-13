@@ -20,8 +20,8 @@ const CHARS = [
   { entry: -1.35, scroll: 0.67, runSpeed: 0.9 },
 ];
 
-const GROUND_Y  = 97;
-const CW        = 200;
+const GROUND_Y  = 100;
+const CW        = 260;
 const CH        = 380;
 // Clear colour to match hero background so WebGL canvas blends in
 const BG_HEX    = 0x151510;
@@ -81,8 +81,8 @@ export default function HeroSection() {
           viewer.renderer.setClearColor(BG_HEX, 1);
 
           // Slight 3/4 front view — offset Z toward character's front (-Z)
-          viewer.camera.position.set(45, 16, 6);
-          viewer.camera.lookAt(0, 16, 0);
+          viewer.camera.position.set(45, 10, 6);
+          viewer.camera.lookAt(0, 10, 0);
 
           const anim = new sv3d.RunningAnimation();
           anim.paused = true;
@@ -174,7 +174,7 @@ export default function HeroSection() {
         const hide = progress <= 0.02 || progress >= 0.97 || runX > window.innerWidth * 0.75;
         el.style.transition = "opacity 0.3s ease";
         el.style.opacity    = hide ? "0" : "1";
-        el.style.transform  = `translate(calc(-50% + ${runX}px), -100%)`;
+        el.style.transform  = `translate(calc(-50% + ${runX}px), -85%)`;
       });
     }
     updateScroll();
@@ -203,7 +203,7 @@ export default function HeroSection() {
               style={{
                 left: "50%",
                 top: `${GROUND_Y}%`,
-                transform: "translate(calc(-50% - 200vw), -100%)",
+                transform: "translate(calc(-50% - 200vw), -85%)",
               }}
             >
               <canvas
