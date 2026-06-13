@@ -240,8 +240,9 @@
   white-space: nowrap;
 }
 
-.headingWord + .headingWord {
-  margin-left: 0.18em;
+.wordGap {
+  display: inline-block;
+  width: 0.18em;
 }
 
 .headingLetter {

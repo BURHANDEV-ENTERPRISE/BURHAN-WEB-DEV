@@ -1632,6 +1632,15 @@
       "actor": "BURHAN-MOP",
       "kind": "merge-approved",
       "summary": "origin/dev/moon approved and merged to main."
+    },
+    {
+      "at": "2026-06-13T19:57:36.723Z",
+      "actor": "moon",
+      "agent": "Numero",
+      "agentRole": "browser",
+      "agentId": "agent-numero",
+      "kind": "memory",
+      "summary": "preserve readable hero heading spacing"
     }
   ]
 }

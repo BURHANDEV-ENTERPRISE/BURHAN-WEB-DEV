@@ -29,6 +29,7 @@ function AnimatedHeading({
         <span key={lineIndex} className={styles.headingLine} aria-hidden="true">
           {words.map((word, wordIndex) => (
             <span key={`${word}-${wordIndex}`} className={styles.headingWord}>
+              {wordIndex > 0 && <span className={styles.wordGap}> </span>}
               {word.split("").map((char, charIndex) => {
                 const delay = `${delayOffset + letterIndex * 0.035}s`;
                 letterIndex += 1;
