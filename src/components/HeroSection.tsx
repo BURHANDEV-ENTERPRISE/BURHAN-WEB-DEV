@@ -287,7 +287,7 @@ export default function HeroSection() {
   useEffect(() => {
     const btn = heroBtnRef.current;
     if (!btn) return;
-    const inner = btn.querySelector<HTMLElement>("[data-magnetic-inner]");
+    const inner = btn.querySelector<HTMLElement>("[data-magnetic-inner-target]");
 
     function onMove(e: MouseEvent) {
       const r  = btn!.getBoundingClientRect();
@@ -350,7 +350,7 @@ export default function HeroSection() {
         {/* Hero title overlay — fades on scroll */}
         <div ref={heroOverlayRef} className={styles.heroOverlay}>
           <div className={styles.heroCenterContent}>
-            <h1 className={styles.heroTitle} aria-label="BURHANDEV. Web yang berani, rasa laju.">
+            <h1 className={styles.heroTitle} aria-label="BURHANDEV. Web yang berani, rasa laju." style={{ opacity: 1 }}>
               {(() => {
                 let idx = 0;
                 return [
@@ -358,18 +358,21 @@ export default function HeroSection() {
                   ["Web", "yang", "berani,"],
                   ["rasa", "laju."],
                 ].map((words, li) => (
-                  <div key={li} aria-hidden="true" className={styles.heroTitleLine}>
+                  <div key={li} aria-hidden="true" style={{ position: "relative", display: "block", textAlign: "center" }}>
                     {words.map((word, wi) => (
-                      <span key={wi} className={styles.heroTitleWord}>
-                        {word.split("").map((ch, ci) => {
-                          const delay = `${idx++ * 0.038 + 0.15}s`;
-                          return (
-                            <span key={ci} className={styles.heroLetter} style={{ animationDelay: delay }}>
-                              {ch}
-                            </span>
-                          );
-                        })}
-                      </span>
+                      <>
+                        {wi > 0 && " "}
+                        <div key={wi} aria-hidden="true" style={{ position: "relative", display: "inline-block" }}>
+                          {word.split("").map((ch, ci) => {
+                            const delay = `${idx++ * 0.038 + 0.15}s`;
+                            return (
+                              <div key={ci} aria-hidden="true" className={styles.heroLetter} style={{ animationDelay: delay }}>
+                                {ch}
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </>
                     ))}
                   </div>
                 ));
@@ -380,7 +383,7 @@ export default function HeroSection() {
               <div className={styles.heroBtnWrap}>
                 <button ref={heroBtnRef} className={styles.heroBtn} onClick={() => document.getElementById("services")?.scrollIntoView({ behavior: "smooth" })}>
                   <div className={styles.heroBtnBg} />
-                  <div className={styles.heroBtnInner} data-magnetic-inner="">
+                  <div className={styles.heroBtnInner} data-magnetic-inner-target="">
                     <div className={styles.heroBtnIconBox}>
                       <div className={styles.heroBtnIconBorder} />
                       <div className={styles.heroBtnIconSlider}>

@@ -81,20 +81,7 @@
   margin: 0 auto;
 }
 
-.heroTitleLine {
-  position: relative;
-  display: block;
-  text-align: center;
-}
 
-.heroTitleWord {
-  position: relative;
-  display: inline-block;
-}
-
-.heroTitleWord + .heroTitleWord {
-  margin-left: 0.35em;
-}
 
 .heroLetter {
   position: relative;
