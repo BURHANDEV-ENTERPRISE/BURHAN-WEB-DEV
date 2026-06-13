@@ -31,3 +31,4 @@
 {"at":"2026-06-13T20:06:23.413Z","actor":"moon","agent":"nAMI","agentRole":"github","agentId":"agent-nami","kind":"conversation","summary":"save wide route memory before focused frontend correction"}
 {"at":"2026-06-13T20:06:54.337Z","actor":"moon","agent":"nAMI","agentRole":"github","agentId":"agent-nami","kind":"conversation","summary":"save focused route block memory before naming required agents"}
 {"at":"2026-06-13T20:08:49.497Z","actor":"moon","agent":"ramus","agentRole":"reviewer","agentId":"agent-ramus","kind":"conversation","summary":"activate remaining agents for Cinnamon hero correction"}
+{"at":"2026-06-13T20:09:18.873Z","actor":"moon","agent":"Loli","agentRole":"frontend","agentId":"agent-loli","kind":"conversation","summary":"route Cinnamon hero correction to frontend"}

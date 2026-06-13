@@ -6,7 +6,7 @@
   "ownerCodename": "moon",
   "activeMember": "moon",
   "activeAgents": {
-    "moon": "agent-ramus",
+    "moon": "agent-loli",
     "amad": "agent-anis"
   },
   "agentPolicy": {
@@ -1992,6 +1992,30 @@
     },
     {
       "at": "2026-06-13T20:08:56.370Z",
+      "actor": "BURHAN-MOP",
+      "kind": "merge-approved",
+      "summary": "origin/dev/moon approved and merged to main."
+    },
+    {
+      "at": "2026-06-13T20:09:10.209Z",
+      "actor": "moon",
+      "agent": "Loli",
+      "agentRole": "frontend",
+      "agentId": "agent-loli",
+      "kind": "agent-route",
+      "summary": "Routed task to Loli: Matched keywords for Frontend Developer: frontend, css, browser."
+    },
+    {
+      "at": "2026-06-13T20:09:18.873Z",
+      "actor": "moon",
+      "agent": "Loli",
+      "agentRole": "frontend",
+      "agentId": "agent-loli",
+      "kind": "memory",
+      "summary": "route Cinnamon hero correction to frontend"
+    },
+    {
+      "at": "2026-06-13T20:09:26.978Z",
       "actor": "BURHAN-MOP",
       "kind": "merge-approved",
       "summary": "origin/dev/moon approved and merged to main."
