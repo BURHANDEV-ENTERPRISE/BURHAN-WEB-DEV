@@ -89,11 +89,6 @@
             "type": "command",
             "command": "cmd /c \"IF EXIST \"%CLAUDE_PROJECT_DIR%\\.claude\\helpers\\auto-memory-hook.mjs\" (node \"%CLAUDE_PROJECT_DIR%\\.claude\\helpers\\auto-memory-hook.mjs\" sync) ELSE (node \"%USERPROFILE%\\.claude\\helpers\\auto-memory-hook.mjs\" sync)\"",
             "timeout": 10000
-          },
-          {
-            "type": "command",
-            "command": "node -e \"try{const fs=require('fs'),path=require('path'),cwd=process.env.CLAUDE_PROJECT_DIR||'.';const s=JSON.parse(fs.readFileSync(path.join(cwd,'.MOP/STATE.json'),'utf8'));if(!s.activeMember)process.exit(0);const git=require('child_process').execSync('git status --porcelain',{cwd,encoding:'utf8'});if(!git.trim())process.exit(0);require('child_process').spawnSync('node',[path.join(cwd,'.MOP/scripts/mop-autosycn.mjs'),'run','--actor',s.activeMember,'--reason','auto-sync after changes'],{stdio:'inherit',cwd,shell:false});}catch(e){process.exit(0);}\"",
-            "timeout": 60000
           }
         ]
       }

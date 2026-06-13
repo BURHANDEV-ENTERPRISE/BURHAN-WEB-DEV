@@ -31,7 +31,8 @@ Use this order:
 7. Coding/adventure language.
 8. GitHub project link. Required for `team`, optional for `solo`.
 9. GitHub username.
-10. Git commit email. Use a GitHub-verified email or GitHub noreply email.
+10. Git commit email. Default to `github-noreply` so MOP derives the active
+    GitHub account email as `ID+USERNAME@users.noreply.github.com`.
 11. If `team`, ask join mode: `open`, `owner-approved`, or `invite`.
 12. Ask auto deploy: `Nak aktifkan auto deploy sekarang? Pilih provider:
     GitHub, Docker, Vercel.` If the user says later/no, answer with the defer
@@ -40,7 +41,7 @@ Use this order:
 After confirmation, run:
 
 ```bash
-node .MOP/scripts/mop-core.mjs setup --project-name "<name>" --name "<display>" --codename <codename> --password "<password>" --mode <solo|team> --conversation-language "<lang>" --coding-language "<lang>" --git-email "<github-verified-email>" [--git-name "<display>"] [--github-username "<github-login>"] [--github-url "<url>"] [--join-mode <mode>]
+node .MOP/scripts/mop-core.mjs setup --project-name "<name>" --name "<display>" --codename <codename> --password "<password>" --mode <solo|team> --conversation-language "<lang>" --coding-language "<lang>" --git-email github-noreply [--git-name "<display>"] [--github-username "<github-login>"] [--github-url "<url>"] [--join-mode <mode>]
 ```
 
 ## Agent Naming Ceremony
@@ -59,6 +60,40 @@ Gate order:
 2. `AGENT_ROUTER`
 3. `AGENT_GATE`
 4. `ACTION`
+
+## Answer Contract
+
+For every authenticated user-facing answer, the assistant must show the active
+named agent before the content. This applies to short answers, explanations,
+status updates, plans, code-change summaries, and final responses.
+
+Required first line format:
+
+```text
+agent: <agent-name> (<agent-role>) to <user>
+```
+
+Rules:
+
+- Do not answer authenticated work without an active named agent.
+- If no active agent exists, ask the user to name the required agent and stop.
+- After `agent route`, use `answerContract.firstLine` from the JSON response.
+- Party Mode keeps the full party dialogue format, but the final handoff to the
+  user must still show the speaking agent.
+- Never hide the selected agent in prose. The first visible line must identify
+  the agent.
+
+Before answering, restore monthly memory:
+
+```bash
+node .MOP/scripts/mop-core.mjs memory brief --actor <codename>
+```
+
+After meaningful work or a useful answer, save memory:
+
+```bash
+node .MOP/scripts/mop-core.mjs memory add --actor <codename> --kind conversation --summary "<one-line outcome>"
+```
 
 ## Agent Router
 
@@ -88,6 +123,14 @@ Routing rules:
   genuinely requires several areas of expertise.
 - If the route reports `partyMode.active: true`, run Party Mode before the final
   answer. Name any missing participant agents first.
+- If the route reports `nextAction: "name-required-party-agents"`, stop and ask
+  every question in `missingAgentQuestions`. Do not continue with the task until
+  all required party agents have names.
+- Explicit requests such as `party mode`, `multi-agent`, `semua agent`, or
+  `agent bincang` must activate Party Mode automatically.
+- The route JSON includes an `answerContract`. The assistant must restore
+  monthly memory, start the visible answer with `answerContract.firstLine`, and
+  save a one-line memory after meaningful work.
 
 Example:
 
@@ -125,6 +168,8 @@ PARTY MODE
 - Do not include irrelevant agents just because they exist.
 - If a needed party role has no named agent, ask the user to name that agent
   before using it.
+- If several party agents are missing, ask for all missing names in one reply:
+  `Kita ada <N> agent belum ada nama. Beri nama untuk ...`
 
 Visible dialogue format:
 
@@ -149,6 +194,32 @@ agent: <from-name> (<from-role>)
 
           <explanation>
 ```
+
+## Browser And Scraping Gate
+
+Browser, scraping, rendered extraction, clicking, login flow, bot-detection, and
+form-filling tasks must pass browser preflight before any browser automation.
+
+Run:
+
+```bash
+node .MOP/scripts/mop-core.mjs browser preflight
+```
+
+Rules:
+
+- First scan the default browser automatically. On Linux this uses
+  `xdg-settings get default-web-browser`; fallback is `$BROWSER`.
+- If Chrome or Chromium is detected, browser automation may proceed with normal
+  Chrome-compatible mode.
+- If Edge, Brave, or Opera is detected, use browser-act `chrome-direct` mode and
+  guide the user to start that browser with `--remote-debugging-port`.
+- If no supported browser is detected, ask the user which browser they use
+  before scraping or browser automation.
+- Do not start a default Chrome session first when the user uses Edge, Brave, or
+  Opera.
+- If `agent route` includes `browserPreflight.needsQuestion: true`, ask
+  `browserPreflight.question` and stop.
 
 ## MOP Workflow
 
@@ -282,6 +353,34 @@ The skill must call `mop-workflow.mjs help` and answer with the next action,
 lead agent, party agents, next artifact, and whether readiness/adversarial gates
 apply.
 
+## Monthly Memory
+
+MOP keeps durable memory in two layers:
+
+- `.MOP/STATE.json` ledger for compact structured state.
+- `.MOP/memory/YYYY-MM.jsonl` for append-only monthly conversation memory.
+
+The monthly memory file exists so a fresh chat can restore prior context without
+the user explaining the whole project again. Each useful session must:
+
+1. Run `memory brief` before answering after authentication.
+2. Save one-line outcomes with `memory add`.
+3. Use `.MOP/memory/SESSION_BRIEF.md` as the short human-readable handoff.
+
+Commands:
+
+```bash
+node .MOP/scripts/mop-core.mjs memory brief --actor <codename>
+node .MOP/scripts/mop-core.mjs memory restore --actor <codename>
+node .MOP/scripts/mop-core.mjs memory add --actor <codename> --kind conversation --summary "<what happened>"
+```
+
+Autosycn memory also writes to the monthly memory file:
+
+```bash
+node .MOP/scripts/mop-autosycn.mjs memory --actor <codename> --summary "<what changed>"
+```
+
 ## Installer
 
 The package installer command is:
@@ -366,10 +465,13 @@ In team mode, an agent name is the identity.
 Autosycn is always available and should be used after meaningful state or file
 changes. It is intentionally identity-safe.
 
-Before first push for a member, configure the real Git identity:
+Before first push for a member, configure the real GitHub identity. Default to
+GitHub noreply so commits attach to the active user account without exposing
+private email:
 
 ```bash
-node .MOP/scripts/mop-core.mjs member git-identity --actor <codename> --name "<display name>" --email "<github-verified-email>" --github-username "<github-login>"
+gh auth login
+node .MOP/scripts/mop-core.mjs member git-identity --actor <codename> --name "<display name>" --email github-noreply --github-username "<github-login>"
 ```
 
 Then run:
@@ -390,6 +492,13 @@ Autosycn must:
 - Commit with `GIT_AUTHOR_NAME`, `GIT_AUTHOR_EMAIL`, `GIT_COMMITTER_NAME`, and
   `GIT_COMMITTER_EMAIL` set from member state.
 - Set local `git config user.name` and `user.email` before commit/merge.
+- For member commits, derive `user.email` from the active GitHub CLI account as
+  `ID+USERNAME@users.noreply.github.com` when
+  `autosync.githubIdentity.useNoreplyForMemberCommits` is enabled.
+- Refuse to commit or push if `gh api user` is authenticated as a different
+  GitHub username than the active member's configured `githubUsername`.
+- Use the member GitHub identity for setup, preflight, memory, and work branch
+  commits. Use `BURHAN-MOP` only for merge guardian commits.
 - In team mode, `main` is the trunk and each user works on `dev/<codename>`.
 - Push to `dev/<codename>` in team mode and `main` in solo mode.
 - After a team push, BURHAN-MOP reviews `dev/<codename>` and merges it into
@@ -404,10 +513,11 @@ Autosycn must:
 - If `githubUsername` is configured, refuse to push unless `gh api user`
   verifies the same account.
 
-Important: GitHub commit attribution comes from commit email. GitHub push actor
-comes from the credential or SSH key used by `git push`; no script can fake that.
-If GitHub shows the AI/bot as pusher, fix `gh auth login`, Git Credential
-Manager, or the SSH key account.
+Important: GitHub commit attribution comes from commit email. MOP uses the
+active GitHub account noreply email for member commits by default. GitHub push
+actor comes from the credential or SSH key used by `git push`; no script can
+fake that. If GitHub shows the wrong pusher, fix `gh auth login`, Git
+Credential Manager, or the SSH key account.
 
 ## Default Skill: auto-deploy
 
