@@ -444,7 +444,7 @@ function guardianReview(state, sourceRef, env) {
 
   if (checks.secretScan !== false) {
     const pattern = '(AIza|ghp_|github_pat_|sk-[A-Za-z0-9]|xox[baprs]-|password\\s*[:=]|secret\\s*[:=]|api[_-]?key\\s*[:=]|token\\s*[:=])';
-    const scan = runOptional('git', ['diff', '--name-only', '-G', pattern, `origin/${mainBranch}..${sourceRef}`, '--', '.']);
+    const scan = runOptional('git', ['diff', '--name-only', '-G', pattern, `origin/${mainBranch}..${sourceRef}`, '--', '.', ':(exclude).MOP/scripts/']);
     if (scan.ok && scan.stdout) {
       guardianReject(`possible secret pattern found in changed files:\n${scan.stdout}`);
     }

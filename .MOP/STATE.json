@@ -1451,6 +1451,15 @@
       "agentId": "agent-kid",
       "kind": "memory",
       "summary": "sync MOP config, scripts, skills, and tooling updates from installer"
+    },
+    {
+      "at": "2026-06-13T19:36:50.744Z",
+      "actor": "moon",
+      "agent": "KID",
+      "agentRole": "core",
+      "agentId": "agent-kid",
+      "kind": "memory",
+      "summary": "sync MOP config, scripts, skills, and tooling updates from installer"
     }
   ]
 }
