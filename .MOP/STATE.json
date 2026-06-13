@@ -6,7 +6,7 @@
   "ownerCodename": "moon",
   "activeMember": "moon",
   "activeAgents": {
-    "moon": "agent-nami",
+    "moon": "agent-kid",
     "amad": "agent-anis"
   },
   "agentPolicy": {
@@ -1430,6 +1430,39 @@
     },
     {
       "at": "2026-06-13T19:34:53.106Z",
+      "actor": "BURHAN-MOP",
+      "kind": "merge-approved",
+      "summary": "origin/dev/moon approved and merged to main."
+    },
+    {
+      "at": "2026-06-13T19:36:22.891Z",
+      "actor": "moon",
+      "agent": "KID",
+      "agentRole": "core",
+      "agentId": "agent-kid",
+      "kind": "agent-route",
+      "summary": "Routed task to KID: No strong specialist match; using Core Agent."
+    },
+    {
+      "at": "2026-06-13T19:36:29.971Z",
+      "actor": "moon",
+      "agent": "KID",
+      "agentRole": "core",
+      "agentId": "agent-kid",
+      "kind": "memory",
+      "summary": "sync MOP config, scripts, skills, and tooling updates from installer"
+    },
+    {
+      "at": "2026-06-13T19:36:50.744Z",
+      "actor": "moon",
+      "agent": "KID",
+      "agentRole": "core",
+      "agentId": "agent-kid",
+      "kind": "memory",
+      "summary": "sync MOP config, scripts, skills, and tooling updates from installer"
+    },
+    {
+      "at": "2026-06-13T19:36:58.492Z",
       "actor": "BURHAN-MOP",
       "kind": "merge-approved",
       "summary": "origin/dev/moon approved and merged to main."
