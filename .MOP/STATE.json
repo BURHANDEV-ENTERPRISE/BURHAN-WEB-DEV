@@ -6,7 +6,7 @@
   "ownerCodename": "moon",
   "activeMember": "moon",
   "activeAgents": {
-    "moon": "agent-kid",
+    "moon": "agent-numero",
     "amad": "agent-anis"
   },
   "agentPolicy": {
@@ -535,6 +535,28 @@
       ],
       "createdBy": "amad",
       "createdAt": "2026-06-12T15:48:06.128Z"
+    },
+    {
+      "id": "agent-numero",
+      "role": "browser",
+      "title": "Browser",
+      "name": "Numero",
+      "owners": [
+        "moon"
+      ],
+      "createdBy": "moon",
+      "createdAt": "2026-06-13T19:45:33.555Z"
+    },
+    {
+      "id": "agent-naruno",
+      "role": "ux",
+      "title": "UX Researcher",
+      "name": "Naruno",
+      "owners": [
+        "moon"
+      ],
+      "createdBy": "moon",
+      "createdAt": "2026-06-13T19:45:36.419Z"
     }
   ],
   "agentCatalog": [
@@ -1496,6 +1518,93 @@
     },
     {
       "at": "2026-06-13T19:38:13.248Z",
+      "actor": "BURHAN-MOP",
+      "kind": "merge-approved",
+      "summary": "origin/dev/moon approved and merged to main."
+    },
+    {
+      "at": "2026-06-13T19:39:51.209Z",
+      "actor": "moon",
+      "agent": "KID",
+      "agentRole": "core",
+      "agentId": "agent-kid",
+      "kind": "agent-route",
+      "summary": "Routed task to KID: No strong specialist match; using Core Agent."
+    },
+    {
+      "at": "2026-06-13T19:39:56.355Z",
+      "actor": "moon",
+      "agent": "KID",
+      "agentRole": "core",
+      "agentId": "agent-kid",
+      "kind": "memory",
+      "summary": "Greeted moon and confirmed Codex is ready to help"
+    },
+    {
+      "at": "2026-06-13T19:44:42.350Z",
+      "actor": "moon",
+      "agent": "KID",
+      "agentRole": "core",
+      "agentId": "agent-kid",
+      "kind": "memory",
+      "summary": "Asked moon to name missing Browser and UX agents before Cinnamon-inspired hero scraping work"
+    },
+    {
+      "at": "2026-06-13T19:45:33.555Z",
+      "actor": "moon",
+      "agent": "KID",
+      "agentRole": "core",
+      "agentId": "agent-kid",
+      "kind": "agent-activate",
+      "summary": "Named Browser as Numero."
+    },
+    {
+      "at": "2026-06-13T19:45:33.555Z",
+      "actor": "moon",
+      "agent": "Numero",
+      "agentRole": "browser",
+      "agentId": "agent-numero",
+      "kind": "agent-use",
+      "summary": "Set active agent to Numero."
+    },
+    {
+      "at": "2026-06-13T19:45:36.419Z",
+      "actor": "moon",
+      "agent": "Numero",
+      "agentRole": "browser",
+      "agentId": "agent-numero",
+      "kind": "agent-activate",
+      "summary": "Named UX Researcher as Naruno."
+    },
+    {
+      "at": "2026-06-13T19:45:36.419Z",
+      "actor": "moon",
+      "agent": "Naruno",
+      "agentRole": "ux",
+      "agentId": "agent-naruno",
+      "kind": "agent-use",
+      "summary": "Set active agent to Naruno."
+    },
+    {
+      "at": "2026-06-13T19:45:54.769Z",
+      "actor": "moon",
+      "agent": "Numero",
+      "agentRole": "browser",
+      "agentId": "agent-numero",
+      "kind": "agent-route",
+      "summary": "Routed task to Numero: Matched keywords for Browser: visual."
+    },
+    {
+      "at": "2026-06-13T19:46:10.615Z",
+      "actor": "moon",
+      "agent": "Numero",
+      "agentRole": "browser",
+      "agentId": "agent-numero",
+      "kind": "memory",
+      "summary": "activate Browser and UX agents for Cinnamon hero work"
+    },
+    {
+      "at": "2026-06-13T19:46:18.604Z",
       "actor": "BURHAN-MOP",
       "kind": "merge-approved",
       "summary": "origin/dev/moon approved and merged to main."
