@@ -25,3 +25,5 @@
 {"at":"2026-06-13T20:02:03.070Z","actor":"moon","agent":"Numero","agentRole":"browser","agentId":"agent-numero","kind":"conversation","summary":"save memory for Cinnamon-inspired hero work"}
 {"at":"2026-06-13T20:03:49.567Z","actor":"moon","agent":"Numero","agentRole":"browser","agentId":"agent-numero","kind":"conversation","summary":"Blocked Cinnamon hero correction until moon names missing Tester agent"}
 {"at":"2026-06-13T20:04:00.835Z","actor":"moon","agent":"Numero","agentRole":"browser","agentId":"agent-numero","kind":"conversation","summary":"save memory for missing Tester agent block"}
+{"at":"2026-06-13T20:04:56.948Z","actor":"moon","agent":"Halkin","agentRole":"tester","agentId":"agent-halkin","kind":"conversation","summary":"activate Tester agent Halkin for Cinnamon hero correction"}
+{"at":"2026-06-13T20:05:16.409Z","actor":"moon","agent":"Halkin","agentRole":"tester","agentId":"agent-halkin","kind":"conversation","summary":"activate Tester agent Halkin for Cinnamon hero correction"}

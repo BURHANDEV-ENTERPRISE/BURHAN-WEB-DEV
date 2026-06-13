@@ -1,8 +1,8 @@
 # MOP Session Brief
 
-Updated: 2026-06-13T20:04:00.843Z
+Updated: 2026-06-13T20:05:16.417Z
 Actor: moon
-Active agent: Numero (browser)
+Active agent: Halkin (tester)
 Current month: 2026-06
 
 ## Required Session Flow
@@ -10,13 +10,11 @@ Current month: 2026-06
 1. Read `.MOP/STATE.json` and follow `.MOP/PROTOCOL.md`.
 2. Restore memory with `node .MOP/scripts/mop-core.mjs memory brief --actor <codename>`.
 3. Run `agent route` for the user task before answering.
-4. Start every authenticated answer with: `agent: Numero (browser) to moon`
+4. Start every authenticated answer with: `agent: Halkin (tester) to moon`
 5. Save a one-line memory after meaningful work.
 
 ## Recent Memory
 
-- 2026-06-13T19:28:40.330Z - nAMI (github): Synced dev/moon with origin/main and resolved conflicts
-- 2026-06-13T19:31:32.669Z - nAMI (github): Save memory: Synced dev/moon with origin/main and resolved conflicts
 - 2026-06-13T19:34:42.646Z - nAMI (github): Confirmed synchronization with GitHub remote
 - 2026-06-13T19:34:45.303Z - nAMI (github): Save memory: Confirmed synchronization with GitHub remote
 - 2026-06-13T19:36:29.971Z - KID (core): sync MOP config, scripts, skills, and tooling updates from installer
@@ -35,3 +33,5 @@ Current month: 2026-06
 - 2026-06-13T20:02:03.070Z - Numero (browser): save memory for Cinnamon-inspired hero work
 - 2026-06-13T20:03:49.567Z - Numero (browser): Blocked Cinnamon hero correction until moon names missing Tester agent
 - 2026-06-13T20:04:00.835Z - Numero (browser): save memory for missing Tester agent block
+- 2026-06-13T20:04:56.948Z - Halkin (tester): activate Tester agent Halkin for Cinnamon hero correction
+- 2026-06-13T20:05:16.409Z - Halkin (tester): activate Tester agent Halkin for Cinnamon hero correction
