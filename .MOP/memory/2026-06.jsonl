@@ -52,3 +52,5 @@
 {"at":"2026-06-14T05:08:56.775Z","actor":"moon","agent":"Loli","agentRole":"frontend","agentId":"agent-loli","kind":"conversation","summary":"Save memory: Confirmed build success"}
 {"at":"2026-06-14T05:23:51.432Z","actor":"moon","agent":"KID","agentRole":"core","agentId":"agent-kid","kind":"conversation","summary":"Replaced HeroSection procedural 3D visual with original Cinnamon GLBs"}
 {"at":"2026-06-14T05:24:22.560Z","actor":"moon","agent":"KID","agentRole":"core","agentId":"agent-kid","kind":"conversation","summary":"Replaced HeroSection procedural 3D visual with original Cinnamon GLBs"}
+{"at":"2026-06-14T05:24:39.874Z","actor":"moon","agent":"KID","agentRole":"core","agentId":"agent-kid","kind":"conversation","summary":"Replaced HeroSection procedural 3D elements with high-fidelity GLBs and completed build verification"}
+{"at":"2026-06-14T05:26:44.931Z","actor":"moon","agent":"Halkin","agentRole":"tester","agentId":"agent-halkin","kind":"conversation","summary":"Saved memory and resolved local dev server stale port 3000 cache"}
