@@ -45,6 +45,12 @@ export default function HeroSection() {
   const viewersRef        = useRef<any[]>([]);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const sv3dRef           = useRef<any>(null);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const idleAnimsRef      = useRef<any[]>([]);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const runAnimsRef       = useRef<any[]>([]);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const pullAnimRef       = useRef<any>(null);
   const liftProgRef       = useRef<number>(0);
   const heroOverlayRef    = useRef<HTMLDivElement>(null);
   const heroBtnRef        = useRef<HTMLButtonElement>(null);
@@ -93,10 +99,36 @@ export default function HeroSection() {
           viewer.camera.position.set(45, 10, 6);
           viewer.camera.lookAt(0, 10, 0);
 
-          const anim = new sv3d.RunningAnimation();
-          anim.paused = true;
-          anim.speed  = CHARS[i].runSpeed;
-          viewer.animation = anim;
+          // Idle — subtle breathing/sway when standing still
+          const idleAnim = new sv3d.FunctionAnimation((player: any, ctx: any) => {
+            const b = Math.sin(ctx.elapsed * 1.2) * 0.025;
+            const sw = Math.sin(ctx.elapsed * 0.7) * 0.015;
+            player.skin.body.rotation.set(0.06 + b, sw, 0);
+            player.skin.head.rotation.set(-0.05 - b * 0.5, -sw * 1.5, 0);
+            player.skin.rightArm.rotation.set(0.08, 0,  0.22 + b);
+            player.skin.leftArm.rotation.set( 0.08, 0, -0.22 - b);
+            player.skin.rightLeg.rotation.set(0, 0, 0);
+            player.skin.leftLeg.rotation.set( 0, 0, 0);
+          });
+          idleAnimsRef.current[i] = idleAnim;
+
+          // Running — forward lean + dynamic arm/leg swing matching reference frames
+          const spd = CHARS[i].runSpeed;
+          const runAnim = new sv3d.FunctionAnimation((player: any, ctx: any) => {
+            const t   = ctx.elapsed * spd * 3.2;
+            const leg = Math.sin(t) * 0.95;
+            const arm = Math.sin(t + Math.PI) * 0.82;
+            const bob = Math.abs(Math.sin(t)) * 0.04;
+            player.skin.body.rotation.set(0.32 + bob, 0, 0);
+            player.skin.head.rotation.set(-0.08, 0, 0);
+            player.skin.rightLeg.rotation.set( leg, 0,  0.04);
+            player.skin.leftLeg.rotation.set( -leg, 0, -0.04);
+            player.skin.rightArm.rotation.set( arm, 0,  0.12);
+            player.skin.leftArm.rotation.set( -arm, 0, -0.12);
+          });
+          runAnimsRef.current[i] = runAnim;
+
+          viewer.animation = idleAnim;
 
           // Slight toward camera: Math.PI - tilt (22.5°) so face shows while running right
           viewer.playerObject.rotation.y = Math.PI - Math.PI / 8;
@@ -118,10 +150,10 @@ export default function HeroSection() {
         isRunningRef.current = false;
         frozenAtRef.current  = now;
         viewersRef.current.forEach((v, idx) => {
-          if (!v?.animation) return;
+          if (!v) return;
           // Keep puller animating while actively pulling curtain
           if (idx === PULLER && liftProgRef.current > 0.05) return;
-          v.animation.paused = true;
+          v.animation = idleAnimsRef.current[idx];
         });
       }
 
@@ -177,8 +209,8 @@ export default function HeroSection() {
       // Start running
       if (!isRunningRef.current) {
         isRunningRef.current = true;
-        viewersRef.current.forEach((v) => {
-          if (v?.animation) v.animation.paused = false;
+        viewersRef.current.forEach((v, i) => {
+          if (v) v.animation = runAnimsRef.current[i];
         });
       }
 
@@ -213,7 +245,7 @@ export default function HeroSection() {
           if (liftProg > 0.05) {
             const sv3d = sv3dRef.current;
             const v = viewersRef.current[PULLER];
-            if (sv3d && v && sv3d.FunctionAnimation && !(v.animation instanceof sv3d.FunctionAnimation)) {
+            if (sv3d && v && sv3d.FunctionAnimation && v.animation !== pullAnimRef.current) {
               const pullAnim = new sv3d.FunctionAnimation((player: any, ctx: any) => {
                 const CYCLE = 1.5;
                 const t = (ctx.elapsed % CYCLE) / CYCLE;
@@ -261,8 +293,8 @@ export default function HeroSection() {
                 player.skin.rightLeg.rotation.set(rLegX, 0, 0);
                 player.skin.leftLeg.rotation.set(lLegX, 0, 0);
               });
+              pullAnimRef.current = pullAnim;
               v.animation = pullAnim;
-              v.animation.paused = false;
             }
           }
           return;
@@ -272,14 +304,11 @@ export default function HeroSection() {
         if (i === PULLER && progress < reachStart) {
           el.style.top  = `${GROUND_Y}%`;
           el.style.left = "50%";
-          // Restore running animation
-          const sv3d = sv3dRef.current;
           const v = viewersRef.current[PULLER];
-          if (sv3d && v && !(v.animation instanceof sv3d.RunningAnimation)) {
-            const runAnim = new sv3d.RunningAnimation();
-            runAnim.speed = CHARS[PULLER].runSpeed;
-            runAnim.paused = !isRunningRef.current;
-            v.animation = runAnim;
+          if (v && v.animation === pullAnimRef.current) {
+            v.animation = isRunningRef.current
+              ? runAnimsRef.current[PULLER]
+              : idleAnimsRef.current[PULLER];
           }
         }
 
