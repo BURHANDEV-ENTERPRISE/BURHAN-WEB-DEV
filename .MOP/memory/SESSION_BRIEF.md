@@ -1,8 +1,8 @@
 # MOP Session Brief
 
-Updated: 2026-06-13T20:19:32.831Z
+Updated: 2026-06-14T04:19:25.148Z
 Actor: moon
-Active agent: dobi (coder)
+Active agent: Halkin (tester)
 Current month: 2026-06
 
 ## Required Session Flow
@@ -10,14 +10,11 @@ Current month: 2026-06
 1. Read `.MOP/STATE.json` and follow `.MOP/PROTOCOL.md`.
 2. Restore memory with `node .MOP/scripts/mop-core.mjs memory brief --actor <codename>`.
 3. Run `agent route` for the user task before answering.
-4. Start every authenticated answer with: `agent: dobi (coder) to moon`
+4. Start every authenticated answer with: `agent: Halkin (tester) to moon`
 5. Save a one-line memory after meaningful work.
 
 ## Recent Memory
 
-- 2026-06-13T19:44:42.350Z - KID (core): Asked moon to name missing Browser and UX agents before Cinnamon-inspired hero scraping work
-- 2026-06-13T19:46:10.615Z - Numero (browser): activate Browser and UX agents for Cinnamon hero work
-- 2026-06-13T19:53:36.207Z - Numero (browser): replace hero with Cinnamon-inspired connected hero and capsule section
 - 2026-06-13T19:55:17.353Z - Numero (browser): fix hero CSS secret scanner false positive
 - 2026-06-13T19:57:36.724Z - Numero (browser): preserve readable hero heading spacing
 - 2026-06-13T19:59:50.768Z - Numero (browser): preserve spaces between split heading lines
@@ -35,3 +32,6 @@ Current month: 2026-06
 - 2026-06-13T20:09:18.873Z - Loli (frontend): route Cinnamon hero correction to frontend
 - 2026-06-13T20:19:32.786Z - dobi (coder): Rebuilt BURHANDEV hero to closely match arcade and capsule reference with original CSS shapes
 - 2026-06-13T20:19:32.824Z - dobi (coder): redo hero with arcade and capsule recreation
+- 2026-06-14T04:19:03.323Z - Halkin (tester): Restarted stale Next dev server on port 3001 and verified static assets return 200
+- 2026-06-14T04:19:11.298Z - Halkin (tester): record dev server static asset fix
+- 2026-06-14T04:19:25.141Z - Halkin (tester): record dev server static asset fix
