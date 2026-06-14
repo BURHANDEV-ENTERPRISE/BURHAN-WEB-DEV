@@ -41,3 +41,5 @@
 {"at":"2026-06-14T04:33:16.613Z","actor":"moon","agent":"Halkin","agentRole":"tester","agentId":"agent-halkin","kind":"conversation","summary":"restore original navbar and clean hero nav regression"}
 {"at":"2026-06-14T04:43:44.308Z","actor":"moon","agent":"Halkin","agentRole":"tester","agentId":"agent-halkin","kind":"conversation","summary":"Stabilized hero scroll by removing global scroll-progress transforms and sticky overlap"}
 {"at":"2026-06-14T04:43:47.658Z","actor":"moon","agent":"Halkin","agentRole":"tester","agentId":"agent-halkin","kind":"conversation","summary":"stabilize hero scroll behavior"}
+{"at":"2026-06-14T04:51:16.401Z","actor":"moon","agent":"Numero","agentRole":"browser","agentId":"agent-numero","kind":"conversation","summary":"Rebuilt hero as Cinnamon-style sticky interactive game layer with scroll choreography and playable hitboxes"}
+{"at":"2026-06-14T04:51:20.513Z","actor":"moon","agent":"Numero","agentRole":"browser","agentId":"agent-numero","kind":"conversation","summary":"rebuild hero as interactive Cinnamon-style scroll scene"}

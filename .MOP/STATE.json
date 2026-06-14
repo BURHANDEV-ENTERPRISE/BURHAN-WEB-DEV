@@ -6,7 +6,7 @@
   "ownerCodename": "moon",
   "activeMember": "moon",
   "activeAgents": {
-    "moon": "agent-halkin",
+    "moon": "agent-numero",
     "amad": "agent-anis"
   },
   "agentPolicy": {
@@ -2166,6 +2166,39 @@
     },
     {
       "at": "2026-06-14T04:43:54.687Z",
+      "actor": "BURHAN-MOP",
+      "kind": "merge-approved",
+      "summary": "origin/dev/moon approved and merged to main."
+    },
+    {
+      "at": "2026-06-14T04:46:19.670Z",
+      "actor": "moon",
+      "agent": "Numero",
+      "agentRole": "browser",
+      "agentId": "agent-numero",
+      "kind": "agent-route",
+      "summary": "Routed task to Numero: Matched keywords for Browser: ui."
+    },
+    {
+      "at": "2026-06-14T04:51:16.400Z",
+      "actor": "moon",
+      "agent": "Numero",
+      "agentRole": "browser",
+      "agentId": "agent-numero",
+      "kind": "memory",
+      "summary": "Rebuilt hero as Cinnamon-style sticky interactive game layer with scroll choreography and playable hitboxes"
+    },
+    {
+      "at": "2026-06-14T04:51:20.512Z",
+      "actor": "moon",
+      "agent": "Numero",
+      "agentRole": "browser",
+      "agentId": "agent-numero",
+      "kind": "memory",
+      "summary": "rebuild hero as interactive Cinnamon-style scroll scene"
+    },
+    {
+      "at": "2026-06-14T04:51:28.173Z",
       "actor": "BURHAN-MOP",
       "kind": "merge-approved",
       "summary": "origin/dev/moon approved and merged to main."

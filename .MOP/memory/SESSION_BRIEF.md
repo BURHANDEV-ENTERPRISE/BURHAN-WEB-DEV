@@ -1,8 +1,8 @@
 # MOP Session Brief
 
-Updated: 2026-06-14T04:43:47.666Z
+Updated: 2026-06-14T04:51:20.523Z
 Actor: moon
-Active agent: Halkin (tester)
+Active agent: Numero (browser)
 Current month: 2026-06
 
 ## Required Session Flow
@@ -10,13 +10,11 @@ Current month: 2026-06
 1. Read `.MOP/STATE.json` and follow `.MOP/PROTOCOL.md`.
 2. Restore memory with `node .MOP/scripts/mop-core.mjs memory brief --actor <codename>`.
 3. Run `agent route` for the user task before answering.
-4. Start every authenticated answer with: `agent: Halkin (tester) to moon`
+4. Start every authenticated answer with: `agent: Numero (browser) to moon`
 5. Save a one-line memory after meaningful work.
 
 ## Recent Memory
 
-- 2026-06-13T20:01:17.195Z - Numero (browser): save memory for Cinnamon-inspired hero work
-- 2026-06-13T20:02:03.070Z - Numero (browser): save memory for Cinnamon-inspired hero work
 - 2026-06-13T20:03:49.567Z - Numero (browser): Blocked Cinnamon hero correction until moon names missing Tester agent
 - 2026-06-13T20:04:00.835Z - Numero (browser): save memory for missing Tester agent block
 - 2026-06-13T20:04:56.948Z - Halkin (tester): activate Tester agent Halkin for Cinnamon hero correction
@@ -35,3 +33,5 @@ Current month: 2026-06
 - 2026-06-14T04:33:16.613Z - Halkin (tester): restore original navbar and clean hero nav regression
 - 2026-06-14T04:43:44.308Z - Halkin (tester): Stabilized hero scroll by removing global scroll-progress transforms and sticky overlap
 - 2026-06-14T04:43:47.658Z - Halkin (tester): stabilize hero scroll behavior
+- 2026-06-14T04:51:16.401Z - Numero (browser): Rebuilt hero as Cinnamon-style sticky interactive game layer with scroll choreography and playable hitboxes
+- 2026-06-14T04:51:20.513Z - Numero (browser): rebuild hero as interactive Cinnamon-style scroll scene
