@@ -2136,6 +2136,39 @@
       "actor": "BURHAN-MOP",
       "kind": "merge-approved",
       "summary": "origin/dev/moon approved and merged to main."
+    },
+    {
+      "at": "2026-06-14T04:41:33.755Z",
+      "actor": "moon",
+      "agent": "Halkin",
+      "agentRole": "tester",
+      "agentId": "agent-halkin",
+      "kind": "agent-route",
+      "summary": "Routed task to Halkin: Matched keywords for Tester: fix."
+    },
+    {
+      "at": "2026-06-14T04:43:44.307Z",
+      "actor": "moon",
+      "agent": "Halkin",
+      "agentRole": "tester",
+      "agentId": "agent-halkin",
+      "kind": "memory",
+      "summary": "Stabilized hero scroll by removing global scroll-progress transforms and sticky overlap"
+    },
+    {
+      "at": "2026-06-14T04:43:47.658Z",
+      "actor": "moon",
+      "agent": "Halkin",
+      "agentRole": "tester",
+      "agentId": "agent-halkin",
+      "kind": "memory",
+      "summary": "stabilize hero scroll behavior"
+    },
+    {
+      "at": "2026-06-14T04:43:54.687Z",
+      "actor": "BURHAN-MOP",
+      "kind": "merge-approved",
+      "summary": "origin/dev/moon approved and merged to main."
     }
   ]
 }
