@@ -1,8 +1,8 @@
 # MOP Session Brief
 
-Updated: 2026-06-14T05:33:37.618Z
+Updated: 2026-06-14T05:38:19.601Z
 Actor: moon
-Active agent: Halkin (tester)
+Active agent: Numero (browser)
 Current month: 2026-06
 
 ## Required Session Flow
@@ -10,14 +10,11 @@ Current month: 2026-06
 1. Read `.MOP/STATE.json` and follow `.MOP/PROTOCOL.md`.
 2. Restore memory with `node .MOP/scripts/mop-core.mjs memory brief --actor <codename>`.
 3. Run `agent route` for the user task before answering.
-4. Start every authenticated answer with: `agent: Halkin (tester) to moon`
+4. Start every authenticated answer with: `agent: Numero (browser) to moon`
 5. Save a one-line memory after meaningful work.
 
 ## Recent Memory
 
-- 2026-06-14T04:43:44.308Z - Halkin (tester): Stabilized hero scroll by removing global scroll-progress transforms and sticky overlap
-- 2026-06-14T04:43:47.658Z - Halkin (tester): stabilize hero scroll behavior
-- 2026-06-14T04:51:16.401Z - Numero (browser): Rebuilt hero as Cinnamon-style sticky interactive game layer with scroll choreography and playable hitboxes
 - 2026-06-14T04:51:20.513Z - Numero (browser): rebuild hero as interactive Cinnamon-style scroll scene
 - 2026-06-14T05:03:02.712Z - Loli (frontend): Reworked hero into a Three.js Cinnamon-inspired interactive scroll scene with clean navbar and asset verification
 - 2026-06-14T05:03:21.696Z - Loli (frontend): rework hero as custom Three.js interactive scroll scene
@@ -35,3 +32,6 @@ Current month: 2026-06
 - 2026-06-14T05:32:37.632Z - kiros (security): Resolved Unexpected token '<' JSON.parse error by re-downloading correct 3D toy model GLB assets with game-models path
 - 2026-06-14T05:33:01.081Z - Halkin (tester): Resolved Unexpected token '<' JSON.parse error by re-downloading correct 3D toy model GLB assets with game-models path
 - 2026-06-14T05:33:37.611Z - Halkin (tester): Resolved Unexpected token '<' JSON.parse error by re-downloading correct 3D toy model GLB assets with game-models path
+- 2026-06-14T05:33:51.906Z - Halkin (tester): Resolved client-side JSON.parse SyntaxError by downloading the valid 3D toy models using corrected URL paths
+- 2026-06-14T05:38:05.033Z - Numero (browser): Updated camera position and fov to 17.5 and integrated premium area lighting setup to match original Cinnamon aesthetic
+- 2026-06-14T05:38:19.593Z - Numero (browser): Updated camera position and fov to 17.5 and integrated premium area lighting setup to match original Cinnamon aesthetic
