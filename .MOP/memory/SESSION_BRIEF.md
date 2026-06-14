@@ -1,8 +1,8 @@
 # MOP Session Brief
 
-Updated: 2026-06-14T05:24:22.567Z
+Updated: 2026-06-14T05:26:44.938Z
 Actor: moon
-Active agent: KID (core)
+Active agent: Halkin (tester)
 Current month: 2026-06
 
 ## Required Session Flow
@@ -10,13 +10,11 @@ Current month: 2026-06
 1. Read `.MOP/STATE.json` and follow `.MOP/PROTOCOL.md`.
 2. Restore memory with `node .MOP/scripts/mop-core.mjs memory brief --actor <codename>`.
 3. Run `agent route` for the user task before answering.
-4. Start every authenticated answer with: `agent: KID (core) to moon`
+4. Start every authenticated answer with: `agent: Halkin (tester) to moon`
 5. Save a one-line memory after meaningful work.
 
 ## Recent Memory
 
-- 2026-06-13T20:19:32.786Z - dobi (coder): Rebuilt BURHANDEV hero to closely match arcade and capsule reference with original CSS shapes
-- 2026-06-13T20:19:32.824Z - dobi (coder): redo hero with arcade and capsule recreation
 - 2026-06-14T04:19:03.323Z - Halkin (tester): Restarted stale Next dev server on port 3001 and verified static assets return 200
 - 2026-06-14T04:19:11.298Z - Halkin (tester): record dev server static asset fix
 - 2026-06-14T04:19:25.141Z - Halkin (tester): record dev server static asset fix
@@ -35,3 +33,5 @@ Current month: 2026-06
 - 2026-06-14T05:08:56.775Z - Loli (frontend): Save memory: Confirmed build success
 - 2026-06-14T05:23:51.432Z - KID (core): Replaced HeroSection procedural 3D visual with original Cinnamon GLBs
 - 2026-06-14T05:24:22.560Z - KID (core): Replaced HeroSection procedural 3D visual with original Cinnamon GLBs
+- 2026-06-14T05:24:39.874Z - KID (core): Replaced HeroSection procedural 3D elements with high-fidelity GLBs and completed build verification
+- 2026-06-14T05:26:44.931Z - Halkin (tester): Saved memory and resolved local dev server stale port 3000 cache

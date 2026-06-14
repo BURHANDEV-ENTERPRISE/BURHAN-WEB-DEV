@@ -6,7 +6,7 @@
   "ownerCodename": "moon",
   "activeMember": "moon",
   "activeAgents": {
-    "moon": "agent-kid",
+    "moon": "agent-halkin",
     "amad": "agent-anis"
   },
   "agentPolicy": {
@@ -2439,6 +2439,39 @@
     },
     {
       "at": "2026-06-14T05:24:32.048Z",
+      "actor": "BURHAN-MOP",
+      "kind": "merge-approved",
+      "summary": "origin/dev/moon approved and merged to main."
+    },
+    {
+      "at": "2026-06-14T05:24:39.874Z",
+      "actor": "moon",
+      "agent": "KID",
+      "agentRole": "core",
+      "agentId": "agent-kid",
+      "kind": "memory",
+      "summary": "Replaced HeroSection procedural 3D elements with high-fidelity GLBs and completed build verification"
+    },
+    {
+      "at": "2026-06-14T05:26:05.069Z",
+      "actor": "moon",
+      "agent": "Halkin",
+      "agentRole": "tester",
+      "agentId": "agent-halkin",
+      "kind": "agent-route",
+      "summary": "Routed task to Halkin: Matched keywords for Tester: error, fix."
+    },
+    {
+      "at": "2026-06-14T05:26:44.930Z",
+      "actor": "moon",
+      "agent": "Halkin",
+      "agentRole": "tester",
+      "agentId": "agent-halkin",
+      "kind": "memory",
+      "summary": "Saved memory and resolved local dev server stale port 3000 cache"
+    },
+    {
+      "at": "2026-06-14T05:26:52.824Z",
       "actor": "BURHAN-MOP",
       "kind": "merge-approved",
       "summary": "origin/dev/moon approved and merged to main."
