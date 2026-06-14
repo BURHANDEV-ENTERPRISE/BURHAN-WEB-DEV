@@ -5,6 +5,7 @@ import type { CSSProperties, MutableRefObject } from "react";
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader.js";
+import { KTX2Loader } from "three/examples/jsm/loaders/KTX2Loader.js";
 import styles from "./HeroSection.module.css";
 
 const heroLines = [
@@ -209,8 +210,13 @@ function ThreeHeroScene({
     const dracoLoader = new DRACOLoader();
     dracoLoader.setDecoderPath("https://www.gstatic.com/draco/versioned/decoders/1.5.5/");
 
+    const ktx2Loader = new KTX2Loader();
+    ktx2Loader.setTranscoderPath("https://unpkg.com/three@0.181.2/examples/jsm/libs/basis/");
+    ktx2Loader.detectSupport(renderer);
+
     const gltfLoader = new GLTFLoader();
     gltfLoader.setDRACOLoader(dracoLoader);
+    gltfLoader.setKTX2Loader(ktx2Loader);
 
     const loadModel = (url: string): Promise<THREE.Group> => {
       return new Promise((resolve, reject) => {
@@ -486,6 +492,7 @@ function ThreeHeroScene({
       glassMat.dispose();
       chromeMat.dispose();
       dracoLoader.dispose();
+      ktx2Loader.dispose();
     };
   }, [playPulseRef, progressRef, tiltRef]);
 
