@@ -34,3 +34,6 @@
 {"at":"2026-06-13T20:09:18.873Z","actor":"moon","agent":"Loli","agentRole":"frontend","agentId":"agent-loli","kind":"conversation","summary":"route Cinnamon hero correction to frontend"}
 {"at":"2026-06-13T20:19:32.786Z","actor":"moon","agent":"dobi","agentRole":"coder","agentId":"agent-dobi","kind":"conversation","summary":"Rebuilt BURHANDEV hero to closely match arcade and capsule reference with original CSS shapes"}
 {"at":"2026-06-13T20:19:32.824Z","actor":"moon","agent":"dobi","agentRole":"coder","agentId":"agent-dobi","kind":"conversation","summary":"redo hero with arcade and capsule recreation"}
+{"at":"2026-06-14T04:19:03.323Z","actor":"moon","agent":"Halkin","agentRole":"tester","agentId":"agent-halkin","kind":"conversation","summary":"Restarted stale Next dev server on port 3001 and verified static assets return 200"}
+{"at":"2026-06-14T04:19:11.298Z","actor":"moon","agent":"Halkin","agentRole":"tester","agentId":"agent-halkin","kind":"conversation","summary":"record dev server static asset fix"}
+{"at":"2026-06-14T04:19:25.141Z","actor":"moon","agent":"Halkin","agentRole":"tester","agentId":"agent-halkin","kind":"conversation","summary":"record dev server static asset fix"}

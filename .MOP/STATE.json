@@ -6,7 +6,7 @@
   "ownerCodename": "moon",
   "activeMember": "moon",
   "activeAgents": {
-    "moon": "agent-dobi",
+    "moon": "agent-halkin",
     "amad": "agent-anis"
   },
   "agentPolicy": {
@@ -2058,6 +2058,48 @@
     },
     {
       "at": "2026-06-13T20:19:40.979Z",
+      "actor": "BURHAN-MOP",
+      "kind": "merge-approved",
+      "summary": "origin/dev/moon approved and merged to main."
+    },
+    {
+      "at": "2026-06-14T04:18:06.383Z",
+      "actor": "moon",
+      "agent": "Halkin",
+      "agentRole": "tester",
+      "agentId": "agent-halkin",
+      "kind": "agent-route",
+      "summary": "Routed task to Halkin: Matched keywords for Tester: error, fix."
+    },
+    {
+      "at": "2026-06-14T04:19:03.322Z",
+      "actor": "moon",
+      "agent": "Halkin",
+      "agentRole": "tester",
+      "agentId": "agent-halkin",
+      "kind": "memory",
+      "summary": "Restarted stale Next dev server on port 3001 and verified static assets return 200"
+    },
+    {
+      "at": "2026-06-14T04:19:11.298Z",
+      "actor": "moon",
+      "agent": "Halkin",
+      "agentRole": "tester",
+      "agentId": "agent-halkin",
+      "kind": "memory",
+      "summary": "record dev server static asset fix"
+    },
+    {
+      "at": "2026-06-14T04:19:25.140Z",
+      "actor": "moon",
+      "agent": "Halkin",
+      "agentRole": "tester",
+      "agentId": "agent-halkin",
+      "kind": "memory",
+      "summary": "record dev server static asset fix"
+    },
+    {
+      "at": "2026-06-14T04:19:33.723Z",
       "actor": "BURHAN-MOP",
       "kind": "merge-approved",
       "summary": "origin/dev/moon approved and merged to main."
