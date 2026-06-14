@@ -1,6 +1,6 @@
 # MOP Session Brief
 
-Updated: 2026-06-14T05:29:59.174Z
+Updated: 2026-06-14T05:33:01.088Z
 Actor: moon
 Active agent: Halkin (tester)
 Current month: 2026-06
@@ -15,8 +15,6 @@ Current month: 2026-06
 
 ## Recent Memory
 
-- 2026-06-14T04:19:25.141Z - Halkin (tester): record dev server static asset fix
-- 2026-06-14T04:33:12.625Z - Halkin (tester): Restored original navbar and removed hero local nav that caused bad navbar regression
 - 2026-06-14T04:33:16.613Z - Halkin (tester): restore original navbar and clean hero nav regression
 - 2026-06-14T04:43:44.308Z - Halkin (tester): Stabilized hero scroll by removing global scroll-progress transforms and sticky overlap
 - 2026-06-14T04:43:47.658Z - Halkin (tester): stabilize hero scroll behavior
@@ -35,3 +33,5 @@ Current month: 2026-06
 - 2026-06-14T05:26:44.931Z - Halkin (tester): Saved memory and resolved local dev server stale port 3000 cache
 - 2026-06-14T05:26:56.690Z - Halkin (tester): Cleaned stale Next.js cache and restarted local dev server on port 3000 to resolve client 404 resource errors
 - 2026-06-14T05:29:59.167Z - Halkin (tester): Added KTX2Loader and downloaded missing textures to resolve JSON.parse SyntaxError
+- 2026-06-14T05:32:37.632Z - kiros (security): Resolved Unexpected token '<' JSON.parse error by re-downloading correct 3D toy model GLB assets with game-models path
+- 2026-06-14T05:33:01.081Z - Halkin (tester): Resolved Unexpected token '<' JSON.parse error by re-downloading correct 3D toy model GLB assets with game-models path
