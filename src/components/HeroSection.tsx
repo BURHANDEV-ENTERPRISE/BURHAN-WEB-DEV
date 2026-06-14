@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
+import type { CSSProperties } from "react";
 import styles from "./HeroSection.module.css";
 
 const heroLines = [
@@ -179,6 +180,88 @@ function CapsuleShowcase({ final = false }: { final?: boolean }) {
 }
 
 export default function HeroSection() {
+  const sceneRef = useRef<HTMLDivElement>(null);
+  const joystickRef = useRef<HTMLButtonElement>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [score, setScore] = useState(0);
+  const [tilt, setTilt] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const scene = sceneRef.current;
+    if (!scene) {
+      return;
+    }
+
+    let frame = 0;
+    const updateProgress = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        const rect = scene.getBoundingClientRect();
+        const distance = Math.max(1, rect.height - window.innerHeight);
+        const progress = Math.min(1, Math.max(0, -rect.top / distance));
+        scene.style.setProperty("--hero-progress", progress.toFixed(4));
+      });
+    };
+
+    updateProgress();
+    window.addEventListener("scroll", updateProgress, { passive: true });
+    window.addEventListener("resize", updateProgress);
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", updateProgress);
+      window.removeEventListener("resize", updateProgress);
+    };
+  }, []);
+
+  useEffect(() => {
+    const joystick = joystickRef.current;
+    if (!joystick) {
+      return;
+    }
+
+    let pointerId: number | null = null;
+
+    const moveJoystick = (clientX: number, clientY: number) => {
+      const rect = joystick.getBoundingClientRect();
+      const x = Math.max(-1, Math.min(1, (clientX - rect.left - rect.width / 2) / (rect.width / 2)));
+      const y = Math.max(-1, Math.min(1, (clientY - rect.top - rect.height / 2) / (rect.height / 2)));
+      setTilt({ x, y });
+      joystick.style.setProperty("--joy-x", `${x * 18}px`);
+      joystick.style.setProperty("--joy-y", `${y * 14}px`);
+    };
+
+    const pointerDown = (event: PointerEvent) => {
+      pointerId = event.pointerId;
+      joystick.setPointerCapture(pointerId);
+      moveJoystick(event.clientX, event.clientY);
+    };
+
+    const pointerMove = (event: PointerEvent) => {
+      if (pointerId === event.pointerId) {
+        moveJoystick(event.clientX, event.clientY);
+      }
+    };
+
+    const pointerUp = () => {
+      pointerId = null;
+      setTilt({ x: 0, y: 0 });
+      joystick.style.setProperty("--joy-x", "0px");
+      joystick.style.setProperty("--joy-y", "0px");
+    };
+
+    joystick.addEventListener("pointerdown", pointerDown);
+    joystick.addEventListener("pointermove", pointerMove);
+    joystick.addEventListener("pointerup", pointerUp);
+    joystick.addEventListener("pointercancel", pointerUp);
+
+    return () => {
+      joystick.removeEventListener("pointerdown", pointerDown);
+      joystick.removeEventListener("pointermove", pointerMove);
+      joystick.removeEventListener("pointerup", pointerUp);
+      joystick.removeEventListener("pointercancel", pointerUp);
+    };
+  }, []);
+
   useEffect(() => {
     const buttons = Array.from(document.querySelectorAll<HTMLElement>("[data-magnetic-strength]"));
 
@@ -216,10 +299,24 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <div id="top" className={styles.scene}>
-      <section id="hero" className={styles.hero} data-hero-section="true" aria-label="BURHANDEV hero">
+    <div
+      id="top"
+      className={isPlaying ? `${styles.scene} ${styles.isPlaying}` : styles.scene}
+      ref={sceneRef}
+      style={
+        {
+          "--tilt-x": tilt.x.toFixed(3),
+          "--tilt-y": tilt.y.toFixed(3),
+        } as CSSProperties
+      }
+    >
+      <div className={styles.gameLayer}>
         <div className={styles.screenFrame} aria-hidden="true" />
         <ClawRig />
+        <div className={styles.machineReadout}>
+          <span>{isPlaying ? "PLAY MODE" : "READY"}</span>
+          <strong>{String(score).padStart(2, "0")}</strong>
+        </div>
         <div className={styles.heroContent}>
           <AnimatedHeading
             className={styles.heroTitle}
@@ -231,25 +328,61 @@ export default function HeroSection() {
           </div>
         </div>
         <ArcadeConsole />
-      </section>
-
-      <section className={styles.capsuleBridge} aria-label="Capsule reveal">
         <div className={styles.consoleUnderside} aria-hidden="true" />
-        <CapsuleShowcase />
-      </section>
-
-      <section id="open-capsule" className={styles.openCapsule} aria-label="Enter the World of BURHANDEV">
+        <div className={styles.bridgeCapsule}>
+          <CapsuleShowcase />
+        </div>
         <svg className={styles.worldCurve} viewBox="0 0 1428 748" fill="none" aria-hidden="true">
           <path
             d="M27 804c86-34 171-77 224-156 26-39 43-88 35-135-9-57-63-100-118-74-34 16-50 55-42 91 10 41 42 71 81 88 45 21 95 24 145 16 147-25 258-132 370-222 47-38 96-74 148-104 116-69 250-114 386-105 157 10 318 98 381 248 56 131 29 302-88 390-137 104-342 49-434-91-98-145-75-349 28-486 88-120 227-195 372-223 217-41 453 8 651 102 51 25 99 54 143 89 43 33 81 71 119 110"
             pathLength="1"
           />
         </svg>
+      </div>
 
-        <div className={styles.finalCapsule}>
-          <CapsuleShowcase final />
-        </div>
+      <div className={styles.playLayer}>
+        <button
+          className={styles.joystickHitbox}
+          type="button"
+          aria-label="Move arcade joystick"
+          ref={joystickRef}
+          onClick={() => {
+            setIsPlaying(true);
+            setScore((value) => value + 1);
+          }}
+        />
+        <button
+          className={styles.dropHitbox}
+          type="button"
+          aria-label="Drop capsule"
+          onClick={() => {
+            setIsPlaying(true);
+            setScore((value) => value + 5);
+          }}
+        />
+        <button
+          className={styles.leftHitbox}
+          type="button"
+          aria-label="Boom button"
+          onClick={() => {
+            setIsPlaying(true);
+            setScore((value) => value + 2);
+          }}
+        />
+        <button
+          className={styles.rightHitbox}
+          type="button"
+          aria-label="Fly button"
+          onClick={() => {
+            setIsPlaying(true);
+            setScore((value) => value + 3);
+          }}
+        />
+      </div>
 
+      <section id="hero" className={styles.hero} data-hero-section="true" aria-label="BURHANDEV hero" />
+
+      <section id="open-capsule" className={styles.openCapsule} aria-label="Enter the World of BURHANDEV">
         <div className={styles.capsuleContent}>
           <AnimatedHeading
             className={styles.capsuleTitle}
