@@ -1,6 +1,6 @@
 # MOP Session Brief
 
-Updated: 2026-06-14T05:33:01.088Z
+Updated: 2026-06-14T05:33:37.618Z
 Actor: moon
 Active agent: Halkin (tester)
 Current month: 2026-06
@@ -15,7 +15,6 @@ Current month: 2026-06
 
 ## Recent Memory
 
-- 2026-06-14T04:33:16.613Z - Halkin (tester): restore original navbar and clean hero nav regression
 - 2026-06-14T04:43:44.308Z - Halkin (tester): Stabilized hero scroll by removing global scroll-progress transforms and sticky overlap
 - 2026-06-14T04:43:47.658Z - Halkin (tester): stabilize hero scroll behavior
 - 2026-06-14T04:51:16.401Z - Numero (browser): Rebuilt hero as Cinnamon-style sticky interactive game layer with scroll choreography and playable hitboxes
@@ -35,3 +34,4 @@ Current month: 2026-06
 - 2026-06-14T05:29:59.167Z - Halkin (tester): Added KTX2Loader and downloaded missing textures to resolve JSON.parse SyntaxError
 - 2026-06-14T05:32:37.632Z - kiros (security): Resolved Unexpected token '<' JSON.parse error by re-downloading correct 3D toy model GLB assets with game-models path
 - 2026-06-14T05:33:01.081Z - Halkin (tester): Resolved Unexpected token '<' JSON.parse error by re-downloading correct 3D toy model GLB assets with game-models path
+- 2026-06-14T05:33:37.611Z - Halkin (tester): Resolved Unexpected token '<' JSON.parse error by re-downloading correct 3D toy model GLB assets with game-models path
