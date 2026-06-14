@@ -2103,6 +2103,33 @@
       "actor": "BURHAN-MOP",
       "kind": "merge-approved",
       "summary": "origin/dev/moon approved and merged to main."
+    },
+    {
+      "at": "2026-06-14T04:29:56.318Z",
+      "actor": "moon",
+      "agent": "Halkin",
+      "agentRole": "tester",
+      "agentId": "agent-halkin",
+      "kind": "agent-route",
+      "summary": "Routed task to Halkin: Matched keywords for Tester: fix."
+    },
+    {
+      "at": "2026-06-14T04:33:12.625Z",
+      "actor": "moon",
+      "agent": "Halkin",
+      "agentRole": "tester",
+      "agentId": "agent-halkin",
+      "kind": "memory",
+      "summary": "Restored original navbar and removed hero local nav that caused bad navbar regression"
+    },
+    {
+      "at": "2026-06-14T04:33:16.612Z",
+      "actor": "moon",
+      "agent": "Halkin",
+      "agentRole": "tester",
+      "agentId": "agent-halkin",
+      "kind": "memory",
+      "summary": "restore original navbar and clean hero nav regression"
     }
   ]
 }

@@ -113,29 +113,6 @@ function MagneticButton({
   );
 }
 
-function LocalNav() {
-  return (
-    <nav className={styles.localNav} aria-label="Hero navigation">
-      <a className={styles.localBrand} href="#top" aria-label="BURHANDEV home">
-        <span className={styles.brandMark} aria-hidden="true">
-          <span />
-        </span>
-        <span className={styles.brandText}>
-          <strong>BURHANDEV</strong>
-          <small>SOFTWARE</small>
-        </span>
-      </a>
-      <div className={styles.navActions}>
-        <a href="#services">Games</a>
-        <a href="#work">Careers</a>
-        <a className={styles.navHello} href="#contact">
-          Say Hello
-        </a>
-      </div>
-    </nav>
-  );
-}
-
 function ClawRig() {
   return (
     <div className={styles.clawRig} aria-hidden="true">
@@ -269,8 +246,6 @@ export default function HeroSection() {
 
   return (
     <div id="top" className={styles.scene} ref={sceneRef}>
-      <LocalNav />
-
       <section id="hero" className={styles.hero} data-hero-section="true" aria-label="BURHANDEV hero">
         <div className={styles.screenFrame} aria-hidden="true" />
         <ClawRig />
