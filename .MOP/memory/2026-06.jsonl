@@ -43,3 +43,5 @@
 {"at":"2026-06-14T04:43:47.658Z","actor":"moon","agent":"Halkin","agentRole":"tester","agentId":"agent-halkin","kind":"conversation","summary":"stabilize hero scroll behavior"}
 {"at":"2026-06-14T04:51:16.401Z","actor":"moon","agent":"Numero","agentRole":"browser","agentId":"agent-numero","kind":"conversation","summary":"Rebuilt hero as Cinnamon-style sticky interactive game layer with scroll choreography and playable hitboxes"}
 {"at":"2026-06-14T04:51:20.513Z","actor":"moon","agent":"Numero","agentRole":"browser","agentId":"agent-numero","kind":"conversation","summary":"rebuild hero as interactive Cinnamon-style scroll scene"}
+{"at":"2026-06-14T05:03:02.712Z","actor":"moon","agent":"Loli","agentRole":"frontend","agentId":"agent-loli","kind":"conversation","summary":"Reworked hero into a Three.js Cinnamon-inspired interactive scroll scene with clean navbar and asset verification"}
+{"at":"2026-06-14T05:03:21.696Z","actor":"moon","agent":"Loli","agentRole":"frontend","agentId":"agent-loli","kind":"conversation","summary":"rework hero as custom Three.js interactive scroll scene"}

@@ -1,8 +1,8 @@
 # MOP Session Brief
 
-Updated: 2026-06-14T04:51:20.523Z
+Updated: 2026-06-14T05:03:21.703Z
 Actor: moon
-Active agent: Numero (browser)
+Active agent: Loli (frontend)
 Current month: 2026-06
 
 ## Required Session Flow
@@ -10,13 +10,11 @@ Current month: 2026-06
 1. Read `.MOP/STATE.json` and follow `.MOP/PROTOCOL.md`.
 2. Restore memory with `node .MOP/scripts/mop-core.mjs memory brief --actor <codename>`.
 3. Run `agent route` for the user task before answering.
-4. Start every authenticated answer with: `agent: Numero (browser) to moon`
+4. Start every authenticated answer with: `agent: Loli (frontend) to moon`
 5. Save a one-line memory after meaningful work.
 
 ## Recent Memory
 
-- 2026-06-13T20:03:49.567Z - Numero (browser): Blocked Cinnamon hero correction until moon names missing Tester agent
-- 2026-06-13T20:04:00.835Z - Numero (browser): save memory for missing Tester agent block
 - 2026-06-13T20:04:56.948Z - Halkin (tester): activate Tester agent Halkin for Cinnamon hero correction
 - 2026-06-13T20:05:16.409Z - Halkin (tester): activate Tester agent Halkin for Cinnamon hero correction
 - 2026-06-13T20:05:49.218Z - nAMI (github): save routing memory before Cinnamon hero correction redo
@@ -35,3 +33,5 @@ Current month: 2026-06
 - 2026-06-14T04:43:47.658Z - Halkin (tester): stabilize hero scroll behavior
 - 2026-06-14T04:51:16.401Z - Numero (browser): Rebuilt hero as Cinnamon-style sticky interactive game layer with scroll choreography and playable hitboxes
 - 2026-06-14T04:51:20.513Z - Numero (browser): rebuild hero as interactive Cinnamon-style scroll scene
+- 2026-06-14T05:03:02.712Z - Loli (frontend): Reworked hero into a Three.js Cinnamon-inspired interactive scroll scene with clean navbar and asset verification
+- 2026-06-14T05:03:21.696Z - Loli (frontend): rework hero as custom Three.js interactive scroll scene
