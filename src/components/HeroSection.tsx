@@ -112,19 +112,22 @@ export default function HeroSection() {
           });
           idleAnimsRef.current[i] = idleAnim;
 
-          // Running — forward lean + dynamic arm/leg swing matching reference frames
+          // Running — aggressive forward lean + wide leg kick matching reference frames
           const spd = CHARS[i].runSpeed;
           const runAnim = new sv3d.FunctionAnimation((player: any, ctx: any) => {
-            const t   = ctx.elapsed * spd * 3.2;
-            const leg = Math.sin(t) * 0.95;
-            const arm = Math.sin(t + Math.PI) * 0.82;
-            const bob = Math.abs(Math.sin(t)) * 0.04;
-            player.skin.body.rotation.set(0.32 + bob, 0, 0);
-            player.skin.head.rotation.set(-0.08, 0, 0);
-            player.skin.rightLeg.rotation.set( leg, 0,  0.04);
-            player.skin.leftLeg.rotation.set( -leg, 0, -0.04);
-            player.skin.rightArm.rotation.set( arm, 0,  0.12);
-            player.skin.leftArm.rotation.set( -arm, 0, -0.12);
+            const t    = ctx.elapsed * spd * 3.2;
+            const leg  = Math.sin(t) * 1.15;
+            const arm  = Math.sin(t + Math.PI) * 0.95;
+            const bob  = Math.abs(Math.sin(t * 2)) * 0.05;
+            // Back leg bends at knee — simulate by adding Z tilt on the trailing leg
+            const rLegZ = leg > 0 ?  0.05 : -0.12;
+            const lLegZ = leg < 0 ?  0.05 : -0.12;
+            player.skin.body.rotation.set(0.52 + bob, 0, 0);
+            player.skin.head.rotation.set( 0.12 + bob * 0.5, 0, 0);
+            player.skin.rightLeg.rotation.set( leg, 0, rLegZ);
+            player.skin.leftLeg.rotation.set( -leg, 0, lLegZ);
+            player.skin.rightArm.rotation.set( arm, 0,  0.15);
+            player.skin.leftArm.rotation.set( -arm, 0, -0.15);
           });
           runAnimsRef.current[i] = runAnim;
 
