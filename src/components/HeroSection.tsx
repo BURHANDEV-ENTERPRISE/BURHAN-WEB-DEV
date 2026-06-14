@@ -102,8 +102,7 @@ export default function HeroSection() {
           viewer.playerObject.rotation.y = Math.PI - Math.PI / 8;
           viewersRef.current[i] = viewer;
 
-          // Load skin via proxy (no CORS issue)
-          viewer.loadSkin(`/api/skin/${player.uuid}`).catch(console.error);
+          viewer.loadSkin(`https://mc-heads.net/skin/${player.uuid}`).catch(console.error);
         } catch (e) {
           console.error("skinview3d init error", e);
         }
