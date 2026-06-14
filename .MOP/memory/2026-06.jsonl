@@ -54,3 +54,5 @@
 {"at":"2026-06-14T05:24:22.560Z","actor":"moon","agent":"KID","agentRole":"core","agentId":"agent-kid","kind":"conversation","summary":"Replaced HeroSection procedural 3D visual with original Cinnamon GLBs"}
 {"at":"2026-06-14T05:24:39.874Z","actor":"moon","agent":"KID","agentRole":"core","agentId":"agent-kid","kind":"conversation","summary":"Replaced HeroSection procedural 3D elements with high-fidelity GLBs and completed build verification"}
 {"at":"2026-06-14T05:26:44.931Z","actor":"moon","agent":"Halkin","agentRole":"tester","agentId":"agent-halkin","kind":"conversation","summary":"Saved memory and resolved local dev server stale port 3000 cache"}
+{"at":"2026-06-14T05:26:56.690Z","actor":"moon","agent":"Halkin","agentRole":"tester","agentId":"agent-halkin","kind":"conversation","summary":"Cleaned stale Next.js cache and restarted local dev server on port 3000 to resolve client 404 resource errors"}
+{"at":"2026-06-14T05:29:59.167Z","actor":"moon","agent":"Halkin","agentRole":"tester","agentId":"agent-halkin","kind":"conversation","summary":"Added KTX2Loader and downloaded missing textures to resolve JSON.parse SyntaxError"}

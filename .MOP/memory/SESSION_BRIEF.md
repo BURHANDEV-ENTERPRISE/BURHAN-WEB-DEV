@@ -1,6 +1,6 @@
 # MOP Session Brief
 
-Updated: 2026-06-14T05:26:44.938Z
+Updated: 2026-06-14T05:29:59.174Z
 Actor: moon
 Active agent: Halkin (tester)
 Current month: 2026-06
@@ -15,8 +15,6 @@ Current month: 2026-06
 
 ## Recent Memory
 
-- 2026-06-14T04:19:03.323Z - Halkin (tester): Restarted stale Next dev server on port 3001 and verified static assets return 200
-- 2026-06-14T04:19:11.298Z - Halkin (tester): record dev server static asset fix
 - 2026-06-14T04:19:25.141Z - Halkin (tester): record dev server static asset fix
 - 2026-06-14T04:33:12.625Z - Halkin (tester): Restored original navbar and removed hero local nav that caused bad navbar regression
 - 2026-06-14T04:33:16.613Z - Halkin (tester): restore original navbar and clean hero nav regression
@@ -35,3 +33,5 @@ Current month: 2026-06
 - 2026-06-14T05:24:22.560Z - KID (core): Replaced HeroSection procedural 3D visual with original Cinnamon GLBs
 - 2026-06-14T05:24:39.874Z - KID (core): Replaced HeroSection procedural 3D elements with high-fidelity GLBs and completed build verification
 - 2026-06-14T05:26:44.931Z - Halkin (tester): Saved memory and resolved local dev server stale port 3000 cache
+- 2026-06-14T05:26:56.690Z - Halkin (tester): Cleaned stale Next.js cache and restarted local dev server on port 3000 to resolve client 404 resource errors
+- 2026-06-14T05:29:59.167Z - Halkin (tester): Added KTX2Loader and downloaded missing textures to resolve JSON.parse SyntaxError

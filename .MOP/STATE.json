@@ -2475,6 +2475,30 @@
       "actor": "BURHAN-MOP",
       "kind": "merge-approved",
       "summary": "origin/dev/moon approved and merged to main."
+    },
+    {
+      "at": "2026-06-14T05:26:56.690Z",
+      "actor": "moon",
+      "agent": "Halkin",
+      "agentRole": "tester",
+      "agentId": "agent-halkin",
+      "kind": "memory",
+      "summary": "Cleaned stale Next.js cache and restarted local dev server on port 3000 to resolve client 404 resource errors"
+    },
+    {
+      "at": "2026-06-14T05:29:59.166Z",
+      "actor": "moon",
+      "agent": "Halkin",
+      "agentRole": "tester",
+      "agentId": "agent-halkin",
+      "kind": "memory",
+      "summary": "Added KTX2Loader and downloaded missing textures to resolve JSON.parse SyntaxError"
+    },
+    {
+      "at": "2026-06-14T05:30:10.046Z",
+      "actor": "BURHAN-MOP",
+      "kind": "merge-approved",
+      "summary": "origin/dev/moon approved and merged to main."
     }
   ]
 }
