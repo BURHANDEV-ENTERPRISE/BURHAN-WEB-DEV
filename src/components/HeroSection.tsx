@@ -6,6 +6,7 @@ import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader.js";
 import { KTX2Loader } from "three/examples/jsm/loaders/KTX2Loader.js";
+import { RectAreaLightUniformsLib } from "three/examples/jsm/lights/RectAreaLightUniformsLib.js";
 import styles from "./HeroSection.module.css";
 
 const heroLines = [
@@ -170,6 +171,9 @@ function ThreeHeroScene({
       return;
     }
 
+    // Initialize area lights library
+    RectAreaLightUniformsLib.init();
+
     const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, powerPreference: "high-performance" });
     renderer.setClearColor(0x000000, 0);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
@@ -178,23 +182,49 @@ function ThreeHeroScene({
     renderer.outputColorSpace = THREE.SRGBColorSpace;
 
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(38, 1, 0.1, 100);
-    camera.position.set(0, 0.25, 7.6);
+    const camera = new THREE.PerspectiveCamera(17.5, 1, 0.1, 100);
+    camera.position.set(0, 0.5, 30);
 
-    const ambient = new THREE.AmbientLight(0x9aa8ff, 1.35);
+    const ambient = new THREE.AmbientLight(0x9aa8ff, 0.5);
     scene.add(ambient);
 
-    const key = new THREE.DirectionalLight(0xffffff, 3.8);
-    key.position.set(3, 4.8, 5);
-    key.castShadow = true;
-    key.shadow.mapSize.set(1024, 1024);
-    scene.add(key);
+    // 5 Top light bars matching the original array [0, 4, -9] to [0, 4, 9] (subset for performance)
+    const topPositions = [-9, -4.5, 0, 4.5, 9];
+    topPositions.forEach((zPos) => {
+      const topLight = new THREE.RectAreaLight(0xffffff, 2.2, 10, 1);
+      topLight.position.set(0, 4.8, zPos);
+      topLight.rotation.x = Math.PI / 2;
+      scene.add(topLight);
+    });
 
-    const redGlow = new THREE.PointLight(0xff201a, 18, 8.5);
+    // Side light panels
+    const leftPanel = new THREE.RectAreaLight(0xffffff, 2.0, 1, 100);
+    leftPanel.position.set(-50, 2, 0);
+    leftPanel.rotation.y = Math.PI / 2;
+    scene.add(leftPanel);
+
+    const rightPanel = new THREE.RectAreaLight(0xffffff, 2.0, 1, 100);
+    rightPanel.position.set(50, 2, 0);
+    rightPanel.rotation.y = -Math.PI / 2;
+    scene.add(rightPanel);
+
+    // Two decorative ring lights
+    const blueRing = new THREE.RectAreaLight(0x5b76f5, 3.0, 10, 10);
+    blueRing.position.set(10, 5, 10);
+    blueRing.lookAt(0, 0, 0);
+    scene.add(blueRing);
+
+    const orangeRing = new THREE.RectAreaLight(0xff8936, 6.0, 10, 10);
+    orangeRing.position.set(-10, 5, 10);
+    orangeRing.lookAt(0, 0, 0);
+    scene.add(orangeRing);
+
+    // Glow points for the interior/claw action
+    const redGlow = new THREE.PointLight(0xff201a, 12, 8.5);
     redGlow.position.set(0, -1.1, 1.2);
     scene.add(redGlow);
 
-    const blueGlow = new THREE.PointLight(0x6b6fff, 8, 8);
+    const blueGlow = new THREE.PointLight(0x6b6fff, 6, 8);
     blueGlow.position.set(-2.2, 1.6, 2);
     scene.add(blueGlow);
 
@@ -390,10 +420,10 @@ function ThreeHeroScene({
       const pulse = Math.max(0, 1 - (performance.now() - playPulseRef.current) / 520);
 
       // Camera animations
-      camera.position.x = lerp(0, 0.22, worldReveal);
-      camera.position.y = lerp(0.25, -0.05, worldReveal);
-      camera.position.z = lerp(7.6, 6.45, worldReveal);
-      camera.lookAt(0, lerp(-0.05, -0.16, worldReveal), 0);
+      camera.position.x = lerp(0, 0.88, worldReveal);
+      camera.position.y = lerp(0.5, -0.2, worldReveal);
+      camera.position.z = lerp(30, 25.2, worldReveal);
+      camera.lookAt(0, lerp(-0.2, -0.64, worldReveal), 0);
 
       // Deck animations
       deckGroup.position.y = lerp(0, 3.7, fadeIn(progress, 0.1, 0.32));
