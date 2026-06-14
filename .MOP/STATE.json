@@ -6,7 +6,7 @@
   "ownerCodename": "moon",
   "activeMember": "moon",
   "activeAgents": {
-    "moon": "agent-numero",
+    "moon": "agent-loli",
     "amad": "agent-anis"
   },
   "agentPolicy": {
@@ -2199,6 +2199,57 @@
     },
     {
       "at": "2026-06-14T04:51:28.173Z",
+      "actor": "BURHAN-MOP",
+      "kind": "merge-approved",
+      "summary": "origin/dev/moon approved and merged to main."
+    },
+    {
+      "at": "2026-06-14T04:54:08.642Z",
+      "actor": "moon",
+      "agent": "nAMI",
+      "agentRole": "github",
+      "agentId": "agent-nami",
+      "kind": "agent-route",
+      "summary": "Routed task to nAMI: Matched keywords for GitHub Coordinator: pr."
+    },
+    {
+      "at": "2026-06-14T04:55:30.507Z",
+      "actor": "moon",
+      "agent": "nAMI",
+      "agentRole": "github",
+      "agentId": "agent-nami",
+      "kind": "login",
+      "summary": "Member authenticated."
+    },
+    {
+      "at": "2026-06-14T04:55:50.329Z",
+      "actor": "moon",
+      "agent": "Loli",
+      "agentRole": "frontend",
+      "agentId": "agent-loli",
+      "kind": "agent-use",
+      "summary": "Set active agent to Loli."
+    },
+    {
+      "at": "2026-06-14T05:03:02.712Z",
+      "actor": "moon",
+      "agent": "Loli",
+      "agentRole": "frontend",
+      "agentId": "agent-loli",
+      "kind": "memory",
+      "summary": "Reworked hero into a Three.js Cinnamon-inspired interactive scroll scene with clean navbar and asset verification"
+    },
+    {
+      "at": "2026-06-14T05:03:21.696Z",
+      "actor": "moon",
+      "agent": "Loli",
+      "agentRole": "frontend",
+      "agentId": "agent-loli",
+      "kind": "memory",
+      "summary": "rework hero as custom Three.js interactive scroll scene"
+    },
+    {
+      "at": "2026-06-14T05:03:30.296Z",
       "actor": "BURHAN-MOP",
       "kind": "merge-approved",
       "summary": "origin/dev/moon approved and merged to main."
