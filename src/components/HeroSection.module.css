@@ -8,118 +8,6 @@
   isolation: isolate;
 }
 
-.localNav {
-  position: fixed;
-  top: 1.35rem;
-  left: clamp(1.1rem, 4vw, 4rem);
-  right: clamp(1.1rem, 4vw, 4rem);
-  z-index: 90;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  pointer-events: none;
-}
-
-.localBrand,
-.navActions a {
-  pointer-events: auto;
-}
-
-.localBrand {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.7rem;
-  color: #fff;
-  text-decoration: none;
-}
-
-.brandMark {
-  position: relative;
-  display: grid;
-  place-items: center;
-  width: 3.05rem;
-  height: 3.05rem;
-  border-radius: 56% 44% 51% 49%;
-  background: #fff;
-  transform: rotate(-8deg);
-}
-
-.brandMark::before {
-  content: "";
-  position: absolute;
-  inset: 0.42rem;
-  border: 0.2rem solid #0a0527;
-  border-left-color: transparent;
-  border-radius: 50%;
-  transform: rotate(22deg);
-}
-
-.brandMark::after {
-  content: "";
-  position: absolute;
-  width: 0.52rem;
-  height: 0.52rem;
-  border-radius: 50%;
-  background: #0a0527;
-}
-
-.brandMark span {
-  position: absolute;
-  left: 0.34rem;
-  top: 0.25rem;
-  width: 0.55rem;
-  height: 0.55rem;
-  border-radius: 50%;
-  background: #0a0527;
-}
-
-.brandText {
-  display: grid;
-  gap: 0.1rem;
-  line-height: 1;
-}
-
-.brandText strong {
-  font-size: clamp(1rem, 1.4vw, 1.35rem);
-  font-weight: 950;
-  letter-spacing: 0.04em;
-}
-
-.brandText small {
-  font-size: clamp(0.58rem, 0.75vw, 0.78rem);
-  font-weight: 900;
-  letter-spacing: 0.45em;
-}
-
-.navActions {
-  display: flex;
-  align-items: center;
-  gap: 0.62rem;
-}
-
-.navActions a {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 2.75rem;
-  padding: 0.65rem 1.05rem;
-  border: 1px solid rgba(255, 255, 255, 0.86);
-  border-radius: 4px;
-  background: rgba(255, 255, 255, 0.015);
-  color: #fff;
-  font-size: 0.96rem;
-  font-weight: 800;
-  letter-spacing: 0;
-  text-decoration: none;
-  backdrop-filter: blur(14px);
-}
-
-.navActions .navHello {
-  border-color: #ff4b0b;
-  background: #ff4b0b;
-}
-
 .hero {
   position: sticky;
   top: 0;
@@ -135,7 +23,7 @@
 
 .screenFrame {
   position: absolute;
-  inset: clamp(3.9rem, 5.3vw, 5.4rem) clamp(1.2rem, 2.1vw, 2.2rem) clamp(7rem, 11vw, 9rem);
+  inset: clamp(5.6rem, 7.2vw, 7rem) clamp(1.2rem, 2.1vw, 2.2rem) clamp(7rem, 11vw, 9rem);
   z-index: 1;
   overflow: hidden;
   border: 1px solid rgba(128, 94, 255, 0.28);
@@ -196,7 +84,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: clamp(5rem, 9vw, 8rem) 1rem clamp(15rem, 23vw, 20rem);
+  padding: clamp(7.2rem, 10vw, 9rem) 1rem clamp(14rem, 22vw, 18rem);
   text-align: center;
   pointer-events: none;
   opacity: clamp(0, calc(1 - var(--scene-progress) * 3.8), 1);
@@ -1045,17 +933,8 @@
 }
 
 @media (max-width: 900px) {
-  .navActions a {
-    min-height: 2.45rem;
-    padding: 0.55rem 0.72rem;
-    font-size: 0.82rem;
-  }
-
-  .brandText small {
-    letter-spacing: 0.26em;
-  }
-
   .heroContent {
+    padding-top: clamp(7.8rem, 13vw, 9.6rem);
     padding-bottom: clamp(13.5rem, 32vw, 18rem);
   }
 
@@ -1083,45 +962,8 @@
     min-height: 300vh;
   }
 
-  .localNav {
-    top: 0.9rem;
-    align-items: flex-start;
-  }
-
-  .localBrand {
-    gap: 0.52rem;
-  }
-
-  .brandMark {
-    width: 2.45rem;
-    height: 2.45rem;
-  }
-
-  .brandText strong {
-    font-size: 0.9rem;
-  }
-
-  .brandText small {
-    font-size: 0.5rem;
-  }
-
-  .navActions {
-    gap: 0.38rem;
-  }
-
-  .navActions a {
-    min-height: 2.2rem;
-    padding: 0.45rem 0.52rem;
-    font-size: 0.72rem;
-  }
-
-  .navActions a:nth-child(1),
-  .navActions a:nth-child(2) {
-    display: none;
-  }
-
   .screenFrame {
-    inset: 4.2rem 0.85rem 7.3rem;
+    inset: 6.4rem 0.85rem 7.3rem;
     border-radius: 18px;
   }
 
@@ -1132,7 +974,7 @@
   }
 
   .heroContent {
-    padding-top: 7.5rem;
+    padding-top: 8.9rem;
     padding-bottom: 13.5rem;
   }
 

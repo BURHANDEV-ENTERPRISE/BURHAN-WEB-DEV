@@ -1,6 +1,6 @@
 # MOP Session Brief
 
-Updated: 2026-06-14T04:19:25.148Z
+Updated: 2026-06-14T04:33:16.620Z
 Actor: moon
 Active agent: Halkin (tester)
 Current month: 2026-06
@@ -15,8 +15,6 @@ Current month: 2026-06
 
 ## Recent Memory
 
-- 2026-06-13T19:55:17.353Z - Numero (browser): fix hero CSS secret scanner false positive
-- 2026-06-13T19:57:36.724Z - Numero (browser): preserve readable hero heading spacing
 - 2026-06-13T19:59:50.768Z - Numero (browser): preserve spaces between split heading lines
 - 2026-06-13T20:01:09.410Z - Numero (browser): Replaced hero with Cinnamon-inspired connected hero/open-capsule section, verified build/render, and merged to main
 - 2026-06-13T20:01:17.195Z - Numero (browser): save memory for Cinnamon-inspired hero work
@@ -35,3 +33,5 @@ Current month: 2026-06
 - 2026-06-14T04:19:03.323Z - Halkin (tester): Restarted stale Next dev server on port 3001 and verified static assets return 200
 - 2026-06-14T04:19:11.298Z - Halkin (tester): record dev server static asset fix
 - 2026-06-14T04:19:25.141Z - Halkin (tester): record dev server static asset fix
+- 2026-06-14T04:33:12.625Z - Halkin (tester): Restored original navbar and removed hero local nav that caused bad navbar regression
+- 2026-06-14T04:33:16.613Z - Halkin (tester): restore original navbar and clean hero nav regression
