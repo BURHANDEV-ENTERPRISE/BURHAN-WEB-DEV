@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import styles from "./HeroSection.module.css";
 
 const heroLines = [
@@ -179,35 +179,6 @@ function CapsuleShowcase({ final = false }: { final?: boolean }) {
 }
 
 export default function HeroSection() {
-  const sceneRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const scene = sceneRef.current;
-    if (!scene) {
-      return;
-    }
-
-    let frame = 0;
-    const updateProgress = () => {
-      cancelAnimationFrame(frame);
-      frame = requestAnimationFrame(() => {
-        const rect = scene.getBoundingClientRect();
-        const distance = Math.max(1, rect.height - window.innerHeight);
-        const progress = Math.min(1, Math.max(0, -rect.top / distance));
-        scene.style.setProperty("--scene-progress", progress.toFixed(4));
-      });
-    };
-
-    updateProgress();
-    window.addEventListener("scroll", updateProgress, { passive: true });
-    window.addEventListener("resize", updateProgress);
-    return () => {
-      cancelAnimationFrame(frame);
-      window.removeEventListener("scroll", updateProgress);
-      window.removeEventListener("resize", updateProgress);
-    };
-  }, []);
-
   useEffect(() => {
     const buttons = Array.from(document.querySelectorAll<HTMLElement>("[data-magnetic-strength]"));
 
@@ -245,7 +216,7 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <div id="top" className={styles.scene} ref={sceneRef}>
+    <div id="top" className={styles.scene}>
       <section id="hero" className={styles.hero} data-hero-section="true" aria-label="BURHANDEV hero">
         <div className={styles.screenFrame} aria-hidden="true" />
         <ClawRig />

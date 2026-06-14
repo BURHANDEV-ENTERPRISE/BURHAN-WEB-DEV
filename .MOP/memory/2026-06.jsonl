@@ -39,3 +39,5 @@
 {"at":"2026-06-14T04:19:25.141Z","actor":"moon","agent":"Halkin","agentRole":"tester","agentId":"agent-halkin","kind":"conversation","summary":"record dev server static asset fix"}
 {"at":"2026-06-14T04:33:12.625Z","actor":"moon","agent":"Halkin","agentRole":"tester","agentId":"agent-halkin","kind":"conversation","summary":"Restored original navbar and removed hero local nav that caused bad navbar regression"}
 {"at":"2026-06-14T04:33:16.613Z","actor":"moon","agent":"Halkin","agentRole":"tester","agentId":"agent-halkin","kind":"conversation","summary":"restore original navbar and clean hero nav regression"}
+{"at":"2026-06-14T04:43:44.308Z","actor":"moon","agent":"Halkin","agentRole":"tester","agentId":"agent-halkin","kind":"conversation","summary":"Stabilized hero scroll by removing global scroll-progress transforms and sticky overlap"}
+{"at":"2026-06-14T04:43:47.658Z","actor":"moon","agent":"Halkin","agentRole":"tester","agentId":"agent-halkin","kind":"conversation","summary":"stabilize hero scroll behavior"}

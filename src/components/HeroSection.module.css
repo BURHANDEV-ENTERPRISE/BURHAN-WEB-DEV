@@ -1,7 +1,6 @@
 .scene {
-  --scene-progress: 0;
   position: relative;
-  min-height: 320vh;
+  min-height: 100vh;
   overflow: clip;
   background: #00110f;
   color: #fff;
@@ -9,8 +8,7 @@
 }
 
 .hero {
-  position: sticky;
-  top: 0;
+  position: relative;
   z-index: 1;
   width: 100%;
   height: 100vh;
@@ -87,8 +85,6 @@
   padding: clamp(7.2rem, 10vw, 9rem) 1rem clamp(14rem, 22vw, 18rem);
   text-align: center;
   pointer-events: none;
-  opacity: clamp(0, calc(1 - var(--scene-progress) * 3.8), 1);
-  transform: translateY(calc(var(--scene-progress) * -7rem));
 }
 
 .heroContent > * {
@@ -272,8 +268,7 @@
   z-index: 9;
   width: clamp(9rem, 16vw, 14rem);
   height: clamp(18rem, 31vw, 29rem);
-  transform: translateX(-50%) translateY(calc(var(--scene-progress) * -9rem));
-  opacity: clamp(0, calc(1 - var(--scene-progress) * 3.4), 1);
+  transform: translateX(-50%);
   pointer-events: none;
 }
 
@@ -414,8 +409,7 @@
   z-index: 18;
   width: min(67rem, 86vw);
   height: clamp(16rem, 24vw, 22rem);
-  transform: translateX(-50%) translateY(calc(var(--scene-progress) * -14rem));
-  opacity: clamp(0, calc(1 - var(--scene-progress) * 2.6), 1);
+  transform: translateX(-50%);
   pointer-events: none;
 }
 
@@ -640,7 +634,7 @@
   z-index: 2;
   display: grid;
   place-items: center;
-  min-height: 104vh;
+  min-height: 100vh;
   overflow: hidden;
   background: #00110f;
 }
@@ -684,9 +678,7 @@
   position: relative;
   width: clamp(18rem, 28vw, 30rem);
   aspect-ratio: 1.18;
-  transform:
-    translateY(calc((1 - var(--scene-progress)) * 2.5rem))
-    rotate(calc(-7deg + var(--scene-progress) * 6deg));
+  transform: rotate(-4deg);
   transform-style: preserve-3d;
 }
 
@@ -886,7 +878,7 @@
   stroke-width: 53;
   stroke-linecap: round;
   stroke-dasharray: 1;
-  stroke-dashoffset: calc(1 - var(--scene-progress));
+  stroke-dashoffset: 0;
 }
 
 .finalCapsule {
@@ -895,7 +887,7 @@
   top: 48%;
   z-index: 5;
   width: min(58rem, 82vw);
-  transform: translate(-50%, -50%) scale(clamp(0.86, calc(var(--scene-progress) * 1.2), 1));
+  transform: translate(-50%, -50%);
   pointer-events: none;
 }
 
