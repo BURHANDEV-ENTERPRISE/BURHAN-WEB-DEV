@@ -2499,6 +2499,21 @@
       "actor": "BURHAN-MOP",
       "kind": "merge-approved",
       "summary": "origin/dev/moon approved and merged to main."
+    },
+    {
+      "at": "2026-06-14T05:33:37.610Z",
+      "actor": "moon",
+      "agent": "Halkin",
+      "agentRole": "tester",
+      "agentId": "agent-halkin",
+      "kind": "memory",
+      "summary": "Resolved Unexpected token '<' JSON.parse error by re-downloading correct 3D toy model GLB assets with game-models path"
+    },
+    {
+      "at": "2026-06-14T05:33:45.309Z",
+      "actor": "BURHAN-MOP",
+      "kind": "merge-approved",
+      "summary": "origin/dev/moon approved and merged to main."
     }
   ]
 }
