@@ -1,8 +1,8 @@
 # MOP Session Brief
 
-Updated: 2026-06-14T05:08:56.783Z
+Updated: 2026-06-14T05:24:22.567Z
 Actor: moon
-Active agent: Loli (frontend)
+Active agent: KID (core)
 Current month: 2026-06
 
 ## Required Session Flow
@@ -10,13 +10,11 @@ Current month: 2026-06
 1. Read `.MOP/STATE.json` and follow `.MOP/PROTOCOL.md`.
 2. Restore memory with `node .MOP/scripts/mop-core.mjs memory brief --actor <codename>`.
 3. Run `agent route` for the user task before answering.
-4. Start every authenticated answer with: `agent: Loli (frontend) to moon`
+4. Start every authenticated answer with: `agent: KID (core) to moon`
 5. Save a one-line memory after meaningful work.
 
 ## Recent Memory
 
-- 2026-06-13T20:08:49.497Z - ramus (reviewer): activate remaining agents for Cinnamon hero correction
-- 2026-06-13T20:09:18.873Z - Loli (frontend): route Cinnamon hero correction to frontend
 - 2026-06-13T20:19:32.786Z - dobi (coder): Rebuilt BURHANDEV hero to closely match arcade and capsule reference with original CSS shapes
 - 2026-06-13T20:19:32.824Z - dobi (coder): redo hero with arcade and capsule recreation
 - 2026-06-14T04:19:03.323Z - Halkin (tester): Restarted stale Next dev server on port 3001 and verified static assets return 200
@@ -35,3 +33,5 @@ Current month: 2026-06
 - 2026-06-14T05:08:04.909Z - Loli (frontend): Save memory: Confirmed successful production build
 - 2026-06-14T05:08:54.444Z - Loli (frontend): Confirmed successful build of Next.js app in background
 - 2026-06-14T05:08:56.775Z - Loli (frontend): Save memory: Confirmed build success
+- 2026-06-14T05:23:51.432Z - KID (core): Replaced HeroSection procedural 3D visual with original Cinnamon GLBs
+- 2026-06-14T05:24:22.560Z - KID (core): Replaced HeroSection procedural 3D visual with original Cinnamon GLBs

@@ -6,7 +6,7 @@
   "ownerCodename": "moon",
   "activeMember": "moon",
   "activeAgents": {
-    "moon": "agent-loli",
+    "moon": "agent-kid",
     "amad": "agent-anis"
   },
   "agentPolicy": {
@@ -623,6 +623,39 @@
       ],
       "createdBy": "moon",
       "createdAt": "2026-06-13T20:08:19.917Z"
+    },
+    {
+      "id": "agent-loki",
+      "role": "database",
+      "title": "Database Engineer",
+      "name": "loki",
+      "owners": [
+        "moon"
+      ],
+      "createdBy": "moon",
+      "createdAt": "2026-06-14T05:12:40.016Z"
+    },
+    {
+      "id": "agent-kiros",
+      "role": "security",
+      "title": "Security Specialist",
+      "name": "kiros",
+      "owners": [
+        "moon"
+      ],
+      "createdBy": "moon",
+      "createdAt": "2026-06-14T05:12:42.167Z"
+    },
+    {
+      "id": "agent-erin",
+      "role": "backend",
+      "title": "Backend Developer",
+      "name": "erin",
+      "owners": [
+        "moon"
+      ],
+      "createdBy": "moon",
+      "createdAt": "2026-06-14T05:12:44.117Z"
     }
   ],
   "agentCatalog": [
@@ -2292,6 +2325,120 @@
     },
     {
       "at": "2026-06-14T05:09:05.037Z",
+      "actor": "BURHAN-MOP",
+      "kind": "merge-approved",
+      "summary": "origin/dev/moon approved and merged to main."
+    },
+    {
+      "at": "2026-06-14T05:09:12.494Z",
+      "actor": "moon",
+      "agent": "KID",
+      "agentRole": "core",
+      "agentId": "agent-kid",
+      "kind": "agent-route",
+      "summary": "Routed task to KID: No strong specialist match; using Core Agent."
+    },
+    {
+      "at": "2026-06-14T05:11:56.363Z",
+      "actor": "moon",
+      "agent": "Numero",
+      "agentRole": "browser",
+      "agentId": "agent-numero",
+      "kind": "agent-route",
+      "summary": "Routed task to Numero: Matched keywords for Browser: api."
+    },
+    {
+      "at": "2026-06-14T05:12:40.016Z",
+      "actor": "moon",
+      "agent": "Numero",
+      "agentRole": "browser",
+      "agentId": "agent-numero",
+      "kind": "agent-activate",
+      "summary": "Named Database Engineer as loki."
+    },
+    {
+      "at": "2026-06-14T05:12:40.016Z",
+      "actor": "moon",
+      "agent": "loki",
+      "agentRole": "database",
+      "agentId": "agent-loki",
+      "kind": "agent-use",
+      "summary": "Set active agent to loki."
+    },
+    {
+      "at": "2026-06-14T05:12:42.167Z",
+      "actor": "moon",
+      "agent": "loki",
+      "agentRole": "database",
+      "agentId": "agent-loki",
+      "kind": "agent-activate",
+      "summary": "Named Security Specialist as kiros."
+    },
+    {
+      "at": "2026-06-14T05:12:42.167Z",
+      "actor": "moon",
+      "agent": "kiros",
+      "agentRole": "security",
+      "agentId": "agent-kiros",
+      "kind": "agent-use",
+      "summary": "Set active agent to kiros."
+    },
+    {
+      "at": "2026-06-14T05:12:44.117Z",
+      "actor": "moon",
+      "agent": "kiros",
+      "agentRole": "security",
+      "agentId": "agent-kiros",
+      "kind": "agent-activate",
+      "summary": "Named Backend Developer as erin."
+    },
+    {
+      "at": "2026-06-14T05:12:44.117Z",
+      "actor": "moon",
+      "agent": "erin",
+      "agentRole": "backend",
+      "agentId": "agent-erin",
+      "kind": "agent-use",
+      "summary": "Set active agent to erin."
+    },
+    {
+      "at": "2026-06-14T05:12:46.589Z",
+      "actor": "moon",
+      "agent": "Numero",
+      "agentRole": "browser",
+      "agentId": "agent-numero",
+      "kind": "agent-route",
+      "summary": "Routed task to Numero: Matched keywords for Browser: api."
+    },
+    {
+      "at": "2026-06-14T05:18:13.856Z",
+      "actor": "moon",
+      "agent": "KID",
+      "agentRole": "core",
+      "agentId": "agent-kid",
+      "kind": "agent-route",
+      "summary": "Routed task to KID: No strong specialist match; using Core Agent."
+    },
+    {
+      "at": "2026-06-14T05:23:51.431Z",
+      "actor": "moon",
+      "agent": "KID",
+      "agentRole": "core",
+      "agentId": "agent-kid",
+      "kind": "memory",
+      "summary": "Replaced HeroSection procedural 3D visual with original Cinnamon GLBs"
+    },
+    {
+      "at": "2026-06-14T05:24:22.559Z",
+      "actor": "moon",
+      "agent": "KID",
+      "agentRole": "core",
+      "agentId": "agent-kid",
+      "kind": "memory",
+      "summary": "Replaced HeroSection procedural 3D visual with original Cinnamon GLBs"
+    },
+    {
+      "at": "2026-06-14T05:24:32.048Z",
       "actor": "BURHAN-MOP",
       "kind": "merge-approved",
       "summary": "origin/dev/moon approved and merged to main."
