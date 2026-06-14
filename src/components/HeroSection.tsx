@@ -1,734 +1,411 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import type { CSSProperties, MutableRefObject } from "react";
-import * as THREE from "three";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
-import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader.js";
-import { KTX2Loader } from "three/examples/jsm/loaders/KTX2Loader.js";
-import { RectAreaLightUniformsLib } from "three/examples/jsm/lights/RectAreaLightUniformsLib.js";
+import { useEffect, useRef } from "react";
 import styles from "./HeroSection.module.css";
 
-const heroLines = [
-  ["BURHANDEV."],
-  ["EXPERIENCE", "THE"],
-  ["NEXT", "BIG", "WEB"],
+const PLAYERS = [
+  { name: "Amad",   uuid: "d5a391fb-c1cd-4385-868b-5e8a28aa1ccf" },
+  { name: "Matnep", uuid: "d0d758bd-9df5-42f0-83d7-1ae64c1e7645" },
+  { name: "Kaizer", uuid: "e0ca5465-072b-4517-8320-929ecbde3d8e" },
+  { name: "Moon",   uuid: "ba096b9e-5370-437d-b84b-d8eb241ddf53" },
+  { name: "Ashot",  uuid: "4b5f1ad6-60cf-4c6f-8f36-4d39065561d2" },
 ];
 
-const worldLines = [
-  ["ENTER", "THE"],
-  ["WORLD", "OF", "BURHANDEV"],
+// Spread across scroll, similar speeds → stay evenly spaced, random-feeling run rates
+const CHARS = [
+  { entry: -0.60, scroll: 0.70, runSpeed: 1.3 },
+  { entry: -1.10, scroll: 0.68, runSpeed: 1.0 },
+  { entry: -1.60, scroll: 0.66, runSpeed: 0.8 },
+  { entry: -0.90, scroll: 0.72, runSpeed: 1.1 },
+  { entry: -1.35, scroll: 0.67, runSpeed: 0.9 },
 ];
 
-type Tilt = {
-  x: number;
-  y: number;
-};
-
-function clamp(value: number, min: number, max: number) {
-  return Math.min(max, Math.max(min, value));
-}
-
-function lerp(start: number, end: number, progress: number) {
-  return start + (end - start) * progress;
-}
-
-function smooth(progress: number) {
-  const t = clamp(progress, 0, 1);
-  return t * t * (3 - 2 * t);
-}
-
-function fadeIn(progress: number, start: number, end: number) {
-  return smooth((progress - start) / (end - start));
-}
-
-function fadeOut(progress: number, start: number, end: number) {
-  return 1 - fadeIn(progress, start, end);
-}
-
-function AnimatedHeading({
-  lines,
-  className,
-  label,
-  level = "h1",
-}: {
-  lines: string[][];
-  className: string;
-  label: string;
-  level?: "h1" | "h2";
-}) {
-  let letterIndex = 0;
-  const HeadingTag = level;
-
-  return (
-    <HeadingTag className={className} aria-label={label}>
-      {lines.map((line, lineIndex) => (
-        <span className={styles.headingLine} aria-hidden="true" key={`${label}-${lineIndex}`}>
-          {line.map((word, wordIndex) => (
-            <span className={styles.headingWord} key={`${word}-${wordIndex}`}>
-              {word.split("").map((letter) => {
-                const delay = `${0.026 * letterIndex++}s`;
-                return (
-                  <span className={styles.headingLetter} style={{ animationDelay: delay }} key={`${letter}-${letterIndex}`}>
-                    {letter}
-                  </span>
-                );
-              })}
-              {wordIndex < line.length - 1 ? (
-                <span className={styles.wordGap} aria-hidden="true">
-                  {" "}
-                </span>
-              ) : null}
-            </span>
-          ))}
-        </span>
-      ))}
-    </HeadingTag>
-  );
-}
-
-function PlayIcon() {
-  return (
-    <svg width="12" height="16" viewBox="0 0 12 16" fill="none" aria-hidden="true">
-      <path
-        d="M11.49 8.18.77 15.05a.5.5 0 0 1-.77-.43L.25.49A.5.5 0 0 1 1.04.09l10.47 7.25a.5.5 0 0 1-.02.84Z"
-        fill="currentColor"
-      />
-    </svg>
-  );
-}
-
-function MagneticButton({
-  children,
-  href,
-  onClick,
-}: {
-  children: string;
-  href?: string;
-  onClick?: () => void;
-}) {
-  const content = (
-    <>
-      <span className={styles.buttonBase} aria-hidden="true" />
-      <span className={styles.buttonInner} data-magnetic-inner-target="">
-        <span className={styles.buttonIconBox} aria-hidden="true">
-          <span className={styles.buttonIconBorder} />
-          <span className={styles.buttonIconTrack}>
-            <span className={styles.playIcon}>
-              <PlayIcon />
-            </span>
-            <span className={styles.playIcon}>
-              <PlayIcon />
-            </span>
-          </span>
-        </span>
-        <span className={styles.buttonTextTrack}>
-          <span className={styles.buttonText}>{children}</span>
-          <span className={styles.buttonTextClone} aria-hidden="true">
-            {children}
-          </span>
-        </span>
-      </span>
-    </>
-  );
-
-  if (href) {
-    return (
-      <a className={styles.magneticButton} href={href} data-magnetic-strength="50" data-magnetic-strength-inner="25">
-        {content}
-      </a>
-    );
-  }
-
-  return (
-    <button
-      className={styles.magneticButton}
-      type="button"
-      data-magnetic-strength="50"
-      data-magnetic-strength-inner="25"
-      onClick={onClick}
-    >
-      {content}
-    </button>
-  );
-}
-
-function ThreeHeroScene({
-  progressRef,
-  tiltRef,
-  playPulseRef,
-}: {
-  progressRef: MutableRefObject<number>;
-  tiltRef: MutableRefObject<Tilt>;
-  playPulseRef: MutableRefObject<number>;
-}) {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [isLoaded, setIsLoaded] = useState(false);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) {
-      return;
-    }
-
-    // Initialize area lights library
-    RectAreaLightUniformsLib.init();
-
-    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, powerPreference: "high-performance" });
-    renderer.setClearColor(0x000000, 0);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    renderer.shadowMap.enabled = true;
-    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-    renderer.outputColorSpace = THREE.SRGBColorSpace;
-
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(17.5, 1, 0.1, 100);
-    camera.position.set(0, 0.5, 30);
-
-    const ambient = new THREE.AmbientLight(0x9aa8ff, 0.5);
-    scene.add(ambient);
-
-    // 5 Top light bars matching the original array [0, 4, -9] to [0, 4, 9] (subset for performance)
-    const topPositions = [-9, -4.5, 0, 4.5, 9];
-    topPositions.forEach((zPos) => {
-      const topLight = new THREE.RectAreaLight(0xffffff, 2.2, 10, 1);
-      topLight.position.set(0, 4.8, zPos);
-      topLight.rotation.x = Math.PI / 2;
-      scene.add(topLight);
-    });
-
-    // Side light panels
-    const leftPanel = new THREE.RectAreaLight(0xffffff, 2.0, 1, 100);
-    leftPanel.position.set(-50, 2, 0);
-    leftPanel.rotation.y = Math.PI / 2;
-    scene.add(leftPanel);
-
-    const rightPanel = new THREE.RectAreaLight(0xffffff, 2.0, 1, 100);
-    rightPanel.position.set(50, 2, 0);
-    rightPanel.rotation.y = -Math.PI / 2;
-    scene.add(rightPanel);
-
-    // Two decorative ring lights
-    const blueRing = new THREE.RectAreaLight(0x5b76f5, 3.0, 10, 10);
-    blueRing.position.set(10, 5, 10);
-    blueRing.lookAt(0, 0, 0);
-    scene.add(blueRing);
-
-    const orangeRing = new THREE.RectAreaLight(0xff8936, 6.0, 10, 10);
-    orangeRing.position.set(-10, 5, 10);
-    orangeRing.lookAt(0, 0, 0);
-    scene.add(orangeRing);
-
-    // Glow points for the interior/claw action
-    const redGlow = new THREE.PointLight(0xff201a, 12, 8.5);
-    redGlow.position.set(0, -1.1, 1.2);
-    scene.add(redGlow);
-
-    const blueGlow = new THREE.PointLight(0x6b6fff, 6, 8);
-    blueGlow.position.set(-2.2, 1.6, 2);
-    scene.add(blueGlow);
-
-    const floorMaterial = new THREE.ShadowMaterial({ opacity: 0.22 });
-    const floorGeometry = new THREE.PlaneGeometry(14, 7);
-    const floor = new THREE.Mesh(floorGeometry, floorMaterial);
-    floor.position.set(0, -2.74, 0.2);
-    floor.rotation.x = -Math.PI / 2;
-    floor.receiveShadow = true;
-    scene.add(floor);
-
-    // Setup loaders for GLB
-    const dracoLoader = new DRACOLoader();
-    dracoLoader.setDecoderPath("https://www.gstatic.com/draco/versioned/decoders/1.5.5/");
-
-    const ktx2Loader = new KTX2Loader();
-    ktx2Loader.setTranscoderPath("https://unpkg.com/three@0.181.2/examples/jsm/libs/basis/");
-    ktx2Loader.detectSupport(renderer);
-
-    const gltfLoader = new GLTFLoader();
-    gltfLoader.setDRACOLoader(dracoLoader);
-    gltfLoader.setKTX2Loader(ktx2Loader);
-
-    const loadModel = (url: string): Promise<THREE.Group> => {
-      return new Promise((resolve, reject) => {
-        gltfLoader.load(
-          url,
-          (gltf) => resolve(gltf.scene),
-          undefined,
-          (err) => reject(err)
-        );
-      });
-    };
-
-    // Objek-objek rujukan untuk manipulasi animasi
-    const deckGroup = new THREE.Group();
-    deckGroup.name = "deck";
-    scene.add(deckGroup);
-
-    const clawGroup = new THREE.Group();
-    clawGroup.name = "claw";
-    scene.add(clawGroup);
-
-    const capsuleGroup = new THREE.Group();
-    capsuleGroup.name = "capsule";
-    scene.add(capsuleGroup);
-
-    let pookHandle: THREE.Object3D | null = null;
-    let pookBall: THREE.Object3D | null = null;
-    const loadedModels: THREE.Group[] = [];
-
-    // Tentukan procedural capsule parts di dalam capsuleGroup
-    const pinkMat = new THREE.MeshStandardMaterial({ color: 0xff2b93, roughness: 0.25, metalness: 0.14 });
-    const topShell = new THREE.Mesh(new THREE.SphereGeometry(1.25, 64, 32, 0, Math.PI * 2, 0, Math.PI / 2), pinkMat);
-    topShell.position.set(-0.46, 0.08, 0);
-    topShell.rotation.set(0.55, 0, -0.38);
-    topShell.scale.set(1.15, 0.86, 1);
-    topShell.castShadow = true;
-    capsuleGroup.add(topShell);
-
-    const glassMat = new THREE.MeshStandardMaterial({
-      color: 0xf2f0eb,
-      roughness: 0.18,
-      metalness: 0.35,
-      transparent: true,
-      opacity: 0.72,
-      side: THREE.DoubleSide
-    });
-    const lowerShell = new THREE.Mesh(new THREE.SphereGeometry(1.2, 64, 32, 0, Math.PI * 2, Math.PI / 2, Math.PI / 2), glassMat);
-    lowerShell.position.set(0.48, -0.04, 0);
-    lowerShell.rotation.set(0.48, 0.12, 0.48);
-    lowerShell.scale.set(1.05, 0.86, 1);
-    lowerShell.castShadow = true;
-    capsuleGroup.add(lowerShell);
-
-    const chromeMat = new THREE.MeshStandardMaterial({ color: 0xaaa8a2, roughness: 0.18, metalness: 0.85 });
-    const rim = new THREE.Mesh(new THREE.TorusGeometry(1.13, 0.07, 16, 96), chromeMat);
-    rim.position.set(0.06, -0.03, 0);
-    rim.rotation.set(1.66, 0.08, 0.18);
-    rim.scale.set(1.18, 0.5, 1);
-    capsuleGroup.add(rim);
-
-    // Tandakan base opacity bagi material capsule
-    [pinkMat, glassMat, chromeMat].forEach((mat) => {
-      mat.userData.baseOpacity = mat.opacity;
-    });
-
-    // Pemuatan model GLB utama Cinnamon secara selari
-    Promise.all([
-      loadModel("/3d-models/Cinnamon_panel-transformed.glb"),
-      loadModel("/3d-models/Cinnamon-grabber-v2.glb"),
-      loadModel("/3d-models/frame.glb"),
-      loadModel("/3d-models/bayview/fiat500_compressed.glb") // model mainan fiat500 sebagai pengganti procedural car
-    ]).then(([panel, grabber, frame, toyCar]) => {
-      loadedModels.push(panel, grabber, frame, toyCar);
-
-      // 1. Setup Panel
-      panel.position.set(0, -1.85, 0);
-      panel.scale.setScalar(1.0);
-      panel.traverse((child) => {
-        if ((child as THREE.Mesh).isMesh) {
-          child.castShadow = true;
-          child.receiveShadow = true;
-          const mesh = child as THREE.Mesh;
-          const mat = mesh.material as THREE.Material;
-          mat.userData.baseOpacity = mat.opacity;
-        }
-      });
-      deckGroup.add(panel);
-
-      // Cari joystick parts di panel
-      pookHandle = panel.getObjectByName("pook-handle") || null;
-      pookBall = panel.getObjectByName("pook-ball") || null;
-
-      // 2. Setup Frame
-      frame.position.set(0, -1.85, 0);
-      frame.scale.setScalar(1.0);
-      frame.traverse((child) => {
-        if ((child as THREE.Mesh).isMesh) {
-          child.castShadow = true;
-          child.receiveShadow = true;
-          const mesh = child as THREE.Mesh;
-          const mat = mesh.material as THREE.Material;
-          mat.userData.baseOpacity = mat.opacity;
-        }
-      });
-      deckGroup.add(frame);
-
-      // 3. Setup Grabber (claw)
-      grabber.position.set(0, 1.15, -0.45);
-      grabber.scale.setScalar(2.4);
-      grabber.traverse((child) => {
-        if ((child as THREE.Mesh).isMesh) {
-          child.castShadow = true;
-          child.receiveShadow = true;
-          const mesh = child as THREE.Mesh;
-          const mat = mesh.material as THREE.Material;
-          mat.userData.baseOpacity = mat.opacity;
-        }
-      });
-      clawGroup.add(grabber);
-
-      // 4. Setup Toy Car di dalam capsule
-      toyCar.position.set(0.02, -0.25, 0.25);
-      toyCar.rotation.set(-0.1, -0.22, -0.04);
-      toyCar.scale.setScalar(0.7);
-      toyCar.traverse((child) => {
-        if ((child as THREE.Mesh).isMesh) {
-          child.castShadow = true;
-          child.receiveShadow = true;
-          const mesh = child as THREE.Mesh;
-          const mat = mesh.material as THREE.Material;
-          mat.userData.baseOpacity = mat.opacity;
-        }
-      });
-      capsuleGroup.add(toyCar);
-
-      setIsLoaded(true);
-      window.dispatchEvent(new CustomEvent("cinnamon:canvas-ready"));
-    }).catch((err) => {
-      console.error("Failed to load Cinnamon models:", err);
-    });
-
-    let animationFrame = 0;
-    let width = 0;
-    let height = 0;
-    const clock = new THREE.Clock();
-
-    const resize = () => {
-      const nextWidth = canvas.clientWidth;
-      const nextHeight = canvas.clientHeight;
-      if (nextWidth === width && nextHeight === height) {
-        return;
-      }
-
-      width = nextWidth;
-      height = nextHeight;
-      camera.aspect = width / Math.max(1, height);
-      camera.updateProjectionMatrix();
-      renderer.setSize(width, height, false);
-    };
-
-    const render = () => {
-      animationFrame = requestAnimationFrame(render);
-      resize();
-
-      const time = clock.getElapsedTime();
-      const progress = progressRef.current;
-      const capsuleReveal = fadeIn(progress, 0.22, 0.54);
-      const worldReveal = fadeIn(progress, 0.52, 0.92);
-      const arcadeVisible = fadeOut(progress, 0.12, 0.42);
-      const tilt = tiltRef.current;
-      const pulse = Math.max(0, 1 - (performance.now() - playPulseRef.current) / 520);
-
-      // Camera animations
-      camera.position.x = lerp(0, 0.88, worldReveal);
-      camera.position.y = lerp(0.5, -0.2, worldReveal);
-      camera.position.z = lerp(30, 25.2, worldReveal);
-      camera.lookAt(0, lerp(-0.2, -0.64, worldReveal), 0);
-
-      // Deck animations
-      deckGroup.position.y = lerp(0, 3.7, fadeIn(progress, 0.1, 0.32));
-      deckGroup.position.z = lerp(0, -0.4, capsuleReveal);
-      deckGroup.rotation.x = -0.05 + tilt.y * 0.08;
-      deckGroup.rotation.y = tilt.x * -0.09;
-      deckGroup.rotation.z = Math.sin(time * 0.8) * 0.004;
-      deckGroup.scale.setScalar(lerp(1, 0.84, capsuleReveal));
-      deckGroup.traverse((object) => {
-        if ("material" in object) {
-          const material = object.material as THREE.Material | THREE.Material[];
-          const materials = Array.isArray(material) ? material : [material];
-          materials.forEach((item) => {
-            item.transparent = true;
-            const baseOpacity = typeof item.userData.baseOpacity === "number" ? item.userData.baseOpacity : 1;
-            item.opacity = baseOpacity * clamp(arcadeVisible, 0, 1);
-          });
-        }
-      });
-
-      // Claw animations
-      clawGroup.position.y = lerp(0, 2.6, fadeIn(progress, 0.08, 0.28)) + Math.sin(time * 1.2) * 0.025;
-      clawGroup.rotation.z = Math.sin(time * 1.1) * 0.025 + tilt.x * 0.02;
-      clawGroup.traverse((object) => {
-        if ("material" in object) {
-          const material = object.material as THREE.Material | THREE.Material[];
-          const materials = Array.isArray(material) ? material : [material];
-          materials.forEach((item) => {
-            item.transparent = true;
-            const baseOpacity = typeof item.userData.baseOpacity === "number" ? item.userData.baseOpacity : 1;
-            item.opacity = baseOpacity * clamp(arcadeVisible, 0, 1);
-          });
-        }
-      });
-
-      // Joystick animations (rotate nodes pook-handle & pook-ball in panel GLB)
-      if (pookHandle && pookBall) {
-        pookHandle.rotation.z = tilt.x * -0.18;
-        pookHandle.rotation.x = tilt.y * 0.12;
-
-        pookBall.rotation.z = tilt.x * -0.18;
-        pookBall.rotation.x = tilt.y * 0.12;
-
-        const stickScale = 1 + pulse * 0.05;
-        pookHandle.scale.setScalar(stickScale);
-        pookBall.scale.setScalar(stickScale);
-      }
-
-      // Capsule animations
-      capsuleGroup.visible = capsuleReveal > 0.01;
-      capsuleGroup.position.x = lerp(0, -0.16, worldReveal) + tilt.x * 0.09;
-      capsuleGroup.position.y = lerp(-2.1, -0.32, capsuleReveal) + Math.sin(time * 0.9) * 0.035 + pulse * 0.08;
-      capsuleGroup.position.z = lerp(0.3, 0.95, worldReveal);
-      capsuleGroup.rotation.x = lerp(-0.08, -0.18, worldReveal) + tilt.y * 0.04;
-      capsuleGroup.rotation.y = time * 0.12 + tilt.x * 0.08;
-      capsuleGroup.rotation.z = lerp(-0.12, 0.05, worldReveal);
-      capsuleGroup.scale.setScalar(lerp(0.58, 1.72, capsuleReveal) + pulse * 0.04);
-      capsuleGroup.traverse((object) => {
-        if ("material" in object) {
-          const material = object.material as THREE.Material | THREE.Material[];
-          const materials = Array.isArray(material) ? material : [material];
-          materials.forEach((item) => {
-            item.transparent = true;
-            const baseOpacity = typeof item.userData.baseOpacity === "number" ? item.userData.baseOpacity : 1;
-            item.opacity = baseOpacity * clamp(capsuleReveal * 1.35, 0, 1);
-          });
-        }
-      });
-
-      redGlow.intensity = lerp(18, 4, capsuleReveal) + pulse * 12;
-      blueGlow.intensity = lerp(8, 14, worldReveal);
-
-      renderer.render(scene, camera);
-    };
-
-    render();
-
-    return () => {
-      cancelAnimationFrame(animationFrame);
-      renderer.dispose();
-      floorGeometry.dispose();
-      floorMaterial.dispose();
-      loadedModels.forEach((model) => {
-        model.traverse((object) => {
-          if (!(object as THREE.Mesh).isMesh) return;
-          const mesh = object as THREE.Mesh;
-          mesh.geometry.dispose();
-          if (Array.isArray(mesh.material)) {
-            mesh.material.forEach((mat) => mat.dispose());
-          } else {
-            mesh.material.dispose();
-          }
-        });
-      });
-      pinkMat.dispose();
-      glassMat.dispose();
-      chromeMat.dispose();
-      dracoLoader.dispose();
-      ktx2Loader.dispose();
-    };
-  }, [playPulseRef, progressRef, tiltRef]);
-
-  return (
-    <canvas
-      ref={canvasRef}
-      className={styles.threeCanvas}
-      style={{
-        opacity: isLoaded ? 1 : 0,
-        transition: "opacity 1s ease-in-out",
-        pointerEvents: "none"
-      }}
-      data-engine="three.js webgl"
-      aria-hidden="true"
-    />
-  );
-}
+const GROUND_Y  = 100;
+const CW        = 260;
+const CH        = 380;
+// Clear colour to match hero background so WebGL canvas blends in
+const BG_HEX    = 0x000000;
+// Index of the character that stays last and pulls the curtain up
+const PULLER    = 2;
 
 export default function HeroSection() {
-  const sceneRef = useRef<HTMLDivElement>(null);
-  const joystickRef = useRef<HTMLButtonElement>(null);
-  const progressRef = useRef(0);
-  const tiltRef = useRef<Tilt>({ x: 0, y: 0 });
-  const playPulseRef = useRef(0);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [score, setScore] = useState(0);
-  const [tilt, setTilt] = useState<Tilt>({ x: 0, y: 0 });
+  const bgCanvasRef     = useRef<HTMLCanvasElement>(null);
+  const charCanvasRefs  = useRef<(HTMLCanvasElement | null)[]>([]);
+  const avatarRefs      = useRef<(HTMLDivElement | null)[]>([]);
+  const curtainInnerRef = useRef<HTMLDivElement>(null);
+  const animFrameRef    = useRef<number>(0);
 
-  const markPlay = (points: number) => {
-    playPulseRef.current = performance.now();
-    setIsPlaying(true);
-    setScore((value) => value + points);
-  };
+  const scrollProgressRef = useRef<number>(0);
+  const lastScrollRef     = useRef<number>(0);
+  const isRunningRef      = useRef<boolean>(false);
+  const frozenAtRef       = useRef<number>(0);
+  const facingRightRef    = useRef<boolean>(true);
+  const prevProgressRef   = useRef<number>(0);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const viewersRef        = useRef<any[]>([]);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const sv3dRef           = useRef<any>(null);
+  const liftProgRef       = useRef<number>(0);
+  const heroOverlayRef    = useRef<HTMLDivElement>(null);
+  const heroBtnRef        = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
-    tiltRef.current = tilt;
-  }, [tilt]);
+    // ── Particles background ─────────────────────────────────
+    const bgCanvas = bgCanvasRef.current;
+    if (!bgCanvas) return;
+    const bg    = bgCanvas as HTMLCanvasElement;
+    const bgCtx = bg.getContext("2d")!;
 
-  useEffect(() => {
-    const scene = sceneRef.current;
-    if (!scene) {
-      return;
+    function resizeBg() {
+      bg.width  = window.innerWidth;
+      bg.height = window.innerHeight;
     }
+    resizeBg();
+    window.addEventListener("resize", resizeBg);
 
-    let frame = 0;
-    const updateProgress = () => {
-      cancelAnimationFrame(frame);
-      frame = requestAnimationFrame(() => {
-        const rect = scene.getBoundingClientRect();
-        const distance = Math.max(1, rect.height - window.innerHeight);
-        const progress = clamp(-rect.top / distance, 0, 1);
-        progressRef.current = progress;
-        scene.style.setProperty("--hero-progress", progress.toFixed(4));
+    type P = { x: number; y: number; r: number; vx: number; vy: number; a: number };
+    const particles: P[] = Array.from({ length: 40 }, () => ({
+      x: Math.random() * bg.width,
+      y: Math.random() * bg.height,
+      r: 0.5 + Math.random() * 1.5,
+      vx: (Math.random() - 0.5) * 0.15,
+      vy: -0.08 - Math.random() * 0.12,
+      a: 0.08 + Math.random() * 0.15,
+    }));
+
+    // ── skinview3d 3D models ─────────────────────────────────
+    import("skinview3d").then((sv3d) => {
+      sv3dRef.current = sv3d;
+      PLAYERS.forEach((player, i) => {
+        const canvas = charCanvasRefs.current[i];
+        if (!canvas) return;
+
+        try {
+          const viewer = new sv3d.SkinViewer({
+            canvas,
+            width:  CW,
+            height: CH,
+          });
+
+          viewer.renderer.setClearColor(BG_HEX, 1);
+
+          // Slight 3/4 front view — offset Z toward character's front (-Z)
+          viewer.camera.position.set(45, 10, 6);
+          viewer.camera.lookAt(0, 10, 0);
+
+          const anim = new sv3d.RunningAnimation();
+          anim.paused = true;
+          anim.speed  = CHARS[i].runSpeed;
+          viewer.animation = anim;
+
+          // Slight toward camera: Math.PI - tilt (22.5°) so face shows while running right
+          viewer.playerObject.rotation.y = Math.PI - Math.PI / 8;
+          viewersRef.current[i] = viewer;
+
+          viewer.loadSkin(`https://mc-heads.net/skin/${player.uuid}`).catch(console.error);
+        } catch (e) {
+          console.error("skinview3d init error", e);
+        }
       });
-    };
+    }).catch(console.error);
 
-    updateProgress();
-    window.addEventListener("scroll", updateProgress, { passive: true });
-    window.addEventListener("resize", updateProgress);
+    // ── Main RAF loop (particles only) ───────────────────────
+    function loop() {
+      const now = Date.now();
+
+      // Stop running 200ms after last scroll
+      if (isRunningRef.current && now - lastScrollRef.current > 200) {
+        isRunningRef.current = false;
+        frozenAtRef.current  = now;
+        viewersRef.current.forEach((v, idx) => {
+          if (!v?.animation) return;
+          // Keep puller animating while actively pulling curtain
+          if (idx === PULLER && liftProgRef.current > 0.05) return;
+          v.animation.paused = true;
+        });
+      }
+
+      // Update facing direction on viewers
+      const facingRight = facingRightRef.current;
+      viewersRef.current.forEach((v, idx) => {
+        if (!v) return;
+        // Puller faces more directly toward viewer during pull
+        if (idx === PULLER && liftProgRef.current > 0.05) {
+          v.playerObject.rotation.y = Math.PI / 2;
+          return;
+        }
+        // slight toward camera on both directions (22.5° tilt)
+        v.playerObject.rotation.y = facingRight
+          ? Math.PI - Math.PI / 8   // running right, face slightly toward camera
+          : Math.PI / 8;            // running left, face slightly toward camera
+      });
+
+      bgCtx.clearRect(0, 0, bg.width, bg.height);
+      for (const p of particles) {
+        p.x += p.vx; p.y += p.vy;
+        if (p.y < -10) { p.y = bg.height + 10; p.x = Math.random() * bg.width; }
+        if (p.x < -10) p.x = bg.width + 10;
+        if (p.x > bg.width + 10) p.x = -10;
+        bgCtx.beginPath();
+        bgCtx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        bgCtx.fillStyle = `rgba(196,164,74,${p.a})`;
+        bgCtx.fill();
+      }
+
+      animFrameRef.current = requestAnimationFrame(loop);
+    }
+    loop();
+
+    // ── Scroll handler ────────────────────────────────────────
+    const hero = document.querySelector<HTMLElement>("[data-scroll-stage]");
+    function updateScroll() {
+      if (!hero) return;
+      const bounds   = hero.getBoundingClientRect();
+      const travel   = Math.max(1, bounds.height - window.innerHeight);
+      const progress = Math.min(Math.max(-bounds.top / travel, 0), 1);
+
+      // Detect direction
+      const prev = prevProgressRef.current;
+      if (progress !== prev) {
+        facingRightRef.current  = progress > prev;
+        prevProgressRef.current = progress;
+      }
+
+      scrollProgressRef.current = progress;
+      lastScrollRef.current     = Date.now();
+
+      // Start running
+      if (!isRunningRef.current) {
+        isRunningRef.current = true;
+        viewersRef.current.forEach((v) => {
+          if (v?.animation) v.animation.paused = false;
+        });
+      }
+
+      // Phase timings
+      const reachStart  = 0.70;
+      const liftStart   = 0.85;
+
+      // ease-out on lift
+      const liftRaw   = Math.max(0, (progress - liftStart) / (1 - liftStart));
+      const liftProg  = 1 - Math.pow(1 - Math.min(1, liftRaw), 2);
+      liftProgRef.current = liftProg;
+
+      avatarRefs.current.forEach((el, i) => {
+        if (!el) return;
+        const c    = CHARS[i];
+        const runX = (c.entry + progress * 2.8) * window.innerWidth * c.scroll;
+
+        if (i === PULLER && progress >= reachStart) {
+          // Position at curtain top edge — rises with curtain (the "pull" effect)
+          const curtainTopPx = liftProg > 0
+            ? window.innerHeight * (1 - liftProg)
+            : window.innerHeight * (GROUND_Y / 100);
+          const centerX = window.innerWidth / 2 - CW / 2;
+
+          el.style.top        = `${curtainTopPx}px`;
+          el.style.left       = "0px";
+          el.style.opacity    = "1";
+          el.style.transition = "opacity 0.3s ease";
+          el.style.transform  = `translateX(${centerX}px) translateY(-85%)`;
+
+          // Switch to pulling pose when curtain is rising
+          if (liftProg > 0.05) {
+            const sv3d = sv3dRef.current;
+            const v = viewersRef.current[PULLER];
+            if (sv3d && v && sv3d.FunctionAnimation && !(v.animation instanceof sv3d.FunctionAnimation)) {
+              const pullAnim = new sv3d.FunctionAnimation((player: any, ctx: any) => {
+                const osc = Math.sin(ctx.elapsed * 2.5) * 0.5;
+                // Reset body/head/legs to neutral so they stay visible
+                player.skin.head.rotation.set(0, 0, 0);
+                player.skin.body.rotation.set(0, 0, 0);
+                player.skin.rightLeg.rotation.set(0.15 - osc * 0.2, 0, 0);
+                player.skin.leftLeg.rotation.set(-0.1 + osc * 0.2, 0, 0);
+                // Arms: alternating pull on X axis (same axis running animation uses)
+                player.skin.rightArm.rotation.set(0.3 + osc, 0,  0.15);
+                player.skin.leftArm.rotation.set( 0.3 - osc, 0, -0.15);
+              });
+              v.animation = pullAnim;
+              v.animation.paused = false;
+            }
+          }
+          return;
+        }
+
+        // Reset puller when scrolling back up
+        if (i === PULLER && progress < reachStart) {
+          el.style.top  = `${GROUND_Y}%`;
+          el.style.left = "50%";
+          // Restore running animation
+          const sv3d = sv3dRef.current;
+          const v = viewersRef.current[PULLER];
+          if (sv3d && v && !(v.animation instanceof sv3d.RunningAnimation)) {
+            const runAnim = new sv3d.RunningAnimation();
+            runAnim.speed = CHARS[PULLER].runSpeed;
+            runAnim.paused = !isRunningRef.current;
+            v.animation = runAnim;
+          }
+        }
+
+        const hide = progress <= 0.02 || progress >= 0.97 || runX > window.innerWidth * 0.75;
+        el.style.transition = "opacity 0.3s ease";
+        el.style.opacity    = hide ? "0" : "1";
+        el.style.transform  = `translate(calc(-50% + ${runX}px), -85%)`;
+      });
+
+      // Fade hero overlay text as user starts scrolling
+      const overlay = heroOverlayRef.current;
+      if (overlay) {
+        overlay.style.opacity = String(Math.max(0, 1 - progress * 6));
+        overlay.style.pointerEvents = progress > 0.1 ? "none" : "auto";
+      }
+
+      // Curtain rises after character grabs (inside hero, above dark bg, below avatars)
+      const curtain = curtainInnerRef.current;
+      if (curtain) {
+        curtain.style.transform = `translateY(${(1 - liftProg) * 100}%)`;
+        curtain.style.boxShadow = liftProg > 0.05
+          ? `0 -10px 50px rgba(200,40,40,${0.7 * liftProg})`
+          : "none";
+      }
+    }
+    updateScroll();
+    window.addEventListener("scroll", updateScroll, { passive: true });
+    window.addEventListener("resize", updateScroll);
+
     return () => {
-      cancelAnimationFrame(frame);
-      window.removeEventListener("scroll", updateProgress);
-      window.removeEventListener("resize", updateProgress);
+      window.removeEventListener("resize", resizeBg);
+      window.removeEventListener("scroll", updateScroll);
+      window.removeEventListener("resize", updateScroll);
+      cancelAnimationFrame(animFrameRef.current);
+      viewersRef.current.forEach((v) => v?.dispose());
     };
   }, []);
 
+  // Magnetic button effect — button follows cursor like Cinnamon
   useEffect(() => {
-    const joystick = joystickRef.current;
-    if (!joystick) {
-      return;
+    const btn = heroBtnRef.current;
+    if (!btn) return;
+    const inner = btn.querySelector<HTMLElement>("[data-magnetic-inner-target]");
+
+    function onMove(e: MouseEvent) {
+      const r  = btn!.getBoundingClientRect();
+      const cx = r.left + r.width  / 2;
+      const cy = r.top  + r.height / 2;
+      const dx = e.clientX - cx;
+      const dy = e.clientY - cy;
+      const dist   = Math.sqrt(dx * dx + dy * dy);
+      const radius = Math.max(r.width, r.height) * 0.9;
+      if (dist < radius) {
+        const p  = 1 - dist / radius;
+        const mx = dx * p * 0.45;
+        const my = dy * p * 0.45;
+        btn!.style.transform  = `translate(${mx}px, ${my}px)`;
+        if (inner) inner.style.transform = `translate(${mx * 0.5}px, ${my * 0.5}px)`;
+      }
     }
 
-    let pointerId: number | null = null;
+    function onLeave() {
+      btn!.style.transform  = "";
+      if (inner) inner.style.transform = "";
+    }
 
-    const moveJoystick = (clientX: number, clientY: number) => {
-      const rect = joystick.getBoundingClientRect();
-      const x = clamp((clientX - rect.left - rect.width / 2) / (rect.width / 2), -1, 1);
-      const y = clamp((clientY - rect.top - rect.height / 2) / (rect.height / 2), -1, 1);
-      setTilt({ x, y });
-    };
-
-    const pointerDown = (event: PointerEvent) => {
-      pointerId = event.pointerId;
-      joystick.setPointerCapture(pointerId);
-      moveJoystick(event.clientX, event.clientY);
-      markPlay(1);
-    };
-
-    const pointerMove = (event: PointerEvent) => {
-      if (pointerId === event.pointerId) {
-        moveJoystick(event.clientX, event.clientY);
-      }
-    };
-
-    const pointerUp = () => {
-      pointerId = null;
-      setTilt({ x: 0, y: 0 });
-    };
-
-    joystick.addEventListener("pointerdown", pointerDown);
-    joystick.addEventListener("pointermove", pointerMove);
-    joystick.addEventListener("pointerup", pointerUp);
-    joystick.addEventListener("pointercancel", pointerUp);
-
+    btn.addEventListener("mousemove", onMove);
+    btn.addEventListener("mouseleave", onLeave);
     return () => {
-      joystick.removeEventListener("pointerdown", pointerDown);
-      joystick.removeEventListener("pointermove", pointerMove);
-      joystick.removeEventListener("pointerup", pointerUp);
-      joystick.removeEventListener("pointercancel", pointerUp);
+      btn.removeEventListener("mousemove", onMove);
+      btn.removeEventListener("mouseleave", onLeave);
     };
-  }, []);
-
-  useEffect(() => {
-    const buttons = Array.from(document.querySelectorAll<HTMLElement>("[data-magnetic-strength]"));
-
-    const cleanups = buttons.map((button) => {
-      const inner = button.querySelector<HTMLElement>("[data-magnetic-inner-target]");
-      const strength = Number(button.dataset.magneticStrength || 50);
-      const innerStrength = Number(button.dataset.magneticStrengthInner || 25);
-
-      const move = (event: PointerEvent) => {
-        const rect = button.getBoundingClientRect();
-        const x = event.clientX - rect.left - rect.width / 2;
-        const y = event.clientY - rect.top - rect.height / 2;
-        button.style.transform = `translate(${x / strength}px, ${y / strength}px)`;
-        if (inner) {
-          inner.style.transform = `translate(${x / innerStrength}px, ${y / innerStrength}px)`;
-        }
-      };
-
-      const leave = () => {
-        button.style.transform = "";
-        if (inner) {
-          inner.style.transform = "";
-        }
-      };
-
-      button.addEventListener("pointermove", move);
-      button.addEventListener("pointerleave", leave);
-      return () => {
-        button.removeEventListener("pointermove", move);
-        button.removeEventListener("pointerleave", leave);
-      };
-    });
-
-    return () => cleanups.forEach((cleanup) => cleanup());
   }, []);
 
   return (
-    <div
-      id="top"
-      className={isPlaying ? `${styles.scene} ${styles.isPlaying}` : styles.scene}
-      ref={sceneRef}
-      style={
-        {
-          "--tilt-x": tilt.x.toFixed(3),
-          "--tilt-y": tilt.y.toFixed(3),
-        } as CSSProperties
-      }
-    >
-      <div className={styles.gameLayer}>
-        <div className={styles.screenFrame} aria-hidden="true" />
-        <ThreeHeroScene progressRef={progressRef} tiltRef={tiltRef} playPulseRef={playPulseRef} />
-        <div className={styles.machineReadout}>
-          <span>{isPlaying ? "PLAY MODE" : "READY"}</span>
-          <strong>{String(score).padStart(2, "0")}</strong>
+    <>
+    <div id="top" className={styles.scrollStage} data-scroll-stage="">
+      <section className={styles.hero}>
+        <canvas ref={bgCanvasRef} className={styles.canvas} />
+        <div ref={curtainInnerRef} className={styles.curtainInner} />
+        <div className={styles.avatarLayer}>
+          {PLAYERS.map((player, i) => (
+            <div
+              key={player.uuid}
+              ref={(el) => { avatarRefs.current[i] = el; }}
+              className={styles.avatarCard}
+              style={{
+                left: "50%",
+                top: `${GROUND_Y}%`,
+                transform: "translate(calc(-50% - 200vw), -85%)",
+              }}
+            >
+              <canvas
+                ref={(el) => { charCanvasRefs.current[i] = el; }}
+                className={styles.avatarCanvas}
+                width={CW}
+                height={CH}
+              />
+            </div>
+          ))}
         </div>
-        <div className={styles.heroContent}>
-          <AnimatedHeading
-            className={styles.heroTitle}
-            label="BURHANDEV. Experience the next big web"
-            lines={heroLines}
-          />
-          <div className={styles.heroCta}>
-            <MagneticButton onClick={() => markPlay(1)}>Click to play</MagneticButton>
+
+        {/* Hero title overlay — fades on scroll */}
+        <div ref={heroOverlayRef} className={styles.heroOverlay}>
+          <div className={styles.heroCenterContent}>
+            <h1 className={styles.heroTitle} aria-label="BURHANDEV. Web yang berani, rasa laju." style={{ opacity: 1 }}>
+              {(() => {
+                let idx = 0;
+                return [
+                  ["BURHANDEV."],
+                  ["Web", "yang", "berani,"],
+                  ["rasa", "laju."],
+                ].map((words, li) => (
+                  <div key={li} aria-hidden="true" style={{ position: "relative", display: "block", textAlign: "center" }}>
+                    {words.map((word, wi) => (
+                      <>
+                        {wi > 0 && " "}
+                        <div key={wi} aria-hidden="true" style={{ position: "relative", display: "inline-block" }}>
+                          {word.split("").map((ch, ci) => {
+                            const delay = `${idx++ * 0.038 + 0.15}s`;
+                            return (
+                              <div key={ci} aria-hidden="true" className={styles.heroLetter} style={{ animationDelay: delay }}>
+                                {ch}
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </>
+                    ))}
+                  </div>
+                ));
+              })()}
+            </h1>
+
+            <div className={styles.heroCta}>
+              <div className={styles.heroBtnWrap}>
+                <button ref={heroBtnRef} className={styles.heroBtn} onClick={() => document.getElementById("services")?.scrollIntoView({ behavior: "smooth" })}>
+                  <div className={styles.heroBtnBg} />
+                  <div className={styles.heroBtnInner} data-magnetic-inner-target="">
+                    <div className={styles.heroBtnIconBox}>
+                      <div className={styles.heroBtnIconBorder} />
+                      <div className={styles.heroBtnIconSlider}>
+                        <svg className={styles.heroBtnSvg} xmlns="http://www.w3.org/2000/svg" width="12" height="16" viewBox="0 0 12 16" fill="none">
+                          <path d="M11.4931 8.17516L0.769825 15.0502C0.537362 15.1992 0.228082 15.1316 0.0790342 14.8992C0.025763 14.816-0.00172645 14.719 3.87638e-05 14.6203L0.252776 0.491131C0.257715 0.215025 0.485543-0.00478539 0.761639 0.000153306C0.860333 0.00191871 0.956305 0.0328602 1.03744 0.0890703L11.508 7.34319C11.735 7.50048 11.7915 7.81204 11.6342 8.03896C11.5966 8.0932 11.5487 8.13955 11.4931 8.17516Z" fill="white"/>
+                        </svg>
+                        <svg className={`${styles.heroBtnSvg} ${styles.heroBtnSvgClone}`} xmlns="http://www.w3.org/2000/svg" width="12" height="16" viewBox="0 0 12 16" fill="none">
+                          <path d="M11.4931 8.17516L0.769825 15.0502C0.537362 15.1992 0.228082 15.1316 0.0790342 14.8992C0.025763 14.816-0.00172645 14.719 3.87638e-05 14.6203L0.252776 0.491131C0.257715 0.215025 0.485543-0.00478539 0.761639 0.000153306C0.860333 0.00191871 0.956305 0.0328602 1.03744 0.0890703L11.508 7.34319C11.735 7.50048 11.7915 7.81204 11.6342 8.03896C11.5966 8.0932 11.5487 8.13955 11.4931 8.17516Z" fill="white"/>
+                        </svg>
+                      </div>
+                    </div>
+                    <span className={styles.heroBtnTextWrap}>
+                      <span className={styles.heroBtnTextPrimary}>Mulakan Projek</span>
+                      <span aria-hidden="true" className={styles.heroBtnTextClone}>Mulakan Projek</span>
+                    </span>
+                  </div>
+                </button>
+              </div>
+            </div>
           </div>
-        </div>
-        <svg className={styles.worldCurve} viewBox="0 0 1428 748" fill="none" aria-hidden="true">
-          <path
-            d="M27 804c86-34 171-77 224-156 26-39 43-88 35-135-9-57-63-100-118-74-34 16-50 55-42 91 10 41 42 71 81 88 45 21 95 24 145 16 147-25 258-132 370-222 47-38 96-74 148-104 116-69 250-114 386-105 157 10 318 98 381 248 56 131 29 302-88 390-137 104-342 49-434-91-98-145-75-349 28-486 88-120 227-195 372-223 217-41 453 8 651 102 51 25 99 54 143 89 43 33 81 71 119 110"
-            pathLength="1"
-          />
-        </svg>
-      </div>
-
-      <div className={styles.playLayer}>
-        <button className={styles.joystickHitbox} type="button" aria-label="Move arcade joystick" ref={joystickRef} />
-        <button className={styles.dropHitbox} type="button" aria-label="Drop capsule" onClick={() => markPlay(5)} />
-        <button className={styles.leftHitbox} type="button" aria-label="Boom button" onClick={() => markPlay(2)} />
-        <button className={styles.rightHitbox} type="button" aria-label="Fly button" onClick={() => markPlay(3)} />
-      </div>
-
-      <section id="hero" className={styles.hero} data-hero-section="true" aria-label="BURHANDEV hero" />
-
-      <section id="open-capsule" className={styles.openCapsule} aria-label="Enter the World of BURHANDEV">
-        <div className={styles.capsuleContent}>
-          <AnimatedHeading
-            className={styles.capsuleTitle}
-            label="Enter the World of BURHANDEV"
-            lines={worldLines}
-            level="h2"
-          />
-          <p>We do not just build pages, we create web experiences.</p>
-          <MagneticButton href="#contact">Play Game now!</MagneticButton>
         </div>
       </section>
     </div>
+    </>
   );
 }
