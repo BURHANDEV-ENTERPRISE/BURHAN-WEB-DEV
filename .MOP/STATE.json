@@ -2247,6 +2247,57 @@
       "agentId": "agent-loli",
       "kind": "memory",
       "summary": "rework hero as custom Three.js interactive scroll scene"
+    },
+    {
+      "at": "2026-06-14T05:03:30.296Z",
+      "actor": "BURHAN-MOP",
+      "kind": "merge-approved",
+      "summary": "origin/dev/moon approved and merged to main."
+    },
+    {
+      "at": "2026-06-14T05:06:15.034Z",
+      "actor": "moon",
+      "agent": "KID",
+      "agentRole": "core",
+      "agentId": "agent-kid",
+      "kind": "agent-route",
+      "summary": "Routed task to KID: No strong specialist match; using Core Agent."
+    },
+    {
+      "at": "2026-06-14T05:07:07.981Z",
+      "actor": "moon",
+      "agent": "Loli",
+      "agentRole": "frontend",
+      "agentId": "agent-loli",
+      "kind": "agent-route",
+      "summary": "Routed task to Loli: Matched keywords for Frontend Developer: ui."
+    },
+    {
+      "at": "2026-06-14T05:07:13.298Z",
+      "actor": "moon",
+      "agent": "Loli",
+      "agentRole": "frontend",
+      "agentId": "agent-loli",
+      "kind": "memory",
+      "summary": "Confirmed successful production build validation of Next.js app"
+    },
+    {
+      "at": "2026-06-14T05:07:15.775Z",
+      "actor": "moon",
+      "agent": "Loli",
+      "agentRole": "frontend",
+      "agentId": "agent-loli",
+      "kind": "memory",
+      "summary": "Save memory: Confirmed successful production build"
+    },
+    {
+      "at": "2026-06-14T05:08:04.909Z",
+      "actor": "moon",
+      "agent": "Loli",
+      "agentRole": "frontend",
+      "agentId": "agent-loli",
+      "kind": "memory",
+      "summary": "Save memory: Confirmed successful production build"
     }
   ]
 }

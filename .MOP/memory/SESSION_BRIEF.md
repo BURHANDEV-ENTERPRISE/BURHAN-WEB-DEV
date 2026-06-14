@@ -1,6 +1,6 @@
 # MOP Session Brief
 
-Updated: 2026-06-14T05:03:21.703Z
+Updated: 2026-06-14T05:08:04.917Z
 Actor: moon
 Active agent: Loli (frontend)
 Current month: 2026-06
@@ -15,9 +15,6 @@ Current month: 2026-06
 
 ## Recent Memory
 
-- 2026-06-13T20:04:56.948Z - Halkin (tester): activate Tester agent Halkin for Cinnamon hero correction
-- 2026-06-13T20:05:16.409Z - Halkin (tester): activate Tester agent Halkin for Cinnamon hero correction
-- 2026-06-13T20:05:49.218Z - nAMI (github): save routing memory before Cinnamon hero correction redo
 - 2026-06-13T20:06:23.413Z - nAMI (github): save wide route memory before focused frontend correction
 - 2026-06-13T20:06:54.337Z - nAMI (github): save focused route block memory before naming required agents
 - 2026-06-13T20:08:49.497Z - ramus (reviewer): activate remaining agents for Cinnamon hero correction
@@ -35,3 +32,6 @@ Current month: 2026-06
 - 2026-06-14T04:51:20.513Z - Numero (browser): rebuild hero as interactive Cinnamon-style scroll scene
 - 2026-06-14T05:03:02.712Z - Loli (frontend): Reworked hero into a Three.js Cinnamon-inspired interactive scroll scene with clean navbar and asset verification
 - 2026-06-14T05:03:21.696Z - Loli (frontend): rework hero as custom Three.js interactive scroll scene
+- 2026-06-14T05:07:13.298Z - Loli (frontend): Confirmed successful production build validation of Next.js app
+- 2026-06-14T05:07:15.776Z - Loli (frontend): Save memory: Confirmed successful production build
+- 2026-06-14T05:08:04.909Z - Loli (frontend): Save memory: Confirmed successful production build
