@@ -1,8 +1,8 @@
 # MOP Session Brief
 
-Updated: 2026-06-14T05:38:19.601Z
-Actor: moon
-Active agent: Numero (browser)
+Updated: 2026-06-20T06:53:49.198Z
+Actor: amad
+Active agent: anis (core)
 Current month: 2026-06
 
 ## Required Session Flow
@@ -10,12 +10,11 @@ Current month: 2026-06
 1. Read `.MOP/STATE.json` and follow `.MOP/PROTOCOL.md`.
 2. Restore memory with `node .MOP/scripts/mop-core.mjs memory brief --actor <codename>`.
 3. Run `agent route` for the user task before answering.
-4. Start every authenticated answer with: `agent: Numero (browser) to moon`
+4. Start every authenticated answer with: `agent: anis (core) to amad`
 5. Save a one-line memory after meaningful work.
 
 ## Recent Memory
 
-- 2026-06-14T04:51:20.513Z - Numero (browser): rebuild hero as interactive Cinnamon-style scroll scene
 - 2026-06-14T05:03:02.712Z - Loli (frontend): Reworked hero into a Three.js Cinnamon-inspired interactive scroll scene with clean navbar and asset verification
 - 2026-06-14T05:03:21.696Z - Loli (frontend): rework hero as custom Three.js interactive scroll scene
 - 2026-06-14T05:07:13.298Z - Loli (frontend): Confirmed successful production build validation of Next.js app
@@ -35,3 +34,4 @@ Current month: 2026-06
 - 2026-06-14T05:33:51.906Z - Halkin (tester): Resolved client-side JSON.parse SyntaxError by downloading the valid 3D toy models using corrected URL paths
 - 2026-06-14T05:38:05.033Z - Numero (browser): Updated camera position and fov to 17.5 and integrated premium area lighting setup to match original Cinnamon aesthetic
 - 2026-06-14T05:38:19.593Z - Numero (browser): Updated camera position and fov to 17.5 and integrated premium area lighting setup to match original Cinnamon aesthetic
+- 2026-06-20T06:53:49.189Z - anis (core): increase running body lean to 0.80 and knee bend to 0.18 to match reference frames

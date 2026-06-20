@@ -120,10 +120,10 @@ export default function HeroSection() {
             const arm  = Math.sin(t + Math.PI) * 0.95;
             const bob  = Math.abs(Math.sin(t * 2)) * 0.05;
             // Back leg bends at knee — simulate by adding Z tilt on the trailing leg
-            const rLegZ = leg > 0 ?  0.05 : -0.12;
-            const lLegZ = leg < 0 ?  0.05 : -0.12;
-            player.skin.body.rotation.set(0.52 + bob, 0, 0);
-            player.skin.head.rotation.set( 0.12 + bob * 0.5, 0, 0);
+            const rLegZ = leg > 0 ?  0.05 : -0.18;
+            const lLegZ = leg < 0 ?  0.05 : -0.18;
+            player.skin.body.rotation.set(0.80 + bob, 0, 0);
+            player.skin.head.rotation.set( 0.20 + bob * 0.5, 0, 0);
             player.skin.rightLeg.rotation.set( leg, 0, rLegZ);
             player.skin.leftLeg.rotation.set( -leg, 0, lLegZ);
             player.skin.rightArm.rotation.set( arm, 0,  0.15);

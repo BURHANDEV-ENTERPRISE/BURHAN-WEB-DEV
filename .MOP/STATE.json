@@ -2556,6 +2556,15 @@
       "actor": "BURHAN-MOP",
       "kind": "merge-approved",
       "summary": "origin/dev/moon approved and merged to main."
+    },
+    {
+      "at": "2026-06-20T06:53:49.189Z",
+      "actor": "amad",
+      "agent": "anis",
+      "agentRole": "core",
+      "agentId": "agent-anis",
+      "kind": "memory",
+      "summary": "increase running body lean to 0.80 and knee bend to 0.18 to match reference frames"
     }
   ]
 }
