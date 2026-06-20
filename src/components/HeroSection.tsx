@@ -23,10 +23,11 @@ export default function HeroSection() {
 
       viewer.renderer.setClearColor(CREAM, 1);
 
-      // Zoom in close — character fills most of the canvas
-      viewer.camera.position.set(0, 16, 32);
-      viewer.camera.lookAt(0, 16, 0);
-      viewer.fov = 50;
+      // Center at y≈10 (character body center), close enough to fill canvas
+      viewer.camera.position.set(0, 10, 28);
+      viewer.camera.lookAt(0, 10, 0);
+      viewer.camera.fov = 60;
+      viewer.camera.updateProjectionMatrix();
 
       // Slight Y rotation so the face is visible (Minecraft character faces -Z)
       viewer.playerObject.rotation.y = Math.PI / 14;
