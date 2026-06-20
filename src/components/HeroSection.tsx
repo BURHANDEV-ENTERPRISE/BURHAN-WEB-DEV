@@ -1,85 +1,215 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import styles from "./HeroSection.module.css";
+import BlockyChar, { type Pose } from "./BlockyChar";
 
-const PLAYER_UUID = "d5a391fb-c1cd-4385-868b-5e8a28aa1ccf";
-const CW = 400;
-const CH = 600;
-// Must match --cream: #fff6dc from styles.css so canvas blends seamlessly
-const CREAM = 0xfff6dc;
+const FACE_URL = `https://crafatar.com/avatars/d5a391fb-c1cd-4385-868b-5e8a28aa1ccf?size=64&overlay=true`;
+
+type Stage = "intro" | "spawning" | "wave" | "calling" | "running" | "collision" | "pullup";
+
+const BOOT = [
+  "> BURHANDEV OS v2.6 ...",
+  "> Initializing render engine...",
+  "> Loading assets [████████] 100%",
+  "> All systems ready. Welcome.",
+];
+
+interface Star { x: number; y: number; size: number; delay: number }
+
+function genStars(): Star[] {
+  return Array.from({ length: 70 }, (_, i) => {
+    const seed = (i * 9301 + 49297) % 233280;
+    const r = () => { const s = (seed * (i + 1) * 1103515245 + 12345) & 0x7fffffff; return (s % 10000) / 10000; };
+    return { x: (i * 137.508) % 100, y: (i * 97.6) % 70, size: i % 5 === 0 ? 3 : 2, delay: (i * 0.23) % 4 };
+  });
+}
+
+const STARS = genStars();
+
+const FRIENDS = [
+  { color: "#c0392b", leg: "#7b241c", side: "left"  as const, idx: 0, delay: "0s" },
+  { color: "#2980b9", leg: "#1a5276", side: "right" as const, idx: 1, delay: "0.18s" },
+  { color: "#8e44ad", leg: "#6c3483", side: "right" as const, idx: 2, delay: "0.36s" },
+];
 
 export default function HeroSection() {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const viewerRef = useRef<any>(null);
+  const [stage, setStage]             = useState<Stage>("intro");
+  const [bootLine, setBootLine]       = useState(0);
+  const [heroBubble, setHeroBubble]   = useState<string | null>(null);
+  const [fBubble, setFBubble]         = useState<(string | null)[]>([null, null, null]);
+  const [friendsVis, setFriendsVis]   = useState(false);
+  const [exploding, setExploding]     = useState(false);
+  const scrollBound = useRef(false);
 
+  // Boot text ticker
   useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
+    if (stage !== "intro") return;
+    const id = setInterval(() => setBootLine(l => Math.min(l + 1, BOOT.length - 1)), 700);
+    return () => clearInterval(id);
+  }, [stage]);
 
-    import("skinview3d").then((sv3d) => {
-      // Use skinview3d's built-in fov + zoom — don't override camera manually
-      const viewer = new sv3d.SkinViewer({
-        canvas,
-        width: CW,
-        height: CH,
-        fov: 70,
-        zoom: 1.2,
-      });
+  const handlePlay = useCallback(() => {
+    setExploding(true);
+    setTimeout(() => {
+      setStage("spawning");
+      setExploding(false);
+    }, 600);
 
-      viewer.renderer.setClearColor(CREAM, 1);
+    // Hero lands
+    setTimeout(() => {
+      setStage("wave");
+      setHeroBubble("Hi! Selamat datang ke BurhanDev! 👋");
+    }, 1600);
 
-      // Slight Y rotation so the face is visible (Minecraft character faces -Z)
-      viewer.playerObject.rotation.y = Math.PI / 14;
+    // Attach scroll trigger
+    setTimeout(() => {
+      if (scrollBound.current) return;
+      scrollBound.current = true;
 
-      // Waving animation via FunctionAnimation
-      const wave = new sv3d.FunctionAnimation((player: any, ctx: any) => {
-        const t = ctx.elapsed;
-        // Wave right arm up-and-down with outward angle
-        player.skin.rightArm.rotation.x = -(Math.PI / 3.5) + Math.sin(t * 3.5) * 0.45;
-        player.skin.rightArm.rotation.z =  (Math.PI / 5)   + Math.sin(t * 3.5) * 0.18;
-        // Subtle body sway
-        player.skin.body.rotation.z = Math.sin(t * 1.8) * 0.022;
-        // Subtle head turn
-        player.skin.head.rotation.y = Math.sin(t * 1.3) * 0.09;
-      });
-      viewer.animation = wave;
+      const onScroll = () => {
+        if (window.scrollY < 50) return;
+        window.removeEventListener("scroll", onScroll);
 
-      // crafatar.com has CORS headers — works on deployed sites
-      viewer.loadSkin(`https://crafatar.com/skins/${PLAYER_UUID}`).catch(console.error);
-      viewerRef.current = viewer;
-    }).catch(console.error);
+        setStage("calling");
+        setHeroBubble("Jom korang! Lari cepat! 📣");
+        setTimeout(() => setFriendsVis(true), 400);
 
-    return () => {
-      viewerRef.current?.dispose();
-    };
+        setTimeout(() => setStage("running"), 1000);
+
+        // Collision
+        setTimeout(() => {
+          setStage("collision");
+          setHeroBubble("Ouch! 💥");
+          setFBubble(["Ouch! 💢", "Aduh! ⭐", "Aiya! 💫"]);
+        }, 3600);
+
+        // Pullup
+        setTimeout(() => {
+          setStage("pullup");
+          setHeroBubble(null);
+          setFBubble([null, "Hnnng... 💪", null]);
+        }, 6800);
+      };
+      window.addEventListener("scroll", onScroll);
+    }, 2600);
   }, []);
 
+  const heroPose: Pose = stage === "wave" ? "wave"
+    : stage === "calling"   ? "call"
+    : (stage === "collision" || stage === "pullup") ? "fall"
+    : "idle";
+
+  const friendPose = (idx: number): Pose => {
+    if (!friendsVis) return "idle";
+    if (stage === "running") return "run";
+    if (stage === "collision") return "fall";
+    if (stage === "pullup") return idx === 1 ? "pull" : "fall";
+    return "idle";
+  };
+
+  // ── STAGE 1: CRT intro ──────────────────────────────
+  if (stage === "intro") {
+    return (
+      <section className={`${styles.introScreen} ${exploding ? styles.exploding : ""}`}>
+        <div className={styles.crtWrap}>
+          <div className={styles.monitor}>
+            <div className={styles.monitorFrame}>
+              <div className={styles.screen}>
+                <div className={styles.scanlines} aria-hidden="true" />
+                <div className={styles.bootText}>
+                  {BOOT.slice(0, bootLine + 1).map((line, i) => (
+                    <div key={i} className={styles.bootLine}>
+                      {line}
+                      {i === bootLine && bootLine < BOOT.length - 1 && (
+                        <span className={styles.cursor}>█</span>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+            <div className={styles.monitorNeck} />
+            <div className={styles.monitorBase} />
+          </div>
+        </div>
+        <button className={styles.playBtn} onClick={handlePlay} aria-label="Enter BurhanDev">
+          ▶&nbsp;PLAY
+        </button>
+        <p className={styles.playHint}>click to enter</p>
+      </section>
+    );
+  }
+
+  // ── STAGES 2-6: scene ───────────────────────────────
   return (
-    <section className={styles.hero}>
-      {/* Ghost "WE BUILD BOLD" headline behind the character */}
+    <section className={`${styles.heroScene} ${stage === "collision" ? styles.shake : ""}`}>
+      {/* Stars */}
+      <div className={styles.stars} aria-hidden="true">
+        {STARS.map((s, i) => (
+          <div key={i} className={styles.star} style={{
+            left: `${s.x}%`, top: `${s.y}%`,
+            width: s.size, height: s.size,
+            animationDelay: `${s.delay}s`,
+          }} />
+        ))}
+      </div>
+
+      {/* Ghost headline */}
       <div className={styles.ghostText} aria-hidden="true">
         <span>WE BUILD</span>
         <span>BOLD</span>
       </div>
 
-      {/* Character + speech bubble */}
-      <div className={styles.stage}>
-        <div className={styles.bubbleWrap}>
-          <div className={styles.bubble}>
-            <p>HI!!&nbsp; Welcome to our <strong>BURHANDEV</strong> site.</p>
+      {/* Minecraft Press Start 2P font link */}
+      <link
+        href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+        rel="stylesheet"
+      />
+
+      {/* Scene */}
+      <div className={styles.scene}>
+        {/* Left friends */}
+        {friendsVis && FRIENDS.filter(f => f.side === "left").map(f => (
+          <div key={f.idx}
+            className={`${styles.friendWrap} ${styles.friendLeft}
+              ${stage === "running" ? styles.runLeft : ""}
+              ${stage === "collision" || stage === "pullup" ? styles.collided : ""}`}
+            style={{ animationDelay: f.delay }}>
+            {fBubble[f.idx] && <div className={styles.miniBubble}>{fBubble[f.idx]}</div>}
+            <BlockyChar color={f.color} legColor={f.leg} pose={friendPose(f.idx)} flip />
           </div>
+        ))}
+
+        {/* Hero */}
+        <div className={`${styles.heroWrap} ${stage === "spawning" ? styles.heroSpawn : ""}`}>
+          {heroBubble && (
+            <div className={styles.bubble} key={heroBubble}>
+              <p>{heroBubble}</p>
+            </div>
+          )}
+          {stage === "spawning" && <div className={styles.dustCloud} aria-hidden="true" />}
+          <BlockyChar color="#5c8a3c" legColor="#3d5e28" faceUrl={FACE_URL}
+            pose={heroPose} scale={1.45} />
         </div>
-        <canvas
-          ref={canvasRef}
-          className={styles.characterCanvas}
-          width={CW}
-          height={CH}
-        />
+
+        {/* Right friends */}
+        {friendsVis && FRIENDS.filter(f => f.side === "right").map(f => (
+          <div key={f.idx}
+            className={`${styles.friendWrap} ${styles.friendRight}
+              ${stage === "running" ? styles.runRight : ""}
+              ${stage === "collision" || stage === "pullup" ? styles.collided : ""}`}
+            style={{ animationDelay: f.delay }}>
+            {fBubble[f.idx] && <div className={styles.miniBubble}>{fBubble[f.idx]}</div>}
+            <BlockyChar color={f.color} legColor={f.leg} pose={friendPose(f.idx)} />
+          </div>
+        ))}
       </div>
 
-      {/* Red ground strip */}
+      {/* Rope for pullup stage */}
+      {stage === "pullup" && <div className={styles.rope} aria-hidden="true" />}
+
+      {/* Ground (Minecraft grass) */}
       <div className={styles.ground} />
     </section>
   );

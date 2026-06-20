@@ -1,17 +1,236 @@
-/* ── Hero — cream layout matching PDF design ────────── */
-.hero {
+/* ── Shared ───────────────────────────────────────────── */
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+
+/* ── STAGE 1: CRT Intro Screen ───────────────────────── */
+.introScreen {
   position: relative;
   width: 100%;
   height: 100vh;
-  background: var(--cream, #fff6dc);
+  background: #0a0f1a;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 40px;
   overflow: hidden;
 }
 
-/* Ghost "WE BUILD BOLD" text — above canvas so it's never clipped */
+/* CRT explode animation */
+.exploding .crtWrap {
+  animation: crtExplode 0.55s cubic-bezier(0.55, 0, 1, 0.45) both;
+}
+
+@keyframes crtExplode {
+  0%   { transform: scale(1) rotate(0deg); opacity: 1; filter: brightness(1); }
+  40%  { transform: scale(1.15) rotate(2deg); filter: brightness(3) saturate(0); }
+  100% { transform: scale(3) rotate(-8deg); opacity: 0; filter: brightness(6) saturate(0); }
+}
+
+.crtWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.monitor {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Monitor bezel */
+.monitorFrame {
+  width: 360px;
+  padding: 20px;
+  background: #2c2c2c;
+  border: 4px solid #555;
+  border-bottom: 6px solid #1a1a1a;
+  box-shadow:
+    inset 0 0 20px #000,
+    0 0 0 2px #111,
+    4px 4px 0 #111;
+  border-radius: 8px 8px 4px 4px;
+  image-rendering: pixelated;
+}
+
+/* Screen glow */
+.screen {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4/3;
+  background: #001800;
+  border: 3px solid #111;
+  border-radius: 3px;
+  overflow: hidden;
+  box-shadow:
+    inset 0 0 30px rgba(0, 255, 0, 0.08),
+    0 0 15px rgba(0, 255, 60, 0.15);
+}
+
+/* CRT scanlines overlay */
+.scanlines {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 2px,
+    rgba(0, 0, 0, 0.25) 2px,
+    rgba(0, 0, 0, 0.25) 4px
+  );
+  pointer-events: none;
+  z-index: 2;
+}
+
+.bootText {
+  position: relative;
+  z-index: 1;
+  padding: 16px 12px;
+  font-family: "Press Start 2P", monospace;
+  font-size: 9px;
+  line-height: 1.9;
+  color: #33ff44;
+  text-shadow: 0 0 6px #33ff44;
+}
+
+.bootLine {
+  white-space: pre;
+  animation: fadeInLine 0.15s ease both;
+}
+
+@keyframes fadeInLine {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.cursor {
+  display: inline-block;
+  animation: blink 0.8s step-end infinite;
+  color: #33ff44;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+/* Monitor neck + base */
+.monitorNeck {
+  width: 40px;
+  height: 20px;
+  background: linear-gradient(to bottom, #3a3a3a, #2a2a2a);
+  border: 2px solid #555;
+  border-top: none;
+}
+
+.monitorBase {
+  width: 120px;
+  height: 14px;
+  background: #2a2a2a;
+  border: 3px solid #444;
+  border-radius: 0 0 6px 6px;
+  box-shadow: 0 4px 0 #111;
+}
+
+/* ── PLAY BUTTON (Minecraft style) ── */
+.playBtn {
+  font-family: "Press Start 2P", monospace;
+  font-size: 13px;
+  color: #fff;
+  background: #4c4c4c;
+  border: none;
+  padding: 14px 28px;
+  cursor: pointer;
+  image-rendering: pixelated;
+  box-shadow:
+    inset -3px -3px 0 #1a1a1a,
+    inset 3px 3px 0 #7a7a7a,
+    0 0 12px rgba(76, 175, 80, 0.5);
+  text-shadow: 2px 2px 0 #000;
+  transition: filter 0.1s;
+  letter-spacing: 1px;
+}
+
+.playBtn:hover {
+  background: #5a5a5a;
+  box-shadow:
+    inset -3px -3px 0 #1a1a1a,
+    inset 3px 3px 0 #8a8a8a,
+    0 0 22px rgba(76, 175, 80, 0.8);
+  filter: brightness(1.1);
+}
+
+.playBtn:active {
+  box-shadow:
+    inset 3px 3px 0 #1a1a1a,
+    inset -3px -3px 0 #7a7a7a;
+  transform: translate(2px, 2px);
+}
+
+.playHint {
+  font-family: "Press Start 2P", monospace;
+  font-size: 8px;
+  color: #555;
+  letter-spacing: 1px;
+  margin: 0;
+  animation: hintPulse 2s ease-in-out infinite;
+}
+
+@keyframes hintPulse {
+  0%, 100% { opacity: 0.4; }
+  50%       { opacity: 0.9; }
+}
+
+/* ── STAGES 2-6: Hero Scene ───────────────────────────── */
+.heroScene {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background: #0a0f1a;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  overflow: hidden;
+  perspective: 800px;
+}
+
+/* Screen shake on collision */
+.shake {
+  animation: screenShake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+@keyframes screenShake {
+  0%, 100% { transform: translateX(0);    }
+  10%       { transform: translateX(-8px); }
+  20%       { transform: translateX(8px);  }
+  30%       { transform: translateX(-6px); }
+  40%       { transform: translateX(6px);  }
+  50%       { transform: translateX(-4px); }
+  60%       { transform: translateX(4px);  }
+  70%       { transform: translateX(-2px); }
+  80%       { transform: translateX(2px);  }
+}
+
+/* Pixel stars */
+.stars {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.star {
+  position: absolute;
+  background: #fff;
+  image-rendering: pixelated;
+  animation: twinkle 3s ease-in-out infinite alternate;
+}
+
+@keyframes twinkle {
+  0%   { opacity: 0.2; transform: scale(0.8); }
+  100% { opacity: 1;   transform: scale(1.1); }
+}
+
+/* Ghost "WE BUILD BOLD" — front of scene */
 .ghostText {
   position: absolute;
   inset: 0;
@@ -21,112 +240,242 @@
   justify-content: center;
   pointer-events: none;
   user-select: none;
-  z-index: 2;
+  z-index: 10;
 }
 
 .ghostText span {
   display: block;
-  font-family: var(--font-bebas), sans-serif;
-  font-size: clamp(5rem, 13vw, 12rem);
+  font-family: var(--font-bebas), "Impact", sans-serif;
+  font-size: clamp(5rem, 13vw, 11rem);
   font-weight: 400;
-  color: #5c1a1a;
-  opacity: 0.13;
-  line-height: 0.9;
-  letter-spacing: 0.03em;
+  color: #1e3a2f;
+  opacity: 0.35;
+  line-height: 0.88;
+  letter-spacing: 0.04em;
   text-align: center;
   text-transform: uppercase;
 }
 
-/* Center stage: speech bubble stacked above character canvas */
-.stage {
+/* Scene container — characters live here */
+.scene {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 16px;
+  padding-bottom: clamp(60px, 10vh, 100px);
+  z-index: 5;
+}
+
+/* Hero character wrapper */
+.heroWrap {
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  z-index: 1;
-  /* Offset up so character feet land on the ground strip */
-  margin-bottom: 48px;
+  flex-shrink: 0;
+  z-index: 6;
 }
 
-/* Speech bubble — animate in with a spring pop */
-.bubbleWrap {
-  align-self: flex-end;
-  margin-right: -24px;
-  margin-bottom: 6px;
-  animation: bubblePop 0.55s 0.65s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+/* Hero drops in from above */
+.heroSpawn {
+  animation: heroFallIn 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) both;
 }
 
+@keyframes heroFallIn {
+  0%   { transform: translateY(-120vh); opacity: 0; }
+  80%  { transform: translateY(8px); }
+  100% { transform: translateY(0);    opacity: 1; }
+}
+
+/* Landing dust cloud */
+.dustCloud {
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 20px;
+  background: radial-gradient(ellipse, rgba(150,120,80,0.6) 0%, transparent 70%);
+  animation: dustFade 0.8s ease-out 0.5s both;
+  pointer-events: none;
+}
+
+@keyframes dustFade {
+  0%   { transform: translateX(-50%) scale(0.5); opacity: 1; }
+  100% { transform: translateX(-50%) scale(2.5); opacity: 0; }
+}
+
+/* Speech bubble (hero) */
 .bubble {
   background: #fff;
-  border: 3px solid #6b1212;
-  border-radius: 18px;
-  padding: 14px 20px;
+  border: 3px solid #000;
+  padding: 10px 14px;
+  max-width: 220px;
   width: max-content;
-  max-width: 270px;
-  text-align: center;
+  margin-bottom: 10px;
   position: relative;
-  box-shadow: 4px 4px 0 #6b1212;
+  box-shadow: 3px 3px 0 #000;
+  animation: bubblePop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  font-family: "Press Start 2P", monospace;
 }
 
 .bubble p {
   margin: 0;
-  font-size: 1rem;
-  font-weight: 700;
-  color: #6b1212;
-  line-height: 1.45;
+  font-size: 8px;
+  line-height: 1.7;
+  color: #111;
+  text-align: center;
 }
 
-/* Bubble tail — outer border triangle */
+/* Bubble tail */
 .bubble::after {
   content: "";
   position: absolute;
-  bottom: -22px;
-  left: 26px;
-  width: 0;
-  height: 0;
-  border: 11px solid transparent;
-  border-top-color: #6b1212;
+  bottom: -12px;
+  left: 24px;
+  border: 6px solid transparent;
+  border-top-color: #000;
 }
 
-/* Bubble tail — inner white fill triangle */
 .bubble::before {
   content: "";
   position: absolute;
-  bottom: -16px;
-  left: 29px;
-  width: 0;
-  height: 0;
-  border: 8px solid transparent;
+  bottom: -8px;
+  left: 27px;
+  border: 4px solid transparent;
   border-top-color: #fff;
   z-index: 1;
 }
 
-/* 3D skinview3d canvas — smooth render, no pixelation */
-.characterCanvas {
-  display: block;
-  height: 58vh;
-  max-height: 520px;
-  min-height: 280px;
-  width: auto;
+@keyframes bubblePop {
+  from { transform: scale(0.3) translateY(10px); opacity: 0; }
+  to   { transform: scale(1)   translateY(0);    opacity: 1; }
 }
 
-/* Red ground strip at the bottom */
+/* Mini bubble for friends */
+.miniBubble {
+  background: #fff;
+  border: 2px solid #000;
+  box-shadow: 2px 2px 0 #000;
+  padding: 5px 8px;
+  font-family: "Press Start 2P", monospace;
+  font-size: 7px;
+  color: #111;
+  margin-bottom: 6px;
+  white-space: nowrap;
+  animation: bubblePop 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+/* Friend wrappers — start off-screen */
+.friendWrap {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+  transition: transform 0.2s;
+}
+
+/* Left friend — initially far left */
+.friendLeft {
+  transform: translateX(-120vw);
+  animation: friendAppearL 0.3s ease-out both;
+}
+
+@keyframes friendAppearL {
+  from { transform: translateX(-120vw); }
+  to   { transform: translateX(-60vw);  }
+}
+
+.friendLeft.runLeft {
+  animation: friendRunL 2.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+@keyframes friendRunL {
+  from { transform: translateX(-60vw); }
+  to   { transform: translateX(0);     }
+}
+
+.friendLeft.collided {
+  transform: translateX(-30px);
+}
+
+/* Right friends */
+.friendRight {
+  transform: translateX(120vw);
+  animation: friendAppearR 0.3s ease-out both;
+}
+
+@keyframes friendAppearR {
+  from { transform: translateX(120vw); }
+  to   { transform: translateX(60vw);  }
+}
+
+.friendRight.runRight {
+  animation: friendRunR 2.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+@keyframes friendRunR {
+  from { transform: translateX(60vw); }
+  to   { transform: translateX(0);    }
+}
+
+.friendRight.collided {
+  transform: translateX(30px);
+}
+
+/* Rope (pullup stage) */
+.rope {
+  position: absolute;
+  bottom: clamp(60px, 10vh, 100px);
+  left: 50%;
+  transform: translateX(30px);
+  width: 6px;
+  background: repeating-linear-gradient(
+    to bottom,
+    #8b6914 0px, #a07820 8px,
+    #c8961e 8px, #8b6914 16px
+  );
+  height: 200px;
+  box-shadow: 1px 0 0 #5a4010;
+  image-rendering: pixelated;
+}
+
+/* Grass ground strip (Minecraft style) */
 .ground {
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
-  height: clamp(40px, 8vh, 80px);
-  background: linear-gradient(to bottom, #831c1c 0%, #6b1010 100%);
+  height: clamp(50px, 9vh, 90px);
+  background:
+    linear-gradient(to bottom, #4caf50 0%, #388e3c 30%, #2e7d32 100%);
+  box-shadow: 0 -3px 0 #1b5e20, inset 0 3px 0 #66bb6a;
 }
 
-@keyframes bubblePop {
-  from {
-    opacity: 0;
-    transform: scale(0.6) translateY(12px);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-  }
+/* Pixel grid texture on ground */
+.ground::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(90deg, rgba(0,0,0,0.07) 0px, rgba(0,0,0,0.07) 1px, transparent 1px, transparent 16px),
+    repeating-linear-gradient(0deg,  rgba(0,0,0,0.07) 0px, rgba(0,0,0,0.07) 1px, transparent 1px, transparent 16px);
+  background-size: 16px 16px;
+  image-rendering: pixelated;
+}
+
+/* ── Responsive ── */
+@media (max-width: 640px) {
+  .monitorFrame { width: 280px; }
+  .bootText { font-size: 7px; }
+  .playBtn { font-size: 10px; padding: 12px 20px; }
+
+  /* Hide 3rd friend on mobile */
+  .friendWrap:nth-child(3) { display: none; }
+
+  .ghostText span { font-size: clamp(3.5rem, 18vw, 6rem); }
 }

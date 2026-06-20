@@ -1,0 +1,147 @@
+/* ── Minecraft blocky character — CSS 3D poses ── */
+
+.character {
+  transform-style: preserve-3d;
+}
+
+.character.flip {
+  /* handled inline — flip flag changes rotateY direction */
+}
+
+.head,
+.body {
+  transform-style: preserve-3d;
+}
+
+.limb {
+  transform-style: preserve-3d;
+  transform-origin: center top;
+}
+
+/* ────────────── IDLE ────────────── */
+.idle .body {
+  animation: breathe 3s ease-in-out infinite;
+}
+
+.idle .leftArm,
+.idle .rightArm {
+  animation: armSway 3s ease-in-out infinite;
+}
+
+@keyframes breathe {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-1.5px); }
+}
+
+@keyframes armSway {
+  0%, 100% { transform: rotateX(0deg); }
+  50%       { transform: rotateX(6deg); }
+}
+
+/* ────────────── WAVE ────────────── */
+.wave .rightArm {
+  animation: waveArm 0.9s ease-in-out infinite;
+}
+
+.wave .head {
+  animation: waveHead 1.8s ease-in-out infinite;
+}
+
+@keyframes waveArm {
+  0%   { transform: rotateX(-130deg) rotateZ(12deg); }
+  50%  { transform: rotateX(-75deg)  rotateZ(22deg); }
+  100% { transform: rotateX(-130deg) rotateZ(12deg); }
+}
+
+@keyframes waveHead {
+  0%, 100% { transform: rotateY(0deg);   }
+  25%       { transform: rotateY(10deg);  }
+  75%       { transform: rotateY(-10deg); }
+}
+
+/* ────────────── CALL ────────────── */
+.call .rightArm {
+  animation: callArm 0.7s ease-in-out infinite;
+}
+
+.call .body {
+  animation: callLean 1.4s ease-in-out infinite;
+}
+
+@keyframes callArm {
+  0%, 100% { transform: rotateX(-150deg) rotateZ(15deg); }
+  50%       { transform: rotateX(-110deg) rotateZ(25deg); }
+}
+
+@keyframes callLean {
+  0%, 100% { transform: rotateZ(-5deg);  }
+  50%       { transform: rotateZ(-10deg); }
+}
+
+/* ────────────── RUN ────────────── */
+.run .rightLeg { animation: runLegR 0.5s ease-in-out infinite alternate; }
+.run .leftLeg  { animation: runLegL 0.5s ease-in-out infinite alternate; }
+.run .rightArm { animation: runArmR 0.5s ease-in-out infinite alternate; }
+.run .leftArm  { animation: runArmL 0.5s ease-in-out infinite alternate; }
+.run .body     { animation: runBob  0.5s ease-in-out infinite alternate; }
+
+@keyframes runLegR {
+  from { transform: rotateX(-38deg); }
+  to   { transform: rotateX(38deg);  }
+}
+@keyframes runLegL {
+  from { transform: rotateX(38deg);  }
+  to   { transform: rotateX(-38deg); }
+}
+@keyframes runArmR {
+  from { transform: rotateX(28deg);  }
+  to   { transform: rotateX(-28deg); }
+}
+@keyframes runArmL {
+  from { transform: rotateX(-28deg); }
+  to   { transform: rotateX(28deg);  }
+}
+@keyframes runBob {
+  from { transform: translateY(-2px); }
+  to   { transform: translateY(2px);  }
+}
+
+/* ────────────── FALL ────────────── */
+.fall {
+  animation: charFall 0.45s cubic-bezier(0.55, 0, 1, 0.45) both;
+}
+
+@keyframes charFall {
+  0%   { transform-origin: bottom center; transform: rotateY(-18deg) rotateZ(0deg)   translateY(0);    }
+  100% { transform-origin: bottom center; transform: rotateY(-18deg) rotateZ(-95deg) translateY(30px); }
+}
+
+.fall .rightArm { transform: rotateX(-70deg) rotateZ(20deg);  }
+.fall .leftArm  { transform: rotateX(50deg)  rotateZ(-15deg); }
+.fall .rightLeg { transform: rotateX(20deg); }
+.fall .leftLeg  { transform: rotateX(-20deg); }
+
+/* ────────────── PULL ────────────── */
+.pull {
+  animation: pullLean 0.75s ease-in-out infinite;
+}
+
+@keyframes pullLean {
+  0%, 100% { transform: rotateY(-18deg) rotateZ(18deg)  translateY(0);   }
+  50%       { transform: rotateY(-18deg) rotateZ(4deg)   translateY(-10px); }
+}
+
+.pull .rightArm { animation: pullArmR 0.75s ease-in-out infinite; }
+.pull .leftArm  { animation: pullArmL 0.75s ease-in-out infinite; }
+
+@keyframes pullArmR {
+  0%, 100% { transform: rotateX(85deg) rotateZ(-20deg);  }
+  50%       { transform: rotateX(55deg) rotateZ(-10deg);  }
+}
+@keyframes pullArmL {
+  0%, 100% { transform: rotateX(85deg) rotateZ(20deg); }
+  50%       { transform: rotateX(55deg) rotateZ(10deg); }
+}
+
+.pull .rightLeg { transform: rotateX(-15deg); }
+.pull .leftLeg  { transform: rotateX(15deg);  }
