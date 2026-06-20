@@ -19,15 +19,16 @@ export default function HeroSection() {
     if (!canvas) return;
 
     import("skinview3d").then((sv3d) => {
-      const viewer = new sv3d.SkinViewer({ canvas, width: CW, height: CH });
+      // Use skinview3d's built-in fov + zoom — don't override camera manually
+      const viewer = new sv3d.SkinViewer({
+        canvas,
+        width: CW,
+        height: CH,
+        fov: 70,
+        zoom: 1.2,
+      });
 
       viewer.renderer.setClearColor(CREAM, 1);
-
-      // Center at y≈10 (character body center), close enough to fill canvas
-      viewer.camera.position.set(0, 10, 28);
-      viewer.camera.lookAt(0, 10, 0);
-      viewer.camera.fov = 60;
-      viewer.camera.updateProjectionMatrix();
 
       // Slight Y rotation so the face is visible (Minecraft character faces -Z)
       viewer.playerObject.rotation.y = Math.PI / 14;
@@ -45,7 +46,8 @@ export default function HeroSection() {
       });
       viewer.animation = wave;
 
-      viewer.loadSkin(`https://mc-heads.net/skin/${PLAYER_UUID}`).catch(console.error);
+      // crafatar.com has CORS headers — works on deployed sites
+      viewer.loadSkin(`https://crafatar.com/skins/${PLAYER_UUID}`).catch(console.error);
       viewerRef.current = viewer;
     }).catch(console.error);
 
