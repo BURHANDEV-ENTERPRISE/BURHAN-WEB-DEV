@@ -4,10 +4,10 @@ import { useEffect, useRef } from "react";
 import styles from "./HeroSection.module.css";
 
 const PLAYER_UUID = "d5a391fb-c1cd-4385-868b-5e8a28aa1ccf";
-const CW = 280;
-const CH = 440;
-// Match the hero cream background so the WebGL canvas blends seamlessly
-const CREAM = 0xf5f0e2;
+const CW = 400;
+const CH = 600;
+// Must match --cream: #fff6dc from styles.css so canvas blends seamlessly
+const CREAM = 0xfff6dc;
 
 export default function HeroSection() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -23,9 +23,10 @@ export default function HeroSection() {
 
       viewer.renderer.setClearColor(CREAM, 1);
 
-      // Front-facing camera — character fills the canvas nicely
-      viewer.camera.position.set(0, 10, 55);
-      viewer.camera.lookAt(0, 10, 0);
+      // Zoom in close — character fills most of the canvas
+      viewer.camera.position.set(0, 16, 32);
+      viewer.camera.lookAt(0, 16, 0);
+      viewer.fov = 50;
 
       // Slight Y rotation so the face is visible (Minecraft character faces -Z)
       viewer.playerObject.rotation.y = Math.PI / 14;

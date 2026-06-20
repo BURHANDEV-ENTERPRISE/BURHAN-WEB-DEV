@@ -3,7 +3,7 @@
   position: relative;
   width: 100%;
   height: 100vh;
-  background: #f5f0e2;
+  background: var(--cream, #fff6dc);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -11,7 +11,7 @@
   overflow: hidden;
 }
 
-/* Ghost "WE BUILD BOLD" text — sits behind everything */
+/* Ghost "WE BUILD BOLD" text — above canvas so it's never clipped */
 .ghostText {
   position: absolute;
   inset: 0;
@@ -21,7 +21,7 @@
   justify-content: center;
   pointer-events: none;
   user-select: none;
-  z-index: 0;
+  z-index: 2;
 }
 
 .ghostText span {
@@ -104,9 +104,9 @@
 /* 3D skinview3d canvas — smooth render, no pixelation */
 .characterCanvas {
   display: block;
-  height: 46vh;
-  max-height: 400px;
-  min-height: 240px;
+  height: 58vh;
+  max-height: 520px;
+  min-height: 280px;
   width: auto;
 }
 
