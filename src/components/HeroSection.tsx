@@ -8,13 +8,6 @@ const FACE_URL = `https://crafatar.com/avatars/d5a391fb-c1cd-4385-868b-5e8a28aa1
 
 type Stage = "intro" | "spawning" | "wave" | "calling" | "running" | "collision" | "pullup";
 
-const BOOT = [
-  "> BURHANDEV OS v2.6 ...",
-  "> Initializing render engine...",
-  "> Loading assets [████████] 100%",
-  "> All systems ready. Welcome.",
-];
-
 interface Star { x: number; y: number; size: number; delay: number }
 
 function genStars(): Star[] {
@@ -35,19 +28,11 @@ const FRIENDS = [
 
 export default function HeroSection() {
   const [stage, setStage]             = useState<Stage>("intro");
-  const [bootLine, setBootLine]       = useState(0);
   const [heroBubble, setHeroBubble]   = useState<string | null>(null);
   const [fBubble, setFBubble]         = useState<(string | null)[]>([null, null, null]);
   const [friendsVis, setFriendsVis]   = useState(false);
   const [exploding, setExploding]     = useState(false);
   const scrollBound = useRef(false);
-
-  // Boot text ticker
-  useEffect(() => {
-    if (stage !== "intro") return;
-    const id = setInterval(() => setBootLine(l => Math.min(l + 1, BOOT.length - 1)), 700);
-    return () => clearInterval(id);
-  }, [stage]);
 
   const handlePlay = useCallback(() => {
     setExploding(true);
@@ -108,35 +93,44 @@ export default function HeroSection() {
     return "idle";
   };
 
-  // ── STAGE 1: CRT intro ──────────────────────────────
+  // ── STAGE 1: Arcade intro ───────────────────────────
   if (stage === "intro") {
     return (
       <section className={`${styles.introScreen} ${exploding ? styles.exploding : ""}`}>
-        <div className={styles.crtWrap}>
-          <div className={styles.monitor}>
-            <div className={styles.monitorFrame}>
-              <div className={styles.screen}>
-                <div className={styles.scanlines} aria-hidden="true" />
-                <div className={styles.bootText}>
-                  {BOOT.slice(0, bootLine + 1).map((line, i) => (
-                    <div key={i} className={styles.bootLine}>
-                      {line}
-                      {i === bootLine && bootLine < BOOT.length - 1 && (
-                        <span className={styles.cursor}>█</span>
-                      )}
-                    </div>
-                  ))}
+        {/* headline */}
+        <div className={styles.introContent}>
+          <h1 className={styles.introTitle}>BURHANDEV.</h1>
+          <p className={styles.introSub}>BUILD YOUR NEXT BOLD SITE.</p>
+          <button className={styles.playBtn} onClick={handlePlay} aria-label="Enter BurhanDev">
+            <span className={styles.playIcon} aria-hidden="true">▶</span>
+            <span>CLICK TO PLAY</span>
+          </button>
+        </div>
+
+        {/* arcade controller at bottom */}
+        <div className={styles.arcadeWrap} aria-hidden="true">
+          <div className={styles.arcadeBody}>
+            {/* left: button panel */}
+            <div className={styles.arcadePanel}>
+              <div className={styles.arcadeBtn} />
+              <div className={styles.arcadeBtn} />
+            </div>
+            {/* center: joystick panel */}
+            <div className={styles.arcadePanel}>
+              <div className={styles.joystickBase}>
+                <div className={styles.joystickStick}>
+                  <div className={styles.joystickBall} />
                 </div>
               </div>
             </div>
-            <div className={styles.monitorNeck} />
-            <div className={styles.monitorBase} />
+            {/* right: coin slot / dial */}
+            <div className={styles.arcadePanel}>
+              <div className={styles.arcadeDial} />
+            </div>
           </div>
+          {/* body shadow/depth strip */}
+          <div className={styles.arcadeShadow} />
         </div>
-        <button className={styles.playBtn} onClick={handlePlay} aria-label="Enter BurhanDev">
-          ▶&nbsp;PLAY
-        </button>
-        <p className={styles.playHint}>click to enter</p>
       </section>
     );
   }
