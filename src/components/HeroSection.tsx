@@ -32,7 +32,29 @@ export default function HeroSection() {
   const [fBubble, setFBubble]         = useState<(string | null)[]>([null, null, null]);
   const [friendsVis, setFriendsVis]   = useState(false);
   const [exploding, setExploding]     = useState(false);
-  const scrollBound = useRef(false);
+  const [joyPos, setJoyPos]           = useState({ x: 0, y: 0 });
+  const [btnDown, setBtnDown]         = useState(false);
+  const joyRef                        = useRef<HTMLDivElement>(null);
+  const scrollBound                   = useRef(false);
+
+  const MAX_JOY = 22;
+
+  const handleJoyMove = useCallback((e: React.PointerEvent) => {
+    const el = joyRef.current;
+    if (!el) return;
+    const r = el.getBoundingClientRect();
+    const cx = r.left + r.width / 2;
+    const cy = r.top  + r.height / 2;
+    const dx = e.clientX - cx;
+    const dy = e.clientY - cy;
+    const dist = Math.hypot(dx, dy) || 1;
+    const clamped = Math.min(dist, MAX_JOY) / dist;
+    setJoyPos({ x: dx * clamped, y: dy * clamped });
+  }, []);
+
+  const handleJoyLeave = useCallback(() => {
+    setJoyPos({ x: 0, y: 0 });
+  }, []);
 
   const handlePlay = useCallback(() => {
     setExploding(true);
@@ -95,6 +117,9 @@ export default function HeroSection() {
 
   // ── STAGE 1: Arcade intro ───────────────────────────
   if (stage === "intro") {
+    const tiltX = -(joyPos.y / MAX_JOY) * 18;
+    const tiltZ =  (joyPos.x / MAX_JOY) * 18;
+
     return (
       <section className={`${styles.introScreen} ${exploding ? styles.exploding : ""}`}>
         {/* headline */}
@@ -107,28 +132,57 @@ export default function HeroSection() {
           </button>
         </div>
 
-        {/* arcade controller at bottom */}
-        <div className={styles.arcadeWrap} aria-hidden="true">
+        {/* ── Interactive arcade controller ── */}
+        <div className={styles.arcadeWrap}>
           <div className={styles.arcadeBody}>
-            {/* left: button panel */}
-            <div className={styles.arcadePanel}>
-              <div className={styles.arcadeBtn} />
-              <div className={styles.arcadeBtn} />
-            </div>
-            {/* center: joystick panel */}
-            <div className={styles.arcadePanel}>
-              <div className={styles.joystickBase}>
-                <div className={styles.joystickStick}>
-                  <div className={styles.joystickBall} />
+
+            {/* JOYSTICK PANEL — pointer tracking area */}
+            <div
+              className={styles.joyPanel}
+              ref={joyRef}
+              onPointerMove={handleJoyMove}
+              onPointerLeave={handleJoyLeave}
+              aria-hidden="true"
+            >
+              {/* corner rivets */}
+              <div className={styles.rivet} style={{ top: 10, left: 10 }} />
+              <div className={styles.rivet} style={{ top: 10, right: 10 }} />
+              <div className={styles.rivet} style={{ bottom: 10, left: 10 }} />
+              <div className={styles.rivet} style={{ bottom: 10, right: 10 }} />
+
+              {/* joystick base ring */}
+              <div className={styles.joyBase}>
+                <div className={styles.joyBaseInner} />
+                {/* stick + ball follow joyPos */}
+                <div
+                  className={styles.joyStick}
+                  style={{
+                    transform: `translate(${joyPos.x}px, ${joyPos.y * 0.5}px) rotateX(${tiltX}deg) rotateZ(${tiltZ}deg)`,
+                    transition: joyPos.x === 0 && joyPos.y === 0
+                      ? "transform 0.35s cubic-bezier(0.34,1.56,0.64,1)"
+                      : "transform 0.06s linear",
+                  }}
+                >
+                  <div
+                    className={styles.joyBall}
+                    style={{ transform: `translate(-50%, -100%) translate(${joyPos.x * 0.4}px, ${joyPos.y * 0.25}px)` }}
+                  />
                 </div>
               </div>
             </div>
-            {/* right: coin slot / dial */}
-            <div className={styles.arcadePanel}>
-              <div className={styles.arcadeDial} />
-            </div>
+
+            {/* BIG PLAY BUTTON */}
+            <button
+              className={`${styles.actionBtn} ${btnDown ? styles.btnDown : ""}`}
+              onPointerDown={() => setBtnDown(true)}
+              onPointerUp={() => { setBtnDown(false); handlePlay(); }}
+              onPointerLeave={() => setBtnDown(false)}
+              aria-label="Play — enter BurhanDev"
+            >
+              <span className={styles.actionLabel}>PLAY</span>
+            </button>
+
           </div>
-          {/* body shadow/depth strip */}
           <div className={styles.arcadeShadow} />
         </div>
       </section>
