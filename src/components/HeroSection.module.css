@@ -1,17 +1,25 @@
-/* ── Shared ───────────────────────────────────────────── */
-@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
-
 /* ── STAGE 1: Arcade Intro Screen ─────────────────────── */
 .introScreen {
   position: relative;
   width: 100%;
   height: 100vh;
-  background: radial-gradient(ellipse at 50% 40%, #0d1240 0%, #080b22 55%, #040611 100%);
+  background: var(--cream, #fff6dc);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   overflow: hidden;
+}
+
+/* subtle warm dot-grid texture on intro bg */
+.introScreen::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle, rgba(127,29,29,0.08) 1px, transparent 1px);
+  background-size: 28px 28px;
+  pointer-events: none;
 }
 
 /* explode-out when PLAY clicked */
@@ -20,86 +28,84 @@
 }
 
 @keyframes introExplode {
-  0%   { opacity: 1; transform: scale(1); filter: brightness(1); }
-  50%  { filter: brightness(4) saturate(0); }
-  100% { opacity: 0; transform: scale(1.08); filter: brightness(8) saturate(0); }
+  0%   { opacity: 1; transform: scale(1);    filter: brightness(1); }
+  50%  { filter: brightness(3) saturate(0.2); }
+  100% { opacity: 0; transform: scale(1.06); filter: brightness(6) saturate(0); }
 }
 
-/* ── Headline area ── */
+/* ── Headline ── */
 .introContent {
   position: relative;
   z-index: 2;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 28px;
-  margin-bottom: 200px; /* leave room for controller */
+  gap: 24px;
+  margin-bottom: 200px;
   text-align: center;
   padding: 0 24px;
 }
 
 .introTitle {
   font-family: var(--font-bebas), "Impact", sans-serif;
-  font-size: clamp(4rem, 11vw, 10rem);
+  font-size: clamp(4.5rem, 12vw, 11rem);
   font-weight: 400;
-  color: #fff;
-  line-height: 0.9;
+  color: var(--maroon, #7f1d1d);
+  line-height: 0.88;
   letter-spacing: 0.02em;
   margin: 0;
-  text-shadow: 0 0 80px rgba(80, 120, 255, 0.25);
 }
 
 .introSub {
   font-family: var(--font-bebas), "Impact", sans-serif;
-  font-size: clamp(1.5rem, 4vw, 3.5rem);
-  color: #fff;
-  letter-spacing: 0.08em;
+  font-size: clamp(1.2rem, 3.5vw, 3rem);
+  color: var(--maroon-2, #963232);
+  letter-spacing: 0.1em;
   margin: 0;
-  opacity: 0.9;
+  opacity: 0.75;
 }
 
-/* ── Play button — minimal dark pill (Cinnamon style) ── */
+/* ── Play button — maroon outline on cream ── */
 .playBtn {
   display: inline-flex;
   align-items: center;
   gap: 14px;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1.5px solid rgba(255, 255, 255, 0.2);
+  background: transparent;
+  border: 2px solid var(--maroon, #7f1d1d);
   border-radius: 4px;
-  padding: 14px 28px;
-  color: #fff;
+  padding: 13px 26px;
+  color: var(--maroon, #7f1d1d);
   font-family: var(--font-bebas), "Impact", sans-serif;
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   letter-spacing: 0.12em;
   cursor: pointer;
-  backdrop-filter: blur(4px);
-  transition: background 0.2s, border-color 0.2s, transform 0.15s;
+  transition: background 0.18s, color 0.18s, transform 0.12s;
 }
 
 .playBtn:hover {
-  background: rgba(255, 255, 255, 0.14);
-  border-color: rgba(255, 255, 255, 0.4);
+  background: var(--maroon, #7f1d1d);
+  color: var(--cream, #fff6dc);
   transform: scale(1.03);
 }
 
-.playBtn:active { transform: scale(0.98); }
+.playBtn:active { transform: scale(0.97); }
 
 .playIcon {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 32px;
-  height: 32px;
-  background: rgba(255, 255, 255, 0.12);
-  border: 1.5px solid rgba(255, 255, 255, 0.3);
+  width: 30px;
+  height: 30px;
+  border: 1.5px solid currentColor;
   border-radius: 3px;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
+  flex-shrink: 0;
 }
 
-/* ── Arcade controller ── */
+/* ── Arcade controller (maroon/red on cream) ── */
 .arcadeWrap {
   position: absolute;
-  bottom: -30px;
+  bottom: -28px;
   left: 50%;
   transform: translateX(-50%) perspective(700px) rotateX(22deg);
   transform-origin: bottom center;
@@ -110,65 +116,62 @@
   position: relative;
   width: 100%;
   height: 100px;
-  background: linear-gradient(to bottom, #e03010 0%, #c02808 40%, #a02005 100%);
+  background: linear-gradient(to bottom, #9b2020 0%, #7f1d1d 45%, #6b1515 100%);
   border-radius: 14px 14px 6px 6px;
   display: flex;
   align-items: center;
   justify-content: space-around;
   padding: 0 24px;
   box-shadow:
-    0 -4px 0 #ff5533 inset,
-    0 6px 0 #6b1408,
-    0 12px 30px rgba(0, 0, 0, 0.7);
+    inset 0 -4px 0 rgba(0,0,0,0.3),
+    inset 0 3px 0 #c43232,
+    0 6px 0 #4a0d0d,
+    0 12px 30px rgba(100, 10, 10, 0.35);
 }
 
-/* depth strip at bottom of body */
 .arcadeShadow {
   width: 94%;
   margin: 0 auto;
-  height: 22px;
-  background: linear-gradient(to bottom, #7a1a06, #3d0d03);
+  height: 20px;
+  background: linear-gradient(to bottom, #4a0d0d, #2a0606);
   border-radius: 0 0 10px 10px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 8px 20px rgba(80, 0, 0, 0.4);
 }
 
-/* each panel (button / joystick / dial) */
 .arcadePanel {
   width: 130px;
   height: 72px;
-  background: linear-gradient(145deg, #1a1a40, #0e0e2e);
+  background: linear-gradient(145deg, #2a0e0e, #1a0808);
   border-radius: 8px;
-  border: 2px solid #0a0a20;
-  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.8);
+  border: 2px solid #0e0404;
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.7);
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 14px;
 }
 
-/* arcade buttons */
 .arcadeBtn {
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background: radial-gradient(circle at 38% 32%, #ff6650, #cc1a00);
+  background: radial-gradient(circle at 38% 32%, #d43030, #8b1010);
   box-shadow:
-    0 4px 0 #880c00,
-    0 5px 10px rgba(0, 0, 0, 0.5),
-    inset 0 -2px 4px rgba(0, 0, 0, 0.3);
-  border: 2px solid #aa1500;
+    0 4px 0 #5a0808,
+    0 5px 10px rgba(0, 0, 0, 0.4),
+    inset 0 -2px 4px rgba(0,0,0,0.35);
+  border: 2px solid #6b1010;
 }
 
-/* joystick */
 .joystickBase {
   width: 62px;
   height: 62px;
   border-radius: 50%;
-  background: radial-gradient(circle at 40% 38%, #2a2a55, #14143a);
-  border: 3px solid #0a0a28;
+  background: radial-gradient(circle at 40% 38%, #3a1010, #1a0505);
+  border: 3px solid #0e0303;
   box-shadow:
     inset 0 3px 8px rgba(0, 0, 0, 0.7),
-    0 2px 4px rgba(0, 0, 0, 0.5);
+    0 2px 4px rgba(0, 0, 0, 0.4);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -178,7 +181,7 @@
   position: relative;
   width: 10px;
   height: 34px;
-  background: linear-gradient(to right, #1a1a1a, #333, #1a1a1a);
+  background: linear-gradient(to right, #111, #2a0808, #111);
   border-radius: 4px;
   display: flex;
   justify-content: center;
@@ -192,24 +195,23 @@
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  background: radial-gradient(circle at 38% 32%, #ff6650, #cc1a00);
+  background: radial-gradient(circle at 38% 32%, #d43030, #8b1010);
   box-shadow:
-    0 3px 0 #880c00,
-    0 4px 10px rgba(0, 0, 0, 0.5);
-  border: 2px solid #aa1500;
+    0 3px 0 #5a0808,
+    0 4px 10px rgba(0, 0, 0, 0.4);
+  border: 2px solid #6b1010;
 }
 
-/* coin dial */
 .arcadeDial {
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  background: radial-gradient(circle at 38% 30%, #c0c0c0, #888, #606060);
+  background: radial-gradient(circle at 38% 30%, #d4b896, #a07850, #6e5030);
   box-shadow:
-    0 3px 0 #444,
-    inset 0 2px 5px rgba(255, 255, 255, 0.3),
-    inset 0 -2px 5px rgba(0, 0, 0, 0.4);
-  border: 3px solid #555;
+    0 3px 0 #4a3010,
+    inset 0 2px 5px rgba(255,220,180,0.3),
+    inset 0 -2px 5px rgba(0,0,0,0.35);
+  border: 3px solid #7a5828;
 }
 
 /* ── STAGES 2-6: Hero Scene ───────────────────────────── */
@@ -217,12 +219,24 @@
   position: relative;
   width: 100%;
   height: 100vh;
-  background: #0a0f1a;
+  background: var(--cream, #fff6dc);
   display: flex;
   align-items: flex-end;
   justify-content: center;
   overflow: hidden;
   perspective: 800px;
+}
+
+/* subtle dot texture matching intro */
+.heroScene::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle, rgba(127,29,29,0.06) 1px, transparent 1px);
+  background-size: 28px 28px;
+  pointer-events: none;
+  z-index: 0;
 }
 
 /* Screen shake on collision */
@@ -242,26 +256,11 @@
   80%       { transform: translateX(2px);  }
 }
 
-/* Pixel stars */
-.stars {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-}
+/* Stars removed — not used on cream bg */
+.stars { display: none; }
+.star  { display: none; }
 
-.star {
-  position: absolute;
-  background: #fff;
-  image-rendering: pixelated;
-  animation: twinkle 3s ease-in-out infinite alternate;
-}
-
-@keyframes twinkle {
-  0%   { opacity: 0.2; transform: scale(0.8); }
-  100% { opacity: 1;   transform: scale(1.1); }
-}
-
-/* Ghost "WE BUILD BOLD" — front of scene */
+/* Ghost "WE BUILD BOLD" — maroon at low opacity */
 .ghostText {
   position: absolute;
   inset: 0;
@@ -271,7 +270,7 @@
   justify-content: center;
   pointer-events: none;
   user-select: none;
-  z-index: 10;
+  z-index: 2;
 }
 
 .ghostText span {
@@ -279,15 +278,15 @@
   font-family: var(--font-bebas), "Impact", sans-serif;
   font-size: clamp(5rem, 13vw, 11rem);
   font-weight: 400;
-  color: #1e3a2f;
-  opacity: 0.35;
+  color: var(--maroon, #7f1d1d);
+  opacity: 0.1;
   line-height: 0.88;
   letter-spacing: 0.04em;
   text-align: center;
   text-transform: uppercase;
 }
 
-/* Scene container — characters live here */
+/* Scene container */
 .scene {
   position: relative;
   width: 100%;
@@ -329,7 +328,7 @@
   transform: translateX(-50%);
   width: 80px;
   height: 20px;
-  background: radial-gradient(ellipse, rgba(150,120,80,0.6) 0%, transparent 70%);
+  background: radial-gradient(ellipse, rgba(127,29,29,0.25) 0%, transparent 70%);
   animation: dustFade 0.8s ease-out 0.5s both;
   pointer-events: none;
 }
@@ -339,44 +338,47 @@
   100% { transform: translateX(-50%) scale(2.5); opacity: 0; }
 }
 
-/* Speech bubble (hero) */
+/* Speech bubble (hero) — maroon BURHANDEV style */
 .bubble {
   background: #fff;
-  border: 3px solid #000;
-  padding: 10px 14px;
-  max-width: 220px;
+  border: 3px solid var(--maroon, #7f1d1d);
+  box-shadow: 4px 4px 0 var(--maroon, #7f1d1d);
+  padding: 10px 16px;
+  max-width: 230px;
   width: max-content;
   margin-bottom: 10px;
   position: relative;
-  box-shadow: 3px 3px 0 #000;
+  border-radius: 12px;
   animation: bubblePop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both;
-  font-family: "Press Start 2P", monospace;
+  font-family: var(--font-bebas), "Impact", sans-serif;
 }
 
 .bubble p {
   margin: 0;
-  font-size: 8px;
-  line-height: 1.7;
-  color: #111;
+  font-size: 1rem;
+  line-height: 1.45;
+  color: var(--maroon, #7f1d1d);
+  font-weight: 400;
   text-align: center;
+  letter-spacing: 0.04em;
 }
 
 /* Bubble tail */
 .bubble::after {
   content: "";
   position: absolute;
-  bottom: -12px;
-  left: 24px;
-  border: 6px solid transparent;
-  border-top-color: #000;
+  bottom: -14px;
+  left: 22px;
+  border: 7px solid transparent;
+  border-top-color: var(--maroon, #7f1d1d);
 }
 
 .bubble::before {
   content: "";
   position: absolute;
-  bottom: -8px;
-  left: 27px;
-  border: 4px solid transparent;
+  bottom: -9px;
+  left: 25px;
+  border: 5px solid transparent;
   border-top-color: #fff;
   z-index: 1;
 }
@@ -389,18 +391,20 @@
 /* Mini bubble for friends */
 .miniBubble {
   background: #fff;
-  border: 2px solid #000;
-  box-shadow: 2px 2px 0 #000;
-  padding: 5px 8px;
-  font-family: "Press Start 2P", monospace;
-  font-size: 7px;
-  color: #111;
+  border: 2px solid var(--maroon, #7f1d1d);
+  box-shadow: 2px 2px 0 var(--maroon, #7f1d1d);
+  padding: 5px 10px;
+  font-family: var(--font-bebas), "Impact", sans-serif;
+  font-size: 0.85rem;
+  color: var(--maroon, #7f1d1d);
   margin-bottom: 6px;
   white-space: nowrap;
+  border-radius: 6px;
+  letter-spacing: 0.05em;
   animation: bubblePop 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) both;
 }
 
-/* Friend wrappers — start off-screen */
+/* Friend wrappers */
 .friendWrap {
   position: relative;
   display: flex;
@@ -410,7 +414,6 @@
   transition: transform 0.2s;
 }
 
-/* Left friend — initially far left */
 .friendLeft {
   transform: translateX(-120vw);
   animation: friendAppearL 0.3s ease-out both;
@@ -430,11 +433,8 @@
   to   { transform: translateX(0);     }
 }
 
-.friendLeft.collided {
-  transform: translateX(-30px);
-}
+.friendLeft.collided { transform: translateX(-30px); }
 
-/* Right friends */
 .friendRight {
   transform: translateX(120vw);
   animation: friendAppearR 0.3s ease-out both;
@@ -454,11 +454,9 @@
   to   { transform: translateX(0);    }
 }
 
-.friendRight.collided {
-  transform: translateX(30px);
-}
+.friendRight.collided { transform: translateX(30px); }
 
-/* Rope (pullup stage) */
+/* Rope (pullup) */
 .rope {
   position: absolute;
   bottom: clamp(60px, 10vh, 100px);
@@ -475,43 +473,39 @@
   image-rendering: pixelated;
 }
 
-/* Grass ground strip (Minecraft style) */
+/* BURHANDEV maroon ground strip */
 .ground {
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
-  height: clamp(50px, 9vh, 90px);
-  background:
-    linear-gradient(to bottom, #4caf50 0%, #388e3c 30%, #2e7d32 100%);
-  box-shadow: 0 -3px 0 #1b5e20, inset 0 3px 0 #66bb6a;
+  height: clamp(48px, 9vh, 88px);
+  background: linear-gradient(to bottom, #9b2020 0%, #7f1d1d 40%, #6b1515 100%);
+  box-shadow: 0 -3px 0 #c43232, inset 0 3px 0 rgba(255,255,255,0.08);
 }
 
-/* Pixel grid texture on ground */
+/* maroon brick-grid texture */
 .ground::after {
   content: "";
   position: absolute;
   inset: 0;
   background-image:
-    repeating-linear-gradient(90deg, rgba(0,0,0,0.07) 0px, rgba(0,0,0,0.07) 1px, transparent 1px, transparent 16px),
-    repeating-linear-gradient(0deg,  rgba(0,0,0,0.07) 0px, rgba(0,0,0,0.07) 1px, transparent 1px, transparent 16px);
-  background-size: 16px 16px;
-  image-rendering: pixelated;
+    repeating-linear-gradient(90deg, rgba(0,0,0,0.1) 0px, rgba(0,0,0,0.1) 1px, transparent 1px, transparent 20px),
+    repeating-linear-gradient(0deg,  rgba(0,0,0,0.1) 0px, rgba(0,0,0,0.1) 1px, transparent 1px, transparent 20px);
+  background-size: 20px 20px;
 }
 
 /* ── Responsive ── */
 @media (max-width: 640px) {
-  .introTitle { font-size: clamp(3rem, 16vw, 5rem); }
-  .introSub   { font-size: clamp(1rem, 5vw, 2rem); }
-  .introContent { margin-bottom: 160px; }
-  .arcadeWrap { width: 95vw; }
-  .arcadePanel { width: 90px; height: 56px; }
-  .arcadeBtn { width: 22px; height: 22px; }
-  .joystickBase { width: 46px; height: 46px; }
-  .arcadeDial { width: 40px; height: 40px; }
+  .introTitle    { font-size: clamp(3rem, 16vw, 5rem); }
+  .introSub      { font-size: clamp(1rem, 5vw, 2rem);  }
+  .introContent  { margin-bottom: 160px; }
+  .arcadeWrap    { width: 95vw; }
+  .arcadePanel   { width: 90px; height: 56px; }
+  .arcadeBtn     { width: 22px; height: 22px; }
+  .joystickBase  { width: 46px; height: 46px; }
+  .arcadeDial    { width: 40px; height: 40px; }
 
-  /* Hide 3rd friend on mobile */
   .friendWrap:nth-child(3) { display: none; }
-
   .ghostText span { font-size: clamp(3.5rem, 18vw, 6rem); }
 }
