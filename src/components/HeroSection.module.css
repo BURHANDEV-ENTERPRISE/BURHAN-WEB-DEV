@@ -1,184 +1,215 @@
 /* ── Shared ───────────────────────────────────────────── */
 @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
 
-/* ── STAGE 1: CRT Intro Screen ───────────────────────── */
+/* ── STAGE 1: Arcade Intro Screen ─────────────────────── */
 .introScreen {
   position: relative;
   width: 100%;
   height: 100vh;
-  background: #0a0f1a;
+  background: radial-gradient(ellipse at 50% 40%, #0d1240 0%, #080b22 55%, #040611 100%);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 40px;
   overflow: hidden;
 }
 
-/* CRT explode animation */
-.exploding .crtWrap {
-  animation: crtExplode 0.55s cubic-bezier(0.55, 0, 1, 0.45) both;
+/* explode-out when PLAY clicked */
+.exploding {
+  animation: introExplode 0.5s ease-in both;
 }
 
-@keyframes crtExplode {
-  0%   { transform: scale(1) rotate(0deg); opacity: 1; filter: brightness(1); }
-  40%  { transform: scale(1.15) rotate(2deg); filter: brightness(3) saturate(0); }
-  100% { transform: scale(3) rotate(-8deg); opacity: 0; filter: brightness(6) saturate(0); }
+@keyframes introExplode {
+  0%   { opacity: 1; transform: scale(1); filter: brightness(1); }
+  50%  { filter: brightness(4) saturate(0); }
+  100% { opacity: 0; transform: scale(1.08); filter: brightness(8) saturate(0); }
 }
 
-.crtWrap {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.monitor {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-/* Monitor bezel */
-.monitorFrame {
-  width: 360px;
-  padding: 20px;
-  background: #2c2c2c;
-  border: 4px solid #555;
-  border-bottom: 6px solid #1a1a1a;
-  box-shadow:
-    inset 0 0 20px #000,
-    0 0 0 2px #111,
-    4px 4px 0 #111;
-  border-radius: 8px 8px 4px 4px;
-  image-rendering: pixelated;
-}
-
-/* Screen glow */
-.screen {
+/* ── Headline area ── */
+.introContent {
   position: relative;
-  width: 100%;
-  aspect-ratio: 4/3;
-  background: #001800;
-  border: 3px solid #111;
-  border-radius: 3px;
-  overflow: hidden;
-  box-shadow:
-    inset 0 0 30px rgba(0, 255, 0, 0.08),
-    0 0 15px rgba(0, 255, 60, 0.15);
-}
-
-/* CRT scanlines overlay */
-.scanlines {
-  position: absolute;
-  inset: 0;
-  background: repeating-linear-gradient(
-    to bottom,
-    transparent 0px,
-    transparent 2px,
-    rgba(0, 0, 0, 0.25) 2px,
-    rgba(0, 0, 0, 0.25) 4px
-  );
-  pointer-events: none;
   z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+  margin-bottom: 200px; /* leave room for controller */
+  text-align: center;
+  padding: 0 24px;
 }
 
-.bootText {
-  position: relative;
-  z-index: 1;
-  padding: 16px 12px;
-  font-family: "Press Start 2P", monospace;
-  font-size: 9px;
-  line-height: 1.9;
-  color: #33ff44;
-  text-shadow: 0 0 6px #33ff44;
-}
-
-.bootLine {
-  white-space: pre;
-  animation: fadeInLine 0.15s ease both;
-}
-
-@keyframes fadeInLine {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
-
-.cursor {
-  display: inline-block;
-  animation: blink 0.8s step-end infinite;
-  color: #33ff44;
-}
-
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50%       { opacity: 0; }
-}
-
-/* Monitor neck + base */
-.monitorNeck {
-  width: 40px;
-  height: 20px;
-  background: linear-gradient(to bottom, #3a3a3a, #2a2a2a);
-  border: 2px solid #555;
-  border-top: none;
-}
-
-.monitorBase {
-  width: 120px;
-  height: 14px;
-  background: #2a2a2a;
-  border: 3px solid #444;
-  border-radius: 0 0 6px 6px;
-  box-shadow: 0 4px 0 #111;
-}
-
-/* ── PLAY BUTTON (Minecraft style) ── */
-.playBtn {
-  font-family: "Press Start 2P", monospace;
-  font-size: 13px;
+.introTitle {
+  font-family: var(--font-bebas), "Impact", sans-serif;
+  font-size: clamp(4rem, 11vw, 10rem);
+  font-weight: 400;
   color: #fff;
-  background: #4c4c4c;
-  border: none;
+  line-height: 0.9;
+  letter-spacing: 0.02em;
+  margin: 0;
+  text-shadow: 0 0 80px rgba(80, 120, 255, 0.25);
+}
+
+.introSub {
+  font-family: var(--font-bebas), "Impact", sans-serif;
+  font-size: clamp(1.5rem, 4vw, 3.5rem);
+  color: #fff;
+  letter-spacing: 0.08em;
+  margin: 0;
+  opacity: 0.9;
+}
+
+/* ── Play button — minimal dark pill (Cinnamon style) ── */
+.playBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
   padding: 14px 28px;
+  color: #fff;
+  font-family: var(--font-bebas), "Impact", sans-serif;
+  font-size: 1.3rem;
+  letter-spacing: 0.12em;
   cursor: pointer;
-  image-rendering: pixelated;
-  box-shadow:
-    inset -3px -3px 0 #1a1a1a,
-    inset 3px 3px 0 #7a7a7a,
-    0 0 12px rgba(76, 175, 80, 0.5);
-  text-shadow: 2px 2px 0 #000;
-  transition: filter 0.1s;
-  letter-spacing: 1px;
+  backdrop-filter: blur(4px);
+  transition: background 0.2s, border-color 0.2s, transform 0.15s;
 }
 
 .playBtn:hover {
-  background: #5a5a5a;
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: scale(1.03);
+}
+
+.playBtn:active { transform: scale(0.98); }
+
+.playIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1.5px solid rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
+  font-size: 0.8rem;
+}
+
+/* ── Arcade controller ── */
+.arcadeWrap {
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%) perspective(700px) rotateX(22deg);
+  transform-origin: bottom center;
+  width: min(560px, 90vw);
+}
+
+.arcadeBody {
+  position: relative;
+  width: 100%;
+  height: 100px;
+  background: linear-gradient(to bottom, #e03010 0%, #c02808 40%, #a02005 100%);
+  border-radius: 14px 14px 6px 6px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0 24px;
   box-shadow:
-    inset -3px -3px 0 #1a1a1a,
-    inset 3px 3px 0 #8a8a8a,
-    0 0 22px rgba(76, 175, 80, 0.8);
-  filter: brightness(1.1);
+    0 -4px 0 #ff5533 inset,
+    0 6px 0 #6b1408,
+    0 12px 30px rgba(0, 0, 0, 0.7);
 }
 
-.playBtn:active {
+/* depth strip at bottom of body */
+.arcadeShadow {
+  width: 94%;
+  margin: 0 auto;
+  height: 22px;
+  background: linear-gradient(to bottom, #7a1a06, #3d0d03);
+  border-radius: 0 0 10px 10px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+}
+
+/* each panel (button / joystick / dial) */
+.arcadePanel {
+  width: 130px;
+  height: 72px;
+  background: linear-gradient(145deg, #1a1a40, #0e0e2e);
+  border-radius: 8px;
+  border: 2px solid #0a0a20;
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+
+/* arcade buttons */
+.arcadeBtn {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 38% 32%, #ff6650, #cc1a00);
   box-shadow:
-    inset 3px 3px 0 #1a1a1a,
-    inset -3px -3px 0 #7a7a7a;
-  transform: translate(2px, 2px);
+    0 4px 0 #880c00,
+    0 5px 10px rgba(0, 0, 0, 0.5),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.3);
+  border: 2px solid #aa1500;
 }
 
-.playHint {
-  font-family: "Press Start 2P", monospace;
-  font-size: 8px;
-  color: #555;
-  letter-spacing: 1px;
-  margin: 0;
-  animation: hintPulse 2s ease-in-out infinite;
+/* joystick */
+.joystickBase {
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 38%, #2a2a55, #14143a);
+  border: 3px solid #0a0a28;
+  box-shadow:
+    inset 0 3px 8px rgba(0, 0, 0, 0.7),
+    0 2px 4px rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-@keyframes hintPulse {
-  0%, 100% { opacity: 0.4; }
-  50%       { opacity: 0.9; }
+.joystickStick {
+  position: relative;
+  width: 10px;
+  height: 34px;
+  background: linear-gradient(to right, #1a1a1a, #333, #1a1a1a);
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+}
+
+.joystickBall {
+  position: absolute;
+  top: -16px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 38% 32%, #ff6650, #cc1a00);
+  box-shadow:
+    0 3px 0 #880c00,
+    0 4px 10px rgba(0, 0, 0, 0.5);
+  border: 2px solid #aa1500;
+}
+
+/* coin dial */
+.arcadeDial {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 38% 30%, #c0c0c0, #888, #606060);
+  box-shadow:
+    0 3px 0 #444,
+    inset 0 2px 5px rgba(255, 255, 255, 0.3),
+    inset 0 -2px 5px rgba(0, 0, 0, 0.4);
+  border: 3px solid #555;
 }
 
 /* ── STAGES 2-6: Hero Scene ───────────────────────────── */
@@ -470,9 +501,14 @@
 
 /* ── Responsive ── */
 @media (max-width: 640px) {
-  .monitorFrame { width: 280px; }
-  .bootText { font-size: 7px; }
-  .playBtn { font-size: 10px; padding: 12px 20px; }
+  .introTitle { font-size: clamp(3rem, 16vw, 5rem); }
+  .introSub   { font-size: clamp(1rem, 5vw, 2rem); }
+  .introContent { margin-bottom: 160px; }
+  .arcadeWrap { width: 95vw; }
+  .arcadePanel { width: 90px; height: 56px; }
+  .arcadeBtn { width: 22px; height: 22px; }
+  .joystickBase { width: 46px; height: 46px; }
+  .arcadeDial { width: 40px; height: 40px; }
 
   /* Hide 3rd friend on mobile */
   .friendWrap:nth-child(3) { display: none; }
