@@ -1,12 +1,22 @@
 import styles from "./WorkSection.module.css";
-import Image from "next/image";
+
+const WORKS = [
+  { label: "Landing Page",  sub: "Conversion-focused hero",    theme: "maroon" },
+  { label: "Business Site", sub: "Company profile & services", theme: "navy"   },
+  { label: "Product UI",    sub: "Dashboard & portal",         theme: "teal",  featured: true },
+  { label: "E-Commerce",    sub: "Shop, cart & checkout",      theme: "amber"  },
+  { label: "Fix & Care",    sub: "Polish, speed & deploy",     theme: "slate"  },
+  { label: "Portfolio",     sub: "Personal brand",             theme: "maroon" },
+  { label: "Startup Web",   sub: "MVP launch site",            theme: "navy"   },
+  { label: "Restaurant",    sub: "Local business",             theme: "amber"  },
+  { label: "Agency Studio", sub: "Creative studio",            theme: "slate"  },
+];
 
 export default function WorkSection() {
   return (
     <section className={styles.section} id="work-with-us">
       <div className={styles.container}>
 
-        {/* ── Header row ── */}
         <div className={styles.header}>
           <h2 className={styles.heading}>Work<br />With Us</h2>
           <a href="#contact" className={styles.ctaBtn} aria-label="Contact BURHANDEV">
@@ -15,45 +25,42 @@ export default function WorkSection() {
           </a>
         </div>
 
-        {/* ── Sticky image panel ── */}
-        <div className={styles.pinWrap}>
-          <div className={styles.stickyImage}>
-            {/* Branded visual placeholder */}
-            <div className={styles.brandPanel}>
-              <div className={styles.brandNoise} aria-hidden="true" />
-
-              {/* top bar mockup */}
-              <div className={styles.mockBar}>
-                <span className={styles.mockDot} style={{ background: "#ff5f57" }} />
-                <span className={styles.mockDot} style={{ background: "#ffbd2e" }} />
-                <span className={styles.mockDot} style={{ background: "#28ca41" }} />
-                <span className={styles.mockUrl}>burhandev.com</span>
+        <div className={styles.grid}>
+          {WORKS.map((w, i) => (
+            <div
+              key={i}
+              className={[
+                styles.card,
+                styles[`t_${w.theme}`],
+                w.featured ? styles.featured : "",
+              ].join(" ")}
+            >
+              {/* mini browser chrome */}
+              <div className={styles.bar}>
+                <span className={styles.dot} style={{ background: "#ff5f57" }} />
+                <span className={styles.dot} style={{ background: "#ffbd2e" }} />
+                <span className={styles.dot} style={{ background: "#28ca41" }} />
+                <span className={styles.urlBar} />
               </div>
 
-              {/* inner content */}
-              <div className={styles.brandContent}>
-                <Image
-                  src="/brand/burhan-logo2.png"
-                  alt="BURHANDEV"
-                  width={64}
-                  height={64}
-                  className={styles.brandLogo}
-                />
-                <p className={styles.brandWord}>BURHANDEV</p>
-                <p className={styles.brandTagline}>We Build Bold.</p>
-
-                {/* service chips */}
-                <div className={styles.chips}>
-                  {["Landing Page", "Business Website", "Product UI", "Fix & Care"].map(s => (
-                    <span key={s} className={styles.chip}>{s}</span>
-                  ))}
+              {/* wireframe site layout */}
+              <div className={styles.mock}>
+                <div className={styles.mockNav} />
+                <div className={styles.mockHero} />
+                <div className={styles.mockCols}>
+                  <div className={styles.mockCol} />
+                  <div className={styles.mockCol} />
+                  <div className={styles.mockCol} />
                 </div>
               </div>
 
-              {/* bottom glow */}
-              <div className={styles.glow} aria-hidden="true" />
+              {/* bottom label */}
+              <div className={styles.info}>
+                <strong className={styles.cardTitle}>{w.label}</strong>
+                <span className={styles.cardSub}>{w.sub}</span>
+              </div>
             </div>
-          </div>
+          ))}
         </div>
 
       </div>
