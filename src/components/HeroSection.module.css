@@ -3,7 +3,7 @@
   position: relative;
   width: 100%;
   height: 100vh;
-  background: var(--cream, #fff6dc);
+  background: #0e0806;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -85,14 +85,14 @@
   z-index: 1;
 }
 
-/* subtle maroon dot grid on cream */
+/* maroon dot grid on dark screen */
 .introScreen::before {
   content: "";
   position: absolute;
   inset: 0;
   background-image:
-    radial-gradient(circle, rgba(127,29,29,0.07) 1px, transparent 1px);
-  background-size: 28px 28px;
+    radial-gradient(circle, rgba(127,29,29,0.22) 1.5px, transparent 1.5px);
+  background-size: 32px 32px;
   pointer-events: none;
 }
 
@@ -115,7 +115,7 @@
   flex-direction: column;
   align-items: center;
   gap: 24px;
-  margin-bottom: 200px;
+  margin-bottom: 180px;
   text-align: center;
   padding: 0 24px;
 }
@@ -124,40 +124,41 @@
   font-family: var(--font-bebas), "Impact", sans-serif;
   font-size: clamp(4.5rem, 12vw, 11rem);
   font-weight: 400;
-  color: var(--maroon, #7f1d1d);
+  color: var(--cream, #fff6dc);
   line-height: 0.88;
   letter-spacing: 0.02em;
   margin: 0;
+  text-shadow: 0 0 80px rgba(200, 80, 80, 0.35);
 }
 
 .introSub {
   font-family: var(--font-bebas), "Impact", sans-serif;
   font-size: clamp(1.2rem, 3.5vw, 3rem);
-  color: var(--maroon-2, #963232);
+  color: rgba(255, 246, 220, 0.55);
   letter-spacing: 0.1em;
   margin: 0;
-  opacity: 0.7;
 }
 
-/* ── Play button — maroon outline on cream ── */
+/* ── Play button — cream outline on dark screen ── */
 .playBtn {
   display: inline-flex;
   align-items: center;
   gap: 14px;
   background: transparent;
-  border: 2px solid var(--maroon, #7f1d1d);
+  border: 2px solid rgba(255, 246, 220, 0.45);
   border-radius: 4px;
   padding: 13px 26px;
-  color: var(--maroon, #7f1d1d);
+  color: rgba(255, 246, 220, 0.8);
   font-family: var(--font-bebas), "Impact", sans-serif;
   font-size: 1.4rem;
   letter-spacing: 0.12em;
   cursor: pointer;
-  transition: background 0.18s, color 0.18s, transform 0.12s;
+  transition: background 0.18s, color 0.18s, border-color 0.18s, transform 0.12s;
 }
 
 .playBtn:hover {
-  background: var(--maroon, #7f1d1d);
+  background: rgba(255, 246, 220, 0.10);
+  border-color: rgba(255, 246, 220, 0.85);
   color: var(--cream, #fff6dc);
   transform: scale(1.03);
 }
@@ -663,6 +664,174 @@
   background-size: 20px 20px;
 }
 
+/* ── Hanging device (top centre) ── */
+.hangerWrap {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 3;
+  pointer-events: none;
+  animation: hangerFloat 3.6s ease-in-out infinite;
+}
+
+.hangerCable {
+  width: 2px;
+  height: 90px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(200, 80, 80, 0.25) 30%,
+    rgba(127, 29, 29, 0.55) 80%,
+    rgba(80, 15, 15, 0.7)
+  );
+}
+
+.hangerDevice {
+  position: relative;
+  width: 46px;
+  height: 34px;
+  background: linear-gradient(160deg, #2a0808 0%, #120404 100%);
+  border-radius: 6px 6px 9px 9px;
+  border: 1px solid rgba(127, 29, 29, 0.45);
+  box-shadow:
+    0 6px 24px rgba(0, 0, 0, 0.8),
+    0 0 0 1px rgba(80, 20, 20, 0.2),
+    inset 0 1px 0 rgba(200, 100, 100, 0.18);
+}
+
+/* LED indicator */
+.hangerDevice::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #c43232;
+  box-shadow:
+    0 0 14px rgba(196, 50, 50, 0.9),
+    0 0 5px rgba(196, 50, 50, 0.6);
+  animation: ledPulse 2s ease-in-out infinite;
+}
+
+/* Exhaust wisp */
+.hangerDevice::after {
+  content: "";
+  position: absolute;
+  top: -22px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 3px;
+  height: 20px;
+  background: linear-gradient(to top, rgba(127, 29, 29, 0.35), transparent);
+  border-radius: 2px;
+  animation: wisp 2.4s ease-out infinite;
+}
+
+@keyframes hangerFloat {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50%       { transform: translateX(-50%) translateY(18px); }
+}
+
+@keyframes ledPulse {
+  0%, 100% { opacity: 0.55; box-shadow: 0 0 6px rgba(196,50,50,0.4); }
+  50%       { opacity: 1;    box-shadow: 0 0 22px rgba(196,50,50,0.9), 0 0 8px rgba(196,50,50,0.6); }
+}
+
+@keyframes wisp {
+  0%   { opacity: 0.5; transform: translateX(-50%) scaleX(1)   translateY(0); }
+  100% { opacity: 0;   transform: translateX(-60%) scaleX(1.6) translateY(-14px); }
+}
+
+/* ── 3D decorative balls — left shelf ── */
+.balls {
+  position: absolute;
+  bottom: 40px;
+  left: clamp(8px, 3vw, 40px);
+  display: flex;
+  align-items: flex-end;
+  z-index: 6;
+  pointer-events: none;
+}
+
+.ball {
+  border-radius: 50%;
+  flex-shrink: 0;
+  position: relative;
+}
+
+/* Maroon-red ball */
+.ball1 {
+  width: 88px;
+  height: 88px;
+  background: radial-gradient(
+    circle at 35% 28%,
+    #e03838 0%,
+    #9b2020 42%,
+    #5c1010 68%,
+    #220404 100%
+  );
+  box-shadow:
+    0 14px 36px rgba(0, 0, 0, 0.7),
+    0 4px 8px rgba(0, 0, 0, 0.5),
+    inset 0 -5px 10px rgba(0, 0, 0, 0.35);
+  z-index: 3;
+  animation: ballBob 4s ease-in-out infinite;
+}
+
+/* Cream-gold metallic ball */
+.ball2 {
+  width: 72px;
+  height: 72px;
+  background: radial-gradient(
+    circle at 38% 30%,
+    #f5eed8 0%,
+    #c8a455 42%,
+    #7a5820 68%,
+    #2e1e08 100%
+  );
+  box-shadow:
+    0 11px 28px rgba(0, 0, 0, 0.65),
+    0 3px 6px rgba(0, 0, 0, 0.4),
+    inset 0 -4px 8px rgba(0, 0, 0, 0.3);
+  z-index: 2;
+  margin-left: -18px;
+  margin-bottom: 8px;
+  animation: ballBob 3.4s ease-in-out infinite 0.7s;
+}
+
+/* Dark slate ball */
+.ball3 {
+  width: 80px;
+  height: 80px;
+  background: radial-gradient(
+    circle at 33% 28%,
+    #4a1a1a 0%,
+    #240a0a 42%,
+    #100404 68%,
+    #040101 100%
+  );
+  box-shadow:
+    0 12px 32px rgba(0, 0, 0, 0.8),
+    0 4px 8px rgba(0, 0, 0, 0.5),
+    inset 0 -4px 8px rgba(0, 0, 0, 0.45),
+    inset 2px 2px 6px rgba(127, 29, 29, 0.12);
+  z-index: 1;
+  margin-left: -14px;
+  animation: ballBob 5s ease-in-out infinite 1.5s;
+}
+
+@keyframes ballBob {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-10px); }
+}
+
 /* ── Responsive ── */
 @media (max-width: 640px) {
   .introTitle    { font-size: clamp(3rem, 16vw, 5rem); }
@@ -673,6 +842,10 @@
   .arcadeBtn     { width: 22px; height: 22px; }
   .joystickBase  { width: 46px; height: 46px; }
   .arcadeDial    { width: 40px; height: 40px; }
+
+  .ball1 { width: 64px; height: 64px; }
+  .ball2 { width: 52px; height: 52px; }
+  .ball3 { width: 58px; height: 58px; }
 
   .friendWrap:nth-child(3) { display: none; }
   .ghostText span { font-size: clamp(3.5rem, 18vw, 6rem); }
