@@ -122,8 +122,22 @@ export default function HeroSection() {
 
     return (
       <section className={`${styles.introScreen} ${exploding ? styles.exploding : ""}`}>
-        {/* border frame around the whole hero screen */}
+        {/* 3D physical bezel frame */}
         <div className={styles.screenFrame} aria-hidden="true" />
+
+        {/* hanging device — top centre */}
+        <div className={styles.hangerWrap} aria-hidden="true">
+          <div className={styles.hangerCable} />
+          <div className={styles.hangerDevice} />
+        </div>
+
+        {/* 3D decorative balls — left shelf */}
+        <div className={styles.balls} aria-hidden="true">
+          <div className={styles.ball1} />
+          <div className={styles.ball2} />
+          <div className={styles.ball3} />
+        </div>
+
         {/* headline */}
         <div className={styles.introContent}>
           <h1 className={styles.introTitle}>BURHANDEV.</h1>
