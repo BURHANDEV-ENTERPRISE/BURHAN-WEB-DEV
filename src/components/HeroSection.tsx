@@ -191,7 +191,6 @@ export default function HeroSection() {
 
           </div>
           </div>{/* /arcadeFrame */}
-          <div className={styles.arcadeShadow} />
         </div>
       </section>
     );
