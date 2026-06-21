@@ -102,116 +102,183 @@
   flex-shrink: 0;
 }
 
-/* ── Arcade controller (maroon/red on cream) ── */
+/* ── Interactive arcade controller ── */
 .arcadeWrap {
   position: absolute;
-  bottom: -28px;
+  bottom: -24px;
   left: 50%;
-  transform: translateX(-50%) perspective(700px) rotateX(22deg);
+  transform: translateX(-50%) perspective(900px) rotateX(20deg);
   transform-origin: bottom center;
-  width: min(560px, 90vw);
+  width: min(640px, 96vw);
+  cursor: default;
 }
 
 .arcadeBody {
   position: relative;
   width: 100%;
-  height: 100px;
-  background: linear-gradient(to bottom, #9b2020 0%, #7f1d1d 45%, #6b1515 100%);
-  border-radius: 14px 14px 6px 6px;
+  height: 130px;
+  background: linear-gradient(165deg, #b02020 0%, #8b1a1a 35%, #7f1d1d 60%, #6b1515 100%);
+  border-radius: 16px 16px 6px 6px;
   display: flex;
   align-items: center;
-  justify-content: space-around;
-  padding: 0 24px;
+  justify-content: center;
+  gap: 40px;
+  padding: 0 40px;
   box-shadow:
-    inset 0 -4px 0 rgba(0,0,0,0.3),
-    inset 0 3px 0 #c43232,
-    0 6px 0 #4a0d0d,
-    0 12px 30px rgba(100, 10, 10, 0.35);
+    inset 0 4px 0 #c83030,
+    inset 0 -4px 0 rgba(0,0,0,0.35),
+    0 8px 0 #4a0d0d,
+    0 16px 40px rgba(80, 10, 10, 0.5);
 }
 
 .arcadeShadow {
-  width: 94%;
+  width: 92%;
   margin: 0 auto;
-  height: 20px;
-  background: linear-gradient(to bottom, #4a0d0d, #2a0606);
-  border-radius: 0 0 10px 10px;
-  box-shadow: 0 8px 20px rgba(80, 0, 0, 0.4);
-}
-
-.arcadePanel {
-  width: 130px;
-  height: 72px;
-  background: linear-gradient(145deg, #2a0e0e, #1a0808);
-  border-radius: 8px;
-  border: 2px solid #0e0404;
-  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.7);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 14px;
-}
-
-.arcadeBtn {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 38% 32%, #d43030, #8b1010);
-  box-shadow:
-    0 4px 0 #5a0808,
-    0 5px 10px rgba(0, 0, 0, 0.4),
-    inset 0 -2px 4px rgba(0,0,0,0.35);
-  border: 2px solid #6b1010;
-}
-
-.joystickBase {
-  width: 62px;
-  height: 62px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 40% 38%, #3a1010, #1a0505);
-  border: 3px solid #0e0303;
-  box-shadow:
-    inset 0 3px 8px rgba(0, 0, 0, 0.7),
-    0 2px 4px rgba(0, 0, 0, 0.4);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.joystickStick {
-  position: relative;
-  width: 10px;
-  height: 34px;
-  background: linear-gradient(to right, #111, #2a0808, #111);
-  border-radius: 4px;
-  display: flex;
-  justify-content: center;
-}
-
-.joystickBall {
-  position: absolute;
-  top: -16px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 24px;
   height: 24px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 38% 32%, #d43030, #8b1010);
-  box-shadow:
-    0 3px 0 #5a0808,
-    0 4px 10px rgba(0, 0, 0, 0.4);
-  border: 2px solid #6b1010;
+  background: linear-gradient(to bottom, #3d0a0a, #1e0404);
+  border-radius: 0 0 12px 12px;
+  box-shadow: 0 10px 24px rgba(60, 0, 0, 0.5);
 }
 
-.arcadeDial {
+/* ── Joystick panel ── */
+.joyPanel {
+  position: relative;
+  width: 180px;
+  height: 106px;
+  background: linear-gradient(145deg, #1e0c0c, #140808);
+  border-radius: 10px;
+  border: 2px solid #0a0404;
+  box-shadow:
+    inset 0 3px 10px rgba(0,0,0,0.8),
+    inset 0 -1px 2px rgba(255,255,255,0.04);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* perspective for 3D tilt of stick */
+  perspective: 200px;
+  cursor: crosshair;
+  flex-shrink: 0;
+}
+
+/* corner rivets */
+.rivet {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #6a3a2a, #3a1a10);
+  box-shadow: inset 0 1px 2px rgba(255,255,255,0.15), 0 1px 2px rgba(0,0,0,0.6);
+}
+
+/* joystick outer ring */
+.joyBase {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 35%, #2e1a1a, #0e0606);
+  border: 3px solid #0a0303;
+  box-shadow:
+    inset 0 4px 12px rgba(0,0,0,0.85),
+    inset 0 -1px 4px rgba(255,100,100,0.06),
+    0 2px 6px rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* inner ring ring */
+.joyBaseInner {
+  position: absolute;
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  background: radial-gradient(circle at 38% 30%, #d4b896, #a07850, #6e5030);
+  border: 1.5px solid rgba(255,255,255,0.06);
+  background: radial-gradient(circle at 40% 38%, #1a0c0c, #080404);
+}
+
+/* stick — moves with pointer */
+.joyStick {
+  position: relative;
+  z-index: 2;
+  width: 14px;
+  height: 44px;
+  background: linear-gradient(to right, #0e0404, #2a1010, #0e0404);
+  border-radius: 5px 5px 8px 8px;
+  transform-origin: bottom center;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+/* ball on top of stick */
+.joyBall {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 28%, #e03838, #8b1010);
+  border: 2px solid #6b1010;
   box-shadow:
-    0 3px 0 #4a3010,
-    inset 0 2px 5px rgba(255,220,180,0.3),
-    inset 0 -2px 5px rgba(0,0,0,0.35);
-  border: 3px solid #7a5828;
+    0 4px 0 #4a0808,
+    0 6px 14px rgba(0,0,0,0.55),
+    inset 0 -2px 4px rgba(0,0,0,0.3),
+    inset 2px 2px 4px rgba(255,160,160,0.2);
+  will-change: transform;
+}
+
+/* ── Big PLAY button ── */
+.actionBtn {
+  position: relative;
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 38% 30%, #d0cec8, #a0a09a, #707068);
+  border: none;
+  cursor: pointer;
+  flex-shrink: 0;
+  box-shadow:
+    0 8px 0 #3a3a34,
+    0 10px 20px rgba(0,0,0,0.55),
+    inset 0 3px 6px rgba(255,255,255,0.35),
+    inset 0 -3px 6px rgba(0,0,0,0.3);
+  transition: transform 0.08s ease, box-shadow 0.08s ease;
+  /* engrave ring */
+  outline: 3px solid rgba(0,0,0,0.2);
+  outline-offset: -8px;
+}
+
+.actionBtn::before {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(0,0,0,0.15);
+}
+
+.actionBtn:hover {
+  background: radial-gradient(circle at 38% 30%, #dcdad4, #b0b0aa, #808078);
+}
+
+/* pressed state — sink down */
+.btnDown {
+  transform: translateY(5px) !important;
+  box-shadow:
+    0 3px 0 #3a3a34,
+    0 4px 10px rgba(0,0,0,0.45),
+    inset 0 3px 8px rgba(0,0,0,0.25),
+    inset 0 -1px 3px rgba(255,255,255,0.2) !important;
+}
+
+.actionLabel {
+  font-family: var(--font-bebas), "Impact", sans-serif;
+  font-size: 1.1rem;
+  letter-spacing: 0.12em;
+  color: rgba(60, 50, 40, 0.75);
+  text-shadow: 0 1px 0 rgba(255,255,255,0.4), 0 -1px 0 rgba(0,0,0,0.2);
+  pointer-events: none;
+  user-select: none;
 }
 
 /* ── STAGES 2-6: Hero Scene ───────────────────────────── */
