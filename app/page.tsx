@@ -1,5 +1,6 @@
 import ScrollEffects from "../src/components/ScrollEffects";
 import HeroSection from "../src/components/HeroSection";
+import OpenSection from "../src/components/OpenSection";
 import Image from "next/image";
 
 export default function Home() {
@@ -23,6 +24,7 @@ export default function Home() {
 
       <main>
         <HeroSection />
+        <OpenSection />
 
         <section className="manifesto-section reveal" aria-labelledby="manifesto-title">
           <p className="eyebrow">Digital Craft</p>

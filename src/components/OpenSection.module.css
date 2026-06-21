@@ -1,0 +1,174 @@
+/* ── OpenSection — "Enter the World of BURHANDEV" ── */
+
+.open {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background:
+    radial-gradient(63.68% 30.76% at 50% 103.08%,
+      rgba(255, 180, 100, 0.14) 0%,
+      rgba(2, 4, 2, 0.00) 100%),
+    #060201;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 120px 24px 280px;
+}
+
+/* ── Inner content ── */
+.inner {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+  text-align: center;
+  max-width: 900px;
+}
+
+/* ── Heading ── */
+.heading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  font-family: var(--font-bebas), "Impact", sans-serif;
+  font-size: clamp(3.5rem, 10vw, 9rem);
+  font-weight: 400;
+  line-height: 1.02;
+  letter-spacing: 0.01em;
+  color: #fff;
+  margin: 0;
+}
+
+.heading span {
+  display: block;
+  animation: revealWord 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.heading span:nth-child(1) { animation-delay: 0.1s; }
+.heading span:nth-child(2) { animation-delay: 0.22s; }
+.heading span:nth-child(3) { animation-delay: 0.34s; }
+
+@keyframes revealWord {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* BURHANDEV brand word in maroon accent */
+.brand {
+  color: var(--cream, #fff6dc);
+  position: relative;
+}
+
+.brand::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: 4px;
+  width: 100%; height: 4px;
+  background: var(--maroon, #7f1d1d);
+  border-radius: 2px;
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: underlineIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.7s both;
+}
+
+@keyframes underlineIn {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+/* ── Subtitle ── */
+.sub {
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: clamp(1rem, 2.2vw, 1.3rem);
+  color: rgba(255, 246, 220, 0.6);
+  max-width: 600px;
+  line-height: 1.6;
+  margin: 0;
+  animation: revealWord 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.5s both;
+}
+
+/* ── CTA button (Cinnamon-style icon + text) ── */
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  color: #fff;
+  text-decoration: none;
+  font-family: var(--font-bebas), "Impact", sans-serif;
+  font-size: 1.25rem;
+  letter-spacing: 0.1em;
+  padding: 12px 24px;
+  border: 1.5px solid rgba(255, 246, 220, 0.25);
+  border-radius: 4px;
+  transition: border-color 0.2s, background 0.2s;
+  animation: revealWord 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.65s both;
+  /* needed for icon clip */
+  overflow: hidden;
+}
+
+.cta:hover {
+  border-color: rgba(255, 246, 220, 0.6);
+  background: rgba(255, 246, 220, 0.05);
+}
+
+/* icon wrapper — clips the two SVGs */
+.ctaIconWrap {
+  position: relative;
+  width: 36px;
+  height: 36px;
+  border: 1.5px solid rgba(255, 246, 220, 0.35);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+/* primary icon — slides out right on hover */
+.ctaIconA {
+  position: relative;
+  color: #fff;
+  transition: transform 0.45s cubic-bezier(0.625, 0.05, 0, 1);
+}
+
+.cta:hover .ctaIconA {
+  transform: translateX(220%);
+}
+
+/* clone icon — enters from left on hover */
+.ctaIconB {
+  position: absolute;
+  left: 50%; top: 50%;
+  transform: translate(-300%, -50%);
+  color: #fff;
+  transition: transform 0.45s cubic-bezier(0.625, 0.05, 0, 1);
+}
+
+.cta:hover .ctaIconB {
+  transform: translate(-50%, -50%);
+}
+
+/* ── Animated SVG curve line ── */
+.curveLine {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 220%;
+  height: auto;
+  pointer-events: none;
+  transform: translateX(-10%);
+}
+
+@media (min-width: 640px) { .curveLine { width: 180%; transform: translateX(-5%); } }
+@media (min-width: 1024px){ .curveLine { width: 100%; transform: none; } }
+
+/* ── Responsive ── */
+@media (max-width: 640px) {
+  .open { padding: 80px 20px 220px; }
+  .heading { font-size: clamp(3rem, 15vw, 5rem); }
+}
