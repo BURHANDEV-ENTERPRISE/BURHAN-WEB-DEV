@@ -122,6 +122,8 @@ export default function HeroSection() {
 
     return (
       <section className={`${styles.introScreen} ${exploding ? styles.exploding : ""}`}>
+        {/* border frame around the whole hero screen */}
+        <div className={styles.screenFrame} aria-hidden="true" />
         {/* headline */}
         <div className={styles.introContent}>
           <h1 className={styles.introTitle}>BURHANDEV.</h1>
