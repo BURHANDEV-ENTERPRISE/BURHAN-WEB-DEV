@@ -1,6 +1,7 @@
 import ScrollEffects from "../src/components/ScrollEffects";
 import HeroSection from "../src/components/HeroSection";
 import OpenSection from "../src/components/OpenSection";
+import WorkSection from "../src/components/WorkSection";
 import Image from "next/image";
 
 export default function Home() {
@@ -155,6 +156,8 @@ export default function Home() {
             <a className="button button-dark" href="https://burhan.my/">burhan.my</a>
           </div>
         </section>
+
+        <WorkSection />
       </main>
 
       <footer className="site-footer site-footer--new">
