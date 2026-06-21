@@ -3,9 +3,7 @@
   position: relative;
   width: 100%;
   height: 100vh;
-  /* dark navy frame — recreates the Cinnamon "screen" backdrop */
-  background:
-    radial-gradient(ellipse 80% 60% at 50% 30%, #0d1a50 0%, #06091a 55%, #020408 100%);
+  background: var(--cream, #fff6dc);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -13,14 +11,14 @@
   overflow: hidden;
 }
 
-/* subtle noise on the dark bg */
+/* subtle maroon dot grid on cream */
 .introScreen::before {
   content: "";
   position: absolute;
   inset: 0;
   background-image:
-    radial-gradient(circle, rgba(255,246,220,0.03) 1px, transparent 1px);
-  background-size: 24px 24px;
+    radial-gradient(circle, rgba(127,29,29,0.07) 1px, transparent 1px);
+  background-size: 28px 28px;
   pointer-events: none;
 }
 
@@ -52,43 +50,41 @@
   font-family: var(--font-bebas), "Impact", sans-serif;
   font-size: clamp(4.5rem, 12vw, 11rem);
   font-weight: 400;
-  color: #fff;
+  color: var(--maroon, #7f1d1d);
   line-height: 0.88;
   letter-spacing: 0.02em;
   margin: 0;
-  text-shadow: 0 0 80px rgba(200, 160, 80, 0.2);
 }
 
 .introSub {
   font-family: var(--font-bebas), "Impact", sans-serif;
   font-size: clamp(1.2rem, 3.5vw, 3rem);
-  color: var(--cream, #fff6dc);
+  color: var(--maroon-2, #963232);
   letter-spacing: 0.1em;
   margin: 0;
   opacity: 0.7;
 }
 
-/* ── Play button — cream outline on dark ── */
+/* ── Play button — maroon outline on cream ── */
 .playBtn {
   display: inline-flex;
   align-items: center;
   gap: 14px;
   background: transparent;
-  border: 1.5px solid rgba(255, 246, 220, 0.35);
+  border: 2px solid var(--maroon, #7f1d1d);
   border-radius: 4px;
   padding: 13px 26px;
-  color: #fff;
+  color: var(--maroon, #7f1d1d);
   font-family: var(--font-bebas), "Impact", sans-serif;
   font-size: 1.4rem;
   letter-spacing: 0.12em;
   cursor: pointer;
-  backdrop-filter: blur(4px);
-  transition: background 0.18s, border-color 0.18s, transform 0.12s;
+  transition: background 0.18s, color 0.18s, transform 0.12s;
 }
 
 .playBtn:hover {
-  background: rgba(255, 246, 220, 0.08);
-  border-color: rgba(255, 246, 220, 0.6);
+  background: var(--maroon, #7f1d1d);
+  color: var(--cream, #fff6dc);
   transform: scale(1.03);
 }
 
@@ -100,7 +96,7 @@
   justify-content: center;
   width: 30px;
   height: 30px;
-  border: 1.5px solid rgba(255,246,220,0.4);
+  border: 1.5px solid currentColor;
   border-radius: 3px;
   font-size: 0.75rem;
   flex-shrink: 0;
@@ -121,7 +117,7 @@
   position: relative;
   width: 100%;
   height: 130px;
-  background: linear-gradient(165deg, #b02020 0%, #8b1a1a 35%, #7f1d1d 60%, #6b1515 100%);
+  background: linear-gradient(165deg, #2e7d32 0%, #1b5e20 40%, #155216 60%, #0f3d12 100%);
   border-radius: 16px 16px 6px 6px;
   display: flex;
   align-items: center;
@@ -129,19 +125,19 @@
   gap: 40px;
   padding: 0 40px;
   box-shadow:
-    inset 0 4px 0 #c83030,
+    inset 0 4px 0 #4caf50,
     inset 0 -4px 0 rgba(0,0,0,0.35),
-    0 8px 0 #4a0d0d,
-    0 16px 40px rgba(80, 10, 10, 0.5);
+    0 8px 0 #0a2e0d,
+    0 16px 40px rgba(10, 60, 15, 0.45);
 }
 
 .arcadeShadow {
   width: 92%;
   margin: 0 auto;
   height: 24px;
-  background: linear-gradient(to bottom, #3d0a0a, #1e0404);
+  background: linear-gradient(to bottom, #0a2e0d, #051508);
   border-radius: 0 0 12px 12px;
-  box-shadow: 0 10px 24px rgba(60, 0, 0, 0.5);
+  box-shadow: 0 10px 24px rgba(0, 40, 5, 0.45);
 }
 
 /* ── Joystick panel ── */
@@ -149,16 +145,15 @@
   position: relative;
   width: 180px;
   height: 106px;
-  background: linear-gradient(145deg, #1e0c0c, #140808);
+  background: linear-gradient(145deg, #0d2610, #071508);
   border-radius: 10px;
-  border: 2px solid #0a0404;
+  border: 2px solid #051009;
   box-shadow:
     inset 0 3px 10px rgba(0,0,0,0.8),
-    inset 0 -1px 2px rgba(255,255,255,0.04);
+    inset 0 -1px 2px rgba(100,255,100,0.04);
   display: flex;
   align-items: center;
   justify-content: center;
-  /* perspective for 3D tilt of stick */
   perspective: 200px;
   cursor: crosshair;
   flex-shrink: 0;
@@ -170,7 +165,7 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: radial-gradient(circle at 35% 30%, #6a3a2a, #3a1a10);
+  background: radial-gradient(circle at 35% 30%, #2e6b30, #163d18);
   box-shadow: inset 0 1px 2px rgba(255,255,255,0.15), 0 1px 2px rgba(0,0,0,0.6);
 }
 
@@ -180,25 +175,25 @@
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  background: radial-gradient(circle at 40% 35%, #2e1a1a, #0e0606);
-  border: 3px solid #0a0303;
+  background: radial-gradient(circle at 40% 35%, #162e18, #060e07);
+  border: 3px solid #040a05;
   box-shadow:
     inset 0 4px 12px rgba(0,0,0,0.85),
-    inset 0 -1px 4px rgba(255,100,100,0.06),
+    inset 0 -1px 4px rgba(100,200,100,0.05),
     0 2px 6px rgba(0,0,0,0.5);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-/* inner ring ring */
+/* inner ring */
 .joyBaseInner {
   position: absolute;
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  border: 1.5px solid rgba(255,255,255,0.06);
-  background: radial-gradient(circle at 40% 38%, #1a0c0c, #080404);
+  border: 1.5px solid rgba(255,255,255,0.05);
+  background: radial-gradient(circle at 40% 38%, #0d1e0e, #040904);
 }
 
 /* stick — moves with pointer */
@@ -207,7 +202,7 @@
   z-index: 2;
   width: 14px;
   height: 44px;
-  background: linear-gradient(to right, #0e0404, #2a1010, #0e0404);
+  background: linear-gradient(to right, #060e07, #1a3d1c, #060e07);
   border-radius: 5px 5px 8px 8px;
   transform-origin: bottom center;
   transform-style: preserve-3d;
