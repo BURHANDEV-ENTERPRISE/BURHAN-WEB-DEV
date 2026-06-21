@@ -113,12 +113,48 @@
   cursor: default;
 }
 
+/* ── Maroon 3D frame (Cinnamon-style) ── */
+.arcadeFrame {
+  position: relative;
+  background: linear-gradient(175deg, #a82828 0%, #7f1d1d 38%, #6b1515 62%, #4a0f0f 100%);
+  border-radius: 18px 18px 10px 10px;
+  padding: 14px 18px 18px;
+  /* cream top-edge highlight */
+  border-top: 2px solid rgba(255, 246, 220, 0.28);
+  border-left: 1.5px solid rgba(255, 246, 220, 0.12);
+  border-right: 1.5px solid rgba(255, 246, 220, 0.08);
+  /* stacked depth layers → visible front face */
+  box-shadow:
+    inset 0 3px 6px rgba(255, 246, 220, 0.1),
+    inset 0 -4px 0 rgba(0,0,0,0.45),
+    0  5px 0 #7a1a1a,
+    0  9px 0 #6b1515,
+    0 13px 0 #581010,
+    0 17px 0 #450c0c,
+    0 21px 0 #330808,
+    0 24px 0 #220505,
+    0 30px 50px rgba(40, 0, 0, 0.65);
+}
+
+/* corner bolt */
+.frameBolt {
+  position: absolute;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 38% 32%, rgba(255,246,220,0.85), rgba(180,110,110,0.6) 60%, rgba(80,20,20,0.8));
+  box-shadow:
+    inset 0 1px 2px rgba(0,0,0,0.55),
+    inset 0 -1px 1px rgba(255,246,220,0.2),
+    0 1px 3px rgba(0,0,0,0.5);
+}
+
 .arcadeBody {
   position: relative;
   width: 100%;
   height: 130px;
   background: linear-gradient(165deg, #2e7d32 0%, #1b5e20 40%, #155216 60%, #0f3d12 100%);
-  border-radius: 16px 16px 6px 6px;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -127,17 +163,16 @@
   box-shadow:
     inset 0 4px 0 #4caf50,
     inset 0 -4px 0 rgba(0,0,0,0.35),
-    0 8px 0 #0a2e0d,
-    0 16px 40px rgba(10, 60, 15, 0.45);
+    0 4px 12px rgba(0,0,0,0.4);
 }
 
 .arcadeShadow {
-  width: 92%;
+  width: 88%;
   margin: 0 auto;
-  height: 24px;
-  background: linear-gradient(to bottom, #0a2e0d, #051508);
-  border-radius: 0 0 12px 12px;
-  box-shadow: 0 10px 24px rgba(0, 40, 5, 0.45);
+  height: 18px;
+  background: linear-gradient(to bottom, #1a0505, #0d0202);
+  border-radius: 0 0 10px 10px;
+  box-shadow: 0 8px 22px rgba(60, 0, 0, 0.55);
 }
 
 /* ── Joystick panel ── */

@@ -134,6 +134,13 @@ export default function HeroSection() {
 
         {/* ── Interactive arcade controller ── */}
         <div className={styles.arcadeWrap}>
+          <div className={styles.arcadeFrame}>
+            {/* corner bolts */}
+            <span className={styles.frameBolt} style={{ top: 10, left: 14 }}  aria-hidden="true" />
+            <span className={styles.frameBolt} style={{ top: 10, right: 14 }} aria-hidden="true" />
+            <span className={styles.frameBolt} style={{ bottom: 10, left: 14 }}  aria-hidden="true" />
+            <span className={styles.frameBolt} style={{ bottom: 10, right: 14 }} aria-hidden="true" />
+
           <div className={styles.arcadeBody}>
 
             {/* JOYSTICK PANEL — pointer tracking area */}
@@ -183,6 +190,7 @@ export default function HeroSection() {
             </button>
 
           </div>
+          </div>{/* /arcadeFrame */}
           <div className={styles.arcadeShadow} />
         </div>
       </section>
