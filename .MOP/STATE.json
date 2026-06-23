@@ -11,9 +11,9 @@
   },
   "session": {
     "actor": "amad",
-    "authenticatedAt": "2026-06-23T10:54:28.104Z",
-    "lastActiveAt": "2026-06-23T11:11:36.279Z",
-    "expiresAt": "2026-06-23T12:11:36.280Z"
+    "authenticatedAt": "2026-06-23T14:05:19.583Z",
+    "lastActiveAt": "2026-06-23T14:05:19.583Z",
+    "expiresAt": "2026-06-23T15:05:19.583Z"
   },
   "sessionPolicy": {
     "enabled": true,
@@ -1822,11 +1822,23 @@
       "summary": "hero: 3D PC monitor frame + condenser mic + fix secret scan exclusions"
     },
     {
-      "at": "2026-06-23T11:16:49.628Z",
-      "actor": "BURHAN-MOP",
-      "kind": "merge-approved",
-      "summary": "origin/dev/amad approved and merged to main."
+      "at": "2026-06-23T14:05:19.583Z",
+      "actor": "amad",
+      "agent": "mad",
+      "agentRole": "frontend",
+      "agentId": "agent-mad",
+      "kind": "login",
+      "summary": "Member authenticated; new session started."
+    },
+    {
+      "at": "2026-06-23T14:05:19.676Z",
+      "actor": "amad",
+      "agent": "mad",
+      "agentRole": "frontend",
+      "agentId": "agent-mad",
+      "kind": "memory",
+      "summary": "fix: mic chrome/silver body — visible on dark hero bg"
     }
   ],
-  "lastActiveAt": "2026-06-23T11:11:36.279Z"
+  "lastActiveAt": "2026-06-23T14:05:19.583Z"
 }

@@ -13,3 +13,4 @@
 {"at":"2026-06-23T11:13:41.872Z","actor":"amad","agent":"mad","agentRole":"frontend","agentId":"agent-mad","kind":"conversation","summary":"hero: replace bezel with 3D monitor frame + condenser mic"}
 {"at":"2026-06-23T11:14:30.250Z","actor":"amad","agent":"mad","agentRole":"frontend","agentId":"agent-mad","kind":"conversation","summary":"hero: 3D PC monitor frame + condenser mic animation"}
 {"at":"2026-06-23T11:16:34.265Z","actor":"amad","agent":"mad","agentRole":"frontend","agentId":"agent-mad","kind":"conversation","summary":"hero: 3D PC monitor frame + condenser mic + fix secret scan exclusions"}
+{"at":"2026-06-23T14:05:19.676Z","actor":"amad","agent":"mad","agentRole":"frontend","agentId":"agent-mad","kind":"conversation","summary":"fix: mic chrome/silver body — visible on dark hero bg"}
