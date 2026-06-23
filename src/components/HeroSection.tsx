@@ -122,13 +122,21 @@ export default function HeroSection() {
 
     return (
       <section className={`${styles.introScreen} ${exploding ? styles.exploding : ""}`}>
-        {/* 3D physical bezel frame */}
-        <div className={styles.screenFrame} aria-hidden="true" />
+        {/* PC Monitor frame — dark bezel + chin */}
+        <div className={styles.monitorBezel} aria-hidden="true" />
+        <div className={styles.monitorChin} aria-hidden="true">
+          <div className={styles.chinLed} />
+          <span className={styles.chinBrand}>BURHAN</span>
+          <div className={styles.chinBtn} />
+        </div>
 
-        {/* hanging device — top centre */}
-        <div className={styles.hangerWrap} aria-hidden="true">
-          <div className={styles.hangerCable} />
-          <div className={styles.hangerDevice} />
+        {/* 3D Condenser Microphone — hangs from top-right */}
+        <div className={styles.micWrap} aria-hidden="true">
+          <div className={styles.micCable} />
+          <div className={styles.micBody}>
+            <div className={styles.micGrille} />
+          </div>
+          <div className={styles.micTail} />
         </div>
 
         {/* 3D decorative balls — left shelf */}

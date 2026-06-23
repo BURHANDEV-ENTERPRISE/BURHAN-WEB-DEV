@@ -1,21 +1,16 @@
-# {{title}} Handoff
+# Project Handoff — {{projectName}}
+**Tarikh:** {{date}} | **Dari:** {{fromActor}} | **Kepada:** {{toActor}}
 
-## Current State
+## Konteks Projek
+[Ringkasan apa yang dah dibuat]
 
-{{state}}
+## Keputusan Penting
+[Senarai ADR dan keputusan dari ledger]
 
-## Done
+## Apa Yang Belum Selesai
+- [ ] ...
 
-- 
-
-## Next
-
-- 
-
-## Blockers
-
-- 
-
-## Important Context
-
-- 
+## Cara Sambung Kerja
+```bash
+node .MOP/scripts/mop-core.mjs status
+```

@@ -7,43 +7,21 @@
     ]
   },
   "mcpServers": {
-    "ruflo": {
-      "command": "cmd",
+    "mop-flow": {
+      "command": "node",
       "args": [
-        "/c",
-        "npx",
-        "-y",
-        "ruflo@latest",
+        ".MOP/scripts/mop-flow.mjs",
         "mcp",
         "start"
       ],
       "env": {
         "npm_config_update_notifier": "false",
-        "CLAUDE_FLOW_MODE": "v3",
-        "CLAUDE_FLOW_HOOKS_ENABLED": "true",
-        "CLAUDE_FLOW_TOPOLOGY": "adaptive",
-        "CLAUDE_FLOW_MAX_AGENTS": "50",
-        "CLAUDE_FLOW_MEMORY_BACKEND": "hybrid"
-      },
-      "timeout": 30000,
-      "trust": false
-    },
-    "ruv-swarm": {
-      "command": "cmd",
-      "args": [
-        "/c",
-        "npx",
-        "-y",
-        "ruv-swarm",
-        "mcp",
-        "start"
-      ],
-      "env": {
-        "npm_config_update_notifier": "false"
+        "MOP_FLOW_BRAND": "MOP Flow",
+        "MOP_FLOW_CANONICAL": "true",
+        "MOP_FLOW_PROVIDER_PARITY": "true"
       },
       "timeout": 30000,
       "trust": false
     }
   }
 }
-

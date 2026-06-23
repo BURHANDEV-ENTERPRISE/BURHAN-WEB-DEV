@@ -254,7 +254,7 @@ function buildManifest() {
   const skills = mergeSkills(portableSkills, runtimeSkills);
   const state = readJson(join(coreDir, 'STATE.json'), {});
   return {
-    schemaVersion: '0.1.0',
+    schemaVersion: '1.1.0',
     generatedAt: now(),
     brand: {
       name: 'MOP Flow',
@@ -385,6 +385,23 @@ function main() {
   if (command === 'manifest' && subcommand === 'refresh') return manifestRefresh(args);
   if (command === 'bridge' && (!subcommand || subcommand === 'status')) return status(args);
   if (command === 'bridge' && subcommand === 'refresh') return manifestRefresh(args);
+  if (command === 'mcp' && subcommand === 'start') {
+    import('./mop-mcp.mjs');
+    return;
+  }
+  if (command === 'link') {
+    // `link <url>` — the URL is the first positional; parse the full tail so it survives.
+    const linkArgs = parseArgs(afterCommand);
+    return import('./mop-link.mjs').then((m) => m.runLink(linkArgs));
+  }
+  if (command === 'relay' || command === 'serve') {
+    const relayArgs = parseArgs(afterCommand);
+    return import('./mop-relay.mjs').then((m) => m.runRelay(relayArgs));
+  }
+  if (command === 'service' || command === 'autostart') {
+    const serviceArgs = parseArgs(afterCommand);
+    return import('./mop-service.mjs').then((m) => m.runService(serviceArgs));
+  }
 
   console.log(`Usage:
   node .MOP/scripts/mop-flow.mjs [tui]
@@ -394,7 +411,12 @@ function main() {
   node .MOP/scripts/mop-flow.mjs manifest print [--json]
   node .MOP/scripts/mop-flow.mjs manifest refresh [--json]
   node .MOP/scripts/mop-flow.mjs bridge status [--json]
-  node .MOP/scripts/mop-flow.mjs bridge refresh [--json]`);
+  node .MOP/scripts/mop-flow.mjs bridge refresh [--json]
+  node .MOP/scripts/mop-flow.mjs mcp start
+  node .MOP/scripts/mop-flow.mjs link <https://agent/v1/api/link/key> [--name N] [--no-push] [--json]
+  node .MOP/scripts/mop-flow.mjs relay [--once]
+  node .MOP/scripts/mop-flow.mjs service install [--start]
+  node .MOP/scripts/mop-flow.mjs service list [--json]`);
 }
 
 try {

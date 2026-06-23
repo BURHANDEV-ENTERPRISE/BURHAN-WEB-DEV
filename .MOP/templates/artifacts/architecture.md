@@ -1,28 +1,28 @@
-# {{title}} Architecture
+# Architecture — {{projectName}}
+**Fasa:** architecture | **Lead:** {{leadAgent}} | **Tarikh:** {{date}}
 
-## Context
+## Stack Pilihan
+| Layer | Teknologi | Sebab |
+|---|---|---|
+| Frontend | | |
+| Backend | | |
+| Database | | |
+| Deploy | | |
 
-{{context}}
+## ADR — Architecture Decision Records
+### ADR-001: [Keputusan]
+- **Konteks:** ...
+- **Keputusan:** ...
+- **Akibat:** ...
 
-## System Shape
+## Diagram Sistem
+[Tambah diagram di sini]
 
-- Frontend:
-- Backend:
-- Data:
-- Integrations:
+## Concern Keselamatan
+- [ ] Auth flow disemak
+- [ ] Secret management
+- [ ] Input validation
 
-## Data Contracts
-
-- 
-
-## Key Decisions
-
-- 
-
-## Risks / Tradeoffs
-
-- 
-
-## Deployment
-
-- 
+## Performance Budget
+- API response: < ...ms
+- Page load: < ...s
