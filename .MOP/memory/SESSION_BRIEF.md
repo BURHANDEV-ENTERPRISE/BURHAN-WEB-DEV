@@ -1,6 +1,6 @@
 # MOP Session Brief
 
-Updated: 2026-06-23T11:14:30.259Z
+Updated: 2026-06-23T11:16:34.272Z
 Actor: amad
 Active agent: mad (frontend)
 Current month: 2026-06
@@ -29,3 +29,4 @@ Current month: 2026-06
 - 2026-06-23T11:11:36.282Z - mad (frontend): Replace hero screenFrame with CSS 3D PC monitor frame (dark bezel + green LED chin) and hanging camera with animated condenser mic (sway, dot-mesh grille, maroon brand ring)
 - 2026-06-23T11:13:41.872Z - mad (frontend): hero: replace bezel with 3D monitor frame + condenser mic
 - 2026-06-23T11:14:30.250Z - mad (frontend): hero: 3D PC monitor frame + condenser mic animation
+- 2026-06-23T11:16:34.265Z - mad (frontend): hero: 3D PC monitor frame + condenser mic + fix secret scan exclusions

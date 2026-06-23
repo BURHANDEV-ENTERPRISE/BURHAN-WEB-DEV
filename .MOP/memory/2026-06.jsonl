@@ -12,3 +12,4 @@
 {"at":"2026-06-23T11:11:36.282Z","actor":"amad","agent":"mad","agentRole":"frontend","agentId":"agent-mad","kind":"conversation","summary":"Replace hero screenFrame with CSS 3D PC monitor frame (dark bezel + green LED chin) and hanging camera with animated condenser mic (sway, dot-mesh grille, maroon brand ring)"}
 {"at":"2026-06-23T11:13:41.872Z","actor":"amad","agent":"mad","agentRole":"frontend","agentId":"agent-mad","kind":"conversation","summary":"hero: replace bezel with 3D monitor frame + condenser mic"}
 {"at":"2026-06-23T11:14:30.250Z","actor":"amad","agent":"mad","agentRole":"frontend","agentId":"agent-mad","kind":"conversation","summary":"hero: 3D PC monitor frame + condenser mic animation"}
+{"at":"2026-06-23T11:16:34.265Z","actor":"amad","agent":"mad","agentRole":"frontend","agentId":"agent-mad","kind":"conversation","summary":"hero: 3D PC monitor frame + condenser mic + fix secret scan exclusions"}

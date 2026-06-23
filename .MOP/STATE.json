@@ -1811,6 +1811,15 @@
       "agentId": "agent-mad",
       "kind": "memory",
       "summary": "hero: 3D PC monitor frame + condenser mic animation"
+    },
+    {
+      "at": "2026-06-23T11:16:34.264Z",
+      "actor": "amad",
+      "agent": "mad",
+      "agentRole": "frontend",
+      "agentId": "agent-mad",
+      "kind": "memory",
+      "summary": "hero: 3D PC monitor frame + condenser mic + fix secret scan exclusions"
     }
   ],
   "lastActiveAt": "2026-06-23T11:11:36.279Z"
