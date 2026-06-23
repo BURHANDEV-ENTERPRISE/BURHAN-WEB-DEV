@@ -1,14 +1,32 @@
 # MOP Core - Gemini CLI Instructions
+*(Versi Dwibahasa / Bilingual Version)*
 
 Gemini CLI should load this file as project context. The main provider-neutral
-rules are imported below.
+rules are imported below. (Gemini CLI harus memuatkan fail ini sebagai konteks projek. Peraturan utama diimport di bawah)
 
 @./AGENTS.md
 
-## Gemini-Specific Notes
+## MOP Flow Notes / Nota MOP Flow
+
+- Use MOP Flow as the canonical system name. (Gunakan MOP Flow sebagai nama sistem utama)
+- Use `.agents/skills/` as the portable skill surface.
+- When a capability exists only in `.claude/skills/`, read it as a MOP Flow
+  bridged skill and translate Claude-only hooks/slash commands into Gemini CLI
+  tools or local shell/MCP equivalents.
+- Check provider parity with:
+
+```bash
+node .MOP/scripts/mop-flow.mjs status --json
+```
+
+## Gemini-Specific Notes / Nota Khusus Gemini
 
 - First action still applies: read `.MOP/STATE.json` and follow
-  `.MOP/PROTOCOL.md`.
+  `.MOP/PROTOCOL.md`. (Tindakan pertama masih terpakai: baca STATE.json dan ikuti PROTOCOL.md)
+- **Every new chat starts UNAUTHENTICATED.** Demand `Codename dan password.` and
+  run `login` this chat. `activeMember` is only a hint, never proof of auth.
+  Session expires after 60 min idle; re-login when commands report
+  "Session expired" / "Not authenticated".
 - After authentication, run `mop-core.mjs memory brief --actor <codename>` and
   `mop-core.mjs agent route --actor <codename> --task "<user task>"` before
   answering.
@@ -31,4 +49,5 @@ rules are imported below.
 - Use `/memory refresh` after editing `AGENTS.md`, `GEMINI.md`, or nested context
   files.
 - If MCP servers fail to start, continue with local filesystem inspection and
-  report the failed server name clearly.
+  report the failed server name clearly. Prefer the `mop-flow` server name when
+  referring to the Ruflo-backed runtime.

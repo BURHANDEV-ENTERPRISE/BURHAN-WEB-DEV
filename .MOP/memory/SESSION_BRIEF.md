@@ -1,8 +1,8 @@
 # MOP Session Brief
 
-Updated: 2026-06-20T08:33:26.854Z
+Updated: 2026-06-23T11:14:30.259Z
 Actor: amad
-Active agent: madszz (backend)
+Active agent: mad (frontend)
 Current month: 2026-06
 
 ## Required Session Flow
@@ -10,7 +10,7 @@ Current month: 2026-06
 1. Read `.MOP/STATE.json` and follow `.MOP/PROTOCOL.md`.
 2. Restore memory with `node .MOP/scripts/mop-core.mjs memory brief --actor <codename>`.
 3. Run `agent route` for the user task before answering.
-4. Start every authenticated answer with: `agent: madszz (backend) to amad`
+4. Start every authenticated answer with: `agent: mad (frontend) to amad`
 5. Save a one-line memory after meaningful work.
 
 ## Recent Memory
@@ -24,3 +24,8 @@ Current month: 2026-06
 - 2026-06-20T08:32:32.959Z - madszz (backend): Redesigned hero: cream background, ghost WE BUILD BOLD text, single 3D skinview3d character (Amad) with waving animation, speech bubble, red ground strip — replaced complex 5-character scroll animation
 - 2026-06-20T08:33:16.574Z - madszz (backend): redesign hero: cream bg, ghost WE BUILD BOLD text, 3D waving character, speech bubble, red ground strip
 - 2026-06-20T08:33:26.846Z - madszz (backend): redesign hero: cream bg, ghost WE BUILD BOLD text, 3D waving character, speech bubble, red ground strip
+- 2026-06-20T08:43:47.741Z - madszz (backend): PR #4 merged to main: hero redesign live on main branch
+- 2026-06-20T08:50:59.104Z - madszz (backend): fix hero visual bugs: ghost text z-index above canvas, camera zoom closer, canvas 58vh, cream bg color matched
+- 2026-06-23T11:11:36.282Z - mad (frontend): Replace hero screenFrame with CSS 3D PC monitor frame (dark bezel + green LED chin) and hanging camera with animated condenser mic (sway, dot-mesh grille, maroon brand ring)
+- 2026-06-23T11:13:41.872Z - mad (frontend): hero: replace bezel with 3D monitor frame + condenser mic
+- 2026-06-23T11:14:30.250Z - mad (frontend): hero: 3D PC monitor frame + condenser mic animation

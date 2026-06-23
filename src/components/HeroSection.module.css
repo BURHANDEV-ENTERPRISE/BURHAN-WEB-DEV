@@ -11,65 +11,77 @@
   overflow: hidden;
 }
 
-/* ── 3D physical bezel frame — like a device casing around the hero screen ── */
-.screenFrame {
+/* ── PC Monitor Frame ───────────────────────────────────────── */
+.monitorBezel {
   position: absolute;
-  inset: 0;
-  padding: 18px; /* bezel thickness */
-
-  /* 3D depth gradient — top-left catches light, bottom-right in shadow */
-  background: linear-gradient(
-    145deg,
-    #c24040  0%,
-    #8c2020  20%,
-    #7f1d1d  44%,
-    #5a1111  72%,
-    #330808  100%
-  );
-
-  /* hollow centre — only the padded ring (bezel) is visible */
-  -webkit-mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-  mask-composite: exclude;
-
+  inset: 22px;
+  border-radius: 4px;
   pointer-events: none;
   z-index: 20;
+  box-shadow:
+    0 0 0 1px  rgba(255,255,255,0.07),   /* inner-edge highlight */
+    0 0 0 22px #1b1b1b,                   /* bezel fill (dark charcoal) */
+    0 0 0 23px rgba(255,255,255,0.04),    /* outer highlight ring */
+    inset 0 0 18px 7px rgba(0,0,0,0.55); /* screen depth shadow */
 }
 
-/* screen-bounce highlight — top-left inner edge lit by the screen */
-.screenFrame::before {
-  content: "";
+/* ── Monitor chin (thick bottom bar — LED + brand + button) ── */
+.monitorChin {
   position: absolute;
-  inset: 0;
-  padding: 18px;
-  background: linear-gradient(
-    to bottom right,
-    rgba(255, 246, 220, 0.30) 0%,
-    rgba(255, 246, 220, 0.10) 30%,
-    transparent 58%
-  );
-  -webkit-mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-  mask-composite: exclude;
-}
-
-/* inner-edge depth shadow — frame casts a dark rim on the screen */
-.screenFrame::after {
-  content: "";
-  position: absolute;
-  inset: 18px;
-  box-shadow: 0 0 14px 5px rgba(20, 3, 3, 0.45);
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 54px;
+  background: linear-gradient(175deg, #1d1d1d 0%, #141414 55%, #0e0e0e 100%);
+  border-radius: 0 0 26px 26px;
+  z-index: 21;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
   pointer-events: none;
+  box-shadow:
+    inset 0  1px 0 rgba(255,255,255,0.05),
+    inset 0 -2px 0 rgba(0,0,0,0.55),
+    0  4px 0 #090909,
+    0  7px 0 #050505,
+    0 12px 24px rgba(0,0,0,0.65);
+}
+
+/* Power LED — green, softly pulsing */
+.chinLed {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #22c55e;
+  flex-shrink: 0;
+  animation: ledGlow 2.8s ease-in-out infinite;
+}
+
+@keyframes ledGlow {
+  0%, 100% { box-shadow: 0 0 10px 2px rgba(34,197,94,0.8), 0 0 4px rgba(34,197,94,0.5); opacity: 1; }
+  50%       { box-shadow: 0 0 4px 1px rgba(34,197,94,0.25); opacity: 0.5; }
+}
+
+/* Brand engraving text */
+.chinBrand {
+  font-family: var(--font-bebas), "Impact", sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.22em;
+  color: rgba(255,255,255,0.13);
+  user-select: none;
+  flex-shrink: 0;
+}
+
+/* Small round power/menu button */
+.chinBtn {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 38% 35%, #2c2c2c, #0e0e0e);
+  border: 1.5px solid rgba(255,255,255,0.06);
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.85), 0 1px 0 rgba(255,255,255,0.03);
+  flex-shrink: 0;
 }
 
 /* soft bottom fade — blends into the dark OpenSection below */
@@ -186,6 +198,7 @@
   transform-origin: bottom center;
   width: min(640px, 96vw);
   cursor: default;
+  z-index: 25;
 }
 
 /* ── Maroon 3D frame (Cinnamon-style) ── */
@@ -664,89 +677,103 @@
   background-size: 20px 20px;
 }
 
-/* ── Hanging device (top centre) ── */
-.hangerWrap {
+/* ── 3D Condenser Microphone ─────────────────────────────────── */
+.micWrap {
   position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
+  top: 22px;                              /* just below the top bezel */
+  right: clamp(40px, 8vw, 100px);
   display: flex;
   flex-direction: column;
   align-items: center;
-  z-index: 3;
+  z-index: 25;
   pointer-events: none;
-  animation: hangerFloat 3.6s ease-in-out infinite;
+  transform-origin: top center;
+  animation: micSway 5.5s ease-in-out infinite;
 }
 
-.hangerCable {
+@keyframes micSway {
+  0%, 100% { transform: rotate(-3.5deg); }
+  30%       { transform: rotate(-0.8deg) translateX(3px); }
+  60%       { transform: rotate(3.5deg); }
+  80%       { transform: rotate(1deg)   translateX(-3px); }
+}
+
+/* Cable from bezel down to mic */
+.micCable {
   width: 2px;
-  height: 90px;
+  height: 52px;
   background: linear-gradient(
     to bottom,
+    transparent 0%,
+    rgba(70,70,70,0.4) 30%,
+    rgba(50,50,50,0.7) 75%,
+    #2a2a2a 100%
+  );
+  border-radius: 1px;
+}
+
+/* Mic body — metallic cylinder with 3D lighting gradient */
+.micBody {
+  position: relative;
+  width: 46px;
+  height: 95px;
+  background: linear-gradient(
+    90deg,
+    #111    0%,
+    #282828 15%,
+    #484848 35%,
+    #585858 50%,
+    #484848 65%,
+    #282828 85%,
+    #111    100%
+  );
+  border-radius: 23px 23px 14px 14px;
+  box-shadow:
+    inset -6px 0 12px rgba(0,0,0,0.5),
+    inset  6px 0  8px rgba(255,255,255,0.04),
+    0 10px 30px rgba(0,0,0,0.75),
+    0  3px  8px rgba(0,0,0,0.5);
+}
+
+/* Brand ring — BURHANDEV maroon stripe */
+.micBody::after {
+  content: "";
+  position: absolute;
+  bottom: 26px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
     transparent,
-    rgba(200, 80, 80, 0.25) 30%,
-    rgba(127, 29, 29, 0.55) 80%,
-    rgba(80, 15, 15, 0.7)
+    rgba(196,50,50,0.55) 20%,
+    #c43232 50%,
+    rgba(196,50,50,0.55) 80%,
+    transparent
   );
 }
 
-.hangerDevice {
-  position: relative;
-  width: 46px;
+/* Perforated grille — dot mesh on upper ⅔ of body */
+.micGrille {
+  position: absolute;
+  top: 6px;
+  left: 4px;
+  right: 4px;
+  bottom: 32px;
+  border-radius: 19px 19px 6px 6px;
+  background-image: radial-gradient(circle, rgba(255,255,255,0.2) 1.2px, transparent 1.2px);
+  background-size: 7px 7px;
+  /* fade to edges — reinforces cylinder curvature */
+  -webkit-mask: radial-gradient(ellipse 70% 100% at 50% 50%, #fff 28%, transparent 72%);
+  mask: radial-gradient(ellipse 70% 100% at 50% 50%, #fff 28%, transparent 72%);
+}
+
+/* Tail cable from bottom of mic */
+.micTail {
+  width: 2px;
   height: 34px;
-  background: linear-gradient(160deg, #2a0808 0%, #120404 100%);
-  border-radius: 6px 6px 9px 9px;
-  border: 1px solid rgba(127, 29, 29, 0.45);
-  box-shadow:
-    0 6px 24px rgba(0, 0, 0, 0.8),
-    0 0 0 1px rgba(80, 20, 20, 0.2),
-    inset 0 1px 0 rgba(200, 100, 100, 0.18);
-}
-
-/* LED indicator */
-.hangerDevice::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background: #c43232;
-  box-shadow:
-    0 0 14px rgba(196, 50, 50, 0.9),
-    0 0 5px rgba(196, 50, 50, 0.6);
-  animation: ledPulse 2s ease-in-out infinite;
-}
-
-/* Exhaust wisp */
-.hangerDevice::after {
-  content: "";
-  position: absolute;
-  top: -22px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 3px;
-  height: 20px;
-  background: linear-gradient(to top, rgba(127, 29, 29, 0.35), transparent);
-  border-radius: 2px;
-  animation: wisp 2.4s ease-out infinite;
-}
-
-@keyframes hangerFloat {
-  0%, 100% { transform: translateX(-50%) translateY(0); }
-  50%       { transform: translateX(-50%) translateY(18px); }
-}
-
-@keyframes ledPulse {
-  0%, 100% { opacity: 0.55; box-shadow: 0 0 6px rgba(196,50,50,0.4); }
-  50%       { opacity: 1;    box-shadow: 0 0 22px rgba(196,50,50,0.9), 0 0 8px rgba(196,50,50,0.6); }
-}
-
-@keyframes wisp {
-  0%   { opacity: 0.5; transform: translateX(-50%) scaleX(1)   translateY(0); }
-  100% { opacity: 0;   transform: translateX(-60%) scaleX(1.6) translateY(-14px); }
+  background: linear-gradient(to bottom, #2a2a2a, rgba(40,40,40,0.15), transparent);
+  border-radius: 1px;
 }
 
 /* ── 3D decorative balls — left shelf ── */

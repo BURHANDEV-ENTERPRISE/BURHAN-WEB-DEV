@@ -1,14 +1,21 @@
-# Ruflo — Claude Code Configuration
+# MOP Flow - Claude Code Configuration
+*(Versi Dwibahasa / Bilingual Version)*
 
-## MOP Authentication Gate - First Action
+## MOP Authentication Gate - First Action / Tindakan Pertama
+
+Sebelum melakukan sebarang kerja dalam workspace ini, baca `.MOP/STATE.json` dan ikuti `.MOP/PROTOCOL.md`.
+Before doing anything in this workspace, read `.MOP/STATE.json` and follow `.MOP/PROTOCOL.md`.
 
 Before doing anything in this workspace, read `.MOP/STATE.json` and
 follow `.MOP/PROTOCOL.md`.
 
 - `initialized: false` -> output `MOP belum di-setup. Jalankan /mop-setup.` Run the setup wizard only.
-- `initialized: true` with no `activeMember` -> output `Codename dan password.` Do not continue until verified.
-- Verify credentials through `node .MOP/scripts/mop-core.mjs login --codename <codename> --password "<password>"`.
-- Wrong credentials -> output `Credentials tidak sah.`
+- `initialized: true` -> **every new chat starts UNAUTHENTICATED.** Output `Codename dan password.` Do not continue until verified **in this chat**.
+- **`activeMember` is only a hint of the last user, NOT proof of authentication.** Never skip the gate because `activeMember` is set. Do not act as a member who did not log in this chat.
+- Verify credentials through `node .MOP/scripts/mop-core.mjs login --codename <codename> --password "<password>"`. A successful login starts a fresh session.
+- Wrong credentials -> output `Credentials tidak sah.` No hints, no exceptions for "my machine" or "I'm the owner".
+- The session expires after 60 min idle (configurable via `sessionPolicy.idleTimeoutMinutes`). If any `mop-core`/`autosycn` command reports "Session expired" or "Not authenticated", demand `Codename dan password.` again before continuing.
+- Before any GitHub commit/push, verify with `node .MOP/scripts/mop-core.mjs whoami --actor <codename>` that `authenticated: true` and `sessionMember` matches the acting member. If a different person takes over, the previous member must `logout` (`mop-core.mjs logout`) and the new person must `login`.
 - After authentication, run the Agent Router before answering or acting:
   `mop-core.mjs agent route --actor <codename> --task "<user task>"`.
   It selects one primary role and may recommend any number of support roles
@@ -69,16 +76,31 @@ up when they ask.
 Default skill: `mop-help`. It answers "lepas ni buat apa?", routes the next MOP
 workflow phase, and names the next artifact/gate.
 
-Installer command: `npx burhan-mop install`.
+Installer command: `npx mop-flow install`.
+Legacy compatibility command: `npx burhan-mop install`.
 GitHub source fallback for development builds:
-`npx --yes github:BURHANDEV-ENTERPRISE/BURHAN-MOP install`.
+`npx --yes github:BURHANDEV-ENTERPRISE/mop-flow install`.
 
 During `/mop-setup`, ask whether to activate auto-deploy after the Git/GitHub
 identity questions.
 
-## Rules
+## MOP Flow Canonical Layer / Lapisan Berkanun MOP Flow
 
-- Do what has been asked; nothing more, nothing less
+MOP Flow is the user-facing system (MOP Flow adalah sistem bersemuka pengguna). Ruflo / Claude Flow are upstream runtime compatibility names only. Claude Code must still follow MOP auth, Agent Router, memory, workflow, readiness, and autosycn before using Claude-native hooks or skills.
+
+```bash
+node .MOP/scripts/mop-flow.mjs status --json
+node .MOP/scripts/mop-flow.mjs skills list
+```
+
+- Canonical MCP server name: `mop-flow`.
+- Portable skill source: `.agents/skills/`.
+- Runtime-native skill source: `.claude/skills/`.
+- When a skill must work outside Claude, bridge it through MOP Flow instead of treating Claude hooks or slash commands as universal.
+
+## Rules / Peraturan Utama
+
+- Do what has been asked; nothing more, nothing less (Lakukan apa yang disuruh sahaja)
 - NEVER create files unless absolutely necessary — prefer editing existing files
 - NEVER create documentation files unless explicitly requested
 - Treat the current workspace root as the project root. Do not create a nested
@@ -136,7 +158,7 @@ SendMessage({ to: "researcher", summary: "Start", message: "[task context]" })
 - After spawning: STOP, tell user what's running, wait for results
 - NEVER poll status — agents message back or complete automatically
 
-## Swarm & Routing
+## MOP Flow Swarm & Routing
 
 ### Config
 - **Topology**: adaptive (anti-drift)
@@ -146,7 +168,7 @@ SendMessage({ to: "researcher", summary: "Start", message: "[task context]" })
 - **Neural**: Enabled
 
 ```bash
-npx @claude-flow/cli@latest swarm init --topology hierarchical --max-agents 8 --strategy specialized
+npx ruflo@latest swarm init --topology hierarchical --max-agents 8 --strategy specialized
 ```
 
 ### Agent Routing
@@ -175,14 +197,15 @@ npx @claude-flow/cli@latest swarm init --topology hierarchical --max-agents 8 --
 
 ### Before Any Task
 ```bash
-npx @claude-flow/cli@latest memory search --query "[task keywords]" --namespace patterns
-npx @claude-flow/cli@latest hooks route --task "[task description]"
+node .MOP/scripts/mop-flow.mjs status --json
+npx ruflo@latest memory search --query "[task keywords]" --namespace patterns
+npx ruflo@latest hooks route --task "[task description]"
 ```
 
 ### After Success
 ```bash
-npx @claude-flow/cli@latest memory store --namespace patterns --key "[name]" --value "[what worked]"
-npx @claude-flow/cli@latest hooks post-task --task-id "[id]" --success true --store-results true
+npx ruflo@latest memory store --namespace patterns --key "[name]" --value "[what worked]"
+npx ruflo@latest hooks post-task --task-id "[id]" --success true --store-results true
 ```
 
 ### MCP Tools (use `ToolSearch("keyword")` to discover)
@@ -208,7 +231,7 @@ npx @claude-flow/cli@latest hooks post-task --task-id "[id]" --success true --st
 | `document` | After API changes |
 
 ```bash
-npx @claude-flow/cli@latest hooks worker dispatch --trigger audit
+npx ruflo@latest hooks worker dispatch --trigger audit
 ```
 
 ## Agents
@@ -234,13 +257,14 @@ npm run build && npm test
 ## CLI Quick Reference
 
 ```bash
-npx @claude-flow/cli@latest init --wizard           # Setup
-npx @claude-flow/cli@latest swarm init --v3-mode     # Start swarm
-npx @claude-flow/cli@latest memory search --query "" # Vector search
-npx @claude-flow/cli@latest hooks route --task ""    # Route to agent
-npx @claude-flow/cli@latest doctor --fix             # Diagnostics
-npx @claude-flow/cli@latest security scan            # Security scan
-npx @claude-flow/cli@latest performance benchmark    # Benchmarks
+node .MOP/scripts/mop-flow.mjs status                # Provider parity
+npx ruflo@latest init --wizard                       # Runtime setup
+npx ruflo@latest swarm init --v3-mode                 # Start swarm
+npx ruflo@latest memory search --query ""             # Vector search
+npx ruflo@latest hooks route --task ""                # Route to agent
+npx ruflo@latest doctor --fix                         # Diagnostics
+npx ruflo@latest security scan                        # Security scan
+npx ruflo@latest performance benchmark                # Benchmarks
 ```
 
 26 commands, 140+ subcommands. Use `--help` on any command for details.
@@ -248,9 +272,9 @@ npx @claude-flow/cli@latest performance benchmark    # Benchmarks
 ## Setup
 
 ```bash
-claude mcp add claude-flow -- npx -y @claude-flow/cli@latest
-npx @claude-flow/cli@latest daemon start
-npx @claude-flow/cli@latest doctor --fix
+claude mcp add mop-flow -- npx -y ruflo@latest mcp start
+npx ruflo@latest daemon start
+npx ruflo@latest doctor --fix
 ```
 
 **Agent tool** handles execution (agents, files, code, git). **MCP tools** handle coordination (swarm, memory, hooks). **CLI** is the same via Bash.

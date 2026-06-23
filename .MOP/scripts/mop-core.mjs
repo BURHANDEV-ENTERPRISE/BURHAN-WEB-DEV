@@ -4,6 +4,7 @@ import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { randomBytes, scryptSync, timingSafeEqual } from 'node:crypto';
 import { spawnSync } from 'node:child_process';
+import { piiScrub, outbound } from './mop-federation.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const coreDir = resolve(here, '..');
@@ -23,6 +24,85 @@ function writeState(state) {
   const tmp = `${statePath}.tmp`;
   writeFileSync(tmp, `${JSON.stringify(state, null, 2)}\n`, 'utf8');
   renameSync(tmp, statePath);
+}
+
+function sessionPolicy(state) {
+  return state.sessionPolicy || {
+    enabled: true,
+    idleTimeoutMinutes: 60,
+    requireLoginEveryNewChat: true,
+    requireLoginAfterIdle: true
+  };
+}
+
+function idleTimeoutMs(state) {
+  const minutes = Number(sessionPolicy(state).idleTimeoutMinutes || 60);
+  return (Number.isFinite(minutes) && minutes > 0 ? minutes : 60) * 60 * 1000;
+}
+
+function clearSession(state) {
+  state.activeMember = null;
+  state.lastActiveAt = null;
+  state.session = { actor: null, authenticatedAt: null, lastActiveAt: null, expiresAt: null };
+  state.activeAgents = {};
+}
+
+function startSession(state, actor) {
+  const at = now();
+  state.activeMember = actor;
+  state.lastActiveAt = at;
+  state.session = {
+    actor,
+    authenticatedAt: at,
+    lastActiveAt: at,
+    expiresAt: new Date(Date.now() + idleTimeoutMs(state)).toISOString()
+  };
+}
+
+function sessionStatus(state, actor) {
+  const session = state.session || {};
+  const lastActive = session.lastActiveAt || state.lastActiveAt;
+  if (!session.actor || !lastActive) return { authenticated: false, reason: 'no-session', member: session.actor || null };
+  if (actor && session.actor !== actor) return { authenticated: false, reason: 'actor-mismatch', member: session.actor };
+  const elapsed = Date.now() - new Date(lastActive).getTime();
+  if (elapsed > idleTimeoutMs(state)) return { authenticated: false, reason: 'expired', member: session.actor };
+  return { authenticated: true, reason: 'valid', member: session.actor, expiresAt: session.expiresAt || null };
+}
+
+// Enforce a valid authenticated session for `actor`. Clears stale sessions and
+// refuses to proceed when login is required (no session, wrong actor, or idle timeout).
+function enforceSession(state, actor) {
+  if (!state.initialized || !actor) return;
+  if (sessionPolicy(state).enabled === false) return;
+  const status = sessionStatus(state, actor);
+  if (!status.authenticated) {
+    if (status.reason === 'expired') {
+      clearSession(state);
+      writeState(state);
+      throw new Error('Session expired (inactive too long). Please login again with codename and password.');
+    }
+    if (status.reason === 'actor-mismatch') {
+      throw new Error(`Session belongs to ${status.member}, not ${actor}. The previous member must logout, then ${actor} must login.`);
+    }
+    clearSession(state);
+    writeState(state);
+    throw new Error('Not authenticated this session. Run login --codename <code> --password <pass> before continuing.');
+  }
+  // Touch the session to extend the idle window.
+  const at = now();
+  state.lastActiveAt = at;
+  state.session = {
+    actor,
+    authenticatedAt: (state.session && state.session.authenticatedAt) || at,
+    lastActiveAt: at,
+    expiresAt: new Date(Date.now() + idleTimeoutMs(state)).toISOString()
+  };
+  writeState(state);
+}
+
+// Backward-compatible alias: older call sites use enforceSessionTimeout.
+function enforceSessionTimeout(state, actor) {
+  return enforceSession(state, actor);
 }
 
 function parseArgs(argv) {
@@ -209,6 +289,139 @@ function latestMemoryEntries(state, limit = memoryPolicy(state).recentLimit || 2
     .slice(-limit);
 }
 
+// ─── Fasa 1.1: BM25 Zero-Dep Engine ────────────────────────────────────────
+
+const STOP_WORDS = new Set([
+  // Melayu
+  'yang', 'dan', 'di', 'ke', 'dari', 'untuk', 'pada', 'ini', 'itu', 'ada',
+  'dengan', 'oleh', 'akan', 'juga', 'sudah', 'saya', 'awak', 'kita', 'dia',
+  'bagi', 'boleh', 'tidak', 'tak', 'atau', 'tetapi', 'jika', 'bila',
+  // English
+  'the', 'a', 'an', 'is', 'it', 'in', 'on', 'at', 'to', 'for', 'of', 'and',
+  'or', 'but', 'not', 'this', 'that', 'was', 'are', 'be', 'been', 'has',
+  'have', 'had', 'do', 'did', 'by', 'with', 'as', 'from', 'into', 'via'
+]);
+
+function tokenize(text) {
+  return String(text || '')
+    .toLowerCase()
+    .replace(/[^\w\s]/g, ' ')
+    .split(/\s+/)
+    .filter((t) => t.length > 1 && !STOP_WORDS.has(t));
+}
+
+function bm25Score(tf, df, docCount, docLen, avgDocLen, k1 = 1.5, b = 0.75) {
+  const idf = Math.log((docCount - df + 0.5) / (df + 0.5) + 1);
+  const norm = tf * (k1 + 1) / (tf + k1 * (1 - b + b * (docLen / avgDocLen)));
+  return idf * norm;
+}
+
+function memoryIndexPath(state) {
+  return join(memoryDirFor(state), 'index.json');
+}
+
+function workingMemoryPath(state) {
+  return join(memoryDirFor(state), 'working.jsonl');
+}
+
+function factsPath(state) {
+  return join(memoryDirFor(state), 'facts.json');
+}
+
+function readIndex(state) {
+  const p = memoryIndexPath(state);
+  if (!existsSync(p)) return { docs: {}, df: {}, docCount: 0, avgDocLen: 0 };
+  try { return JSON.parse(readFileSync(p, 'utf8')); } catch { return { docs: {}, df: {}, docCount: 0, avgDocLen: 0 }; }
+}
+
+function writeIndex(state, index) {
+  mkdirSync(memoryDirFor(state), { recursive: true });
+  writeFileSync(memoryIndexPath(state), JSON.stringify(index), 'utf8');
+}
+
+function addToIndex(state, entryId, text) {
+  const index = readIndex(state);
+  const tokens = tokenize(text);
+  if (!tokens.length) return;
+  const tf = {};
+  for (const t of tokens) tf[t] = (tf[t] || 0) + 1;
+  index.docs[entryId] = { tf, len: tokens.length };
+  for (const t of Object.keys(tf)) index.df[t] = (index.df[t] || 0) + 1;
+  index.docCount = Object.keys(index.docs).length;
+  const totalLen = Object.values(index.docs).reduce((s, d) => s + d.len, 0);
+  index.avgDocLen = index.docCount > 0 ? totalLen / index.docCount : 1;
+  writeIndex(state, index);
+}
+
+function bm25Search(state, query, limit = 10) {
+  const index = readIndex(state);
+  if (!index.docCount) return [];
+  const qTokens = tokenize(query);
+  if (!qTokens.length) return [];
+  const scores = {};
+  for (const t of qTokens) {
+    const df = index.df[t] || 0;
+    if (!df) continue;
+    for (const [docId, doc] of Object.entries(index.docs)) {
+      const tf = doc.tf[t] || 0;
+      if (!tf) continue;
+      scores[docId] = (scores[docId] || 0) + bm25Score(tf, df, index.docCount, doc.len, index.avgDocLen);
+    }
+  }
+  return Object.entries(scores)
+    .sort(([, a], [, b]) => b - a)
+    .slice(0, limit)
+    .map(([docId, score]) => ({ docId, score: Math.round(score * 1000) / 1000 }));
+}
+
+// ─── Fasa 1.2: 3-Tier Memory Helpers ───────────────────────────────────────
+
+function appendWorkingMemory(state, entry) {
+  const p = workingMemoryPath(state);
+  mkdirSync(dirname(p), { recursive: true });
+  writeFileSync(p, `${JSON.stringify(entry)}\n`, { encoding: 'utf8', flag: 'a' });
+}
+
+function readFacts(state) {
+  const p = factsPath(state);
+  if (!existsSync(p)) return [];
+  try { return JSON.parse(readFileSync(p, 'utf8')); } catch { return []; }
+}
+
+function maybepromoteToFacts(state, entry) {
+  // Auto-promote: if summary appears in index with docCount refs > 3 in last 30 days
+  const facts = readFacts(state);
+  const alreadyFact = facts.some((f) => f.summary === entry.summary);
+  if (alreadyFact) return;
+  const thirtyDaysAgo = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString();
+  const recent = latestMemoryEntries(state, 200)
+    .filter((e) => e.at >= thirtyDaysAgo && e.summary === entry.summary);
+  if (recent.length >= 3) {
+    facts.push({ ...entry, promotedAt: now(), tier: 'fact' });
+    const p = factsPath(state);
+    mkdirSync(dirname(p), { recursive: true });
+    writeFileSync(p, JSON.stringify(facts, null, 2), 'utf8');
+  }
+}
+
+// ─── Fasa 1.3: All-tier memory reader for search ───────────────────────────
+
+function allMemoryEntries(state) {
+  const episodic = [];
+  for (const month of memoryMonths(state)) {
+    episodic.push(...readJsonl(monthlyMemoryPath(state, month)));
+  }
+  const working = readJsonl(workingMemoryPath(state));
+  const facts = readFacts(state);
+  const seen = new Set();
+  const result = [];
+  for (const e of [...facts, ...working, ...episodic]) {
+    const key = `${e.at}|${e.summary}`;
+    if (!seen.has(key)) { seen.add(key); result.push(e); }
+  }
+  return result.sort((a, b) => String(a.at || '').localeCompare(String(b.at || '')));
+}
+
 function answerContractFor(state, actor, agent = activeAgentFor(state, actor)) {
   const policy = answerPolicy(state);
   const format = policy.visibleAgentFormat || 'agent: <agent-name> (<agent-role>) to <user>';
@@ -242,24 +455,55 @@ function browserPolicy(state) {
   };
 }
 
-function detectDefaultBrowser() {
-  const xdg = spawnSync('xdg-settings', ['get', 'default-web-browser'], {
+function browserFamilyFromValue(raw) {
+  const value = String(raw || '').toLowerCase();
+  if (/(google-chrome|chromehtml|chrome)/.test(value) && !/chromium/.test(value)) return 'chrome';
+  if (/chromium/.test(value)) return 'chromium';
+  if (/brave/.test(value)) return 'brave';
+  if (/(microsoft-edge|mseedge|edge)/.test(value)) return 'edge';
+  if (/opera/.test(value)) return 'opera';
+  if (/firefox/.test(value)) return 'firefox';
+  return 'unknown';
+}
+
+function detectWindowsDefaultBrowser() {
+  const script = [
+    '$ErrorActionPreference = "SilentlyContinue";',
+    '$keys = @(',
+    '"HKCU:\\Software\\Microsoft\\Windows\\Shell\\Associations\\UrlAssociations\\https\\UserChoice",',
+    '"HKCU:\\Software\\Microsoft\\Windows\\Shell\\Associations\\UrlAssociations\\http\\UserChoice"',
+    ');',
+    'foreach ($key in $keys) {',
+    '  $item = Get-ItemProperty -Path $key -Name ProgId;',
+    '  if ($item.ProgId) { Write-Output $item.ProgId; break }',
+    '}'
+  ].join('\n');
+  const result = spawnSync('powershell.exe', ['-NoProfile', '-NonInteractive', '-Command', script], {
     cwd: rootDir,
     encoding: 'utf8'
   });
-  const raw = (xdg.status === 0 ? xdg.stdout : '').trim() || process.env.BROWSER || '';
-  const value = raw.toLowerCase();
-  let family = 'unknown';
-  if (/(google-chrome|chrome)/.test(value) && !/chromium/.test(value)) family = 'chrome';
-  else if (/chromium/.test(value)) family = 'chromium';
-  else if (/brave/.test(value)) family = 'brave';
-  else if (/(microsoft-edge|edge)/.test(value)) family = 'edge';
-  else if (/opera/.test(value)) family = 'opera';
-  else if (/firefox/.test(value)) family = 'firefox';
+  const raw = result.status === 0 ? (result.stdout || '').trim().split(/\r?\n/)[0] : '';
+  return raw ? { raw, source: 'windows-registry' } : null;
+}
+
+function detectDefaultBrowser() {
+  let detected = process.platform === 'win32' ? detectWindowsDefaultBrowser() : null;
+  if (!detected) {
+    const xdg = spawnSync('xdg-settings', ['get', 'default-web-browser'], {
+      cwd: rootDir,
+      encoding: 'utf8'
+    });
+    const raw = (xdg.status === 0 ? xdg.stdout : '').trim();
+    if (raw) detected = { raw, source: 'xdg-settings' };
+  }
+  if (!detected && process.env.BROWSER) {
+    detected = { raw: process.env.BROWSER, source: 'BROWSER' };
+  }
+  const raw = detected?.raw || '';
   return {
     raw: raw || null,
-    family,
-    source: raw ? (xdg.status === 0 ? 'xdg-settings' : 'BROWSER') : 'not-detected'
+    family: browserFamilyFromValue(raw),
+    source: detected?.source || 'not-detected'
   };
 }
 
@@ -637,14 +881,19 @@ function setup(args) {
   state.projectName = projectName;
   state.projectNameDefault = folderDefault;
   state.ownerCodename = codename;
-  state.activeMember = codename;
   state.activeAgents ||= {};
+  startSession(state, codename);
   state.agentPolicy ||= {
     requiredAfterAuth: true,
     requireForEveryConversation: true,
     defaultRole: 'core',
     defaultTitle: 'Core Agent',
-    gateOrder: 'AUTH_GATE_THEN_AGENT_ROUTER_THEN_AGENT_GATE_THEN_ACTION'
+    gateOrder: 'AUTH_GATE_THEN_AGENT_ROUTER_THEN_AGENT_GATE_THEN_ACTION',
+    rules: [
+      "Agents MUST strictly follow their designated role.",
+      "If a task is outside their domain, they must not attempt to guess or perform it.",
+      "Instead, they must trigger Party Mode to invite the correct specialist."
+    ]
   };
   state.mode = mode;
   state.joinMode = mode === 'team' ? joinMode : 'owner-approved';
@@ -679,9 +928,14 @@ function login(args) {
     process.exitCode = 1;
     return;
   }
-  state.activeMember = codename;
-  appendLedger(state, codename, 'login', 'Member authenticated.');
+  // A fresh login starts a new session and supersedes any carried-over member.
+  startSession(state, codename);
+  appendLedger(state, codename, 'login', 'Member authenticated; new session started.');
   writeState(state);
+  
+  // F5.1: SessionStart hook -> auto-populate SESSION_BRIEF.md
+  writeSessionBrief(state, codename);
+
   console.log(`Active member: ${codename}`);
   if (!activeAgentFor(state, codename) && state.agentPolicy?.requiredAfterAuth !== false) {
     console.log(`Agent diperlukan. Jalankan: node .MOP/scripts/mop-core.mjs agent activate --actor ${codename} --role ${state.agentPolicy?.defaultRole || 'core'} --title "${state.agentPolicy?.defaultTitle || 'Core Agent'}" --name "<agent-name>"`);
@@ -694,11 +948,48 @@ function login(args) {
   }
 }
 
+function logout(args) {
+  const state = readState();
+  const actor = slug(String(args.codename || args.actor || state.activeMember || ''));
+  clearSession(state);
+  if (state.initialized) appendLedger(state, actor || 'unknown', 'logout', 'Session ended; login required for next action.');
+  writeState(state);
+  console.log('Logged out. The next action requires login with codename and password.');
+}
+
+// whoami / session verify: report whether the CURRENT persisted session is still
+// valid. The AI gate must still demand login on every new chat; this command only
+// confirms idle-timeout validity and is used before identity-bound actions.
+function whoami(args) {
+  const state = readState();
+  if (!state.initialized) {
+    console.log(JSON.stringify({ initialized: false, authenticated: false, message: 'MOP belum di-setup. Jalankan /mop-setup.' }, null, 2));
+    return;
+  }
+  const actor = args.actor ? slug(String(args.actor)) : undefined;
+  const status = sessionStatus(state, actor);
+  console.log(JSON.stringify({
+    initialized: true,
+    authenticated: status.authenticated,
+    reason: status.reason,
+    sessionMember: status.member,
+    activeMemberHint: state.activeMember || null,
+    expiresAt: state.session?.expiresAt || null,
+    idleTimeoutMinutes: sessionPolicy(state).idleTimeoutMinutes || 60,
+    notes: [
+      'activeMember is only a hint of the last user, never proof of authentication.',
+      'Every new chat must re-login regardless of this status.'
+    ],
+    next: status.authenticated ? 'session-valid-but-confirm-new-chat-login' : 'demand-codename-and-password'
+  }, null, 2));
+}
+
 function agentActivate(args) {
   const state = readState();
   if (!state.initialized) throw new Error('MOP is not initialized.');
   const actor = slug(requireArg(args, 'actor'));
   if (!state.members?.[actor]) throw new Error('Unknown actor.');
+  enforceSessionTimeout(state, actor);
 
   const role = slug(requireArg(args, 'role'));
   const title = String(args.title || role);
@@ -736,6 +1027,7 @@ function agentUse(args) {
   if (!state.initialized) throw new Error('MOP is not initialized.');
   const actor = slug(requireArg(args, 'actor'));
   if (!state.members?.[actor]) throw new Error('Unknown actor.');
+  enforceSessionTimeout(state, actor);
   const name = requireArg(args, 'name').trim();
   const agent = (state.agentRoster || []).find((item) => item.name.toLowerCase() === name.toLowerCase());
   if (!agent) throw new Error(`Unknown agent: ${name}`);
@@ -786,6 +1078,7 @@ function agentRoute(args) {
   if (state.agentRouter?.enabled === false) throw new Error('Agent Router is disabled.');
   const actor = slug(requireArg(args, 'actor'));
   if (!state.members?.[actor]) throw new Error('Unknown actor.');
+  enforceSessionTimeout(state, actor);
   const task = String(args.task || args._?.join(' ') || '').trim();
   if (!task) throw new Error('Missing --task');
 
@@ -897,20 +1190,40 @@ function memoryAdd(args) {
   if (!state.initialized) throw new Error('MOP is not initialized.');
   const actor = slug(requireArg(args, 'actor'));
   if (!state.members?.[actor]) throw new Error('Unknown actor.');
+  enforceSessionTimeout(state, actor);
   const agent = requireActiveAgent(state, actor);
   const summary = String(args.summary || args._?.join(' ') || '').trim();
   const kind = String(args.kind || 'conversation');
   if (!summary) throw new Error('Missing --summary');
 
-  appendLedger(state, actor, 'memory', summary, agent);
-  const saved = appendMonthlyMemory(state, actor, kind, summary, agent);
+  const isFed = state.federation?.enabled === true;
+  const finalSummary = isFed ? piiScrub(summary) : summary;
+
+  appendLedger(state, actor, 'memory', finalSummary, agent);
+  const saved = appendMonthlyMemory(state, actor, kind, finalSummary, agent);
+
+  // Fasa 1.1: Add to BM25 index
+  const entryId = `${now()}|${actor}`;
+  addToIndex(state, entryId, finalSummary);
+
+  // Fasa 1.2: Append to working memory tier
+  const entry = { at: now(), actor, ...agentLedgerFields(agent), kind, summary: finalSummary };
+  appendWorkingMemory(state, entry);
+
+  // Fasa 1.2: Auto-promote to facts if referenced >= 3x in 30 days
+  maybepromoteToFacts(state, entry);
+
+  if (isFed) {
+    outbound(entry);
+  }
+
   writeState(state);
   console.log(JSON.stringify({
     ok: true,
     actor,
     agent: agent.name,
     kind,
-    summary,
+    summary: finalSummary,
     monthlyMemory: saved ? relativeFromRoot(saved.monthlyPath) : 'disabled',
     sessionBrief: relativeFromRoot(sessionBriefPath(state)),
     answerContract: answerContractFor(state, actor, agent)
@@ -926,11 +1239,49 @@ function memoryBrief(args) {
   const actor = slug(String(args.actor || state.activeMember || ''));
   if (!actor) throw new Error('Missing --actor');
   if (!state.members?.[actor]) throw new Error('Unknown actor.');
+  enforceSessionTimeout(state, actor);
   const agent = activeAgentFor(state, actor);
   const month = String(args.month || monthKey());
   const limit = Number(args.limit || memoryPolicy(state).recentLimit || 20);
+  const query = String(args.query || '').trim();
+  // Fasa 1.3: role scoping
+  const roleFilter = String(args.role || '').trim().toLowerCase();
+
+  let recentEntries;
+  if (query) {
+    // Fasa 1.1: BM25 ranked search
+    const ranked = bm25Search(state, query, limit);
+    const allEntries = allMemoryEntries(state);
+    // Map docIds (at|actor keys) back to entries — fallback to recency if no index hits
+    if (ranked.length > 0) {
+      recentEntries = ranked
+        .map(({ docId, score }) => {
+          const [at, entryActor] = docId.split('|');
+          const found = allEntries.find((e) => e.at.startsWith(at.slice(0, 19)) && e.actor === entryActor);
+          return found ? { ...found, _score: score } : null;
+        })
+        .filter(Boolean);
+    } else {
+      // Fallback to recency if index empty
+      recentEntries = latestMemoryEntries(state, limit);
+    }
+  } else {
+    recentEntries = latestMemoryEntries(state, limit);
+  }
+
+  // Fasa 1.3: role scoping — filter by agent role or actor, unless 'shared' tag
+  if (roleFilter) {
+    recentEntries = recentEntries.filter((e) => {
+      const matchesRole = e.agentRole?.toLowerCase() === roleFilter;
+      const matchesActor = e.actor?.toLowerCase() === roleFilter;
+      const isShared = (e.tags || []).includes('shared');
+      return matchesRole || matchesActor || isShared;
+    });
+  }
+
   const currentEntries = readJsonl(monthlyMemoryPath(state, month)).slice(-limit);
-  const recentEntries = latestMemoryEntries(state, limit);
+  const facts = readFacts(state);
+
   if (agent) writeSessionBrief(state, actor);
   console.log(JSON.stringify({
     ok: true,
@@ -943,11 +1294,16 @@ function memoryBrief(args) {
     } : null,
     answerContract: answerContractFor(state, actor, agent),
     memory: {
+      tier: query ? 'bm25-ranked' : roleFilter ? 'role-scoped' : 'recency',
+      query: query || null,
+      roleFilter: roleFilter || null,
       month,
       monthPath: relativeFromRoot(monthlyMemoryPath(state, month)),
       sessionBrief: relativeFromRoot(sessionBriefPath(state)),
       currentMonthEntries: currentEntries,
-      recentEntries
+      recentEntries,
+      facts: facts.slice(-5),
+      indexSize: readIndex(state).docCount
     },
     next: agent
       ? 'Use answerContract.firstLine before answering, then save memory after meaningful work.'
@@ -957,6 +1313,51 @@ function memoryBrief(args) {
 
 function memoryRestore(args) {
   return memoryBrief(args);
+}
+
+// Fasa 1.1: memorySearch — standalone BM25 search command
+function memorySearch(args) {
+  const state = readState();
+  if (!state.initialized) throw new Error('MOP is not initialized.');
+  const actor = slug(String(args.actor || state.activeMember || ''));
+  if (!actor) throw new Error('Missing --actor');
+  if (!state.members?.[actor]) throw new Error('Unknown actor.');
+  enforceSessionTimeout(state, actor);
+  const query = String(args.query || args._?.join(' ') || '').trim();
+  if (!query) throw new Error('Missing --query');
+  const limit = Number(args.limit || 10);
+  const roleFilter = String(args.role || '').trim().toLowerCase();
+
+  const ranked = bm25Search(state, query, limit * 3);
+  const allEntries = allMemoryEntries(state);
+
+  let results = ranked
+    .map(({ docId, score }) => {
+      const [at, entryActor] = docId.split('|');
+      const found = allEntries.find((e) => e.at.startsWith(at.slice(0, 19)) && e.actor === entryActor);
+      return found ? { ...found, _score: score } : null;
+    })
+    .filter(Boolean);
+
+  if (roleFilter) {
+    results = results.filter((e) => {
+      const matchesRole = e.agentRole?.toLowerCase() === roleFilter;
+      const matchesActor = e.actor?.toLowerCase() === roleFilter;
+      const isShared = (e.tags || []).includes('shared');
+      return matchesRole || matchesActor || isShared;
+    });
+  }
+
+  results = results.slice(0, limit);
+
+  console.log(JSON.stringify({
+    ok: true,
+    query,
+    roleFilter: roleFilter || null,
+    count: results.length,
+    indexSize: readIndex(state).docCount,
+    results
+  }, null, 2));
 }
 
 function memberGitIdentity(args) {
@@ -991,6 +1392,21 @@ function validate() {
   if (state.partyMode && typeof state.partyMode !== 'object') errors.push('partyMode must be object');
   if (state.autosync?.githubIdentity && typeof state.autosync.githubIdentity !== 'object') {
     errors.push('autosync.githubIdentity must be object');
+  }
+  if (state.mopFlow && typeof state.mopFlow !== 'object') errors.push('mopFlow must be object');
+  if (state.mopFlow?.enabled !== false) {
+    if (state.mopFlow?.brand !== 'MOP Flow') errors.push('mopFlow.brand must be MOP Flow');
+    if (state.mopFlow?.canonicalMcpServer !== 'mop-flow') errors.push('mopFlow.canonicalMcpServer must be mop-flow');
+    if (state.mopFlow?.providerParity?.enabled === false) errors.push('mopFlow.providerParity must remain enabled');
+    for (const path of [
+      '.MOP/scripts/mop-flow.mjs',
+      '.agents/skills/mop-flow/SKILL.md',
+      '.claude/skills/mop-flow/SKILL.md'
+    ]) {
+      if (!existsSync(join(rootDir, path))) errors.push(`mopFlow required file missing: ${path}`);
+    }
+    const mcpText = existsSync(join(rootDir, '.mcp.json')) ? readFileSync(join(rootDir, '.mcp.json'), 'utf8') : '';
+    if (mcpText && !mcpText.includes('"mop-flow"')) errors.push('.mcp.json must register mop-flow');
   }
   if (state.projectRootPolicy && typeof state.projectRootPolicy !== 'object') errors.push('projectRootPolicy must be object');
   if (state.projectRootPolicy?.rules && !Array.isArray(state.projectRootPolicy.rules)) {
@@ -1086,6 +1502,7 @@ function status() {
     projectRootPolicy: state.projectRootPolicy || {},
     readinessGate: state.readinessGate || {},
     adversarialReview: state.adversarialReview || {},
+    mopFlow: state.mopFlow || {},
     installer: state.installer || {},
     mode: state.mode,
     githubUrl: state.githubUrl,
@@ -1119,6 +1536,9 @@ function main() {
 
   if (command === 'setup') return setup(parseArgs([subcommand, ...rest].filter(Boolean)));
   if (command === 'login') return login(parseArgs([subcommand, ...rest].filter(Boolean)));
+  if (command === 'logout') return logout(parseArgs([subcommand, ...rest].filter(Boolean)));
+  if (command === 'whoami') return whoami(parseArgs([subcommand, ...rest].filter(Boolean)));
+  if (command === 'session' && subcommand === 'verify') return whoami(args);
   if (command === 'validate') return validate();
   if (command === 'status') return status();
   if (command === 'member' && subcommand === 'git-identity') return memberGitIdentity(args);
@@ -1132,12 +1552,16 @@ function main() {
   if (command === 'memory' && subcommand === 'add') return memoryAdd(args);
   if (command === 'memory' && subcommand === 'brief') return memoryBrief(args);
   if (command === 'memory' && subcommand === 'restore') return memoryRestore(args);
+  if (command === 'memory' && subcommand === 'search') return memorySearch(args);
 
   console.log(`Usage:
   node .MOP/scripts/mop-core.mjs status
   node .MOP/scripts/mop-core.mjs validate
   node .MOP/scripts/mop-core.mjs setup --project-name NAME --name DISPLAY --codename CODE --password PASS --mode solo|team --conversation-language LANG --coding-language LANG [--git-email github-noreply|EMAIL] [--git-name NAME] [--github-username USER] [--github-url URL]
   node .MOP/scripts/mop-core.mjs login --codename CODE --password PASS
+  node .MOP/scripts/mop-core.mjs logout [--codename CODE]
+  node .MOP/scripts/mop-core.mjs whoami [--actor CODE]
+  node .MOP/scripts/mop-core.mjs session verify --actor CODE
   node .MOP/scripts/mop-core.mjs member git-identity --actor CODE --name NAME [--email github-noreply|EMAIL] [--github-username USER]
   node .MOP/scripts/mop-core.mjs agent activate --actor CODE --role ROLE --title TITLE --name NAME
   node .MOP/scripts/mop-core.mjs agent use --actor CODE --name NAME
@@ -1146,9 +1570,10 @@ function main() {
   node .MOP/scripts/mop-core.mjs agent route --actor CODE --task "task text"
   node .MOP/scripts/mop-core.mjs agent list
   node .MOP/scripts/mop-core.mjs browser preflight
-  node .MOP/scripts/mop-core.mjs memory brief --actor CODE [--month YYYY-MM]
+  node .MOP/scripts/mop-core.mjs memory brief --actor CODE [--month YYYY-MM] [--query TEXT] [--role ROLE]
   node .MOP/scripts/mop-core.mjs memory add --actor CODE --kind conversation --summary "what happened"
-  node .MOP/scripts/mop-core.mjs memory restore --actor CODE`);
+  node .MOP/scripts/mop-core.mjs memory restore --actor CODE
+  node .MOP/scripts/mop-core.mjs memory search --actor CODE --query TEXT [--role ROLE] [--limit N]`);
 }
 
 try {

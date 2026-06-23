@@ -1,5 +1,6 @@
 #!/usr/bin/env node
-import { existsSync, mkdirSync, readFileSync, renameSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readdirSync, readFileSync, renameSync, writeFileSync, statSync } from 'node:fs';
+import { spawnSync } from 'node:child_process';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -19,6 +20,64 @@ function readJson(path, fallback = {}) {
 
 function readState() {
   return readJson(statePath);
+}
+
+// ─── Fasa 1.4: Memory integration for relatedDecisions ──────────────────────
+
+function readJsonl(filePath) {
+  if (!existsSync(filePath)) return [];
+  return readFileSync(filePath, 'utf8')
+    .split(/\r?\n/)
+    .filter(Boolean)
+    .map((line) => { try { return JSON.parse(line); } catch { return null; } })
+    .filter(Boolean);
+}
+
+const STOP_WORDS_WF = new Set([
+  'yang', 'dan', 'di', 'ke', 'dari', 'untuk', 'pada', 'ini', 'itu', 'ada',
+  'dengan', 'oleh', 'akan', 'juga', 'sudah', 'saya', 'awak', 'kita', 'dia',
+  'the', 'a', 'an', 'is', 'it', 'in', 'on', 'at', 'to', 'for', 'of', 'and',
+  'or', 'but', 'not', 'this', 'that', 'was', 'are', 'be', 'been', 'has'
+]);
+
+function tokenizeWF(text) {
+  return String(text || '')
+    .toLowerCase()
+    .replace(/[^\w\s]/g, ' ')
+    .split(/\s+/)
+    .filter((t) => t.length > 1 && !STOP_WORDS_WF.has(t));
+}
+
+function simpleRelevance(entry, queryTokens) {
+  const tokens = tokenizeWF(entry.summary || '');
+  return queryTokens.reduce((score, qt) => {
+    return tokens.includes(qt) ? score + 1 : score;
+  }, 0);
+}
+
+function relatedDecisionsFor(state, task, limit = 3) {
+  if (!task) return [];
+  const queryTokens = tokenizeWF(task);
+  if (!queryTokens.length) return [];
+  const memDir = join(rootDir, state.memoryPolicy?.directory || '.MOP/memory');
+  if (!existsSync(memDir)) return [];
+
+  // Read working.jsonl (current session) + facts.json (promoted) + last 2 episodic months
+  const working = readJsonl(join(memDir, 'working.jsonl'));
+  const facts = (() => { try { return JSON.parse(readFileSync(join(memDir, 'facts.json'), 'utf8') || '[]'); } catch { return []; } })();
+  const monthFiles = readdirSync(memDir)
+    .filter((n) => /^\d{4}-\d{2}\.jsonl$/.test(n))
+    .sort()
+    .slice(-2);
+  const episodic = monthFiles.flatMap((f) => readJsonl(join(memDir, f)));
+  const allEntries = [...facts, ...working, ...episodic];
+
+  return allEntries
+    .map((e) => ({ ...e, _rel: simpleRelevance(e, queryTokens) }))
+    .filter((e) => e._rel > 0)
+    .sort((a, b) => b._rel - a._rel)
+    .slice(0, limit)
+    .map(({ _rel, ...e }) => e);
 }
 
 function writeState(state) {
@@ -95,6 +154,13 @@ function phaseById(state, id) {
   return (state.workflow?.phases || []).find((phase) => phase.id === id) || null;
 }
 
+function getPhaseOrder(state, profileName) {
+  if (profileName && state.workflow?.profiles?.[profileName]?.phaseOrder) {
+    return state.workflow.profiles[profileName].phaseOrder;
+  }
+  return state.workflow?.phaseOrder || [];
+}
+
 function inferPhase(state, task) {
   const text = task.toLowerCase();
   if (/\b(deploy|release|vercel|docker|publish)\b/.test(text)) return 'release';
@@ -107,10 +173,16 @@ function inferPhase(state, task) {
   return state.workflow?.currentPhase || state.workflow?.phaseOrder?.[0] || 'idea';
 }
 
-function currentAndNext(state, task = '') {
-  const phaseId = task ? inferPhase(state, task) : (state.workflow?.currentPhase || state.workflow?.phaseOrder?.[0] || 'idea');
+function currentAndNext(state, task = '', profileName = '') {
+  const order = getPhaseOrder(state, profileName);
+  let phaseId = task ? inferPhase(state, task) : (state.workflow?.currentPhase || order[0] || 'idea');
+  if (!order.includes(phaseId)) {
+    if (phaseId === 'prd' || phaseId === 'ux-spec') {
+      if (order.includes('brief')) phaseId = 'brief';
+      else if (order.includes('architecture')) phaseId = 'architecture';
+    }
+  }
   const phase = phaseById(state, phaseId) || phaseById(state, 'idea');
-  const order = state.workflow?.phaseOrder || [];
   const index = Math.max(0, order.indexOf(phase?.id));
   const nextPhase = phaseById(state, order[index + 1]) || null;
   return { phase, nextPhase };
@@ -120,13 +192,18 @@ function status(args) {
   const state = readState();
   const actor = args.actor ? slug(args.actor) : '';
   const config = mergedConfig(state, actor);
-  const { phase, nextPhase } = currentAndNext(state, String(args.task || ''));
+  const task = String(args.task || '');
+  const profileName = args.profile || '';
+  const { phase, nextPhase } = currentAndNext(state, task, profileName);
+  const relatedDecisions = relatedDecisionsFor(state, task);
   console.log(JSON.stringify({
     workflow: state.workflow?.name || 'MOP Workflow',
     enabled: state.workflow?.enabled !== false,
     currentPhase: state.workflow?.currentPhase,
+    profile: profileName || 'default',
     suggestedPhase: phase,
     nextPhase,
+    relatedDecisions,
     customization: config.workflow || {},
     artifacts: {
       directory: state.artifacts?.directory || '.MOP/artifacts',
@@ -144,13 +221,19 @@ function help(args) {
   const actor = args.actor ? slug(args.actor) : '';
   if (actor) actorAllowed(state, actor);
   const task = String(args.task || args._?.join(' ') || '');
-  const { phase, nextPhase } = currentAndNext(state, task);
-  const readinessRequired = ['readiness', 'implementation'].includes(phase?.id) || /\b(code|implement|build|fix)\b/i.test(task);
+  const profileName = args.profile || '';
+  const { phase, nextPhase } = currentAndNext(state, task, profileName);
+  const profileObj = profileName ? state.workflow?.profiles?.[profileName] : null;
+  const readinessRequired = (profileObj?.mandatoryReadiness === true) || 
+                            ['readiness', 'implementation'].includes(phase?.id) || 
+                            /\b(code|implement|build|fix)\b/i.test(task);
   const nextArtifact = phase?.artifact || 'product-brief';
   const nextCategory = artifactCategoryFor(state, args, nextArtifact);
+  const relatedDecisions = relatedDecisionsFor(state, task);
   console.log(JSON.stringify({
     question: task || 'lepas ni buat apa?',
     answer: phase ? `Next best step: ${phase.title}.` : 'Next best step: capture the idea.',
+    profile: profileName || 'default',
     phase: phase?.id || 'idea',
     leadAgentRole: phase?.primaryRole || 'planner',
     partyRoles: phase?.partyRoles || [],
@@ -159,8 +242,9 @@ function help(args) {
     nextArtifactPathPattern: `${state.artifacts?.directory || '.MOP/artifacts'}/${nextCategory}/<artifact-slug>/${nextArtifact}.md`,
     nextCommand: `node .MOP/scripts/mop-workflow.mjs artifact create --actor ${actor || '<codename>'} --type ${nextArtifact} --title "<title>"`,
     readinessRequired,
-    readinessCommand: `node .MOP/scripts/mop-workflow.mjs gate readiness --actor ${actor || '<codename>'} --task "<task>"`,
-    nextPhase: nextPhase?.id || null
+    readinessCommand: `node .MOP/scripts/mop-workflow.mjs gate readiness --actor ${actor || '<codename>'} --task "<task>"${profileName ? ` --profile ${profileName}` : ''}`,
+    nextPhase: nextPhase?.id || null,
+    relatedDecisions
   }, null, 2));
 }
 
@@ -243,13 +327,95 @@ function artifactCreate(args) {
   }, null, 2));
 }
 
+// Semak artifact freshness — return senarai yang STALE
+function checkArtifactStaleness(artifactDir = '.MOP/artifacts') {
+  const stale = [];
+  const absArtifactDir = join(rootDir, artifactDir);
+  if (!existsSync(absArtifactDir)) return stale;
+
+  const STALE_DAYS = 7;
+  const now = Date.now();
+
+  for (const type of ['prd', 'architecture', 'story']) {
+    const dir = join(absArtifactDir, type);
+    if (!existsSync(dir)) continue;
+    for (const file of readdirSync(dir).filter(f => f.endsWith('.md'))) {
+      const fullPath = join(dir, file);
+      try {
+        const mtime = statSync(fullPath).mtimeMs;
+        const ageDays = (now - mtime) / (1000 * 60 * 60 * 24);
+        if (ageDays > STALE_DAYS) {
+          stale.push({ file: fullPath.replace(rootDir, '').replace(/^[\\/]/, ''), ageDays: Math.round(ageDays) });
+        }
+      } catch {
+        // ignore
+      }
+    }
+  }
+  return stale;
+}
+
+// Semak workflow drift — adakah implementation tanpa readiness?
+function checkWorkflowDrift(state) {
+  const ledger = state.ledger ?? [];
+  const now = Date.now();
+  const window48h = 48 * 60 * 60 * 1000;
+
+  const recentImpl = ledger.find(e =>
+    e.kind === 'implementation' && (now - new Date(e.at || e.timestamp).getTime()) < window48h
+  );
+  const recentReadiness = ledger.find(e =>
+    e.kind === 'readiness' && (now - new Date(e.at || e.timestamp).getTime()) < window48h
+  );
+
+  if (recentImpl && !recentReadiness) {
+    return { drift: true, reason: 'skipped-readiness-gate', since: recentImpl.at || recentImpl.timestamp };
+  }
+  return { drift: false };
+}
+
+// Start workflow dengan profile tertentu
+function workflowStart(profileName, state) {
+  const profiles = state.workflow?.profiles ?? {};
+  if (!profiles[profileName]) {
+    throw new Error(`Profile tidak dijumpai: ${profileName}. Pilih: ${Object.keys(profiles).join(', ')}`);
+  }
+  state.workflow.activeProfile = profileName;
+  state.workflow.phaseOrder = profiles[profileName].phaseOrder || profiles[profileName];
+  state.workflow.currentPhase = state.workflow.phaseOrder[0];
+  return state;
+}
+
 function readiness(args) {
   const state = readState();
   const actor = slug(requireArg(args, 'actor'));
   actorAllowed(state, actor);
   const task = String(args.task || args._?.join(' ') || '');
   const artifact = String(args.artifact || '');
+  const profileName = args.profile || '';
+  const { phase } = currentAndNext(state, task, profileName);
   const text = `${task}\n${artifact && existsSync(join(rootDir, artifact)) ? readFileSync(join(rootDir, artifact), 'utf8') : ''}`.toLowerCase();
+  
+  let isStale = false;
+  if (artifact) {
+    const artPath = resolve(rootDir, artifact);
+    if (existsSync(artPath)) {
+      try {
+        const stat = statSync(artPath);
+        const mtimeSec = stat.mtimeMs / 1000;
+        const gitLog = spawnSync('git', ['log', '-1', '--format=%ct'], { cwd: rootDir, encoding: 'utf8' });
+        if (gitLog.status === 0 && gitLog.stdout) {
+          const lastCommitSec = parseInt(gitLog.stdout.trim(), 10);
+          if (!isNaN(lastCommitSec) && (lastCommitSec - mtimeSec) > 7 * 24 * 3600) {
+            isStale = true;
+          }
+        }
+      } catch (err) {
+        // Ignore
+      }
+    }
+  }
+
   const checks = state.readinessGate?.checks || [];
   const missing = [];
   const passed = [];
@@ -267,16 +433,90 @@ function readiness(args) {
     if (ok) passed.push(check);
     else missing.push(check);
   }
-  const status = missing.length === 0 ? 'ready' : missing.length <= 3 ? 'needs-clarity' : 'blocked';
-  console.log(JSON.stringify({
+
+  if (isStale) {
+    missing.push('artifact-freshness');
+  }
+
+  let status = missing.length === 0 ? 'ready' : missing.length <= 3 ? 'needs-clarity' : 'blocked';
+  if (phase?.id === 'implementation' && isStale) {
+    status = 'blocked';
+  }
+
+  const gateResult = {
     status,
     canCode: status === 'ready',
+    stale: isStale,
+    profile: profileName || 'default',
     passed,
     missing,
     questions: missing.map((check) => `Clarify ${check.replaceAll('-', ' ')}.`),
     next: status === 'ready'
       ? 'Proceed to implementation with autosycn.'
       : 'Ask clarification or create/update the required artifact before coding.'
+  };
+
+  // Fasa 2 check staleness
+  const stale = checkArtifactStaleness();
+  if (stale.length > 0) {
+    const isImplementation = phase?.id === 'implementation';
+    gateResult.artifactStaleness = {
+      status: isImplementation ? 'blocked' : 'warning',
+      staleFiles: stale
+    };
+    if (isImplementation) {
+      gateResult.canCode = false;
+      gateResult.status = 'blocked';
+      gateResult.reason = `${stale.length} artifact STALE (>7 hari). Kemaskini sebelum implementation.`;
+    }
+  }
+
+  // Fasa 2 check workflow drift
+  const drift = checkWorkflowDrift(state);
+  if (drift.drift) {
+    gateResult.driftWarning = drift;
+  }
+
+  console.log(JSON.stringify(gateResult, null, 2));
+}
+
+function driftCheck(args) {
+  const state = readState();
+  const actor = slug(requireArg(args, 'actor'));
+  actorAllowed(state, actor);
+  
+  const profileName = args.profile || '';
+  const phaseOrder = getPhaseOrder(state, profileName);
+  
+  const ledger = state.ledger || [];
+  const visited = [];
+  for (const entry of ledger) {
+    if (entry.kind === 'workflow-phase') {
+      const match = String(entry.summary || '').match(/Set MOP workflow phase to (\w+)\.?/);
+      if (match && match[1]) {
+        visited.push(match[1]);
+      }
+    }
+  }
+  
+  const currentPhase = state.workflow?.currentPhase || phaseOrder[0] || 'idea';
+  const currIdx = phaseOrder.indexOf(currentPhase);
+  
+  const skippedPhases = [];
+  if (currIdx > 0) {
+    for (let i = 0; i < currIdx; i++) {
+      const p = phaseOrder[i];
+      if (!visited.includes(p)) {
+        skippedPhases.push(p);
+      }
+    }
+  }
+  
+  const drifted = skippedPhases.length > 0;
+  console.log(JSON.stringify({
+    drifted,
+    skippedPhases,
+    ledgerPath: statePath
   }, null, 2));
 }
 
@@ -328,16 +568,18 @@ function main() {
   if (command === 'gate' && subcommand === 'readiness') return readiness(args);
   if (command === 'review' && subcommand === 'adversarial') return adversarialReview(args);
   if (command === 'config' && subcommand === 'show') return configShow(args);
+  if (command === 'drift' && subcommand === 'check') return driftCheck(args);
 
   console.log(`Usage:
-  node .MOP/scripts/mop-workflow.mjs status [--actor CODE] [--task TEXT]
-  node .MOP/scripts/mop-workflow.mjs help --actor CODE --task "what user asked"
-  node .MOP/scripts/mop-workflow.mjs next --actor CODE --task "what user asked"
+  node .MOP/scripts/mop-workflow.mjs status [--actor CODE] [--task TEXT] [--profile NAME]
+  node .MOP/scripts/mop-workflow.mjs help --actor CODE --task "what user asked" [--profile NAME]
+  node .MOP/scripts/mop-workflow.mjs next --actor CODE --task "what user asked" [--profile NAME]
   node .MOP/scripts/mop-workflow.mjs phase set --actor CODE --phase prd
   node .MOP/scripts/mop-workflow.mjs artifact create --actor CODE --type prd --title "Title" [--category plan] [--dry-run]
-  node .MOP/scripts/mop-workflow.mjs gate readiness --actor CODE --task "task" [--artifact path]
+  node .MOP/scripts/mop-workflow.mjs gate readiness --actor CODE --task "task" [--artifact path] [--profile NAME]
   node .MOP/scripts/mop-workflow.mjs review adversarial --actor CODE --target "plan or file" [--write]
-  node .MOP/scripts/mop-workflow.mjs config show [--actor CODE]`);
+  node .MOP/scripts/mop-workflow.mjs config show [--actor CODE]
+  node .MOP/scripts/mop-workflow.mjs drift check --actor CODE [--profile NAME]`);
 }
 
 try {

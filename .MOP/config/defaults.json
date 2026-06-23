@@ -13,6 +13,15 @@
     "includeNextArtifact": true,
     "includeGateStatus": true
   },
+  "mopFlow": {
+    "brand": "MOP Flow",
+    "canonicalMcpServer": "mop-flow",
+    "statusCommand": "node .MOP/scripts/mop-flow.mjs status --json",
+    "manifestCommand": "node .MOP/scripts/mop-flow.mjs manifest refresh",
+    "providerParity": true,
+    "portableSkillDir": ".agents/skills",
+    "runtimeNativeSkillDir": ".claude/skills"
+  },
   "artifacts": {
     "directory": ".MOP/artifacts",
     "templateDirectory": ".MOP/templates/artifacts",
@@ -42,5 +51,9 @@
     "showBanner": true,
     "minimumParticipants": 3,
     "preferredMinimumParticipants": 4
+  },
+  "federation": {
+    "enabled": false,
+    "directory": ".MOP/memory/shared-ledger"
   }
 }

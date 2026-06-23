@@ -47,12 +47,22 @@ Before doing anything, read `.MOP/STATE.json` and follow
   refuses mismatched GitHub accounts. `BURHAN-MOP` identity is reserved for
   merge guardian commits only.
 
+## MOP Flow Canonical Layer
+
+- User-facing brand: MOP Flow.
+- Canonical MCP server name: `mop-flow`.
+- Portable skill source: `.agents/skills/`.
+- Runtime-native skill source: `.claude/skills/`, bridged through MOP Flow when
+  needed outside Claude.
+- Check parity with `node .MOP/scripts/mop-flow.mjs status --json` when work
+  involves skills, MCP, swarm, hooks, or provider behavior.
+
 ## Operating Rules
 
-- Treat this workspace as a Ruflo / Claude Flow portable agent core.
+- Treat this workspace as a MOP Flow portable agent core.
 - Use `.agents/skills/` for Antigravity-native skills.
-- Use `.claude/skills/` as reference material only; do not assume Claude Code
-  tools are available in Antigravity.
+- Use `.claude/skills/` as bridged reference material only; do not assume Claude
+  Code tools are available in Antigravity.
 - Treat the current workspace root as the project root. Do not create a nested
   project wrapper like `portfolio/`, `my-app/`, or `<project-name>/`; scaffold
   app files directly in root using normal app folders.
@@ -66,9 +76,10 @@ Before doing anything, read `.MOP/STATE.json` and follow
 - Claude instructions: `CLAUDE.md`
 - Gemini instructions: `GEMINI.md`
 - MCP server map: `.mcp.json`
-- Ruflo runtime config: `.claude-flow/config.yaml`
+- MOP Flow runtime config: `.claude-flow/config.yaml`
 - Antigravity skills: `.agents/skills/`
 
-Installer command: `npx burhan-mop install`.
+Installer command: `npx mop-flow install`.
+Legacy compatibility command: `npx burhan-mop install`.
 GitHub source fallback for development builds:
-`npx --yes github:BURHANDEV-ENTERPRISE/BURHAN-MOP install`.
+`npx --yes github:BURHANDEV-ENTERPRISE/mop-flow install`.

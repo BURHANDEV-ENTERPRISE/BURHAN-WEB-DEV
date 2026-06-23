@@ -1,21 +1,21 @@
-# {{title}} Release Notes
+# Release Notes — v{{version}}
+**Tarikh:** {{date}} | **Branch:** main | **Author:** {{actor}}
 
-## Changes
+## Apa Yang Baharu
+- ...
 
-- 
+## Pembaikan Bug
+- ...
 
-## Validation
+## Breaking Changes
+- Tiada / [huraikan jika ada]
 
-- 
+## Cara Upgrade
+```bash
+npx mop-flow
+```
 
-## Deployment
-
-- 
-
-## Rollback
-
-- 
-
-## Handoff
-
-- 
+## Statistik
+- Commit: ...
+- PR merged: ...
+- Test coverage: ...%

@@ -1,6 +1,6 @@
 {
-  "schemaVersion": "0.1.0",
-  "generatedAt": "2026-06-13T01:29:12.487Z",
+  "schemaVersion": "1.1.0",
+  "generatedAt": "2026-06-20T04:08:27.687Z",
   "brand": {
     "name": "MOP Flow",
     "ownerSystem": "MOP",
@@ -26,9 +26,9 @@
       "mcpServer": "mop-flow",
       "runtimeCommand": "npx -y ruflo@latest mcp start",
       "skillAccess": {
-        "native": 37,
-        "portable": 5,
-        "bridged": 38
+        "native": 7,
+        "portable": 8,
+        "bridged": 8
       },
       "status": {
         "entrypoint": {
@@ -51,9 +51,9 @@
       "mcpServer": "mop-flow",
       "runtimeCommand": "npx -y ruflo@latest mcp start",
       "skillAccess": {
-        "native": 5,
-        "portable": 5,
-        "bridged": 38
+        "native": 8,
+        "portable": 8,
+        "bridged": 8
       },
       "status": {
         "entrypoint": {
@@ -76,9 +76,9 @@
       "mcpServer": "mop-flow",
       "runtimeCommand": "npx -y ruflo@latest mcp start",
       "skillAccess": {
-        "native": 5,
-        "portable": 5,
-        "bridged": 38
+        "native": 8,
+        "portable": 8,
+        "bridged": 8
       },
       "status": {
         "entrypoint": {
@@ -101,9 +101,9 @@
       "mcpServer": "mop-flow",
       "runtimeCommand": "npx -y ruflo@latest mcp start",
       "skillAccess": {
-        "native": 5,
-        "portable": 5,
-        "bridged": 38
+        "native": 8,
+        "portable": 8,
+        "bridged": 8
       },
       "status": {
         "entrypoint": {
@@ -119,78 +119,13 @@
     }
   ],
   "skillCatalog": {
-    "total": 38,
-    "portableCount": 5,
-    "runtimeNativeCount": 37,
-    "bridgedCount": 38,
+    "total": 8,
+    "portableCount": 8,
+    "runtimeNativeCount": 7,
+    "bridgedCount": 8,
     "portableDirectory": ".agents/skills",
     "runtimeNativeDirectory": ".claude/skills",
     "skills": [
-      {
-        "id": "agentdb-advanced-features",
-        "title": "AgentDB Advanced Features",
-        "description": "Master advanced AgentDB features including QUIC synchronization, multi-database management, custom distance metrics, hybrid search, and distributed systems integration. Use when building distributed AI systems, multi-agent coordination, or advanced vector search applications.",
-        "sources": [
-          "claude-native"
-        ],
-        "paths": [
-          ".claude/skills/agentdb-advanced/SKILL.md"
-        ],
-        "portable": false,
-        "runtimeNative": true
-      },
-      {
-        "id": "agentdb-learning-plugins",
-        "title": "AgentDB Learning Plugins",
-        "description": "Create and train AI learning plugins with AgentDB's 9 reinforcement learning algorithms. Includes Decision Transformer, Q-Learning, SARSA, Actor-Critic, and more. Use when building self-learning agents, implementing RL, or optimizing agent behavior through experience.",
-        "sources": [
-          "claude-native"
-        ],
-        "paths": [
-          ".claude/skills/agentdb-learning/SKILL.md"
-        ],
-        "portable": false,
-        "runtimeNative": true
-      },
-      {
-        "id": "agentdb-memory-patterns",
-        "title": "AgentDB Memory Patterns",
-        "description": "Implement persistent memory patterns for AI agents using AgentDB. Includes session memory, long-term storage, pattern learning, and context management. Use when building stateful agents, chat systems, or intelligent assistants.",
-        "sources": [
-          "claude-native"
-        ],
-        "paths": [
-          ".claude/skills/agentdb-memory-patterns/SKILL.md"
-        ],
-        "portable": false,
-        "runtimeNative": true
-      },
-      {
-        "id": "agentdb-performance-optimization",
-        "title": "AgentDB Performance Optimization",
-        "description": "Optimize AgentDB performance with quantization (4-32x memory reduction), HNSW indexing (150x faster search), caching, and batch operations. Use when optimizing memory usage, improving search speed, or scaling to millions of vectors.",
-        "sources": [
-          "claude-native"
-        ],
-        "paths": [
-          ".claude/skills/agentdb-optimization/SKILL.md"
-        ],
-        "portable": false,
-        "runtimeNative": true
-      },
-      {
-        "id": "agentdb-vector-search",
-        "title": "AgentDB Vector Search",
-        "description": "Implement semantic vector search with AgentDB for intelligent document retrieval, similarity matching, and context-aware querying. Use when building RAG systems, semantic search engines, or intelligent knowledge bases.",
-        "sources": [
-          "claude-native"
-        ],
-        "paths": [
-          ".claude/skills/agentdb-vector-search/SKILL.md"
-        ],
-        "portable": false,
-        "runtimeNative": true
-      },
       {
         "id": "auto-deploy",
         "title": "auto-deploy",
@@ -222,133 +157,33 @@
         "runtimeNative": true
       },
       {
-        "id": "browser",
-        "title": "browser",
-        "description": "Web browser automation with AI-optimized snapshots for claude-flow agents",
+        "id": "mop-browseract",
+        "title": "mop-browseract",
+        "description": "Cross-browser automation skill untuk MOP agents. Detect default browser pengguna (Windows/macOS/Linux), pilih engine terbaik yang tersedia (BrowserAct stealth → Playwright → agent-browser), handle login flows, CAPTCHA solving, human-in-loop handoff, dan structured data extraction. Log setiap session ke MOP ledger. Pause wajib sebelum destructive actions.",
         "sources": [
+          "portable",
           "claude-native"
         ],
         "paths": [
-          ".claude/skills/browser/SKILL.md"
+          ".agents/skills/mop-browseract/SKILL.md",
+          ".claude/skills/mop-browseract/SKILL.md"
         ],
-        "portable": false,
+        "portable": true,
         "runtimeNative": true
       },
       {
-        "id": "flow-nexus-neural",
-        "title": "flow-nexus-neural",
-        "description": "Train and deploy neural networks in distributed E2B sandboxes with Flow Nexus",
+        "id": "mop-docs-intel",
+        "title": "mop-docs-intel",
+        "description": "Context7-style documentation intelligence. Sebelum suggest mana-mana library, framework, atau API, auto-fetch versi terkini dan docs dari Context7 MCP / ctx7 CLI / npm registry / PyPI / web search. Elak hallucinated API, deprecated methods, dan versi tidak compatible. Auto-trigger pada: stack suggestion, import statement, package.json context.",
         "sources": [
+          "portable",
           "claude-native"
         ],
         "paths": [
-          ".claude/skills/flow-nexus-neural/SKILL.md"
+          ".agents/skills/mop-docs-intel/SKILL.md",
+          ".claude/skills/mop-docs-intel/SKILL.md"
         ],
-        "portable": false,
-        "runtimeNative": true
-      },
-      {
-        "id": "flow-nexus-platform",
-        "title": "flow-nexus-platform",
-        "description": "Comprehensive Flow Nexus platform management - authentication, sandboxes, app deployment, payments, and challenges",
-        "sources": [
-          "claude-native"
-        ],
-        "paths": [
-          ".claude/skills/flow-nexus-platform/SKILL.md"
-        ],
-        "portable": false,
-        "runtimeNative": true
-      },
-      {
-        "id": "flow-nexus-swarm",
-        "title": "flow-nexus-swarm",
-        "description": "Cloud-based AI swarm deployment and event-driven workflow automation with Flow Nexus platform",
-        "sources": [
-          "claude-native"
-        ],
-        "paths": [
-          ".claude/skills/flow-nexus-swarm/SKILL.md"
-        ],
-        "portable": false,
-        "runtimeNative": true
-      },
-      {
-        "id": "github-code-review",
-        "title": "github-code-review",
-        "description": "Comprehensive GitHub code review with AI-powered swarm coordination",
-        "sources": [
-          "claude-native"
-        ],
-        "paths": [
-          ".claude/skills/github-code-review/SKILL.md"
-        ],
-        "portable": false,
-        "runtimeNative": true
-      },
-      {
-        "id": "github-multi-repo",
-        "title": "github-multi-repo",
-        "description": "Multi-repository coordination, synchronization, and architecture management with AI swarm orchestration",
-        "sources": [
-          "claude-native"
-        ],
-        "paths": [
-          ".claude/skills/github-multi-repo/SKILL.md"
-        ],
-        "portable": false,
-        "runtimeNative": true
-      },
-      {
-        "id": "github-project-management",
-        "title": "github-project-management",
-        "description": "Comprehensive GitHub project management with swarm-coordinated issue tracking, project board automation, and sprint planning",
-        "sources": [
-          "claude-native"
-        ],
-        "paths": [
-          ".claude/skills/github-project-management/SKILL.md"
-        ],
-        "portable": false,
-        "runtimeNative": true
-      },
-      {
-        "id": "github-release-management",
-        "title": "github-release-management",
-        "description": "Comprehensive GitHub release orchestration with AI swarm coordination for automated versioning, testing, deployment, and rollback management",
-        "sources": [
-          "claude-native"
-        ],
-        "paths": [
-          ".claude/skills/github-release-management/SKILL.md"
-        ],
-        "portable": false,
-        "runtimeNative": true
-      },
-      {
-        "id": "github-workflow-automation",
-        "title": "github-workflow-automation",
-        "description": "Advanced GitHub Actions workflow automation with AI swarm coordination, intelligent CI/CD pipelines, and comprehensive repository management",
-        "sources": [
-          "claude-native"
-        ],
-        "paths": [
-          ".claude/skills/github-workflow-automation/SKILL.md"
-        ],
-        "portable": false,
-        "runtimeNative": true
-      },
-      {
-        "id": "hooks-automation",
-        "title": "Hooks Automation",
-        "description": "Automated coordination, formatting, and learning from Claude Code operations using intelligent hooks with MCP integration. Includes pre/post task hooks, session management, Git integration, memory coordination, and neural pattern training for enhanced development workflows.",
-        "sources": [
-          "claude-native"
-        ],
-        "paths": [
-          ".claude/skills/hooks-automation/SKILL.md"
-        ],
-        "portable": false,
+        "portable": true,
         "runtimeNative": true
       },
       {
@@ -382,42 +217,18 @@
         "runtimeNative": true
       },
       {
-        "id": "pair-programming",
-        "title": "Pair Programming",
-        "description": "AI-assisted pair programming with multiple modes (driver/navigator/switch), real-time verification, quality monitoring, and comprehensive testing. Supports TDD, debugging, refactoring, and learning sessions. Features automatic role switching, continuous code review, security scanning, and performance optimization with truth-score verification.",
+        "id": "mop-ui-clone",
+        "title": "mop-ui-clone",
+        "description": "AI-powered UI/UX cloner. Scrape mana-mana website — layout, typography, warna, CSS animations, 3D WebGL/Three.js, GSAP/Lottie, dan custom assets — kemudian bina semula standalone HTML/CSS/JS replica. Untuk 3D kompleks dan asset proprietari, gunakan AI visual analysis untuk recreate dari scratch.",
         "sources": [
+          "portable",
           "claude-native"
         ],
         "paths": [
-          ".claude/skills/pair-programming/SKILL.md"
+          ".agents/skills/mop-ui-clone/SKILL.md",
+          ".claude/skills/mop-ui-clone/SKILL.md"
         ],
-        "portable": false,
-        "runtimeNative": true
-      },
-      {
-        "id": "reasoningbank-intelligence",
-        "title": "ReasoningBank Intelligence",
-        "description": "Implement adaptive learning with ReasoningBank for pattern recognition, strategy optimization, and continuous improvement. Use when building self-learning agents, optimizing workflows, or implementing meta-cognitive systems.",
-        "sources": [
-          "claude-native"
-        ],
-        "paths": [
-          ".claude/skills/reasoningbank-intelligence/SKILL.md"
-        ],
-        "portable": false,
-        "runtimeNative": true
-      },
-      {
-        "id": "reasoningbank-with-agentdb",
-        "title": "ReasoningBank with AgentDB",
-        "description": "Implement ReasoningBank adaptive learning with AgentDB's 150x faster vector database. Includes trajectory tracking, verdict judgment, memory distillation, and pattern recognition. Use when building self-learning agents, optimizing decision-making, or implementing experience replay systems.",
-        "sources": [
-          "claude-native"
-        ],
-        "paths": [
-          ".claude/skills/reasoningbank-agentdb/SKILL.md"
-        ],
-        "portable": false,
+        "portable": true,
         "runtimeNative": true
       },
       {
@@ -432,201 +243,6 @@
         ],
         "portable": true,
         "runtimeNative": false
-      },
-      {
-        "id": "skill-builder",
-        "title": "Skill Builder",
-        "description": "Create new Claude Code Skills with proper YAML frontmatter, progressive disclosure structure, and complete directory organization. Use when you need to build custom skills for specific workflows, generate skill templates, or understand the Claude Skills specification.",
-        "sources": [
-          "claude-native"
-        ],
-        "paths": [
-          ".claude/skills/skill-builder/SKILL.md"
-        ],
-        "portable": false,
-        "runtimeNative": true
-      },
-      {
-        "id": "sparc-methodology",
-        "title": "sparc-methodology",
-        "description": "SPARC (Specification, Pseudocode, Architecture, Refinement, Completion) comprehensive development methodology with multi-agent orchestration",
-        "sources": [
-          "claude-native"
-        ],
-        "paths": [
-          ".claude/skills/sparc-methodology/SKILL.md"
-        ],
-        "portable": false,
-        "runtimeNative": true
-      },
-      {
-        "id": "stream-chain",
-        "title": "stream-chain",
-        "description": "Stream-JSON chaining for multi-agent pipelines, data transformation, and sequential workflows",
-        "sources": [
-          "claude-native"
-        ],
-        "paths": [
-          ".claude/skills/stream-chain/SKILL.md"
-        ],
-        "portable": false,
-        "runtimeNative": true
-      },
-      {
-        "id": "swarm-advanced",
-        "title": "swarm-advanced",
-        "description": "Advanced swarm orchestration patterns for research, development, testing, and complex distributed workflows",
-        "sources": [
-          "claude-native"
-        ],
-        "paths": [
-          ".claude/skills/swarm-advanced/SKILL.md"
-        ],
-        "portable": false,
-        "runtimeNative": true
-      },
-      {
-        "id": "swarm-orchestration",
-        "title": "Swarm Orchestration",
-        "description": "Orchestrate multi-agent swarms with agentic-flow for parallel task execution, dynamic topology, and intelligent coordination. Use when scaling beyond single agents, implementing complex workflows, or building distributed AI systems.",
-        "sources": [
-          "claude-native"
-        ],
-        "paths": [
-          ".claude/skills/swarm-orchestration/SKILL.md"
-        ],
-        "portable": false,
-        "runtimeNative": true
-      },
-      {
-        "id": "v3-cli-modernization",
-        "title": "V3 CLI Modernization",
-        "description": "CLI modernization and hooks system enhancement for claude-flow v3. Implements interactive prompts, command decomposition, enhanced hooks integration, and intelligent workflow automation.",
-        "sources": [
-          "claude-native"
-        ],
-        "paths": [
-          ".claude/skills/v3-cli-modernization/SKILL.md"
-        ],
-        "portable": false,
-        "runtimeNative": true
-      },
-      {
-        "id": "v3-core-implementation",
-        "title": "V3 Core Implementation",
-        "description": "Core module implementation for claude-flow v3. Implements DDD domains, clean architecture patterns, dependency injection, and modular TypeScript codebase with comprehensive testing.",
-        "sources": [
-          "claude-native"
-        ],
-        "paths": [
-          ".claude/skills/v3-core-implementation/SKILL.md"
-        ],
-        "portable": false,
-        "runtimeNative": true
-      },
-      {
-        "id": "v3-ddd-architecture",
-        "title": "V3 DDD Architecture",
-        "description": "Domain-Driven Design architecture for claude-flow v3. Implements modular, bounded context architecture with clean separation of concerns and microkernel pattern.",
-        "sources": [
-          "claude-native"
-        ],
-        "paths": [
-          ".claude/skills/v3-ddd-architecture/SKILL.md"
-        ],
-        "portable": false,
-        "runtimeNative": true
-      },
-      {
-        "id": "v3-deep-integration",
-        "title": "V3 Deep Integration",
-        "description": "Deep agentic-flow@alpha integration implementing ADR-001. Eliminates 10,000+ duplicate lines by building claude-flow as specialized extension rather than parallel implementation.",
-        "sources": [
-          "claude-native"
-        ],
-        "paths": [
-          ".claude/skills/v3-integration-deep/SKILL.md"
-        ],
-        "portable": false,
-        "runtimeNative": true
-      },
-      {
-        "id": "v3-mcp-optimization",
-        "title": "V3 MCP Optimization",
-        "description": "MCP server optimization and transport layer enhancement for claude-flow v3. Implements connection pooling, load balancing, tool registry optimization, and performance monitoring for sub-100ms response times.",
-        "sources": [
-          "claude-native"
-        ],
-        "paths": [
-          ".claude/skills/v3-mcp-optimization/SKILL.md"
-        ],
-        "portable": false,
-        "runtimeNative": true
-      },
-      {
-        "id": "v3-memory-unification",
-        "title": "V3 Memory Unification",
-        "description": "Unify 6+ memory systems into AgentDB with HNSW indexing for 150x-12,500x search improvements. Implements ADR-006 (Unified Memory Service) and ADR-009 (Hybrid Memory Backend).",
-        "sources": [
-          "claude-native"
-        ],
-        "paths": [
-          ".claude/skills/v3-memory-unification/SKILL.md"
-        ],
-        "portable": false,
-        "runtimeNative": true
-      },
-      {
-        "id": "v3-performance-optimization",
-        "title": "V3 Performance Optimization",
-        "description": "Achieve aggressive v3 performance targets: 2.49x-7.47x Flash Attention speedup, 150x-12,500x search improvements, 50-75% memory reduction. Comprehensive benchmarking and optimization suite.",
-        "sources": [
-          "claude-native"
-        ],
-        "paths": [
-          ".claude/skills/v3-performance-optimization/SKILL.md"
-        ],
-        "portable": false,
-        "runtimeNative": true
-      },
-      {
-        "id": "v3-security-overhaul",
-        "title": "V3 Security Overhaul",
-        "description": "Complete security architecture overhaul for claude-flow v3. Addresses critical CVEs (CVE-1, CVE-2, CVE-3) and implements secure-by-default patterns. Use for security-first v3 implementation.",
-        "sources": [
-          "claude-native"
-        ],
-        "paths": [
-          ".claude/skills/v3-security-overhaul/SKILL.md"
-        ],
-        "portable": false,
-        "runtimeNative": true
-      },
-      {
-        "id": "v3-swarm-coordination",
-        "title": "V3 Swarm Coordination",
-        "description": "15-agent hierarchical mesh coordination for v3 implementation. Orchestrates parallel execution across security, core, and integration domains following 10 ADRs with 14-week timeline.",
-        "sources": [
-          "claude-native"
-        ],
-        "paths": [
-          ".claude/skills/v3-swarm-coordination/SKILL.md"
-        ],
-        "portable": false,
-        "runtimeNative": true
-      },
-      {
-        "id": "verification-quality-assurance",
-        "title": "Verification & Quality Assurance",
-        "description": "Comprehensive truth scoring, code quality verification, and automatic rollback system with 0.95 accuracy threshold for ensuring high-quality agent outputs and codebase reliability.",
-        "sources": [
-          "claude-native"
-        ],
-        "paths": [
-          ".claude/skills/verification-quality/SKILL.md"
-        ],
-        "portable": false,
-        "runtimeNative": true
       }
     ]
   },

@@ -6,7 +6,8 @@
         "hooks": [
           {
             "type": "command",
-            "command": "cmd /c \"IF EXIST \"%CLAUDE_PROJECT_DIR%\\.claude\\helpers\\hook-handler.cjs\" (node \"%CLAUDE_PROJECT_DIR%\\.claude\\helpers\\hook-handler.cjs\" pre-bash) ELSE (node \"%USERPROFILE%\\.claude\\helpers\\hook-handler.cjs\" pre-bash)\"",
+            "command": "node",
+            "args": ["bin/mop-run.mjs", ".claude/helpers/hook-handler.cjs", "pre-bash"],
             "timeout": 5000
           }
         ]
@@ -16,7 +17,8 @@
         "hooks": [
           {
             "type": "command",
-            "command": "cmd /c \"IF EXIST \"%CLAUDE_PROJECT_DIR%\\.claude\\helpers\\hook-handler.cjs\" (node \"%CLAUDE_PROJECT_DIR%\\.claude\\helpers\\hook-handler.cjs\" pre-edit) ELSE (node \"%USERPROFILE%\\.claude\\helpers\\hook-handler.cjs\" pre-edit)\"",
+            "command": "node",
+            "args": ["bin/mop-run.mjs", ".claude/helpers/hook-handler.cjs", "pre-edit"],
             "timeout": 5000
           }
         ]
@@ -28,7 +30,8 @@
         "hooks": [
           {
             "type": "command",
-            "command": "cmd /c \"IF EXIST \"%CLAUDE_PROJECT_DIR%\\.claude\\helpers\\hook-handler.cjs\" (node \"%CLAUDE_PROJECT_DIR%\\.claude\\helpers\\hook-handler.cjs\" post-edit) ELSE (node \"%USERPROFILE%\\.claude\\helpers\\hook-handler.cjs\" post-edit)\"",
+            "command": "node",
+            "args": ["bin/mop-run.mjs", ".claude/helpers/hook-handler.cjs", "post-edit"],
             "timeout": 10000
           }
         ]
@@ -38,7 +41,8 @@
         "hooks": [
           {
             "type": "command",
-            "command": "cmd /c \"IF EXIST \"%CLAUDE_PROJECT_DIR%\\.claude\\helpers\\hook-handler.cjs\" (node \"%CLAUDE_PROJECT_DIR%\\.claude\\helpers\\hook-handler.cjs\" post-bash) ELSE (node \"%USERPROFILE%\\.claude\\helpers\\hook-handler.cjs\" post-bash)\"",
+            "command": "node",
+            "args": ["bin/mop-run.mjs", ".claude/helpers/hook-handler.cjs", "post-bash"],
             "timeout": 5000
           }
         ]
@@ -49,7 +53,8 @@
         "hooks": [
           {
             "type": "command",
-            "command": "cmd /c \"IF EXIST \"%CLAUDE_PROJECT_DIR%\\.claude\\helpers\\hook-handler.cjs\" (node \"%CLAUDE_PROJECT_DIR%\\.claude\\helpers\\hook-handler.cjs\" route) ELSE (node \"%USERPROFILE%\\.claude\\helpers\\hook-handler.cjs\" route)\"",
+            "command": "node",
+            "args": ["bin/mop-run.mjs", ".claude/helpers/hook-handler.cjs", "route"],
             "timeout": 10000
           }
         ]
@@ -60,12 +65,14 @@
         "hooks": [
           {
             "type": "command",
-            "command": "cmd /c \"IF EXIST \"%CLAUDE_PROJECT_DIR%\\.claude\\helpers\\hook-handler.cjs\" (node \"%CLAUDE_PROJECT_DIR%\\.claude\\helpers\\hook-handler.cjs\" session-restore) ELSE (node \"%USERPROFILE%\\.claude\\helpers\\hook-handler.cjs\" session-restore)\"",
+            "command": "node",
+            "args": ["bin/mop-run.mjs", ".claude/helpers/hook-handler.cjs", "session-restore"],
             "timeout": 15000
           },
           {
             "type": "command",
-            "command": "cmd /c \"IF EXIST \"%CLAUDE_PROJECT_DIR%\\.claude\\helpers\\auto-memory-hook.mjs\" (node \"%CLAUDE_PROJECT_DIR%\\.claude\\helpers\\auto-memory-hook.mjs\" import) ELSE (node \"%USERPROFILE%\\.claude\\helpers\\auto-memory-hook.mjs\" import)\"",
+            "command": "node",
+            "args": ["bin/mop-run.mjs", ".claude/helpers/auto-memory-hook.mjs", "import"],
             "timeout": 8000
           }
         ]
@@ -76,7 +83,8 @@
         "hooks": [
           {
             "type": "command",
-            "command": "cmd /c \"IF EXIST \"%CLAUDE_PROJECT_DIR%\\.claude\\helpers\\hook-handler.cjs\" (node \"%CLAUDE_PROJECT_DIR%\\.claude\\helpers\\hook-handler.cjs\" session-end) ELSE (node \"%USERPROFILE%\\.claude\\helpers\\hook-handler.cjs\" session-end)\"",
+            "command": "node",
+            "args": ["bin/mop-run.mjs", ".claude/helpers/hook-handler.cjs", "session-end"],
             "timeout": 10000
           }
         ]
@@ -87,7 +95,8 @@
         "hooks": [
           {
             "type": "command",
-            "command": "cmd /c \"IF EXIST \"%CLAUDE_PROJECT_DIR%\\.claude\\helpers\\auto-memory-hook.mjs\" (node \"%CLAUDE_PROJECT_DIR%\\.claude\\helpers\\auto-memory-hook.mjs\" sync) ELSE (node \"%USERPROFILE%\\.claude\\helpers\\auto-memory-hook.mjs\" sync)\"",
+            "command": "node",
+            "args": ["bin/mop-run.mjs", ".claude/helpers/auto-memory-hook.mjs", "sync"],
             "timeout": 10000
           }
         ]
@@ -99,11 +108,13 @@
         "hooks": [
           {
             "type": "command",
-            "command": "cmd /c \"IF EXIST \"%CLAUDE_PROJECT_DIR%\\.claude\\helpers\\hook-handler.cjs\" (node \"%CLAUDE_PROJECT_DIR%\\.claude\\helpers\\hook-handler.cjs\" compact-manual) ELSE (node \"%USERPROFILE%\\.claude\\helpers\\hook-handler.cjs\" compact-manual)\""
+            "command": "node",
+            "args": ["bin/mop-run.mjs", ".claude/helpers/hook-handler.cjs", "compact-manual"]
           },
           {
             "type": "command",
-            "command": "cmd /c \"IF EXIST \"%CLAUDE_PROJECT_DIR%\\.claude\\helpers\\hook-handler.cjs\" (node \"%CLAUDE_PROJECT_DIR%\\.claude\\helpers\\hook-handler.cjs\" session-end) ELSE (node \"%USERPROFILE%\\.claude\\helpers\\hook-handler.cjs\" session-end)\"",
+            "command": "node",
+            "args": ["bin/mop-run.mjs", ".claude/helpers/hook-handler.cjs", "session-end"],
             "timeout": 5000
           }
         ]
@@ -113,11 +124,13 @@
         "hooks": [
           {
             "type": "command",
-            "command": "cmd /c \"IF EXIST \"%CLAUDE_PROJECT_DIR%\\.claude\\helpers\\hook-handler.cjs\" (node \"%CLAUDE_PROJECT_DIR%\\.claude\\helpers\\hook-handler.cjs\" compact-auto) ELSE (node \"%USERPROFILE%\\.claude\\helpers\\hook-handler.cjs\" compact-auto)\""
+            "command": "node",
+            "args": ["bin/mop-run.mjs", ".claude/helpers/hook-handler.cjs", "compact-auto"]
           },
           {
             "type": "command",
-            "command": "cmd /c \"IF EXIST \"%CLAUDE_PROJECT_DIR%\\.claude\\helpers\\hook-handler.cjs\" (node \"%CLAUDE_PROJECT_DIR%\\.claude\\helpers\\hook-handler.cjs\" session-end) ELSE (node \"%USERPROFILE%\\.claude\\helpers\\hook-handler.cjs\" session-end)\"",
+            "command": "node",
+            "args": ["bin/mop-run.mjs", ".claude/helpers/hook-handler.cjs", "session-end"],
             "timeout": 6000
           }
         ]
@@ -128,7 +141,8 @@
         "hooks": [
           {
             "type": "command",
-            "command": "cmd /c \"IF EXIST \"%CLAUDE_PROJECT_DIR%\\.claude\\helpers\\hook-handler.cjs\" (node \"%CLAUDE_PROJECT_DIR%\\.claude\\helpers\\hook-handler.cjs\" status) ELSE (node \"%USERPROFILE%\\.claude\\helpers\\hook-handler.cjs\" status)\"",
+            "command": "node",
+            "args": ["bin/mop-run.mjs", ".claude/helpers/hook-handler.cjs", "status"],
             "timeout": 3000
           }
         ]
@@ -139,7 +153,8 @@
         "hooks": [
           {
             "type": "command",
-            "command": "cmd /c \"IF EXIST \"%CLAUDE_PROJECT_DIR%\\.claude\\helpers\\hook-handler.cjs\" (node \"%CLAUDE_PROJECT_DIR%\\.claude\\helpers\\hook-handler.cjs\" post-task) ELSE (node \"%USERPROFILE%\\.claude\\helpers\\hook-handler.cjs\" post-task)\"",
+            "command": "node",
+            "args": ["bin/mop-run.mjs", ".claude/helpers/hook-handler.cjs", "post-task"],
             "timeout": 5000
           }
         ]
@@ -150,7 +165,8 @@
         "hooks": [
           {
             "type": "command",
-            "command": "cmd /c \"IF EXIST \"%CLAUDE_PROJECT_DIR%\\.claude\\helpers\\hook-handler.cjs\" (node \"%CLAUDE_PROJECT_DIR%\\.claude\\helpers\\hook-handler.cjs\" notify) ELSE (node \"%USERPROFILE%\\.claude\\helpers\\hook-handler.cjs\" notify)\"",
+            "command": "node",
+            "args": ["bin/mop-run.mjs", ".claude/helpers/hook-handler.cjs", "notify"],
             "timeout": 3000
           }
         ]
@@ -159,14 +175,14 @@
   },
   "statusLine": {
     "type": "command",
-    "command": "node -e \"const fs=require('fs'),p=require('path');const d=process.env.CLAUDE_PROJECT_DIR||'.';const f=p.join(d,'.claude/helpers/statusline.cjs');const h=p.join(process.env.USERPROFILE||process.env.HOME||'.', '.claude/helpers/statusline.cjs');require(fs.existsSync(f)?f:h);\""
+    "command": "node -e \"const fs=require('fs'),p=require('path');const d=process.env.CLAUDE_PROJECT_DIR||'.';const f=p.join(d,'.claude/helpers/statusline.cjs');if(fs.existsSync(f))require(f);\""
   },
   "permissions": {
     "allow": [
-      "Bash(npx @claude-flow*)",
-      "Bash(npx claude-flow*)",
-      "Bash(node .claude/*)",
-      "mcp__claude-flow__*"
+      "Bash(node .MOP/scripts/*)",
+      "Bash(node .claude/helpers/*)",
+      "Bash(node bin/*)",
+      "mcp__mop-flow__*"
     ],
     "deny": [
       "Read(./.env)",
@@ -174,112 +190,25 @@
     ]
   },
   "env": {
-    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1",
-    "CLAUDE_FLOW_V3_ENABLED": "true",
-    "CLAUDE_FLOW_HOOKS_ENABLED": "true"
+    "MOP_FLOW_BRAND": "MOP Flow",
+    "MOP_FLOW_CANONICAL": "true",
+    "MOP_FLOW_PROVIDER_PARITY": "true"
   },
-  "claudeFlow": {
-    "version": "3.0.0",
-    "enabled": true,
-    "platform": {
-      "os": "windows",
-      "arch": "x64",
-      "shell": "powershell"
-    },
-    "modelPreferences": {
-      "default": "claude-opus-4-8",
-      "routing": "claude-haiku-4-5-20251001"
-    },
-    "agentTeams": {
+  "mopFlow": {
+    "brand": "MOP Flow",
+    "canonicalMcpServer": "mop-flow",
+    "portableSkillDir": ".agents/skills",
+    "runtimeNativeSkillDir": ".claude/skills",
+    "manifestCommand": "node .MOP/scripts/mop-flow.mjs manifest refresh",
+    "statusCommand": "node .MOP/scripts/mop-flow.mjs status --json",
+    "providerParity": {
       "enabled": true,
-      "teammateMode": "auto",
-      "taskListEnabled": true,
-      "mailboxEnabled": true,
-      "coordination": {
-        "autoAssignOnIdle": true,
-        "trainPatternsOnComplete": true,
-        "notifyLeadOnComplete": true,
-        "sharedMemoryNamespace": "agent-teams"
-      },
-      "hooks": {
-        "teammateIdle": {
-          "enabled": true,
-          "autoAssign": true,
-          "checkTaskList": true
-        },
-        "taskCompleted": {
-          "enabled": true,
-          "trainPatterns": true,
-          "notifyLead": true
-        }
-      }
-    },
-    "swarm": {
-      "topology": "adaptive",
-      "maxAgents": 50
-    },
-    "memory": {
-      "backend": "hybrid",
-      "enableHNSW": true,
-      "learningBridge": {
-        "enabled": true
-      },
-      "memoryGraph": {
-        "enabled": true
-      },
-      "agentScopes": {
-        "enabled": true
-      }
-    },
-    "neural": {
-      "enabled": true
-    },
-    "daemon": {
-      "autoStart": false,
-      "workers": [
-        "map",
-        "audit",
-        "optimize"
-      ],
-      "schedules": {
-        "audit": {
-          "interval": "4h",
-          "priority": "critical"
-        },
-        "optimize": {
-          "interval": "2h",
-          "priority": "high"
-        }
-      }
-    },
-    "learning": {
-      "enabled": true,
-      "autoTrain": true,
-      "patterns": [
-        "coordination",
-        "optimization",
-        "prediction"
-      ],
-      "retention": {
-        "shortTerm": "24h",
-        "longTerm": "30d"
-      }
-    },
-    "adr": {
-      "autoGenerate": true,
-      "directory": "/docs/adr",
-      "template": "madr"
-    },
-    "ddd": {
-      "trackDomains": true,
-      "validateBoundedContexts": true,
-      "directory": "/docs/ddd"
-    },
-    "security": {
-      "autoScan": true,
-      "scanOnEdit": true,
-      "cveCheck": true,
-      "threatModel": true
+      "providers": [
+        "claude",
+        "codex",
+        "gemini",
+        "antigravity"
+      ]
     }
   }
 }

@@ -101,6 +101,26 @@ function requireActiveAgent(state, actor, role = 'core', title = 'Core Agent') {
   ].join(' '));
 }
 
+// Refuse identity-bound git work unless `actor` holds a valid, non-expired
+// session. This stops a new person in a new chat from pushing under a previous
+// member's carried-over identity. Mirrors mop-core session rules (read-only).
+function requireValidSession(state, actor) {
+  if (state.sessionPolicy?.enabled === false) return;
+  const session = state.session || {};
+  const lastActive = session.lastActiveAt || state.lastActiveAt;
+  const minutes = Number(state.sessionPolicy?.idleTimeoutMinutes || 60);
+  const idleMs = (Number.isFinite(minutes) && minutes > 0 ? minutes : 60) * 60 * 1000;
+  if (!session.actor || !lastActive) {
+    throw new Error(`No authenticated session for autosycn. ${actor} must login first: node .MOP/scripts/mop-core.mjs login --codename ${actor} --password <pass>`);
+  }
+  if (session.actor !== actor) {
+    throw new Error(`Session belongs to ${session.actor}, not ${actor}. Refusing to push under another member's identity. The active member must logout, then ${actor} must login.`);
+  }
+  if (Date.now() - new Date(lastActive).getTime() > idleMs) {
+    throw new Error(`Session expired (idle > ${minutes} min). ${actor} must login again before autosycn.`);
+  }
+}
+
 function agentLedgerFields(agent) {
   return agent ? {
     agent: agent.name,
@@ -399,6 +419,21 @@ function runProjectCommand(command, env) {
   return 'passed';
 }
 
+function highConfidenceSecretPattern() {
+  return /(AIza[0-9A-Za-z_-]{20,}|ghp_[0-9A-Za-z_]{20,}|github_pat_[0-9A-Za-z_]{20,}|sk-[A-Za-z0-9_-]{20,}|xox[baprs]-[0-9A-Za-z-]{20,})/;
+}
+
+function scanDiffForHighConfidenceSecrets(diffArgs, label) {
+  // Exclude .MOP/scripts/ — those files contain the pattern definitions and test fixtures
+  // that self-referentially match the secret regex (false positives).
+  const diff = runOptional('git', ['diff', '--no-ext-diff', ...diffArgs, '--', '.', ':!.MOP/scripts/']);
+  if (!diff.ok || !diff.stdout) return 'passed';
+  if (!highConfidenceSecretPattern().test(diff.stdout)) return 'passed';
+  const names = runOptional('git', ['diff', '--name-only', ...diffArgs, '--', '.', ':!.MOP/scripts/']);
+  const changedFiles = names.stdout || 'changed files unavailable';
+  throw new Error(`Possible high-confidence secret found in ${label}:\n${changedFiles}`);
+}
+
 function validateStateIfPresent() {
   if (!existsSync(join(rootDir, '.MOP', 'STATE.json'))) return 'skipped';
   const result = spawnSync('node', ['.MOP/scripts/mop-core.mjs', 'validate'], {
@@ -444,7 +479,7 @@ function guardianReview(state, sourceRef, env) {
 
   if (checks.secretScan !== false) {
     const pattern = '(AIza|ghp_|github_pat_|sk-[A-Za-z0-9]|xox[baprs]-|password\\s*[:=]|secret\\s*[:=]|api[_-]?key\\s*[:=]|token\\s*[:=])';
-    const scan = runOptional('git', ['diff', '--name-only', '-G', pattern, `origin/${mainBranch}..${sourceRef}`, '--', '.', ':(exclude).MOP/scripts/']);
+    const scan = runOptional('git', ['diff', '--name-only', '-G', pattern, `origin/${mainBranch}..${sourceRef}`, '--', '.']);
     if (scan.ok && scan.stdout) {
       guardianReject(`possible secret pattern found in changed files:\n${scan.stdout}`);
     }
@@ -457,10 +492,13 @@ function guardianReview(state, sourceRef, env) {
   return report;
 }
 
-function commitIfNeeded(reason, env) {
+function commitIfNeeded(reason, env, state) {
   runGit(['add', '-A']);
   const status = runGit(['status', '--porcelain']);
   if (!status) return 'nothing-to-commit';
+  if (state?.autosync?.secretScanBeforeCommit !== false) {
+    scanDiffForHighConfidenceSecrets(['--cached'], 'staged changes');
+  }
   runGit(['commit', '-m', reason], { env });
   return runGit(['rev-parse', '--short', 'HEAD']);
 }
@@ -508,6 +546,7 @@ function preflight(args) {
   if (!state.initialized) throw new Error('MOP is not initialized.');
   const actor = requireArg(args, 'actor');
   const agent = requireActiveAgent(state, actor);
+  requireValidSession(state, actor);
   const identity = identityFor(state, actor);
   const env = identityEnv(identity);
   const ghStatus = verifyGhUser(identity, state);
@@ -550,6 +589,7 @@ function preflight(args) {
 function saveMemory(actor, summary, kind = 'conversation') {
   const state = readState();
   const agent = requireActiveAgent(state, actor);
+  requireValidSession(state, actor);
   appendLedger(state, actor, 'memory', summary, agent);
   appendMonthlyMemory(state, actor, kind, summary, agent);
   writeState(state);
@@ -562,6 +602,7 @@ function push(args) {
   if (!state.initialized) throw new Error('MOP is not initialized.');
   const actor = requireArg(args, 'actor');
   const agent = requireActiveAgent(state, actor);
+  requireValidSession(state, actor);
   const reason = String(args.reason || 'MOP autosycn');
   const identity = identityFor(state, actor);
   const env = identityEnv(identity);
@@ -575,7 +616,7 @@ function push(args) {
     throw new Error(`Team autosycn must commit from ${target}. Run preflight before starting work: node .MOP/scripts/mop-autosycn.mjs preflight --actor ${actor}`);
   }
   ensureBranch(target);
-  const commit = commitIfNeeded(reason, env);
+  const commit = commitIfNeeded(reason, env, state);
   runGit(['push', '-u', 'origin', target], { env });
 
   console.log(JSON.stringify({
@@ -595,6 +636,7 @@ function init(args) {
   if (!state.initialized) throw new Error('MOP is not initialized.');
   const actor = requireArg(args, 'actor');
   const agent = requireActiveAgent(state, actor);
+  requireValidSession(state, actor);
   if (actor !== state.ownerCodename) throw new Error('Only the owner can initialize autosycn.');
   const identity = identityFor(state, actor);
   const env = identityEnv(identity);
@@ -609,7 +651,7 @@ function init(args) {
   appendLedger(state, actor, 'autosycn-init', `Initialized autosycn remote ${remote}.`, agent);
   if (url) state.githubUrl = url;
   writeState(state);
-  const commit = commitIfNeeded('Initialize MOP autosycn baseline', env);
+  const commit = commitIfNeeded('Initialize MOP autosycn baseline', env, state);
   runGit(['push', '-u', 'origin', state.autosync?.targetMainBranch || 'main'], { env });
 
   console.log(JSON.stringify({
@@ -630,9 +672,11 @@ function mergeMain(args) {
   if (!state.initialized) throw new Error('MOP is not initialized.');
   const actor = requireArg(args, 'actor');
   const agent = requireActiveAgent(state, actor);
-  if (state.autosync?.requireOwnerForMerge === true && actor !== state.ownerCodename) {
-    throw new Error('Only the owner can request BURHAN-MOP merge to main.');
-  }
+  requireValidSession(state, actor);
+
+  // Enforce BURHAN-MOP handling all merges to main in team mode
+  // Notice: The requireOwnerForMerge restriction has been explicitly removed 
+  // so that all team members' code is safely merged by BURHAN-MOP.
   const from = String(args.from || actor);
   const prefix = state.autosync?.workBranchPrefix || 'dev';
   const reason = String(args.reason || `Merge ${prefix}/${from}`);
@@ -703,6 +747,8 @@ function runAll(args) {
   const guardian = guardianConfig(state);
   if (state.mode === 'team' && state.autosync?.autoMergeToMain !== false && guardian.autoReviewAfterPush !== false) {
     const prefix = state.autosync?.workBranchPrefix || 'dev';
+    console.log(`\nTeam member ${actor} pushed to ${prefix}/${actor} branch.`);
+    console.log(`BURHAN-MOP will now review and merge to main.`);
     mergeMain({ actor, from: actor, reason: `${guardian.name || 'BURHAN-MOP'} approved merge ${prefix}/${actor}: ${reason}` });
   }
 }
@@ -714,6 +760,7 @@ function status() {
     main: state.autosync?.targetMainBranch || 'main',
     workBranchPrefix: state.autosync?.workBranchPrefix || 'dev',
     autoMergeToMain: state.autosync?.autoMergeToMain !== false,
+    secretScanBeforeCommit: state.autosync?.secretScanBeforeCommit !== false,
     mergeGuardian: guardianConfig(state),
     githubIdentity: githubIdentityPolicy(state),
     preflightBeforeWork: state.autosync?.preflightBeforeWork !== false,

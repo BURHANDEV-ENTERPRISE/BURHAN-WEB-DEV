@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { cpSync, existsSync, mkdirSync, readdirSync, statSync } from 'node:fs';
+import { cpSync, existsSync, mkdirSync, readdirSync, renameSync, rmSync, statSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -23,20 +23,40 @@ const installEntries = [
   '.MOP',
   '.agents',
   '.claude',
-  '.claude-flow',
   '.codex',
   '.gemini',
-  '.mcp.json'
+  '.mcp.json',
+  'bin/mop-detect-run.mjs'
 ];
 const doctorEntries = [
   'AGENTS.md',
   'CLAUDE.md',
   'GEMINI.md',
+  '.mcp.json',
   '.MOP/STATE.json',
   '.MOP/PROTOCOL.md',
+  '.MOP/flow/ROADMAP.md',
+  '.MOP/flow/skill-manifest.json',
   '.MOP/scripts/mop-core.mjs',
+  '.MOP/scripts/mop-flow.mjs',
   '.MOP/scripts/mop-workflow.mjs',
-  '.agents/skills/mop-help/SKILL.md'
+  '.MOP/scripts/mop-autosycn.mjs',
+  '.MOP/scripts/mop-auto-deploy.mjs',
+  '.MOP/scripts/mop-service.mjs',
+  '.MOP/scripts/mop-smoke-test.mjs',
+  'bin/mop-detect-run.mjs',
+  '.agents/AGENTS.md',
+  '.agents/skills/mop-help/SKILL.md',
+  '.agents/skills/mop-flow/SKILL.md',
+  '.agents/skills/autosycn/SKILL.md',
+  '.agents/skills/auto-deploy/SKILL.md',
+  '.claude/settings.json',
+  '.claude/skills/mop-help/SKILL.md',
+  '.claude/skills/mop-flow/SKILL.md',
+  '.claude/skills/autosycn/SKILL.md',
+  '.claude/skills/auto-deploy/SKILL.md',
+  '.codex/config.toml',
+  '.gemini/settings.json'
 ];
 
 function parseArgs(argv) {
@@ -114,33 +134,118 @@ function copyPath(entry, source, target, force = false) {
   mkdirSync(dirname(target), { recursive: true });
   
   const filterFn = (src, dest) => {
-    // Never overwrite an existing STATE.json, even during --force
-    if (src.endsWith('STATE.json') && existsSync(dest)) {
-      return false;
+    const s = src.replaceAll('\\', '/');
+    // Never overwrite user data/customization during --force.
+    // STATE.json is config-migrated separately (see migrateState).
+    if (existsSync(dest)) {
+      if (s.endsWith('/STATE.json') || s.endsWith('STATE.json')) return false;
+      if (s.endsWith('/.MOP/config/team.json')) return false;
+      if (s.includes('/.MOP/config/members/')) return false;
+      if (s.includes('/.MOP/memory/')) return false;
     }
     return true;
   };
-  
+
   cpSync(source, target, { recursive: true, force: true, filter: filterFn });
   return { entry, source, target, status: 'installed' };
+}
+
+// Keys that hold USER data and must survive an update untouched.
+const PRESERVE_USER_KEYS = [
+  'initialized', 'projectName', 'projectNameDefault', 'ownerCodename',
+  'activeMember', 'activeAgents', 'session',
+  'mode', 'joinMode', 'githubUrl',
+  'members', 'agentRoster', 'ledger',
+  'federation', 'deployment'
+];
+
+// On update, refresh system config from the new template while preserving all
+// user data. Without this, config baked into STATE.json (agentCatalog, workflow
+// phases, policies, sessionPolicy) would stay frozen at the version first
+// installed — the "some things don't update" problem.
+function migrateState(targetRoot) {
+  const templatePath = join(packageRoot, '.MOP', 'STATE.json');
+  const userPath = join(targetRoot, '.MOP', 'STATE.json');
+  if (!existsSync(templatePath) || !existsSync(userPath)) return { migrated: false, reason: 'no-state' };
+  let template;
+  let user;
+  try {
+    template = JSON.parse(readFileSync(templatePath, 'utf8'));
+    user = JSON.parse(readFileSync(userPath, 'utf8'));
+  } catch {
+    return { migrated: false, reason: 'state-parse-failed' };
+  }
+  if (!user.initialized) return { migrated: false, reason: 'not-initialized' };
+
+  const fromSchema = user.schemaVersion ?? 'unknown';
+  const toSchema = template.schemaVersion ?? 'unknown';
+
+  // Back up the user's current state before rewriting.
+  writeFileSync(join(targetRoot, '.MOP', 'STATE.json.bak'), `${JSON.stringify(user, null, 2)}\n`, 'utf8');
+
+  const merged = JSON.parse(JSON.stringify(template)); // new system config baseline
+  for (const key of PRESERVE_USER_KEYS) {
+    if (key in user) merged[key] = user[key];
+  }
+  // Preserve workflow progress inside the refreshed workflow block.
+  if (user.workflow && merged.workflow && typeof merged.workflow === 'object') {
+    if ('currentPhase' in user.workflow) merged.workflow.currentPhase = user.workflow.currentPhase;
+    if ('activeProfile' in user.workflow) merged.workflow.activeProfile = user.workflow.activeProfile;
+  }
+  // Forward-compat: keep any extra user keys the new template does not define.
+  for (const key of Object.keys(user)) {
+    if (!(key in merged)) merged[key] = user[key];
+  }
+
+  const tmp = `${userPath}.tmp`;
+  writeFileSync(tmp, `${JSON.stringify(merged, null, 2)}\n`, 'utf8');
+  renameSync(tmp, userPath);
+  return {
+    migrated: true,
+    fromSchema,
+    toSchema,
+    preservedKeys: PRESERVE_USER_KEYS.filter((key) => key in user),
+    backup: '.MOP/STATE.json.bak'
+  };
 }
 
 function buildInstallReport(args) {
   const targetRoot = resolve(String(args.target || process.cwd()));
   const force = args.force === true;
+  const stateExisted = existsSync(join(targetRoot, '.MOP', 'STATE.json'));
   const results = installEntries.map((entry) => copyPath(
     entry,
     join(packageRoot, entry),
     join(targetRoot, entry),
     force
   ));
+
+  // On a forced update over an existing install, migrate STATE.json config
+  // (user data preserved, system config refreshed). The copy filter above keeps
+  // the user's STATE.json from being clobbered so this merge is the source of truth.
+  let migration = null;
+  if (force && stateExisted) {
+    migration = migrateState(targetRoot);
+  }
+
+  // Save VERSION.txt locally
+  try {
+    const pkg = JSON.parse(readFileSync(join(packageRoot, 'package.json'), 'utf8'));
+    mkdirSync(join(targetRoot, '.MOP'), { recursive: true });
+    writeFileSync(join(targetRoot, '.MOP', 'VERSION.txt'), pkg.version, 'utf8');
+  } catch (err) {
+    // ignore
+  }
+
   const summary = summarize(results);
   return {
     ok: summary.missing === 0,
-    command: 'npx burhan-mop install',
+    command: 'npx mop-flow install',
+    legacyCommand: 'npx burhan-mop install',
     target: targetRoot,
     force,
     results,
+    migration,
     summary,
     next: [
       'Run /mop-setup in the target project.',
@@ -151,7 +256,7 @@ function buildInstallReport(args) {
 }
 
 function renderInstall(report) {
-  header('BURHAN-MOP installer', 'Portable AI MemoryCore for Claude, Codex / ChatGPT, Gemini, and Antigravity');
+  header('MOP Flow installer', 'Portable AI MemoryCore for Claude, Codex / ChatGPT, Gemini, and Antigravity');
   console.log(`${paint('bold', 'Target')} : ${report.target}`);
   console.log(`${paint('bold', 'Mode')}   : ${report.force ? 'force overwrite' : 'safe install'}`);
   rule();
@@ -160,8 +265,15 @@ function renderInstall(report) {
   }
   rule();
   console.log(`${paint('bold', 'Summary')}: ${report.summary.installed} installed, ${report.summary.skipped} skipped, ${report.summary.missing} missing`);
+  if (report.migration && report.migration.migrated) {
+    rule();
+    console.log(`${paint('green', '[STATE]')} config migrated ${report.migration.fromSchema} -> ${report.migration.toSchema} (user data preserved, system config refreshed)`);
+    console.log(paint('dim', `Backup saved at ${report.migration.backup}. Preserved: ${report.migration.preservedKeys.join(', ')}`));
+  } else if (report.migration && !report.migration.migrated && report.migration.reason !== 'not-initialized') {
+    console.log(paint('yellow', `[STATE] config not migrated: ${report.migration.reason}. Your STATE.json was left unchanged.`));
+  }
   if (report.summary.skipped > 0) {
-    console.log(paint('yellow', 'Tip: existing files were kept. Use --force only when you want to overwrite them.'));
+    console.log(paint('yellow', 'Tip: existing files were kept. Use --force to update them (your STATE.json, team config, and memory are preserved).'));
   }
   if (report.summary.missing > 0) {
     console.log(paint('red', 'Some package templates are missing. Reinstall or report this package build.'));
@@ -172,7 +284,8 @@ function renderInstall(report) {
     console.log(`  ${index + 1}. ${item}`);
   });
   console.log('');
-  console.log(paint('dim', 'Automation JSON: npx burhan-mop install --json'));
+  console.log(paint('dim', 'Automation JSON: npx mop-flow install --json'));
+  console.log(paint('dim', 'Legacy alias: npx burhan-mop install'));
 }
 
 function install(args) {
@@ -202,7 +315,7 @@ function buildDoctorReport() {
 }
 
 function renderDoctor(report) {
-  header('BURHAN-MOP doctor', 'Workspace health check');
+  header('MOP Flow doctor', 'Workspace health check');
   console.log(`${paint('bold', 'Project')}: ${report.cwd}`);
   rule();
   for (const item of report.results) {
@@ -212,7 +325,7 @@ function renderDoctor(report) {
   rule();
   console.log(`${paint('bold', 'Status')}: ${report.ok ? paint('green', 'ready') : paint('red', 'missing files')}`);
   console.log('');
-  console.log(paint('dim', 'Automation JSON: npx burhan-mop doctor --json'));
+  console.log(paint('dim', 'Automation JSON: npx mop-flow doctor --json'));
 }
 
 function doctor(args) {
@@ -222,6 +335,26 @@ function doctor(args) {
     return;
   }
   renderDoctor(report);
+}
+
+function uninstall(args) {
+  const targetRoot = process.cwd();
+  let deleted = 0;
+  for (const entry of installEntries) {
+    const p = join(targetRoot, entry);
+    if (existsSync(p)) {
+      rmSync(p, { recursive: true, force: true });
+      deleted++;
+    }
+  }
+  if (asJson(args)) {
+    console.log(JSON.stringify({ ok: true, deleted, target: targetRoot }, null, 2));
+    return;
+  }
+  header('MOP Flow uninstaller', 'Removed MOP from project');
+  console.log(`${paint('bold', 'Target')} : ${targetRoot}`);
+  console.log(`${paint('bold', 'Status')} : ${deleted} items deleted.`);
+  console.log('');
 }
 
 function listPackage(args) {
@@ -236,26 +369,25 @@ function listPackage(args) {
     console.log(JSON.stringify(report, null, 2));
     return;
   }
-  header('BURHAN-MOP package', 'Published package contents');
+  header('MOP Flow package', 'Published package contents');
   console.log(`${paint('bold', 'Root')}: ${report.packageRoot}`);
   rule();
   for (const item of report.entries) {
     console.log(`${item.type.padEnd(4)} ${item.name}`);
   }
   console.log('');
-  console.log(paint('dim', 'Automation JSON: npx burhan-mop package --json'));
+  console.log(paint('dim', 'Automation JSON: npx mop-flow package --json'));
 }
 
 function main() {
-  const [command, ...rest] = process.argv.slice(2);
+  const rawArgs = process.argv.slice(2);
+  const command = rawArgs[0] && !rawArgs[0].startsWith('--') ? rawArgs[0] : 'install';
+  const rest = rawArgs[0] && !rawArgs[0].startsWith('--') ? rawArgs.slice(1) : rawArgs;
   const args = parseArgs(rest);
-  if (command === 'install') return install(args);
   if (command === 'doctor') return doctor(args);
   if (command === 'package') return listPackage(args);
-  console.log(`Usage:
-  npx burhan-mop install [--target PATH] [--force] [--json]
-  npx burhan-mop doctor [--json]
-  npx burhan-mop package [--json]`);
+  if (command === 'delete' || command === 'uninstall') return uninstall(args);
+  return install(args);
 }
 
 try {

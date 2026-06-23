@@ -1,28 +1,30 @@
 ---
 name: ruflo-core
-description: Use this when working with the MOP Ruflo core, Claude Flow configuration, MCP server setup, swarm routing, hooks, or cross-provider agent instructions.
+description: Legacy alias for MOP Flow runtime compatibility. Use mop-flow first, then this file when inspecting Ruflo or Claude Flow upstream behavior.
 ---
 
-# Ruflo Core Skill
+# Ruflo Core Skill (Legacy Alias)
 
 ## Goal
 
-Keep the MOP Ruflo core portable across Claude Code, Codex,
-ChatGPT coding surfaces, Gemini CLI, and Antigravity.
+Keep upstream Ruflo / Claude Flow runtime behavior portable under the MOP Flow
+brand across Claude Code, Codex, ChatGPT coding surfaces, Gemini CLI, and
+Antigravity.
 
 ## Instructions
 
-1. Read the active provider entry point first:
+1. Prefer `.agents/skills/mop-flow/SKILL.md` for provider parity and branding.
+2. Read the active provider entry point:
    - Codex / ChatGPT coding agents: `AGENTS.md`
    - Gemini CLI: `GEMINI.md`
    - Antigravity: `.agents/AGENTS.md`
    - Claude Code: `CLAUDE.md`
-2. Inspect `.mcp.json`, `.claude-flow/config.yaml`, and provider-specific config
+3. Inspect `.mcp.json`, `.claude-flow/config.yaml`, and provider-specific config
    before changing integration behavior.
-3. Keep Claude-only hooks in `.claude/`; do not copy them blindly into other
+4. Keep Claude-only hooks in `.claude/`; do not copy them blindly into other
    providers.
-4. For Antigravity, put portable skills in `.agents/skills/<skill-name>/SKILL.md`.
-5. Validate JSON/TOML/YAML after edits and report any tool or auth requirement
+5. For Antigravity and cross-provider skills, use `.agents/skills/<skill-name>/SKILL.md`.
+6. Validate JSON/TOML/YAML after edits and report any tool or auth requirement
    that cannot be verified locally.
 
 ## Constraints

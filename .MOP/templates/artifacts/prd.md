@@ -1,29 +1,27 @@
-# {{title}} PRD
+# PRD — {{projectName}}
+**Fasa:** prd | **Lead:** {{leadAgent}} | **Tarikh:** {{date}}
+**Status:** draft
 
-## Goal
+## Ringkasan Produk
+[Huraikan produk dalam 2-3 ayat]
 
-{{goal}}
+## Masalah Yang Diselesaikan
+[Masalah pengguna yang dihadapi]
 
-## Users
+## Objektif (OKR)
+- O1: ...
+  - KR1: ...
 
-- 
+## User Stories Utama
+| ID | Sebagai | Saya mahu | Supaya |
+|---|---|---|---|
+| US-001 | ... | ... | ... |
 
-## Requirements
+## Bukan Skop (Non-Goals)
+- ...
 
-- 
+## Kriteria Kejayaan
+- [ ] ...
 
-## User Stories
-
-- As a user, I want ... so that ...
-
-## Acceptance Criteria
-
-- 
-
-## Risks
-
-- 
-
-## Open Questions
-
-- 
+## Keputusan
+[Rekod keputusan penting di sini]
