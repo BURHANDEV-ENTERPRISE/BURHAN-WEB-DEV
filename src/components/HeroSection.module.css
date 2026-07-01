@@ -127,7 +127,7 @@
   flex-direction: column;
   align-items: center;
   gap: 24px;
-  margin-bottom: 180px;
+  margin-bottom: 40px;
   text-align: center;
   padding: 0 24px;
 }
@@ -189,212 +189,6 @@
   flex-shrink: 0;
 }
 
-/* ── Interactive arcade controller ── */
-.arcadeWrap {
-  position: absolute;
-  bottom: -24px;
-  left: 50%;
-  transform: translateX(-50%) perspective(900px) rotateX(20deg);
-  transform-origin: bottom center;
-  width: min(640px, 96vw);
-  cursor: default;
-  z-index: 25;
-}
-
-/* ── Maroon 3D frame (Cinnamon-style) ── */
-.arcadeFrame {
-  position: relative;
-  background: linear-gradient(175deg, #a82828 0%, #7f1d1d 38%, #6b1515 62%, #4a0f0f 100%);
-  border-radius: 18px 18px 10px 10px;
-  padding: 14px 18px 18px;
-  /* cream top-edge highlight */
-  border-top: 2px solid rgba(255, 246, 220, 0.28);
-  border-left: 1.5px solid rgba(255, 246, 220, 0.12);
-  border-right: 1.5px solid rgba(255, 246, 220, 0.08);
-  /* stacked depth layers → visible front face */
-  box-shadow:
-    inset 0 3px 6px rgba(255, 246, 220, 0.1),
-    inset 0 -4px 0 rgba(0,0,0,0.45),
-    0  5px 0 #7a1a1a,
-    0  9px 0 #6b1515,
-    0 13px 0 #581010,
-    0 17px 0 #450c0c,
-    0 21px 0 #330808,
-    0 24px 0 #220505,
-    0 30px 50px rgba(40, 0, 0, 0.65);
-}
-
-/* corner bolt */
-.frameBolt {
-  position: absolute;
-  width: 11px;
-  height: 11px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 38% 32%, rgba(255,246,220,0.85), rgba(180,110,110,0.6) 60%, rgba(80,20,20,0.8));
-  box-shadow:
-    inset 0 1px 2px rgba(0,0,0,0.55),
-    inset 0 -1px 1px rgba(255,246,220,0.2),
-    0 1px 3px rgba(0,0,0,0.5);
-}
-
-.arcadeBody {
-  position: relative;
-  width: 100%;
-  height: 130px;
-  background: linear-gradient(165deg, #2e7d32 0%, #1b5e20 40%, #155216 60%, #0f3d12 100%);
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 40px;
-  padding: 0 40px;
-  box-shadow:
-    inset 0 4px 0 #4caf50,
-    inset 0 -4px 0 rgba(0,0,0,0.35),
-    0 4px 12px rgba(0,0,0,0.4);
-}
-
-/* arcadeShadow removed — frame depth via box-shadow is sufficient */
-
-/* ── Joystick panel ── */
-.joyPanel {
-  position: relative;
-  width: 180px;
-  height: 106px;
-  background: linear-gradient(145deg, #0d2610, #071508);
-  border-radius: 10px;
-  border: 2px solid #051009;
-  box-shadow:
-    inset 0 3px 10px rgba(0,0,0,0.8),
-    inset 0 -1px 2px rgba(100,255,100,0.04);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  perspective: 200px;
-  cursor: crosshair;
-  flex-shrink: 0;
-}
-
-/* corner rivets */
-.rivet {
-  position: absolute;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 35% 30%, #2e6b30, #163d18);
-  box-shadow: inset 0 1px 2px rgba(255,255,255,0.15), 0 1px 2px rgba(0,0,0,0.6);
-}
-
-/* joystick outer ring */
-.joyBase {
-  position: relative;
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 40% 35%, #162e18, #060e07);
-  border: 3px solid #040a05;
-  box-shadow:
-    inset 0 4px 12px rgba(0,0,0,0.85),
-    inset 0 -1px 4px rgba(100,200,100,0.05),
-    0 2px 6px rgba(0,0,0,0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* inner ring */
-.joyBaseInner {
-  position: absolute;
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  border: 1.5px solid rgba(255,255,255,0.05);
-  background: radial-gradient(circle at 40% 38%, #0d1e0e, #040904);
-}
-
-/* stick — moves with pointer */
-.joyStick {
-  position: relative;
-  z-index: 2;
-  width: 14px;
-  height: 44px;
-  background: linear-gradient(to right, #060e07, #1a3d1c, #060e07);
-  border-radius: 5px 5px 8px 8px;
-  transform-origin: bottom center;
-  transform-style: preserve-3d;
-  will-change: transform;
-}
-
-/* ball on top of stick */
-.joyBall {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 35% 28%, #e03838, #8b1010);
-  border: 2px solid #6b1010;
-  box-shadow:
-    0 4px 0 #4a0808,
-    0 6px 14px rgba(0,0,0,0.55),
-    inset 0 -2px 4px rgba(0,0,0,0.3),
-    inset 2px 2px 4px rgba(255,160,160,0.2);
-  will-change: transform;
-}
-
-/* ── Big PLAY button ── */
-.actionBtn {
-  position: relative;
-  width: 110px;
-  height: 110px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 38% 30%, #d0cec8, #a0a09a, #707068);
-  border: none;
-  cursor: pointer;
-  flex-shrink: 0;
-  box-shadow:
-    0 8px 0 #3a3a34,
-    0 10px 20px rgba(0,0,0,0.55),
-    inset 0 3px 6px rgba(255,255,255,0.35),
-    inset 0 -3px 6px rgba(0,0,0,0.3);
-  transition: transform 0.08s ease, box-shadow 0.08s ease;
-  /* engrave ring */
-  outline: 3px solid rgba(0,0,0,0.2);
-  outline-offset: -8px;
-}
-
-.actionBtn::before {
-  content: "";
-  position: absolute;
-  inset: 12px;
-  border-radius: 50%;
-  border: 1.5px solid rgba(0,0,0,0.15);
-}
-
-.actionBtn:hover {
-  background: radial-gradient(circle at 38% 30%, #dcdad4, #b0b0aa, #808078);
-}
-
-/* pressed state — sink down */
-.btnDown {
-  transform: translateY(5px) !important;
-  box-shadow:
-    0 3px 0 #3a3a34,
-    0 4px 10px rgba(0,0,0,0.45),
-    inset 0 3px 8px rgba(0,0,0,0.25),
-    inset 0 -1px 3px rgba(255,255,255,0.2) !important;
-}
-
-.actionLabel {
-  font-family: var(--font-bebas), "Impact", sans-serif;
-  font-size: 1.1rem;
-  letter-spacing: 0.12em;
-  color: rgba(60, 50, 40, 0.75);
-  text-shadow: 0 1px 0 rgba(255,255,255,0.4), 0 -1px 0 rgba(0,0,0,0.2);
-  pointer-events: none;
-  user-select: none;
-}
 
 /* ── STAGES 2-6: Hero Scene ───────────────────────────── */
 .heroScene {
@@ -677,122 +471,15 @@
   background-size: 20px 20px;
 }
 
-/* ── 3D Condenser Microphone ─────────────────────────────────── */
-.micWrap {
-  position: absolute;
-  top: 20px;                              /* hangs from top bezel */
-  right: clamp(50px, 9vw, 120px);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  z-index: 25;
-  pointer-events: none;
-  transform-origin: top center;
-  animation: micSway 5.5s ease-in-out infinite;
-  filter: drop-shadow(0 0 8px rgba(180,180,180,0.18));
-}
-
-@keyframes micSway {
-  0%, 100% { transform: rotate(-3.5deg); }
-  30%       { transform: rotate(-0.8deg) translateX(3px); }
-  60%       { transform: rotate(3.5deg); }
-  80%       { transform: rotate(1deg)   translateX(-3px); }
-}
-
-/* Cable from bezel down to mic */
-.micCable {
-  width: 3px;
-  height: 52px;
-  background: linear-gradient(
-    to bottom,
-    rgba(180,180,180,0.5) 0%,
-    rgba(140,140,140,0.7) 50%,
-    rgba(100,100,100,0.9) 100%
-  );
-  border-radius: 2px;
-  box-shadow: 0 0 4px rgba(255,255,255,0.1);
-}
-
-/* Mic body — chrome/silver metallic cylinder */
-.micBody {
-  position: relative;
-  width: 48px;
-  height: 100px;
-  background: linear-gradient(
-    90deg,
-    #2a2a2a  0%,
-    #5a5a5a 18%,
-    #aaaaaa 36%,
-    #d4d4d4 50%,
-    #aaaaaa 64%,
-    #5a5a5a 82%,
-    #2a2a2a 100%
-  );
-  border-radius: 24px 24px 14px 14px;
-  box-shadow:
-    inset -8px 0 14px rgba(0,0,0,0.5),
-    inset  8px 0  6px rgba(255,255,255,0.12),
-    0 0 20px rgba(180,180,180,0.12),
-    0 10px 30px rgba(0,0,0,0.7);
-}
-
-/* Top chrome cap highlight */
-.micBody::before {
-  content: "";
+/* ── 3D Condenser Microphone (R3F Canvas wrapper) ──────────── */
+.mic3dWrap {
   position: absolute;
   top: 0;
-  left: 25%;
-  right: 25%;
-  height: 6px;
-  background: rgba(255,255,255,0.35);
-  border-radius: 50%;
-  filter: blur(3px);
-}
-
-/* Brand ring — BURHANDEV maroon stripe */
-.micBody::after {
-  content: "";
-  position: absolute;
-  bottom: 28px;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(196,50,50,0.7) 20%,
-    #e03838 50%,
-    rgba(196,50,50,0.7) 80%,
-    transparent
-  );
-  box-shadow: 0 0 6px rgba(196,50,50,0.5);
-}
-
-/* Perforated grille — dark dots on silver body */
-.micGrille {
-  position: absolute;
-  top: 6px;
-  left: 4px;
-  right: 4px;
-  bottom: 34px;
-  border-radius: 20px 20px 6px 6px;
-  background-image: radial-gradient(circle, rgba(0,0,0,0.55) 1.4px, transparent 1.4px);
-  background-size: 7px 7px;
-  -webkit-mask: radial-gradient(ellipse 70% 100% at 50% 50%, #fff 28%, transparent 72%);
-  mask: radial-gradient(ellipse 70% 100% at 50% 50%, #fff 28%, transparent 72%);
-}
-
-/* Tail cable from bottom of mic */
-.micTail {
-  width: 3px;
-  height: 40px;
-  background: linear-gradient(
-    to bottom,
-    rgba(120,120,120,0.8),
-    rgba(80,80,80,0.4),
-    transparent
-  );
-  border-radius: 2px;
+  right: clamp(30px, 7vw, 100px);
+  width: 130px;
+  height: 310px;
+  z-index: 25;
+  pointer-events: none;
 }
 
 /* ── 3D decorative balls — left shelf ── */
@@ -880,14 +567,9 @@
 
 /* ── Responsive ── */
 @media (max-width: 640px) {
-  .introTitle    { font-size: clamp(3rem, 16vw, 5rem); }
-  .introSub      { font-size: clamp(1rem, 5vw, 2rem);  }
-  .introContent  { margin-bottom: 160px; }
-  .arcadeWrap    { width: 95vw; }
-  .arcadePanel   { width: 90px; height: 56px; }
-  .arcadeBtn     { width: 22px; height: 22px; }
-  .joystickBase  { width: 46px; height: 46px; }
-  .arcadeDial    { width: 40px; height: 40px; }
+  .introTitle   { font-size: clamp(3rem, 16vw, 5rem); }
+  .introSub     { font-size: clamp(1rem, 5vw, 2rem);  }
+  .introContent { margin-bottom: 24px; }
 
   .ball1 { width: 64px; height: 64px; }
   .ball2 { width: 52px; height: 52px; }
