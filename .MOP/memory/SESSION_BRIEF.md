@@ -1,6 +1,6 @@
 # MOP Session Brief
 
-Updated: 2026-07-01T13:13:26.149Z
+Updated: 2026-07-01T13:20:34.083Z
 Actor: amad
 Active agent: mad (frontend)
 Current month: 2026-07
@@ -8,15 +8,13 @@ Current month: 2026-07
 ## Required Session Flow
 
 1. Read `.MOP/STATE.json` and follow `.MOP/PROTOCOL.md`.
-2. Authenticate if required.
+2. Restore memory with `node .MOP/scripts/mop-core.mjs memory brief --actor <codename>`.
 3. Run `agent route` for the user task before answering.
 4. Start every authenticated answer with: `agent: mad (frontend) to amad`
 5. Save a one-line memory after meaningful work.
 
 ## Recent Memory
 
-- 2026-06-13T16:26:36.902Z - anis (core): fix secret scan: exclude .MOP/scripts from self-referencing false positive, tighten sk- and token patterns
-- 2026-06-20T08:32:32.959Z - madszz (backend): Redesigned hero: cream background, ghost WE BUILD BOLD text, single 3D skinview3d character (Amad) with waving animation, speech bubble, red ground strip — replaced complex 5-character scroll animation
 - 2026-06-20T08:33:16.574Z - madszz (backend): redesign hero: cream bg, ghost WE BUILD BOLD text, 3D waving character, speech bubble, red ground strip
 - 2026-06-20T08:33:26.846Z - madszz (backend): redesign hero: cream bg, ghost WE BUILD BOLD text, 3D waving character, speech bubble, red ground strip
 - 2026-06-20T08:43:47.741Z - madszz (backend): PR #4 merged to main: hero redesign live on main branch
@@ -35,3 +33,5 @@ Current month: 2026-07
 - 2026-06-28T08:50:12.954Z - mad (frontend): hero: removed arcade controller, 3D condenser mic is now sole decorative element, PR #26 created
 - 2026-07-01T11:59:20.726Z - anis (core): buat 3D condenser mic dalam R3F (Three.js) — install @react-three/fiber @react-three/drei, buat Mic3D.tsx dengan geometry (capsule body, grille overlay, brand ring torus, clamp rings, cables), replace CSS mic dalam HeroSection dengan dynamic import R3F canvas, build OK
 - 2026-07-01T13:11:38.363Z - anis (core): hero: replace CSS mic with R3F 3D condenser mic using @react-three/fiber
+- 2026-07-01T13:19:58.059Z - mad (frontend): mic 3D: besarkan body 2x (radius 0.30), canvas 220x520, camera dikemas
+- 2026-07-01T13:20:34.070Z - mad (frontend): mic 3D: besarkan body 2x (radius 0.30), canvas 220x520, camera dikemas

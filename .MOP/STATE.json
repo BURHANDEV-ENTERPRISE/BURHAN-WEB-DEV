@@ -11,9 +11,9 @@
   },
   "session": {
     "actor": "amad",
-    "authenticatedAt": "2026-07-01T13:13:26.135Z",
-    "lastActiveAt": "2026-07-01T13:13:26.135Z",
-    "expiresAt": "2026-07-01T14:13:26.136Z"
+    "authenticatedAt": "2026-07-01T13:20:33.985Z",
+    "lastActiveAt": "2026-07-01T13:20:33.985Z",
+    "expiresAt": "2026-07-01T14:20:33.986Z"
   },
   "sessionPolicy": {
     "enabled": true,
@@ -1853,7 +1853,25 @@
       "agentId": "agent-mad",
       "kind": "login",
       "summary": "Member authenticated; new session started."
+    },
+    {
+      "at": "2026-07-01T13:20:33.986Z",
+      "actor": "amad",
+      "agent": "mad",
+      "agentRole": "frontend",
+      "agentId": "agent-mad",
+      "kind": "login",
+      "summary": "Member authenticated; new session started."
+    },
+    {
+      "at": "2026-07-01T13:20:34.069Z",
+      "actor": "amad",
+      "agent": "mad",
+      "agentRole": "frontend",
+      "agentId": "agent-mad",
+      "kind": "memory",
+      "summary": "mic 3D: besarkan body 2x (radius 0.30), canvas 220x520, camera dikemas"
     }
   ],
-  "lastActiveAt": "2026-07-01T13:13:26.135Z"
+  "lastActiveAt": "2026-07-01T13:20:33.985Z"
 }
