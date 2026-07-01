@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, useCallback } from "react";
+import { useRef, useState, useCallback, useEffect } from "react";
 import dynamic from "next/dynamic";
 import styles from "./HeroSection.module.css";
 import BlockyChar, { type Pose } from "./BlockyChar";
@@ -36,6 +36,41 @@ export default function HeroSection() {
   const [friendsVis, setFriendsVis]   = useState(false);
   const [exploding, setExploding]     = useState(false);
   const scrollBound                   = useRef(false);
+  const micWrapRef                    = useRef<HTMLDivElement>(null);
+
+  // Scroll-triggered mic entrance (position:fixed, top-right)
+  // Scrolling → mic descends into view; auto-reveals after 1.8s if no scroll
+  useEffect(() => {
+    if (stage !== "intro") return;
+    const el = micWrapRef.current;
+    if (!el) return;
+
+    let autoTimer: ReturnType<typeof setTimeout>;
+
+    const applyProgress = (p: number, animated: boolean) => {
+      el.style.transition = animated
+        ? "opacity 0.8s ease, transform 0.9s cubic-bezier(0.34,1.3,0.64,1)"
+        : "none";
+      el.style.opacity    = String(Math.min(p, 1));
+      el.style.transform  = `translateY(${(1 - Math.min(p, 1)) * -88}px)`;
+    };
+
+    const onScroll = () => {
+      clearTimeout(autoTimer);
+      const p = Math.min(Math.max((window.scrollY - 20) / 140, 0), 1);
+      applyProgress(p, false);
+    };
+
+    // Auto-reveal if user never scrolls
+    autoTimer = setTimeout(() => applyProgress(1, true), 1800);
+
+    applyProgress(0, false);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      clearTimeout(autoTimer);
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, [stage]);
 
   const handlePlay = useCallback(() => {
     setExploding(true);
@@ -108,8 +143,8 @@ export default function HeroSection() {
           <div className={styles.chinBtn} />
         </div>
 
-        {/* 3D Condenser Microphone (R3F) — hangs from top-right */}
-        <div className={styles.mic3dWrap} aria-hidden="true">
+        {/* 3D Condenser Microphone (R3F) — scroll-triggered entrance */}
+        <div ref={micWrapRef} className={styles.mic3dWrap} aria-hidden="true">
           <Mic3D />
         </div>
 

@@ -140,7 +140,7 @@ function MicModel() {
 export default function Mic3D() {
   return (
     <Canvas
-      camera={{ position: [0.6, -1.0, 4.2], fov: 44 }}
+      camera={{ position: [-0.5, -1.0, 4.2], fov: 44 }}
       gl={{ antialias: true, alpha: true }}
       dpr={[1, 2]}
       style={{ width: "100%", height: "100%", background: "transparent" }}
