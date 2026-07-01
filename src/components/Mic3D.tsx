@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, Suspense } from "react";
+import React, { useRef, Suspense } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Environment } from "@react-three/drei";
 import * as THREE from "three";
@@ -9,15 +9,24 @@ const GRILLE_RINGS = 15;
 const GRILLE_START_Y = -0.02;
 const GRILLE_STEP   = 0.075;
 
-function MicModel() {
+function MicModel({ scrollRef }: { scrollRef?: React.MutableRefObject<number> }) {
   const groupRef = useRef<THREE.Group>(null!);
 
   useFrame(({ clock }) => {
-    const t = clock.getElapsedTime();
-    groupRef.current.rotation.z =
-      Math.sin(t * 0.55) * 0.055 +
-      Math.sin(t * 1.25) * 0.016;
-    groupRef.current.position.x = Math.sin(t * 0.55) * 0.06;
+    const t       = clock.getElapsedTime();
+    const scrollP = scrollRef?.current ?? 0;
+
+    // Ambient sway (always active)
+    const swayZ = Math.sin(t * 0.55) * 0.055 + Math.sin(t * 1.25) * 0.016;
+    const swayX = Math.sin(t * 0.55) * 0.06;
+
+    // Scroll-driven Y rotation — lerp for buttery smoothness
+    const targetY = scrollP * Math.PI * 1.1;        // 0 → ~200° as you scroll hero
+    groupRef.current.rotation.y +=
+      (targetY - groupRef.current.rotation.y) * 0.07;
+
+    groupRef.current.rotation.z  = swayZ;
+    groupRef.current.position.x  = swayX;
   });
 
   return (
@@ -137,28 +146,27 @@ function MicModel() {
   );
 }
 
-export default function Mic3D() {
+interface Mic3DProps {
+  scrollRef?: React.MutableRefObject<number>;
+}
+
+export default function Mic3D({ scrollRef }: Mic3DProps) {
   return (
     <Canvas
-      camera={{ position: [-0.5, -1.0, 4.2], fov: 44 }}
+      camera={{ position: [0, -1.0, 4.2], fov: 44 }}
       gl={{ antialias: true, alpha: true }}
       dpr={[1, 2]}
       style={{ width: "100%", height: "100%", background: "transparent" }}
     >
-      {/* Key light — upper-right front (studio softbox) */}
       <directionalLight position={[3, 5, 4]}  intensity={2.2} />
-      {/* Fill light — left side, cool */}
       <directionalLight position={[-4, 1, 2]} intensity={0.9} color="#ccd6ff" />
-      {/* Rim light — behind the mic, creates chrome outline */}
       <pointLight position={[-1, -0.5, -4]} intensity={2.5} color="#ffffff" />
-      {/* Red accent fill (maroon ring bounce) */}
       <pointLight position={[1, -1.5, 3]}   intensity={0.7} color="#c43232" />
-      {/* Soft ambient */}
       <ambientLight intensity={0.22} />
 
       <Suspense fallback={null}>
         <Environment preset="studio" />
-        <MicModel />
+        <MicModel scrollRef={scrollRef} />
       </Suspense>
     </Canvas>
   );
