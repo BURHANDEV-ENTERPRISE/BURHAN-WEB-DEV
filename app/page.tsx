@@ -2,6 +2,11 @@ import ScrollEffects from "../src/components/ScrollEffects";
 import HeroSection from "../src/components/HeroSection";
 import OpenSection from "../src/components/OpenSection";
 import WorkSection from "../src/components/WorkSection";
+import MarqueeStrip from "../src/components/MarqueeStrip";
+import StatsSection from "../src/components/StatsSection";
+import TechStackSection from "../src/components/TechStackSection";
+import PricingSection from "../src/components/PricingSection";
+import TestimonialsSection from "../src/components/TestimonialsSection";
 import Image from "next/image";
 
 export default function Home() {
@@ -25,6 +30,7 @@ export default function Home() {
 
       <main>
         <HeroSection />
+        <MarqueeStrip />
         <OpenSection />
 
         <section className="manifesto-section reveal" aria-labelledby="manifesto-title">
@@ -33,6 +39,8 @@ export default function Home() {
             Web yang nampak berani, rasa laju, dan terus bawa user ke tindakan.
           </h2>
         </section>
+
+        <StatsSection />
 
         <section id="services" className="services-section reveal" aria-labelledby="services-title">
           <div className="section-heading">
@@ -91,6 +99,8 @@ export default function Home() {
           </div>
         </section>
 
+        <TechStackSection />
+
         <section id="process" className="process-section reveal" aria-labelledby="process-title">
           <div className="process-intro">
             <p className="eyebrow">Process</p>
@@ -120,6 +130,8 @@ export default function Home() {
             </article>
           </div>
         </section>
+
+        <PricingSection />
 
         <section id="work" className="work-section reveal" aria-labelledby="work-title">
           <div className="work-copy">
@@ -158,6 +170,7 @@ export default function Home() {
         </section>
 
         <WorkSection />
+        <TestimonialsSection />
       </main>
 
       <footer className="site-footer site-footer--new">

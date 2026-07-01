@@ -1,0 +1,93 @@
+.section {
+  background: #060d0d;
+  padding: 96px clamp(1.5rem, 6vw, 7rem);
+  position: relative;
+  overflow: hidden;
+}
+
+.section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 70% 55% at 50% -10%, rgba(127, 29, 29, 0.22) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.eyebrow {
+  text-align: center;
+  margin-bottom: 3.5rem !important;
+  background: rgba(255, 246, 220, 0.06) !important;
+  color: var(--peach, #ffb078) !important;
+  border-color: rgba(255, 180, 120, 0.3) !important;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  max-width: 1160px;
+  margin: 0 auto;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3.5rem 2rem 3rem;
+  border: 1px solid rgba(255, 246, 220, 0.06);
+  position: relative;
+  transition: background 0.3s;
+  animation: fadeUp 0.6s both;
+  animation-delay: calc(var(--i, 0) * 0.12s);
+}
+
+.card::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 25%;
+  right: 25%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--maroon, #7f1d1d), transparent);
+  opacity: 0;
+  transition: opacity 0.35s;
+}
+
+.card:hover {
+  background: rgba(255, 246, 220, 0.03);
+}
+
+.card:hover::after {
+  opacity: 1;
+}
+
+.number {
+  font-family: var(--font-bebas), "Impact", sans-serif;
+  font-size: clamp(4.5rem, 9vw, 8rem);
+  color: var(--cream, #fff6dc);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  display: block;
+}
+
+.label {
+  margin-top: 0.85rem;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 246, 220, 0.38);
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 768px) {
+  .grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 480px) {
+  .number { font-size: clamp(3.2rem, 16vw, 5rem); }
+  .section { padding: 64px 1.25rem; }
+}
