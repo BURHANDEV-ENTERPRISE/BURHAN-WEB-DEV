@@ -1,8 +1,11 @@
 "use client";
 
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useRef, useState, useCallback } from "react";
+import dynamic from "next/dynamic";
 import styles from "./HeroSection.module.css";
 import BlockyChar, { type Pose } from "./BlockyChar";
+
+const Mic3D = dynamic(() => import("./Mic3D"), { ssr: false });
 
 const FACE_URL = `https://crafatar.com/avatars/d5a391fb-c1cd-4385-868b-5e8a28aa1ccf?size=64&overlay=true`;
 
@@ -105,13 +108,9 @@ export default function HeroSection() {
           <div className={styles.chinBtn} />
         </div>
 
-        {/* 3D Condenser Microphone — hangs from top-right */}
-        <div className={styles.micWrap} aria-hidden="true">
-          <div className={styles.micCable} />
-          <div className={styles.micBody}>
-            <div className={styles.micGrille} />
-          </div>
-          <div className={styles.micTail} />
+        {/* 3D Condenser Microphone (R3F) — hangs from top-right */}
+        <div className={styles.mic3dWrap} aria-hidden="true">
+          <Mic3D />
         </div>
 
         {/* 3D decorative balls — left shelf */}

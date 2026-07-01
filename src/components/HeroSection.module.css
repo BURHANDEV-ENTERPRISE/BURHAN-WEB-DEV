@@ -471,122 +471,15 @@
   background-size: 20px 20px;
 }
 
-/* ── 3D Condenser Microphone ─────────────────────────────────── */
-.micWrap {
-  position: absolute;
-  top: 20px;                              /* hangs from top bezel */
-  right: clamp(50px, 9vw, 120px);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  z-index: 25;
-  pointer-events: none;
-  transform-origin: top center;
-  animation: micSway 5.5s ease-in-out infinite;
-  filter: drop-shadow(0 0 8px rgba(180,180,180,0.18));
-}
-
-@keyframes micSway {
-  0%, 100% { transform: rotate(-3.5deg); }
-  30%       { transform: rotate(-0.8deg) translateX(3px); }
-  60%       { transform: rotate(3.5deg); }
-  80%       { transform: rotate(1deg)   translateX(-3px); }
-}
-
-/* Cable from bezel down to mic */
-.micCable {
-  width: 3px;
-  height: 52px;
-  background: linear-gradient(
-    to bottom,
-    rgba(180,180,180,0.5) 0%,
-    rgba(140,140,140,0.7) 50%,
-    rgba(100,100,100,0.9) 100%
-  );
-  border-radius: 2px;
-  box-shadow: 0 0 4px rgba(255,255,255,0.1);
-}
-
-/* Mic body — chrome/silver metallic cylinder */
-.micBody {
-  position: relative;
-  width: 48px;
-  height: 100px;
-  background: linear-gradient(
-    90deg,
-    #2a2a2a  0%,
-    #5a5a5a 18%,
-    #aaaaaa 36%,
-    #d4d4d4 50%,
-    #aaaaaa 64%,
-    #5a5a5a 82%,
-    #2a2a2a 100%
-  );
-  border-radius: 24px 24px 14px 14px;
-  box-shadow:
-    inset -8px 0 14px rgba(0,0,0,0.5),
-    inset  8px 0  6px rgba(255,255,255,0.12),
-    0 0 20px rgba(180,180,180,0.12),
-    0 10px 30px rgba(0,0,0,0.7);
-}
-
-/* Top chrome cap highlight */
-.micBody::before {
-  content: "";
+/* ── 3D Condenser Microphone (R3F Canvas wrapper) ──────────── */
+.mic3dWrap {
   position: absolute;
   top: 0;
-  left: 25%;
-  right: 25%;
-  height: 6px;
-  background: rgba(255,255,255,0.35);
-  border-radius: 50%;
-  filter: blur(3px);
-}
-
-/* Brand ring — BURHANDEV maroon stripe */
-.micBody::after {
-  content: "";
-  position: absolute;
-  bottom: 28px;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(196,50,50,0.7) 20%,
-    #e03838 50%,
-    rgba(196,50,50,0.7) 80%,
-    transparent
-  );
-  box-shadow: 0 0 6px rgba(196,50,50,0.5);
-}
-
-/* Perforated grille — dark dots on silver body */
-.micGrille {
-  position: absolute;
-  top: 6px;
-  left: 4px;
-  right: 4px;
-  bottom: 34px;
-  border-radius: 20px 20px 6px 6px;
-  background-image: radial-gradient(circle, rgba(0,0,0,0.55) 1.4px, transparent 1.4px);
-  background-size: 7px 7px;
-  -webkit-mask: radial-gradient(ellipse 70% 100% at 50% 50%, #fff 28%, transparent 72%);
-  mask: radial-gradient(ellipse 70% 100% at 50% 50%, #fff 28%, transparent 72%);
-}
-
-/* Tail cable from bottom of mic */
-.micTail {
-  width: 3px;
-  height: 40px;
-  background: linear-gradient(
-    to bottom,
-    rgba(120,120,120,0.8),
-    rgba(80,80,80,0.4),
-    transparent
-  );
-  border-radius: 2px;
+  right: clamp(30px, 7vw, 100px);
+  width: 130px;
+  height: 310px;
+  z-index: 25;
+  pointer-events: none;
 }
 
 /* ── 3D decorative balls — left shelf ── */
