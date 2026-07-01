@@ -37,9 +37,9 @@ export default function HeroSection() {
   const [exploding, setExploding]     = useState(false);
   const scrollBound                   = useRef(false);
   const micWrapRef                    = useRef<HTMLDivElement>(null);
+  const scrollRef                     = useRef<number>(0);   // 0-1, limited to intro section
 
-  // Scroll-triggered mic entrance (position:fixed, top-right)
-  // Scrolling → mic descends into view; auto-reveals after 1.8s if no scroll
+  // Scroll-driven mic: reveal + frame-by-frame rotation (capped at one viewport height)
   useEffect(() => {
     if (stage !== "intro") return;
     const el = micWrapRef.current;
@@ -47,24 +47,31 @@ export default function HeroSection() {
 
     let autoTimer: ReturnType<typeof setTimeout>;
 
-    const applyProgress = (p: number, animated: boolean) => {
-      el.style.transition = animated
-        ? "opacity 0.8s ease, transform 0.9s cubic-bezier(0.34,1.3,0.64,1)"
-        : "none";
-      el.style.opacity    = String(Math.min(p, 1));
-      el.style.transform  = `translateY(${(1 - Math.min(p, 1)) * -88}px)`;
-    };
-
     const onScroll = () => {
       clearTimeout(autoTimer);
-      const p = Math.min(Math.max((window.scrollY - 20) / 140, 0), 1);
-      applyProgress(p, false);
+      const maxScroll = window.innerHeight;                          // hero page only
+      const sy        = Math.min(window.scrollY, maxScroll);
+
+      // reveal: 0→1 over first 140px
+      const reveal = Math.min(Math.max((sy - 20) / 140, 0), 1);
+      el.style.transition = "none";
+      el.style.opacity    = String(reveal);
+      el.style.transform  = `translateX(-50%) translateY(${(1 - reveal) * -88}px)`;
+
+      // scroll progress for 3D rotation (limited to intro)
+      scrollRef.current = sy / maxScroll;
     };
 
-    // Auto-reveal if user never scrolls
-    autoTimer = setTimeout(() => applyProgress(1, true), 1800);
+    // Auto-reveal if user never scrolls (after 1.8s)
+    autoTimer = setTimeout(() => {
+      if (!el) return;
+      el.style.transition = "opacity 0.8s ease, transform 0.9s cubic-bezier(0.34,1.3,0.64,1)";
+      el.style.opacity    = "1";
+      el.style.transform  = "translateX(-50%) translateY(0px)";
+    }, 1800);
 
-    applyProgress(0, false);
+    el.style.opacity   = "0";
+    el.style.transform = "translateX(-50%) translateY(-88px)";
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => {
       clearTimeout(autoTimer);
@@ -143,9 +150,9 @@ export default function HeroSection() {
           <div className={styles.chinBtn} />
         </div>
 
-        {/* 3D Condenser Microphone (R3F) — scroll-triggered entrance */}
+        {/* 3D Condenser Microphone (R3F) — scroll-triggered entrance + rotation */}
         <div ref={micWrapRef} className={styles.mic3dWrap} aria-hidden="true">
-          <Mic3D />
+          <Mic3D scrollRef={scrollRef} />
         </div>
 
         {/* 3D decorative balls — left shelf */}

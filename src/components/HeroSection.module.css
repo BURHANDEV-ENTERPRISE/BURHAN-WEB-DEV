@@ -471,19 +471,20 @@
   background-size: 20px 20px;
 }
 
-/* ── 3D Condenser Microphone (R3F — fixed, top-right, scroll-reveal) ── */
+/* ── 3D Condenser Microphone (R3F — fixed, centered, scroll-reveal) ── */
 .mic3dWrap {
-  position: fixed;                        /* stays in viewport while intro scrolls */
+  position: fixed;
   top: 0;
-  right: clamp(16px, 4vw, 64px);         /* top-right corner — no overlap with centered title */
-  width: clamp(180px, 16vw, 240px);
-  height: 52vh;
-  min-height: 300px;
-  max-height: 500px;
-  z-index: 22;
+  left: 50%;
+  transform: translateX(-50%) translateY(-88px);
+  right: unset;
+  width: clamp(200px, 20vw, 280px);
+  height: 58vh;
+  min-height: 340px;
+  max-height: 580px;
+  z-index: 2;                             /* behind introContent (z-index 5) */
   pointer-events: none;
-  opacity: 0;                             /* JS drives reveal via scroll */
-  transform: translateY(-88px);
+  opacity: 0;
   will-change: opacity, transform;
 }
 
