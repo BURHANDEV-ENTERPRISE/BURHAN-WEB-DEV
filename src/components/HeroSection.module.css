@@ -475,9 +475,9 @@
 .mic3dWrap {
   position: absolute;
   top: 0;
-  right: clamp(30px, 7vw, 100px);
-  width: 130px;
-  height: 310px;
+  right: clamp(10px, 4vw, 60px);
+  width: 220px;
+  height: 520px;
   z-index: 25;
   pointer-events: none;
 }
