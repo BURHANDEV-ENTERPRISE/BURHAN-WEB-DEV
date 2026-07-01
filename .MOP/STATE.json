@@ -11,9 +11,9 @@
   },
   "session": {
     "actor": "amad",
-    "authenticatedAt": "2026-07-01T16:04:05.567Z",
-    "lastActiveAt": "2026-07-01T16:04:05.567Z",
-    "expiresAt": "2026-07-01T17:04:05.568Z"
+    "authenticatedAt": "2026-07-01T16:43:07.400Z",
+    "lastActiveAt": "2026-07-01T16:43:07.400Z",
+    "expiresAt": "2026-07-01T17:43:07.401Z"
   },
   "sessionPolicy": {
     "enabled": true,
@@ -1976,7 +1976,16 @@
       "actor": "BURHAN-MOP",
       "kind": "merge-approved",
       "summary": "origin/dev/amad approved and merged to main."
+    },
+    {
+      "at": "2026-07-01T16:43:07.401Z",
+      "actor": "amad",
+      "agent": "mad",
+      "agentRole": "frontend",
+      "agentId": "agent-mad",
+      "kind": "login",
+      "summary": "Member authenticated; new session started."
     }
   ],
-  "lastActiveAt": "2026-07-01T16:04:05.567Z"
+  "lastActiveAt": "2026-07-01T16:43:07.400Z"
 }

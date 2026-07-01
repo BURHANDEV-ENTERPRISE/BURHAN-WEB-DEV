@@ -2,20 +2,13 @@
 .introScreen {
   position: relative;
   width: 100%;
-  min-height: 200vh;           /* 2× viewport = scroll room for mic rotation */
-  background: #0e0806;
-}
-
-/* Visual monitor frame — sticky so it stays in viewport while hero scrolls */
-.introScreenInner {
-  position: sticky;
-  top: 0;
   height: 100vh;
-  overflow: hidden;            /* clips monitorBezel box-shadow */
+  background: #0e0806;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
 
 /* ── PC Monitor Frame ───────────────────────────────────────── */
