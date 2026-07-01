@@ -1,16 +1,16 @@
 # MOP Session Brief
 
-Updated: 2026-07-01T13:11:38.378Z
+Updated: 2026-07-01T13:13:26.149Z
 Actor: amad
-Active agent: anis (core)
+Active agent: mad (frontend)
 Current month: 2026-07
 
 ## Required Session Flow
 
 1. Read `.MOP/STATE.json` and follow `.MOP/PROTOCOL.md`.
-2. Restore memory with `node .MOP/scripts/mop-core.mjs memory brief --actor <codename>`.
+2. Authenticate if required.
 3. Run `agent route` for the user task before answering.
-4. Start every authenticated answer with: `agent: anis (core) to amad`
+4. Start every authenticated answer with: `agent: mad (frontend) to amad`
 5. Save a one-line memory after meaningful work.
 
 ## Recent Memory
