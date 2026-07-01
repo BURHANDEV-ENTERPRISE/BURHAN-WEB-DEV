@@ -155,37 +155,34 @@ export default function HeroSection() {
         ref={sectionRef}
         className={`${styles.introScreen} ${exploding ? styles.exploding : ""}`}
       >
-        {/* Sticky visual layer — stays in viewport while 200vh section scrolls */}
-        <div className={styles.introScreenInner}>
-          {/* PC Monitor frame — dark bezel + chin */}
-          <div className={styles.monitorBezel} aria-hidden="true" />
-          <div className={styles.monitorChin} aria-hidden="true">
-            <div className={styles.chinLed} />
-            <span className={styles.chinBrand}>BURHAN</span>
-            <div className={styles.chinBtn} />
-          </div>
+        {/* PC Monitor frame — dark bezel + chin */}
+        <div className={styles.monitorBezel} aria-hidden="true" />
+        <div className={styles.monitorChin} aria-hidden="true">
+          <div className={styles.chinLed} />
+          <span className={styles.chinBrand}>BURHAN</span>
+          <div className={styles.chinBtn} />
+        </div>
 
-          {/* 3D Condenser Microphone (R3F) — scroll-triggered entrance + rotation */}
-          <div ref={micWrapRef} className={styles.mic3dWrap} aria-hidden="true">
-            <Mic3D scrollRef={scrollRef} />
-          </div>
+        {/* 3D Condenser Microphone (R3F) — scroll-triggered entrance + rotation */}
+        <div ref={micWrapRef} className={styles.mic3dWrap} aria-hidden="true">
+          <Mic3D scrollRef={scrollRef} />
+        </div>
 
-          {/* 3D decorative balls — left shelf */}
-          <div className={styles.balls} aria-hidden="true">
-            <div className={styles.ball1} />
-            <div className={styles.ball2} />
-            <div className={styles.ball3} />
-          </div>
+        {/* 3D decorative balls — left shelf */}
+        <div className={styles.balls} aria-hidden="true">
+          <div className={styles.ball1} />
+          <div className={styles.ball2} />
+          <div className={styles.ball3} />
+        </div>
 
-          {/* headline + CTA */}
-          <div className={styles.introContent}>
-            <h1 className={styles.introTitle}>BURHANDEV.</h1>
-            <p className={styles.introSub}>BUILD YOUR NEXT BOLD SITE.</p>
-            <button className={styles.playBtn} onClick={handlePlay} aria-label="Enter BurhanDev">
-              <span className={styles.playIcon} aria-hidden="true">▶</span>
-              <span>CLICK TO PLAY</span>
-            </button>
-          </div>
+        {/* headline + CTA */}
+        <div className={styles.introContent}>
+          <h1 className={styles.introTitle}>BURHANDEV.</h1>
+          <p className={styles.introSub}>BUILD YOUR NEXT BOLD SITE.</p>
+          <button className={styles.playBtn} onClick={handlePlay} aria-label="Enter BurhanDev">
+            <span className={styles.playIcon} aria-hidden="true">▶</span>
+            <span>CLICK TO PLAY</span>
+          </button>
         </div>
       </section>
     );
