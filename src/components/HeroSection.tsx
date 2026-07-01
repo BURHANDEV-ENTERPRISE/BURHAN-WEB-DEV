@@ -37,9 +37,10 @@ export default function HeroSection() {
   const [exploding, setExploding]     = useState(false);
   const scrollBound                   = useRef(false);
   const micWrapRef                    = useRef<HTMLDivElement>(null);
-  const scrollRef                     = useRef<number>(0);   // 0-1, limited to intro section
+  const sectionRef                    = useRef<HTMLElement>(null);
+  const scrollRef                     = useRef<number>(0);   // 0-1, hero section only
 
-  // Scroll-driven mic: reveal + frame-by-frame rotation (capped at one viewport height)
+  // Scroll-driven mic: reveal → rotate → fade-out → hide (bounded to hero section)
   useEffect(() => {
     if (stage !== "intro") return;
     const el = micWrapRef.current;
@@ -49,17 +50,26 @@ export default function HeroSection() {
 
     const onScroll = () => {
       clearTimeout(autoTimer);
-      const maxScroll = window.innerHeight;                          // hero page only
-      const sy        = Math.min(window.scrollY, maxScroll);
+      const introH = sectionRef.current?.offsetHeight ?? window.innerHeight * 2;
+      const sy     = window.scrollY;
 
-      // reveal: 0→1 over first 140px
-      const reveal = Math.min(Math.max((sy - 20) / 140, 0), 1);
+      // Hard-hide once fully past the hero section
+      if (sy >= introH) {
+        el.style.transition = "none";
+        el.style.opacity    = "0";
+        scrollRef.current   = 1;
+        return;
+      }
+
+      // Reveal: 0→1 over first 140px of scroll
+      const reveal  = Math.min(Math.max((sy - 20) / 140, 0), 1);
+      // Fade-out: starts 280px before section end → 0 at section end
+      const fadeOut = Math.min(Math.max((introH - sy) / 280, 0), 1);
+
       el.style.transition = "none";
-      el.style.opacity    = String(reveal);
+      el.style.opacity    = String(reveal * fadeOut);
       el.style.transform  = `translateX(-50%) translateY(${(1 - reveal) * -88}px)`;
-
-      // scroll progress for 3D rotation (limited to intro)
-      scrollRef.current = sy / maxScroll;
+      scrollRef.current   = sy / introH;
     };
 
     // Auto-reveal if user never scrolls (after 1.8s)
@@ -141,35 +151,41 @@ export default function HeroSection() {
   // ── STAGE 1: Intro screen ───────────────────────────
   if (stage === "intro") {
     return (
-      <section className={`${styles.introScreen} ${exploding ? styles.exploding : ""}`}>
-        {/* PC Monitor frame — dark bezel + chin */}
-        <div className={styles.monitorBezel} aria-hidden="true" />
-        <div className={styles.monitorChin} aria-hidden="true">
-          <div className={styles.chinLed} />
-          <span className={styles.chinBrand}>BURHAN</span>
-          <div className={styles.chinBtn} />
-        </div>
+      <section
+        ref={sectionRef}
+        className={`${styles.introScreen} ${exploding ? styles.exploding : ""}`}
+      >
+        {/* Sticky visual layer — stays in viewport while 200vh section scrolls */}
+        <div className={styles.introScreenInner}>
+          {/* PC Monitor frame — dark bezel + chin */}
+          <div className={styles.monitorBezel} aria-hidden="true" />
+          <div className={styles.monitorChin} aria-hidden="true">
+            <div className={styles.chinLed} />
+            <span className={styles.chinBrand}>BURHAN</span>
+            <div className={styles.chinBtn} />
+          </div>
 
-        {/* 3D Condenser Microphone (R3F) — scroll-triggered entrance + rotation */}
-        <div ref={micWrapRef} className={styles.mic3dWrap} aria-hidden="true">
-          <Mic3D scrollRef={scrollRef} />
-        </div>
+          {/* 3D Condenser Microphone (R3F) — scroll-triggered entrance + rotation */}
+          <div ref={micWrapRef} className={styles.mic3dWrap} aria-hidden="true">
+            <Mic3D scrollRef={scrollRef} />
+          </div>
 
-        {/* 3D decorative balls — left shelf */}
-        <div className={styles.balls} aria-hidden="true">
-          <div className={styles.ball1} />
-          <div className={styles.ball2} />
-          <div className={styles.ball3} />
-        </div>
+          {/* 3D decorative balls — left shelf */}
+          <div className={styles.balls} aria-hidden="true">
+            <div className={styles.ball1} />
+            <div className={styles.ball2} />
+            <div className={styles.ball3} />
+          </div>
 
-        {/* headline + CTA */}
-        <div className={styles.introContent}>
-          <h1 className={styles.introTitle}>BURHANDEV.</h1>
-          <p className={styles.introSub}>BUILD YOUR NEXT BOLD SITE.</p>
-          <button className={styles.playBtn} onClick={handlePlay} aria-label="Enter BurhanDev">
-            <span className={styles.playIcon} aria-hidden="true">▶</span>
-            <span>CLICK TO PLAY</span>
-          </button>
+          {/* headline + CTA */}
+          <div className={styles.introContent}>
+            <h1 className={styles.introTitle}>BURHANDEV.</h1>
+            <p className={styles.introSub}>BUILD YOUR NEXT BOLD SITE.</p>
+            <button className={styles.playBtn} onClick={handlePlay} aria-label="Enter BurhanDev">
+              <span className={styles.playIcon} aria-hidden="true">▶</span>
+              <span>CLICK TO PLAY</span>
+            </button>
+          </div>
         </div>
       </section>
     );

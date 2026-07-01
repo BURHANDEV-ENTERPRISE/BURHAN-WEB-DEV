@@ -11,9 +11,9 @@
   },
   "session": {
     "actor": "amad",
-    "authenticatedAt": "2026-07-01T15:31:37.571Z",
-    "lastActiveAt": "2026-07-01T15:31:37.571Z",
-    "expiresAt": "2026-07-01T16:31:37.572Z"
+    "authenticatedAt": "2026-07-01T15:49:35.147Z",
+    "lastActiveAt": "2026-07-01T15:49:35.147Z",
+    "expiresAt": "2026-07-01T16:49:35.148Z"
   },
   "sessionPolicy": {
     "enabled": true,
@@ -1952,7 +1952,16 @@
       "agentId": "agent-mad",
       "kind": "login",
       "summary": "Member authenticated; new session started."
+    },
+    {
+      "at": "2026-07-01T15:49:35.148Z",
+      "actor": "amad",
+      "agent": "mad",
+      "agentRole": "frontend",
+      "agentId": "agent-mad",
+      "kind": "login",
+      "summary": "Member authenticated; new session started."
     }
   ],
-  "lastActiveAt": "2026-07-01T15:31:37.571Z"
+  "lastActiveAt": "2026-07-01T15:49:35.147Z"
 }
