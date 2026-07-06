@@ -2823,6 +2823,15 @@
       "agentId": "agent-qih",
       "kind": "memory",
       "summary": "hero: remove MULA PROJEK + CLICK TO PLAY buttons — headline only over scrub video"
+    },
+    {
+      "at": "2026-07-06T19:03:56.560Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "remove hero CTA buttons: guardian merge after sync"
     }
   ],
   "lastActiveAt": "2026-07-06T16:47:23.258Z"
