@@ -1,6 +1,6 @@
 # MOP Session Brief
 
-Updated: 2026-07-06T15:42:29.017Z
+Updated: 2026-07-06T15:42:51.277Z
 Actor: amad
 Active agent: qih (architect)
 Current month: 2026-07
@@ -15,7 +15,6 @@ Current month: 2026-07
 
 ## Recent Memory
 
-- 2026-07-06T08:48:31.203Z - qih (architect): hero: 3D gamer/coder room (R3F) — live code+stream screens, cursor parallax, RGB breathing, click hotspots (monitor->services, mic->contact), voxel mascot typing at PC, business CTA MULA PROJEK, reduced-motion fallback
 - 2026-07-06T08:48:56.046Z - qih (architect): Built 3D gamer room hero (commit a74d4bc, merged to main 8a7e2c9): src/components/room3d/ GamerRoom3D+RoomShell+DeskSetup+VoxelMascot+screens — live typing code screen, stream chat screen, cursor parallax, RGB breathing, hotspots monitor->services mic->contact, voxel mascot typing, CTA MULA PROJEK, prefers-reduced-motion fallback; build passed 117kB first load; session idle timeout raised to 24h (auto-login new chat refused per MOP auth policy)
 - 2026-07-06T14:10:43.943Z - qih (architect): perf: fix scroll jank — pause 3D room render when hero offscreen/tab hidden (IntersectionObserver + frameloop never), dpr cap 1.5, remove mix-blend-mode on fixed scanline overlay, remove backdrop-filter on fixed header, gate WorkSection scroll rAF by in-view, remove redundant fixed curtain layer
 - 2026-07-06T14:11:32.993Z - qih (architect): perf: fix scroll jank — pause 3D room when hero offscreen/tab hidden, dpr cap 1.5, remove blend-mode on fixed scanline overlay, remove fixed-header backdrop blur, gate WorkSection scroll rAF, drop redundant fixed curtain
@@ -35,3 +34,4 @@ Current month: 2026-07
 - 2026-07-06T15:35:21.496Z - qih (architect): video hero: guardian merge after branch sync
 - 2026-07-06T15:35:44.794Z - qih (architect): hero final: fullscreen Flow video background replaces 3D room entirely (commit 245bf73, merged main 3efcd28) — video hero + dark shade overlay, scroll zoom + headline fade kept, pause offscreen/reduced-motion; deleted room3d/+Mic3D, pruned three/@react-three/*/skinview3d (deps now just next/react); BlockyChar easter egg kept
 - 2026-07-06T15:42:29.007Z - qih (architect): hero: video scroll-scrub — 260vh sticky section, video.currentTime lerped to scroll progress (scrub forward/backward), headline fades last 25%, subtle zoom, rAF gated by in-view/tab-visible, reduced-motion gets plain 100vh hero
+- 2026-07-06T15:42:51.267Z - qih (architect): video scrub hero: guardian merge after branch sync

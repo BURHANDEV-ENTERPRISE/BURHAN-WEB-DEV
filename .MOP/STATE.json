@@ -2703,6 +2703,15 @@
       "agentId": "agent-qih",
       "kind": "memory",
       "summary": "hero: video scroll-scrub — 260vh sticky section, video.currentTime lerped to scroll progress (scrub forward/backward), headline fades last 25%, subtle zoom, rAF gated by in-view/tab-visible, reduced-motion gets plain 100vh hero"
+    },
+    {
+      "at": "2026-07-06T15:42:51.266Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "video scrub hero: guardian merge after branch sync"
     }
   ],
   "lastActiveAt": "2026-07-06T15:35:44.791Z"
