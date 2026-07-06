@@ -1,6 +1,6 @@
 # MOP Session Brief
 
-Updated: 2026-07-06T19:30:42.072Z
+Updated: 2026-07-06T19:31:29.019Z
 Actor: amad
 Active agent: qih (architect)
 Current month: 2026-07
@@ -15,7 +15,6 @@ Current month: 2026-07
 
 ## Recent Memory
 
-- 2026-07-06T15:23:46.246Z - qih (architect): scroll effects: guardian merge after branch sync
 - 2026-07-06T15:24:18.040Z - qih (architect): sitewide scroll effects (commit f316701, merged main cdf568b): hero room zoom-in+rotate via scrollRef in ParallaxRig + headline fade/rise (hero kept 100vh), marquee rows skewX lean opposite directions by viewport distance, footer reveal class, removed dead data-scroll-stage listener from ScrollEffects; all rAF-gated + IO-gated + reduced-motion safe
 - 2026-07-06T15:34:52.193Z - qih (architect): hero: replace 3D room with fullscreen Flow video background — video hero w/ shade overlay for headline contrast, scroll zoom + headline fade kept, pause offscreen/tab-hidden/reduced-motion; removed room3d+Mic3D components and pruned three/@react-three/skinview3d deps
 - 2026-07-06T15:35:21.496Z - qih (architect): video hero: guardian merge after branch sync
@@ -35,3 +34,4 @@ Current month: 2026-07
 - 2026-07-06T19:04:27.638Z - qih (architect): removed MULA PROJEK + CLICK TO PLAY buttons from hero — headline only over scrub video; BlockyChar easter egg now unreachable (code kept)
 - 2026-07-06T19:06:07.966Z - qih (architect): sync MOP memory stamps after CTA removal
 - 2026-07-06T19:30:42.062Z - qih (architect): scrub v2: shared useVideoScrub hook (seek-aware, smoothed progress, IO gate, lazy preload), hero rewired to hook, new ScrubVideoSection with console.mp4 (delogo+g6) after hero, flow.mp4 re-encoded from original delogo+g6 for silkier scrub
+- 2026-07-06T19:31:29.007Z - qih (architect): scrub v2: guardian merge after sync

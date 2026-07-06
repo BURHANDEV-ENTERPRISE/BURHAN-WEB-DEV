@@ -2865,6 +2865,15 @@
       "agentId": "agent-qih",
       "kind": "memory",
       "summary": "scrub v2: shared useVideoScrub hook (seek-aware, smoothed progress, IO gate, lazy preload), hero rewired to hook, new ScrubVideoSection with console.mp4 (delogo+g6) after hero, flow.mp4 re-encoded from original delogo+g6 for silkier scrub"
+    },
+    {
+      "at": "2026-07-06T19:31:29.007Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "scrub v2: guardian merge after sync"
     }
   ],
   "lastActiveAt": "2026-07-06T19:04:27.634Z"
