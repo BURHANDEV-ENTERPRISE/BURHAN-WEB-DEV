@@ -48,7 +48,14 @@ export default function HeroSection() {
       el.style.opacity = String(Math.max(0, 1 - fade * 1.1));
     }
     const v = videoRef.current;
-    if (v) v.style.transform = `scale(${(1 + p * 0.07).toFixed(3)})`;
+    if (v) {
+      v.style.transform = `scale(${(1 + p * 0.07).toFixed(3)})`;
+      // Dip-to-black di hujung journey — handoff ke section seterusnya
+      // jadi gelap-ke-gelap, tiada seam video bertindih
+      v.style.opacity = String(
+        p > 0.9 ? Math.max(0, 1 - (p - 0.9) / 0.08) : 1
+      );
+    }
   }, []);
 
   // Enjin scrub dikongsi (seek-aware + IO gate + reduced-motion safe)

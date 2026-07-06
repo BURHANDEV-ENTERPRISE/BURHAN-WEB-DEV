@@ -1,6 +1,6 @@
 # MOP Session Brief
 
-Updated: 2026-07-06T19:39:18.683Z
+Updated: 2026-07-06T19:46:04.704Z
 Actor: amad
 Active agent: qih (architect)
 Current month: 2026-07
@@ -15,8 +15,6 @@ Current month: 2026-07
 
 ## Recent Memory
 
-- 2026-07-06T15:42:51.267Z - qih (architect): video scrub hero: guardian merge after branch sync
-- 2026-07-06T15:43:03.086Z - qih (architect): hero video scroll-scrub (commit ed7e779): 260vh sticky section, video.currentTime lerp-scrubbed by scroll progress both directions, headline fade last 25% + subtle zoom, rAF loop gated by IO/tab-visible, reduced-motion = plain 100vh paused-frame hero
 - 2026-07-06T15:46:44.791Z - qih (architect): hero: remove header logo images (text-only brand lockup, hamburger-only capsule), extend scroll-scrub journey 260vh -> 420vh
 - 2026-07-06T15:47:07.055Z - qih (architect): logo removal + longer scrub: guardian merge after sync
 - 2026-07-06T16:47:23.262Z - qih (architect): removed Gemini/Veo sparkle watermark from flow.mp4 via ffmpeg delogo at (1688,844,108x110) after pinpointing with magnified grid frames; re-encoded crf21 keyframe-every-12 (smoother scrub), 11.7MB->11MB, verified clean at t=1s/6s (commit 2d2b0f9)
@@ -35,3 +33,5 @@ Current month: 2026-07
 - 2026-07-06T19:37:55.178Z - qih (architect): section 2: swap console.mp4 -> keyboard.mp4 (Keyboard_and_monitor_dissolve, delogo+g6, 7.7MB), remove unused console.mp4
 - 2026-07-06T19:38:23.662Z - qih (architect): keyboard video swap: guardian merge after sync
 - 2026-07-06T19:39:18.673Z - qih (architect): keyboard video swap: guardian merge retry
+- 2026-07-06T19:40:47.301Z - qih (architect): section 2 video swapped console->keyboard (Keyboard_and_monitor_dissolve delogo+g6 7.7MB, watermark verified clean incl cable edge), console.mp4 removed from public, merged main df03a9c, Pages deploy success
+- 2026-07-06T19:46:04.694Z - qih (architect): transition fix: dip-to-black crossover between video sections — hero fades out last 8-10%, section 2 fades in from dark and out at end, no more hard seam at sticky handoff
