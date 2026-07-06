@@ -1,6 +1,6 @@
 # MOP Session Brief
 
-Updated: 2026-07-06T20:20:40.047Z
+Updated: 2026-07-06T20:21:12.426Z
 Actor: amad
 Active agent: qih (architect)
 Current month: 2026-07
@@ -15,7 +15,6 @@ Current month: 2026-07
 
 ## Recent Memory
 
-- 2026-07-06T19:06:07.966Z - qih (architect): sync MOP memory stamps after CTA removal
 - 2026-07-06T19:30:42.062Z - qih (architect): scrub v2: shared useVideoScrub hook (seek-aware, smoothed progress, IO gate, lazy preload), hero rewired to hook, new ScrubVideoSection with console.mp4 (delogo+g6) after hero, flow.mp4 re-encoded from original delogo+g6 for silkier scrub
 - 2026-07-06T19:31:29.007Z - qih (architect): scrub v2: guardian merge after sync
 - 2026-07-06T19:32:27.254Z - qih (architect): scrub v2: guardian merge after network recovery
@@ -35,3 +34,4 @@ Current month: 2026-07
 - 2026-07-06T20:05:23.511Z - qih (architect): restructure (main 61b6043, deployed): OpenSection deleted, its text (ENTER THE WORLD OF BURHANDEV + craft-experiences subtitle) moved into hero replacing old headline; console.mp4 scrub section now fills OpenSection slot after marquee (3 scrub videos total: flow hero, keyboard, console); header chip+hamburger auto-hidden while hero in view via IO + .is-hidden class
 - 2026-07-06T20:20:20.524Z - qih (architect): layout: move MarqueeStrip from after keyboard video to below Services section (middle of page)
 - 2026-07-06T20:20:40.037Z - qih (architect): marquee below services: guardian merge after sync
+- 2026-07-06T20:21:12.416Z - qih (architect): marquee below services: guardian merge retry
