@@ -12,8 +12,8 @@
   "session": {
     "actor": "amad",
     "authenticatedAt": "2026-07-06T08:34:30.344Z",
-    "lastActiveAt": "2026-07-06T19:32:57.291Z",
-    "expiresAt": "2026-07-07T19:32:57.292Z"
+    "lastActiveAt": "2026-07-06T19:40:47.298Z",
+    "expiresAt": "2026-07-07T19:40:47.299Z"
   },
   "sessionPolicy": {
     "enabled": true,
@@ -2931,7 +2931,40 @@
       "actor": "BURHAN-MOP",
       "kind": "merge-approved",
       "summary": "origin/dev/amad approved and merged to main."
+    },
+    {
+      "at": "2026-07-06T19:40:47.301Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "section 2 video swapped console->keyboard (Keyboard_and_monitor_dissolve delogo+g6 7.7MB, watermark verified clean incl cable edge), console.mp4 removed from public, merged main df03a9c, Pages deploy success"
+    },
+    {
+      "at": "2026-07-06T19:46:04.693Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "transition fix: dip-to-black crossover between video sections — hero fades out last 8-10%, section 2 fades in from dark and out at end, no more hard seam at sticky handoff"
+    },
+    {
+      "at": "2026-07-06T19:46:47.735Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "dip-to-black transition: guardian merge after sync"
+    },
+    {
+      "at": "2026-07-06T19:46:57.905Z",
+      "actor": "BURHAN-MOP",
+      "kind": "merge-approved",
+      "summary": "origin/dev/amad approved and merged to main."
     }
   ],
-  "lastActiveAt": "2026-07-06T19:32:57.291Z"
+  "lastActiveAt": "2026-07-06T19:40:47.298Z"
 }
