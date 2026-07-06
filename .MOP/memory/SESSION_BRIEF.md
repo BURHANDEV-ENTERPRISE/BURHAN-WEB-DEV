@@ -1,6 +1,6 @@
 # MOP Session Brief
 
-Updated: 2026-07-06T21:18:47.572Z
+Updated: 2026-07-06T21:19:15.409Z
 Actor: amad
 Active agent: qih (architect)
 Current month: 2026-07
@@ -15,7 +15,6 @@ Current month: 2026-07
 
 ## Recent Memory
 
-- 2026-07-06T20:20:20.524Z - qih (architect): layout: move MarqueeStrip from after keyboard video to below Services section (middle of page)
 - 2026-07-06T20:20:40.037Z - qih (architect): marquee below services: guardian merge after sync
 - 2026-07-06T20:21:12.416Z - qih (architect): marquee below services: guardian merge retry
 - 2026-07-06T20:21:54.738Z - qih (architect): marquee below services: guardian merge retry 2
@@ -35,3 +34,4 @@ Current month: 2026-07
 - 2026-07-06T21:16:41.399Z - qih (architect): services revamp: WorkSection (WORK WITH US card spread) becomes the Services section with id=services, old 4-row services section removed
 - 2026-07-06T21:17:34.800Z - qih (architect): services revamp: WorkSection (WORK WITH US card spread) becomes the Services section with id=services, old 4-row services section removed
 - 2026-07-06T21:18:47.563Z - qih (architect): services revamp: WorkSection (WORK WITH US card spread) becomes the Services section with id=services, old 4-row services section removed
+- 2026-07-06T21:19:15.399Z - qih (architect): services revamp: guardian merge
