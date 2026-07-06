@@ -2907,6 +2907,15 @@
       "agentId": "agent-qih",
       "kind": "memory",
       "summary": "section 2: swap console.mp4 -> keyboard.mp4 (Keyboard_and_monitor_dissolve, delogo+g6, 7.7MB), remove unused console.mp4"
+    },
+    {
+      "at": "2026-07-06T19:38:23.662Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "keyboard video swap: guardian merge after sync"
     }
   ],
   "lastActiveAt": "2026-07-06T19:32:57.291Z"
