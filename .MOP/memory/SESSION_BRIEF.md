@@ -1,6 +1,6 @@
 # MOP Session Brief
 
-Updated: 2026-07-06T21:25:02.344Z
+Updated: 2026-07-06T21:28:56.349Z
 Actor: amad
 Active agent: qih (architect)
 Current month: 2026-07
@@ -15,8 +15,6 @@ Current month: 2026-07
 
 ## Recent Memory
 
-- 2026-07-06T20:23:54.791Z - qih (architect): MarqueeStrip moved from after keyboard video to below Services section (main 8eefa25, deployed); page order now: hero, keyboard scrub, console scrub, manifesto, stats, services, MARQUEE, techstack, process...
-- 2026-07-06T21:00:54.511Z - qih (architect): console scrub section journey extended 320vh -> 500vh
 - 2026-07-06T21:01:15.924Z - qih (architect): console 500vh: guardian merge after sync
 - 2026-07-06T21:02:13.050Z - qih (architect): console 500vh: guardian push retry
 - 2026-07-06T21:03:33.033Z - qih (architect): console 500vh: guardian push retry 2
@@ -35,3 +33,5 @@ Current month: 2026-07
 - 2026-07-06T21:23:11.416Z - qih (architect): services heading: Work With Us -> Our Services
 - 2026-07-06T21:24:01.657Z - qih (architect): services heading: Work With Us -> Our Services
 - 2026-07-06T21:25:02.234Z - qih (architect): services heading: Work With Us -> Our Services
+- 2026-07-06T21:26:17.854Z - qih (architect): services heading changed Work With Us -> Our Services (main cf52b68, deployed)
+- 2026-07-06T21:28:56.334Z - qih (architect): content trim: remove Process + Digital Craft manifesto sections, Direction section reworked to Why Us (Kenapa BURHANDEV + Bold/Fast/Convert panels)

@@ -80,3 +80,5 @@
 {"at":"2026-07-06T21:23:11.416Z","actor":"amad","agent":"qih","agentRole":"architect","agentId":"agent-qih","kind":"conversation","summary":"services heading: Work With Us -> Our Services"}
 {"at":"2026-07-06T21:24:01.657Z","actor":"amad","agent":"qih","agentRole":"architect","agentId":"agent-qih","kind":"conversation","summary":"services heading: Work With Us -> Our Services"}
 {"at":"2026-07-06T21:25:02.234Z","actor":"amad","agent":"qih","agentRole":"architect","agentId":"agent-qih","kind":"conversation","summary":"services heading: Work With Us -> Our Services"}
+{"at":"2026-07-06T21:26:17.854Z","actor":"amad","agent":"qih","agentRole":"architect","agentId":"agent-qih","kind":"conversation","summary":"services heading changed Work With Us -> Our Services (main cf52b68, deployed)"}
+{"at":"2026-07-06T21:28:56.334Z","actor":"amad","agent":"qih","agentRole":"architect","agentId":"agent-qih","kind":"conversation","summary":"content trim: remove Process + Digital Craft manifesto sections, Direction section reworked to Why Us (Kenapa BURHANDEV + Bold/Fast/Convert panels)"}
