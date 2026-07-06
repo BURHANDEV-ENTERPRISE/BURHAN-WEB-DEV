@@ -16,6 +16,8 @@ export type HotspotTarget = "services" | "contact";
 
 interface GamerRoom3DProps {
   reducedMotion?: boolean;
+  /** true bila hero di luar viewport / tab hidden — hentikan render loop */
+  paused?: boolean;
   onHotspot?: (target: HotspotTarget) => void;
 }
 
@@ -67,13 +69,15 @@ function ParallaxRig({
 
 export default function GamerRoom3D({
   reducedMotion = false,
+  paused = false,
   onHotspot,
 }: GamerRoom3DProps) {
   return (
     <Canvas
+      frameloop={paused ? "never" : "always"}
       camera={{ position: [0, 1.6, 3.25], fov: 42 }}
-      gl={{ antialias: true, alpha: false }}
-      dpr={[1, 1.75]}
+      gl={{ antialias: true, alpha: false, powerPreference: "high-performance" }}
+      dpr={[1, 1.5]}
       style={{ width: "100%", height: "100%" }}
     >
       <color attach="background" args={["#0e0806"]} />

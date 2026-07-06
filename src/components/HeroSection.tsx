@@ -36,7 +36,28 @@ export default function HeroSection() {
   const [friendsVis, setFriendsVis]   = useState(false);
   const [exploding, setExploding]     = useState(false);
   const [reducedMotion, setReducedMotion] = useState(false);
+  const [roomInView, setRoomInView]   = useState(true);
+  const [tabVisible, setTabVisible]   = useState(true);
   const scrollBound                   = useRef(false);
+  const roomWrapRef                   = useRef<HTMLDivElement>(null);
+
+  // Pause render 3D bila hero keluar viewport atau tab hidden — jimat GPU masa scroll
+  useEffect(() => {
+    if (stage !== "intro") return;
+    const el = roomWrapRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([entry]) => setRoomInView(entry.isIntersecting),
+      { threshold: 0.02 }
+    );
+    io.observe(el);
+    const onVis = () => setTabVisible(document.visibilityState === "visible");
+    document.addEventListener("visibilitychange", onVis);
+    return () => {
+      io.disconnect();
+      document.removeEventListener("visibilitychange", onVis);
+    };
+  }, [stage]);
 
   // Hormati prefers-reduced-motion: matikan parallax + animasi RGB bilik 3D
   useEffect(() => {
@@ -118,8 +139,12 @@ export default function HeroSection() {
         className={`${styles.introScreen} ${exploding ? styles.exploding : ""}`}
       >
         {/* Bilik gamer 3D (R3F) — parallax, skrin hidup, RGB, hotspot */}
-        <div className={styles.roomWrap}>
-          <GamerRoom3D reducedMotion={reducedMotion} onHotspot={goToSection} />
+        <div ref={roomWrapRef} className={styles.roomWrap}>
+          <GamerRoom3D
+            reducedMotion={reducedMotion}
+            paused={!roomInView || !tabVisible}
+            onHotspot={goToSection}
+          />
         </div>
 
         {/* headline + CTA */}
