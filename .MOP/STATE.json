@@ -3108,6 +3108,42 @@
       "agentId": "agent-qih",
       "kind": "memory",
       "summary": "console 500vh: guardian merge after sync"
+    },
+    {
+      "at": "2026-07-06T21:02:13.048Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "console 500vh: guardian push retry"
+    },
+    {
+      "at": "2026-07-06T21:03:33.024Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "console 500vh: guardian push retry 2"
+    },
+    {
+      "at": "2026-07-06T21:04:23.289Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "console 500vh: guardian push final"
+    },
+    {
+      "at": "2026-07-06T21:05:15.370Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "console 500vh: guardian push loop"
     }
   ],
   "lastActiveAt": "2026-07-06T20:23:54.788Z"
