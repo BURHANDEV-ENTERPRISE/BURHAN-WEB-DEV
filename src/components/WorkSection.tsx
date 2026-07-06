@@ -105,7 +105,7 @@ export default function WorkSection() {
   };
 
   return (
-    <section ref={sectionRef} className={styles.section} id="work-with-us">
+    <section ref={sectionRef} className={styles.section} id="services">
       <div className={styles.sticky}>
 
         <div className={styles.header}>
