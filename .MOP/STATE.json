@@ -2814,6 +2814,15 @@
       "agentId": "agent-qih",
       "kind": "memory",
       "summary": "600vh scrub: guardian merge after sync"
+    },
+    {
+      "at": "2026-07-06T19:03:21.235Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "hero: remove MULA PROJEK + CLICK TO PLAY buttons — headline only over scrub video"
     }
   ],
   "lastActiveAt": "2026-07-06T16:47:23.258Z"
