@@ -1,6 +1,6 @@
 # MOP Session Brief
 
-Updated: 2026-07-06T16:54:14.605Z
+Updated: 2026-07-06T16:55:00.453Z
 Actor: amad
 Active agent: qih (architect)
 Current month: 2026-07
@@ -15,7 +15,6 @@ Current month: 2026-07
 
 ## Recent Memory
 
-- 2026-07-06T14:39:07.435Z - qih (architect): revert: remove cinematic hero v3 per user request — restore v2 gamer room hero (headline+CTA), delete cinema3d components, prune gsap/framer-motion/postprocessing deps
 - 2026-07-06T14:39:43.513Z - qih (architect): revert hero v3: guardian merge after branch sync
 - 2026-07-06T14:40:06.558Z - qih (architect): reverted hero v3 cinematic per user request (commit 1f1417d, merged main f37fa0b): restored v2 gamer room hero (BURHANDEV headline + MULA PROJEK + CLICK TO PLAY), deleted src/components/cinema3d/, pruned gsap/framer-motion/@react-three/postprocessing, first load back to 117kB; v3 recoverable from git history at 290a7b0
 - 2026-07-06T15:10:44.909Z - qih (architect): hero: play Flow video on main 3D monitor via VideoTexture — fallback to code screen until loaded, auto pause offscreen/reduced-motion, root source videos gitignored
@@ -35,3 +34,4 @@ Current month: 2026-07
 - 2026-07-06T16:47:23.262Z - qih (architect): removed Gemini/Veo sparkle watermark from flow.mp4 via ffmpeg delogo at (1688,844,108x110) after pinpointing with magnified grid frames; re-encoded crf21 keyframe-every-12 (smoother scrub), 11.7MB->11MB, verified clean at t=1s/6s (commit 2d2b0f9)
 - 2026-07-06T16:49:11.447Z - qih (architect): watermark-free video: guardian merge retry
 - 2026-07-06T16:54:14.595Z - qih (architect): hero: extend scroll-scrub journey 420vh -> 600vh for slower cinematic video control
+- 2026-07-06T16:55:00.441Z - qih (architect): 600vh scrub: guardian merge after sync
