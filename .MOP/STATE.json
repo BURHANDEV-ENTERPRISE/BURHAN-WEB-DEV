@@ -12,8 +12,8 @@
   "session": {
     "actor": "amad",
     "authenticatedAt": "2026-07-06T08:34:30.344Z",
-    "lastActiveAt": "2026-07-06T19:40:47.298Z",
-    "expiresAt": "2026-07-07T19:40:47.299Z"
+    "lastActiveAt": "2026-07-06T19:47:59.792Z",
+    "expiresAt": "2026-07-07T19:47:59.794Z"
   },
   "sessionPolicy": {
     "enabled": true,
@@ -2964,7 +2964,58 @@
       "actor": "BURHAN-MOP",
       "kind": "merge-approved",
       "summary": "origin/dev/amad approved and merged to main."
+    },
+    {
+      "at": "2026-07-06T19:47:59.800Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "fixed hard seam between video sections with dip-to-black: hero video fades out p 0.9-0.98, section2 fades in 0-0.08 and out 0.92-1, both sections share bg #0e0806 so sticky handoff is dark-on-dark invisible (main 937d54a, deployed)"
+    },
+    {
+      "at": "2026-07-06T20:01:34.027Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "hero text swap + section restructure: OpenSection removed (text ENTER THE WORLD OF BURHANDEV + subtitle moved into hero, old hero headline removed), console.mp4 scrub section replaces OpenSection slot, header chip+hamburger hidden while hero in view (fade in after)"
+    },
+    {
+      "at": "2026-07-06T20:02:09.416Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "hero text swap + console section + header hide: push retry"
+    },
+    {
+      "at": "2026-07-06T20:02:38.554Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "hero text swap: guardian merge after sync"
+    },
+    {
+      "at": "2026-07-06T20:03:18.206Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "hero text swap: guardian merge retry"
+    },
+    {
+      "at": "2026-07-06T20:03:26.877Z",
+      "actor": "BURHAN-MOP",
+      "kind": "merge-approved",
+      "summary": "origin/dev/amad approved and merged to main."
     }
   ],
-  "lastActiveAt": "2026-07-06T19:40:47.298Z"
+  "lastActiveAt": "2026-07-06T19:47:59.792Z"
 }

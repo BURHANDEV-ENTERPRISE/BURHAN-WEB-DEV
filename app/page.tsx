@@ -1,7 +1,6 @@
 import ScrollEffects from "../src/components/ScrollEffects";
 import HeroSection from "../src/components/HeroSection";
 import ScrubVideoSection from "../src/components/ScrubVideoSection";
-import OpenSection from "../src/components/OpenSection";
 import WorkSection from "../src/components/WorkSection";
 import MarqueeStrip from "../src/components/MarqueeStrip";
 import StatsSection from "../src/components/StatsSection";
@@ -32,7 +31,11 @@ export default function Home() {
           ariaLabel="BURHANDEV keyboard and monitor dissolve"
         />
         <MarqueeStrip />
-        <OpenSection />
+        <ScrubVideoSection
+          src="/videos/console.mp4"
+          heightVh={320}
+          ariaLabel="BURHANDEV console reveal"
+        />
 
         <section className="manifesto-section reveal" aria-labelledby="manifesto-title">
           <p className="eyebrow">Digital Craft</p>
