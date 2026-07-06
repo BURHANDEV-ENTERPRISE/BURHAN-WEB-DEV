@@ -1,6 +1,6 @@
 # MOP Session Brief
 
-Updated: 2026-07-06T20:03:18.215Z
+Updated: 2026-07-06T20:04:04.721Z
 Actor: amad
 Active agent: qih (architect)
 Current month: 2026-07
@@ -15,7 +15,6 @@ Current month: 2026-07
 
 ## Recent Memory
 
-- 2026-07-06T16:55:34.391Z - qih (architect): 600vh scrub: guardian merge after sync
 - 2026-07-06T19:03:21.236Z - qih (architect): hero: remove MULA PROJEK + CLICK TO PLAY buttons — headline only over scrub video
 - 2026-07-06T19:03:56.561Z - qih (architect): remove hero CTA buttons: guardian merge after sync
 - 2026-07-06T19:04:27.638Z - qih (architect): removed MULA PROJEK + CLICK TO PLAY buttons from hero — headline only over scrub video; BlockyChar easter egg now unreachable (code kept)
@@ -35,3 +34,4 @@ Current month: 2026-07
 - 2026-07-06T20:02:09.416Z - qih (architect): hero text swap + console section + header hide: push retry
 - 2026-07-06T20:02:38.555Z - qih (architect): hero text swap: guardian merge after sync
 - 2026-07-06T20:03:18.207Z - qih (architect): hero text swap: guardian merge retry
+- 2026-07-06T20:04:04.712Z - qih (architect): hero text swap: guardian push retry
