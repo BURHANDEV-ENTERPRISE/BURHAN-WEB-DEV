@@ -12,8 +12,8 @@
   "session": {
     "actor": "amad",
     "authenticatedAt": "2026-07-06T08:34:30.344Z",
-    "lastActiveAt": "2026-07-06T15:43:03.083Z",
-    "expiresAt": "2026-07-07T15:43:03.084Z"
+    "lastActiveAt": "2026-07-06T15:53:35.743Z",
+    "expiresAt": "2026-07-07T15:53:35.751Z"
   },
   "sessionPolicy": {
     "enabled": true,
@@ -2745,7 +2745,40 @@
       "agentId": "agent-qih",
       "kind": "memory",
       "summary": "logo removal + longer scrub: guardian merge after sync"
+    },
+    {
+      "at": "2026-07-06T15:47:15.221Z",
+      "actor": "BURHAN-MOP",
+      "kind": "merge-approved",
+      "summary": "origin/dev/amad approved and merged to main."
+    },
+    {
+      "at": "2026-07-06T15:47:17.879Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "removed header logo images (brand-lockup text-only, menu capsule hamburger-only, next/image import pruned) + hero scrub journey lengthened 260vh->420vh (commit 895e1cd)"
+    },
+    {
+      "at": "2026-07-06T15:53:35.755Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "Pages deploy failure for edbb0fc was transient GitHub-side (artifact 21MB fine, config healthy); gh run rerun 28804263803 --failed -> build+deploy success, dev.burhan.my live with latest hero"
+    },
+    {
+      "at": "2026-07-06T16:46:26.899Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "video: remove Gemini watermark via ffmpeg delogo (x1688 y844 108x110), re-encode crf21 g12 for smoother scroll-scrub, faststart"
     }
   ],
-  "lastActiveAt": "2026-07-06T15:43:03.083Z"
+  "lastActiveAt": "2026-07-06T15:53:35.743Z"
 }
