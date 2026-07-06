@@ -40,13 +40,52 @@ function makeKeysTexture(): THREE.CanvasTexture {
 
 interface DeskSetupProps {
   reducedMotion: boolean;
+  /** true bila hero offscreen/tab hidden — pause video sekali */
+  paused?: boolean;
   onHotspot?: (target: HotspotTarget) => void;
 }
 
-export default function DeskSetup({ reducedMotion, onHotspot }: DeskSetupProps) {
+export default function DeskSetup({ reducedMotion, paused = false, onHotspot }: DeskSetupProps) {
   const codeScreen = useMemo(createCodeScreen, []);
   const streamScreen = useMemo(createStreamScreen, []);
   const keysTex = useMemo(makeKeysTexture, []);
+
+  // Video "Flow" pada monitor utama — fallback ke skrin kod sehingga sedia
+  const [videoTex, setVideoTex] = useState<THREE.VideoTexture | null>(null);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+
+  useEffect(() => {
+    const video = document.createElement("video");
+    video.src = "/videos/flow.mp4";
+    video.muted = true;
+    video.loop = true;
+    video.playsInline = true;
+    video.preload = "auto";
+    videoRef.current = video;
+    let tex: THREE.VideoTexture | null = null;
+    const onReady = () => {
+      tex = new THREE.VideoTexture(video);
+      tex.colorSpace = THREE.SRGBColorSpace;
+      setVideoTex(tex);
+    };
+    video.addEventListener("loadeddata", onReady);
+    return () => {
+      video.removeEventListener("loadeddata", onReady);
+      video.pause();
+      video.removeAttribute("src");
+      video.load();
+      tex?.dispose();
+      videoRef.current = null;
+    };
+  }, []);
+
+  // Main/pause ikut visibility; reduced motion = frame pertama statik
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video || !videoTex) return;
+    if (paused || reducedMotion) video.pause();
+    else video.play().catch(() => {});
+  }, [paused, reducedMotion, videoTex]);
 
   const [hovered, setHovered] = useState<HotspotTarget | null>(null);
   const monitorRing = useRef<THREE.MeshStandardMaterial>(null!);
@@ -76,10 +115,11 @@ export default function DeskSetup({ reducedMotion, onHotspot }: DeskSetupProps) 
 
   useFrame(({ clock }) => {
     const t = clock.getElapsedTime();
-    // Skrin hidup — throttle ~8fps, statik bila reduced motion
+    // Skrin hidup — throttle ~8fps, statik bila reduced motion.
+    // Skrin kod hanya dilukis selagi video belum sedia (fallback).
     if (!reducedMotion && t - lastDraw.current > 0.12) {
       lastDraw.current = t;
-      codeScreen.draw(t);
+      if (!videoTex) codeScreen.draw(t);
       streamScreen.draw(t);
     }
     // RGB berkitar
@@ -153,7 +193,7 @@ export default function DeskSetup({ reducedMotion, onHotspot }: DeskSetupProps) 
         </mesh>
         <mesh position={[0, 1.32, 0.022]}>
           <planeGeometry args={[0.99, 0.57]} />
-          <meshBasicMaterial map={codeScreen.texture} toneMapped={false} />
+          <meshBasicMaterial map={videoTex ?? codeScreen.texture} toneMapped={false} />
         </mesh>
       </group>
 

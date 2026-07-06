@@ -93,7 +93,7 @@ export default function GamerRoom3D({
 
       <ParallaxRig reducedMotion={reducedMotion}>
         <RoomShell reducedMotion={reducedMotion} />
-        <DeskSetup reducedMotion={reducedMotion} onHotspot={onHotspot} />
+        <DeskSetup reducedMotion={reducedMotion} paused={paused} onHotspot={onHotspot} />
         <VoxelMascot reducedMotion={reducedMotion} />
       </ParallaxRig>
     </Canvas>
