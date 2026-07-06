@@ -1,11 +1,8 @@
 "use client";
 
 import { useRef, useState, useCallback, useEffect } from "react";
-import dynamic from "next/dynamic";
 import styles from "./HeroSection.module.css";
 import BlockyChar, { type Pose } from "./BlockyChar";
-
-const GamerRoom3D = dynamic(() => import("./room3d/GamerRoom3D"), { ssr: false });
 
 const FACE_URL = `https://crafatar.com/avatars/d5a391fb-c1cd-4385-868b-5e8a28aa1ccf?size=64&overlay=true`;
 
@@ -41,9 +38,9 @@ export default function HeroSection() {
   const scrollBound                   = useRef(false);
   const roomWrapRef                   = useRef<HTMLDivElement>(null);
   const contentRef                    = useRef<HTMLDivElement>(null);
-  const heroScrollRef                 = useRef(0); // 0..1 progress keluar hero
+  const videoRef                      = useRef<HTMLVideoElement>(null);
 
-  // Pause render 3D bila hero keluar viewport atau tab hidden — jimat GPU masa scroll
+  // Pause video bila hero keluar viewport atau tab hidden — jimat bateri/CPU
   useEffect(() => {
     if (stage !== "intro") return;
     const el = roomWrapRef.current;
@@ -61,6 +58,15 @@ export default function HeroSection() {
     };
   }, [stage]);
 
+  // Main/pause video ikut visibility; reduced-motion = frame pertama statik
+  useEffect(() => {
+    if (stage !== "intro") return;
+    const v = videoRef.current;
+    if (!v) return;
+    if (!roomInView || !tabVisible || reducedMotion) v.pause();
+    else v.play().catch(() => {});
+  }, [stage, roomInView, tabVisible, reducedMotion]);
+
   // Hormati prefers-reduced-motion: matikan parallax + animasi RGB bilik 3D
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -70,7 +76,7 @@ export default function HeroSection() {
     return () => mq.removeEventListener("change", update);
   }, []);
 
-  // Scroll effect hero (kekal 100vh): bilik zoom-in + headline naik & pudar
+  // Scroll effect hero (kekal 100vh): video zoom perlahan + headline naik & pudar
   useEffect(() => {
     if (stage !== "intro" || reducedMotion) return;
     let raf = 0;
@@ -78,13 +84,14 @@ export default function HeroSection() {
       cancelAnimationFrame(raf);
       raf = requestAnimationFrame(() => {
         const p = Math.min(1, Math.max(0, window.scrollY / (window.innerHeight || 1)));
-        heroScrollRef.current = p;
         const el = contentRef.current;
         if (el) {
           // Kekalkan translateX(-50%) dari CSS untuk centering
           el.style.transform = `translateX(-50%) translateY(${(-p * 72).toFixed(1)}px)`;
           el.style.opacity = String(Math.max(0, 1 - p * 1.2));
         }
+        const v = videoRef.current;
+        if (v) v.style.transform = `scale(${(1 + p * 0.08).toFixed(3)})`;
       });
     };
     onScroll();
@@ -94,11 +101,6 @@ export default function HeroSection() {
       window.removeEventListener("scroll", onScroll);
     };
   }, [stage, reducedMotion]);
-
-  // Hotspot bilik 3D: klik monitor → services, klik mic → contact
-  const goToSection = useCallback((target: "services" | "contact") => {
-    document.getElementById(target)?.scrollIntoView({ behavior: "smooth" });
-  }, []);
 
   const handlePlay = useCallback(() => {
     setExploding(true);
@@ -165,14 +167,19 @@ export default function HeroSection() {
       <section
         className={`${styles.introScreen} ${exploding ? styles.exploding : ""}`}
       >
-        {/* Bilik gamer 3D (R3F) — parallax, skrin hidup, RGB, hotspot */}
-        <div ref={roomWrapRef} className={styles.roomWrap}>
-          <GamerRoom3D
-            reducedMotion={reducedMotion}
-            paused={!roomInView || !tabVisible}
-            scrollRef={heroScrollRef}
-            onHotspot={goToSection}
+        {/* Video Flow — latar penuh hero */}
+        <div ref={roomWrapRef} className={styles.roomWrap} aria-hidden="true">
+          <video
+            ref={videoRef}
+            className={styles.heroVideo}
+            src="/videos/flow.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
           />
+          <div className={styles.videoShade} />
         </div>
 
         {/* headline + CTA */}
