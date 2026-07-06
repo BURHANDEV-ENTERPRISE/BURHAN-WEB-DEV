@@ -1,6 +1,6 @@
 # MOP Session Brief
 
-Updated: 2026-07-06T19:03:56.572Z
+Updated: 2026-07-06T19:06:08.015Z
 Actor: amad
 Active agent: qih (architect)
 Current month: 2026-07
@@ -15,8 +15,6 @@ Current month: 2026-07
 
 ## Recent Memory
 
-- 2026-07-06T15:11:39.851Z - qih (architect): hero video: guardian merge after branch sync
-- 2026-07-06T15:12:06.942Z - qih (architect): hero: Flow video (12MB, public/videos/flow.mp4) now plays on main 3D monitor via THREE.VideoTexture (commit f67fb38, merged main 90240a5) — muted loop autoplay, code-screen fallback until loadeddata, pauses when hero offscreen/tab hidden/reduced-motion, root source mp4s gitignored; named nepo (ux) + nepi (design)
 - 2026-07-06T15:23:23.599Z - qih (architect): scroll effects sitewide: hero room zoom+rotate on scroll (100vh kept) + headline fade, marquee skew lean by scroll, footer reveal, remove dead data-scroll-stage listener
 - 2026-07-06T15:23:46.246Z - qih (architect): scroll effects: guardian merge after branch sync
 - 2026-07-06T15:24:18.040Z - qih (architect): sitewide scroll effects (commit f316701, merged main cdf568b): hero room zoom-in+rotate via scrollRef in ParallaxRig + headline fade/rise (hero kept 100vh), marquee rows skewX lean opposite directions by viewport distance, footer reveal class, removed dead data-scroll-stage listener from ScrollEffects; all rAF-gated + IO-gated + reduced-motion safe
@@ -35,3 +33,5 @@ Current month: 2026-07
 - 2026-07-06T16:55:34.391Z - qih (architect): 600vh scrub: guardian merge after sync
 - 2026-07-06T19:03:21.236Z - qih (architect): hero: remove MULA PROJEK + CLICK TO PLAY buttons — headline only over scrub video
 - 2026-07-06T19:03:56.561Z - qih (architect): remove hero CTA buttons: guardian merge after sync
+- 2026-07-06T19:04:27.638Z - qih (architect): removed MULA PROJEK + CLICK TO PLAY buttons from hero — headline only over scrub video; BlockyChar easter egg now unreachable (code kept)
+- 2026-07-06T19:06:07.966Z - qih (architect): sync MOP memory stamps after CTA removal
