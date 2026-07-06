@@ -12,8 +12,8 @@
   "session": {
     "actor": "amad",
     "authenticatedAt": "2026-07-06T08:34:30.344Z",
-    "lastActiveAt": "2026-07-06T19:04:27.634Z",
-    "expiresAt": "2026-07-07T19:04:27.635Z"
+    "lastActiveAt": "2026-07-06T19:32:57.291Z",
+    "expiresAt": "2026-07-07T19:32:57.292Z"
   },
   "sessionPolicy": {
     "enabled": true,
@@ -2889,7 +2889,49 @@
       "actor": "BURHAN-MOP",
       "kind": "merge-approved",
       "summary": "origin/dev/amad approved and merged to main."
+    },
+    {
+      "at": "2026-07-06T19:32:57.295Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "scrub v2 shipped (main 029d807): shared useVideoScrub hook — seek-aware (waits seeked event), double-smoothed progress lerp 0.14, IO+visibility gate, lazy preload metadata->auto; hero rewired to hook; new ScrubVideoSection generic component; console.mp4 (7.4MB delogo+g6) added as scrub section after hero; flow.mp4 re-encoded from original delogo+g6 10.1MB; both watermark-free verified"
+    },
+    {
+      "at": "2026-07-06T19:37:55.176Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "section 2: swap console.mp4 -> keyboard.mp4 (Keyboard_and_monitor_dissolve, delogo+g6, 7.7MB), remove unused console.mp4"
+    },
+    {
+      "at": "2026-07-06T19:38:23.662Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "keyboard video swap: guardian merge after sync"
+    },
+    {
+      "at": "2026-07-06T19:39:18.673Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "keyboard video swap: guardian merge retry"
+    },
+    {
+      "at": "2026-07-06T19:39:27.906Z",
+      "actor": "BURHAN-MOP",
+      "kind": "merge-approved",
+      "summary": "origin/dev/amad approved and merged to main."
     }
   ],
-  "lastActiveAt": "2026-07-06T19:04:27.634Z"
+  "lastActiveAt": "2026-07-06T19:32:57.291Z"
 }

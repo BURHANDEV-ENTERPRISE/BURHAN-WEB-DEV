@@ -27,9 +27,9 @@ export default function Home() {
       <main>
         <HeroSection />
         <ScrubVideoSection
-          src="/videos/console.mp4"
+          src="/videos/keyboard.mp4"
           heightVh={320}
-          ariaLabel="BURHANDEV console reveal"
+          ariaLabel="BURHANDEV keyboard and monitor dissolve"
         />
         <MarqueeStrip />
         <OpenSection />
