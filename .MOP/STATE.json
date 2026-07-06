@@ -2604,6 +2604,15 @@
       "agentId": "agent-qih",
       "kind": "memory",
       "summary": "hero: play Flow video on main 3D monitor via VideoTexture — fallback to code screen until loaded, auto pause offscreen/reduced-motion, root source videos gitignored"
+    },
+    {
+      "at": "2026-07-06T15:11:39.850Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "hero video: guardian merge after branch sync"
     }
   ],
   "lastActiveAt": "2026-07-06T15:08:40.389Z"
