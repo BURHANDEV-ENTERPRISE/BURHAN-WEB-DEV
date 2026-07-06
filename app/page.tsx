@@ -32,7 +32,7 @@ export default function Home() {
         />
         <ScrubVideoSection
           src="/videos/console.mp4"
-          heightVh={320}
+          heightVh={500}
           ariaLabel="BURHANDEV console reveal"
         />
 
