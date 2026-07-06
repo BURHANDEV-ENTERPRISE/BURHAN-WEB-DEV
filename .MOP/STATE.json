@@ -3039,6 +3039,15 @@
       "agentId": "agent-qih",
       "kind": "memory",
       "summary": "layout: move MarqueeStrip from after keyboard video to below Services section (middle of page)"
+    },
+    {
+      "at": "2026-07-06T20:20:40.036Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "marquee below services: guardian merge after sync"
     }
   ],
   "lastActiveAt": "2026-07-06T20:05:23.508Z"
