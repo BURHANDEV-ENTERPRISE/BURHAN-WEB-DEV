@@ -1,6 +1,6 @@
 # MOP Session Brief
 
-Updated: 2026-07-06T21:05:15.380Z
+Updated: 2026-07-06T21:13:09.562Z
 Actor: amad
 Active agent: qih (architect)
 Current month: 2026-07
@@ -15,8 +15,6 @@ Current month: 2026-07
 
 ## Recent Memory
 
-- 2026-07-06T19:46:47.736Z - qih (architect): dip-to-black transition: guardian merge after sync
-- 2026-07-06T19:47:59.800Z - qih (architect): fixed hard seam between video sections with dip-to-black: hero video fades out p 0.9-0.98, section2 fades in 0-0.08 and out 0.92-1, both sections share bg #0e0806 so sticky handoff is dark-on-dark invisible (main 937d54a, deployed)
 - 2026-07-06T20:01:34.028Z - qih (architect): hero text swap + section restructure: OpenSection removed (text ENTER THE WORLD OF BURHANDEV + subtitle moved into hero, old hero headline removed), console.mp4 scrub section replaces OpenSection slot, header chip+hamburger hidden while hero in view (fade in after)
 - 2026-07-06T20:02:09.416Z - qih (architect): hero text swap + console section + header hide: push retry
 - 2026-07-06T20:02:38.555Z - qih (architect): hero text swap: guardian merge after sync
@@ -35,3 +33,5 @@ Current month: 2026-07
 - 2026-07-06T21:03:33.033Z - qih (architect): console 500vh: guardian push retry 2
 - 2026-07-06T21:04:23.290Z - qih (architect): console 500vh: guardian push final
 - 2026-07-06T21:05:15.370Z - qih (architect): console 500vh: guardian push loop
+- 2026-07-06T21:06:36.194Z - qih (architect): console scrub section extended 320vh->500vh (main 3eb2e51, deployed); GitHub connectivity extremely flaky tonight — added retry-loop pattern for autosycn guardian pushes
+- 2026-07-06T21:13:09.553Z - qih (architect): services revamp: WorkSection (WORK WITH US card spread) becomes the Services section with id=services, old 4-row services section removed

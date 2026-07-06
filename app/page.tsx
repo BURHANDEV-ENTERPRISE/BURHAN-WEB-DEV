@@ -45,62 +45,7 @@ export default function Home() {
 
         <StatsSection />
 
-        <section id="services" className="services-section reveal" aria-labelledby="services-title">
-          <div className="section-heading">
-            <p className="eyebrow">Services</p>
-            <h2 id="services-title">Pilih build yang match dengan stage bisnes.</h2>
-          </div>
-
-          <div className="service-rows">
-            <article className="service-row is-active" data-service-row="" tabIndex={0}>
-              <span className="row-index">01</span>
-              <div className="row-copy">
-                <h3>Landing Page</h3>
-                <p>Offer, campaign, event, dan launch page yang fokus pada trust dan conversion.</p>
-              </div>
-              <div className="row-visual" aria-hidden="true">
-                <div className="mini-browser"></div>
-                <div className="mini-stack"></div>
-              </div>
-            </article>
-
-            <article className="service-row" data-service-row="" tabIndex={0}>
-              <span className="row-index">02</span>
-              <div className="row-copy">
-                <h3>Business Website</h3>
-                <p>Company profile, service pages, gallery, contact flow, dan struktur content yang clear.</p>
-              </div>
-              <div className="row-visual" aria-hidden="true">
-                <div className="mini-browser"></div>
-                <div className="mini-stack"></div>
-              </div>
-            </article>
-
-            <article className="service-row" data-service-row="" tabIndex={0}>
-              <span className="row-index">03</span>
-              <div className="row-copy">
-                <h3>Product UI</h3>
-                <p>Dashboard, portal, member area, admin console, dan interface untuk daily operation.</p>
-              </div>
-              <div className="row-visual" aria-hidden="true">
-                <div className="mini-browser"></div>
-                <div className="mini-stack"></div>
-              </div>
-            </article>
-
-            <article className="service-row" data-service-row="" tabIndex={0}>
-              <span className="row-index">04</span>
-              <div className="row-copy">
-                <h3>Fix And Care</h3>
-                <p>Repair layout rosak, responsive polish, speed cleanup, deployment, dan handoff.</p>
-              </div>
-              <div className="row-visual" aria-hidden="true">
-                <div className="mini-browser"></div>
-                <div className="mini-stack"></div>
-              </div>
-            </article>
-          </div>
-        </section>
+        <WorkSection />
 
         <MarqueeStrip />
 
@@ -174,7 +119,6 @@ export default function Home() {
           </div>
         </section>
 
-        <WorkSection />
         <TestimonialsSection />
       </main>
 
