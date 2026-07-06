@@ -12,8 +12,8 @@
   "session": {
     "actor": "amad",
     "authenticatedAt": "2026-07-06T08:34:30.344Z",
-    "lastActiveAt": "2026-07-06T11:44:42.790Z",
-    "expiresAt": "2026-07-07T11:44:42.791Z"
+    "lastActiveAt": "2026-07-06T14:33:50.564Z",
+    "expiresAt": "2026-07-07T14:33:50.565Z"
   },
   "sessionPolicy": {
     "enabled": true,
@@ -2486,7 +2486,40 @@
       "actor": "BURHAN-MOP",
       "kind": "merge-approved",
       "summary": "origin/dev/amad approved and merged to main."
+    },
+    {
+      "at": "2026-07-06T14:33:50.568Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "hero v3 cinematic (commits 290a7b0+15888eb, merged main c3af013): src/components/cinema3d/ — cozy gaming room, curved ultrawide monitor w/ animated anime illustration (leaves+face reveal via scroll), pothos instanced, 7 hex panels olive #c8d96f, vinyl toys, HUD desk mat, lamp arm; GSAP ScrollTrigger 380vh sticky 4-stage camera dolly; Bloom+Vignette+DoF desktop; Burhan Console HUD (maroon #6e1f1f/parchment #f0ead6/JetBrains Mono) w/ framer-motion; big headline removed per request; first load 203kB (gsap+framer in main bundle); room3d v2 kept for rollback"
+    },
+    {
+      "at": "2026-07-06T14:39:07.434Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "revert: remove cinematic hero v3 per user request — restore v2 gamer room hero (headline+CTA), delete cinema3d components, prune gsap/framer-motion/postprocessing deps"
+    },
+    {
+      "at": "2026-07-06T14:39:43.512Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "revert hero v3: guardian merge after branch sync"
+    },
+    {
+      "at": "2026-07-06T14:39:51.925Z",
+      "actor": "BURHAN-MOP",
+      "kind": "merge-approved",
+      "summary": "origin/dev/amad approved and merged to main."
     }
   ],
-  "lastActiveAt": "2026-07-06T11:44:42.790Z"
+  "lastActiveAt": "2026-07-06T14:33:50.564Z"
 }
