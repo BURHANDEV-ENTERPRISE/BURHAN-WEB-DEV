@@ -68,7 +68,7 @@ export default function HeroSection() {
     return () => mq.removeEventListener("change", update);
   }, []);
 
-  // Scroll-scrub: frame video dipandu progress scroll dalam section 420vh.
+  // Scroll-scrub: frame video dipandu progress scroll dalam section 600vh.
   // Video sentiasa paused; currentTime di-lerp ke sasaran supaya smooth.
   useEffect(() => {
     if (stage !== "intro" || reducedMotion) return;

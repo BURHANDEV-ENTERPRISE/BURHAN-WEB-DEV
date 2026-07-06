@@ -122,7 +122,7 @@
 /* ── Hero scroll-scrub: section tinggi, video sticky ── */
 .videoScrubSection {
   position: relative;
-  height: 420vh;
+  height: 600vh;
   background: #0e0806;
 }
 
