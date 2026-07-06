@@ -1,6 +1,6 @@
 # MOP Session Brief
 
-Updated: 2026-07-06T16:55:34.400Z
+Updated: 2026-07-06T19:03:56.572Z
 Actor: amad
 Active agent: qih (architect)
 Current month: 2026-07
@@ -15,8 +15,6 @@ Current month: 2026-07
 
 ## Recent Memory
 
-- 2026-07-06T14:40:06.558Z - qih (architect): reverted hero v3 cinematic per user request (commit 1f1417d, merged main f37fa0b): restored v2 gamer room hero (BURHANDEV headline + MULA PROJEK + CLICK TO PLAY), deleted src/components/cinema3d/, pruned gsap/framer-motion/@react-three/postprocessing, first load back to 117kB; v3 recoverable from git history at 290a7b0
-- 2026-07-06T15:10:44.909Z - qih (architect): hero: play Flow video on main 3D monitor via VideoTexture — fallback to code screen until loaded, auto pause offscreen/reduced-motion, root source videos gitignored
 - 2026-07-06T15:11:39.851Z - qih (architect): hero video: guardian merge after branch sync
 - 2026-07-06T15:12:06.942Z - qih (architect): hero: Flow video (12MB, public/videos/flow.mp4) now plays on main 3D monitor via THREE.VideoTexture (commit f67fb38, merged main 90240a5) — muted loop autoplay, code-screen fallback until loadeddata, pauses when hero offscreen/tab hidden/reduced-motion, root source mp4s gitignored; named nepo (ux) + nepi (design)
 - 2026-07-06T15:23:23.599Z - qih (architect): scroll effects sitewide: hero room zoom+rotate on scroll (100vh kept) + headline fade, marquee skew lean by scroll, footer reveal, remove dead data-scroll-stage listener
@@ -35,3 +33,5 @@ Current month: 2026-07
 - 2026-07-06T16:54:14.595Z - qih (architect): hero: extend scroll-scrub journey 420vh -> 600vh for slower cinematic video control
 - 2026-07-06T16:55:00.441Z - qih (architect): 600vh scrub: guardian merge after sync
 - 2026-07-06T16:55:34.391Z - qih (architect): 600vh scrub: guardian merge after sync
+- 2026-07-06T19:03:21.236Z - qih (architect): hero: remove MULA PROJEK + CLICK TO PLAY buttons — headline only over scrub video
+- 2026-07-06T19:03:56.561Z - qih (architect): remove hero CTA buttons: guardian merge after sync

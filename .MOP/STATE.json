@@ -2816,7 +2816,25 @@
       "summary": "600vh scrub: guardian merge after sync"
     },
     {
-      "at": "2026-07-06T16:55:42.896Z",
+      "at": "2026-07-06T19:03:21.235Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "hero: remove MULA PROJEK + CLICK TO PLAY buttons — headline only over scrub video"
+    },
+    {
+      "at": "2026-07-06T19:03:56.560Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "remove hero CTA buttons: guardian merge after sync"
+    },
+    {
+      "at": "2026-07-06T19:04:05.944Z",
       "actor": "BURHAN-MOP",
       "kind": "merge-approved",
       "summary": "origin/dev/amad approved and merged to main."

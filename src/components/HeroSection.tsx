@@ -195,17 +195,10 @@ export default function HeroSection() {
             <div className={styles.videoShade} />
           </div>
 
-          {/* headline + CTA */}
+          {/* headline */}
           <div ref={contentRef} className={styles.introContent}>
             <h1 className={styles.introTitle}>BURHANDEV.</h1>
             <p className={styles.introSub}>BUILD YOUR NEXT BOLD SITE.</p>
-            <div className={styles.introCtas}>
-              <a className={styles.ctaPrimary} href="#contact">MULA PROJEK</a>
-              <button className={styles.playBtn} onClick={handlePlay} aria-label="Enter BurhanDev">
-                <span className={styles.playIcon} aria-hidden="true">▶</span>
-                <span>CLICK TO PLAY</span>
-              </button>
-            </div>
           </div>
         </div>
       </section>
