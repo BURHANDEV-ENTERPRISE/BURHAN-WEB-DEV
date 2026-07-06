@@ -36,13 +36,6 @@ export default function Home() {
           ariaLabel="BURHANDEV console reveal"
         />
 
-        <section className="manifesto-section reveal" aria-labelledby="manifesto-title">
-          <p className="eyebrow">Digital Craft</p>
-          <h2 id="manifesto-title">
-            Web yang nampak berani, rasa laju, dan terus bawa user ke tindakan.
-          </h2>
-        </section>
-
         <StatsSection />
 
         <WorkSection />
@@ -51,60 +44,30 @@ export default function Home() {
 
         <TechStackSection />
 
-        <section id="process" className="process-section reveal" aria-labelledby="process-title">
-          <div className="process-intro">
-            <p className="eyebrow">Process</p>
-            <h2 id="process-title">Dari rough idea sampai live site.</h2>
-          </div>
-
-          <div className="process-lanes">
-            <article>
-              <span>01</span>
-              <h3>Scope</h3>
-              <p>Clarify audience, offer, pages, content, CTA, dan timeline.</p>
-            </article>
-            <article>
-              <span>02</span>
-              <h3>Design</h3>
-              <p>Susun layout, visual rhythm, mobile flow, dan motion direction.</p>
-            </article>
-            <article>
-              <span>03</span>
-              <h3>Develop</h3>
-              <p>Build responsive frontend dengan code yang mudah maintain.</p>
-            </article>
-            <article>
-              <span>04</span>
-              <h3>Launch</h3>
-              <p>Test, polish, deploy bila owner approve, dan handoff next steps.</p>
-            </article>
-          </div>
-        </section>
-
         <PricingSection />
 
         <section id="work" className="work-section reveal" aria-labelledby="work-title">
           <div className="work-copy">
-            <p className="eyebrow">Direction</p>
-            <h2 id="work-title">Website yang ada rasa brand, bukan page kosong.</h2>
+            <p className="eyebrow">Why Us</p>
+            <h2 id="work-title">Kenapa BURHANDEV?</h2>
             <p>
-              BURHANDEV boleh susun visual system, sections, dan interaction
-              yang buat visitor cepat faham siapa anda dan apa tindakan seterusnya.
+              Sebab kami bina website macam produk — ada sistem visual, cerita
+              brand, dan flow yang bawa visitor terus kepada tindakan.
             </p>
           </div>
 
           <div className="work-panels" aria-hidden="true">
             <article>
-              <span>Hero</span>
-              <strong>Big first impression</strong>
+              <span>Bold</span>
+              <strong>Design berani ikut brand</strong>
             </article>
             <article>
-              <span>Service</span>
-              <strong>Clear offer rows</strong>
+              <span>Fast</span>
+              <strong>Laju & smooth semua device</strong>
             </article>
             <article>
-              <span>CTA</span>
-              <strong>Action without friction</strong>
+              <span>Convert</span>
+              <strong>Visitor jadi customer</strong>
             </article>
           </div>
         </section>

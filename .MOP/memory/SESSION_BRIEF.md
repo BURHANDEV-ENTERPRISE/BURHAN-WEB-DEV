@@ -1,6 +1,6 @@
 # MOP Session Brief
 
-Updated: 2026-07-06T21:25:02.344Z
+Updated: 2026-07-06T21:34:24.556Z
 Actor: amad
 Active agent: qih (architect)
 Current month: 2026-07
@@ -15,15 +15,6 @@ Current month: 2026-07
 
 ## Recent Memory
 
-- 2026-07-06T20:23:54.791Z - qih (architect): MarqueeStrip moved from after keyboard video to below Services section (main 8eefa25, deployed); page order now: hero, keyboard scrub, console scrub, manifesto, stats, services, MARQUEE, techstack, process...
-- 2026-07-06T21:00:54.511Z - qih (architect): console scrub section journey extended 320vh -> 500vh
-- 2026-07-06T21:01:15.924Z - qih (architect): console 500vh: guardian merge after sync
-- 2026-07-06T21:02:13.050Z - qih (architect): console 500vh: guardian push retry
-- 2026-07-06T21:03:33.033Z - qih (architect): console 500vh: guardian push retry 2
-- 2026-07-06T21:04:23.290Z - qih (architect): console 500vh: guardian push final
-- 2026-07-06T21:05:15.370Z - qih (architect): console 500vh: guardian push loop
-- 2026-07-06T21:06:36.194Z - qih (architect): console scrub section extended 320vh->500vh (main 3eb2e51, deployed); GitHub connectivity extremely flaky tonight — added retry-loop pattern for autosycn guardian pushes
-- 2026-07-06T21:13:09.553Z - qih (architect): services revamp: WorkSection (WORK WITH US card spread) becomes the Services section with id=services, old 4-row services section removed
 - 2026-07-06T21:14:01.796Z - qih (architect): services revamp: WorkSection (WORK WITH US card spread) becomes the Services section with id=services, old 4-row services section removed
 - 2026-07-06T21:14:55.075Z - qih (architect): services revamp: WorkSection (WORK WITH US card spread) becomes the Services section with id=services, old 4-row services section removed
 - 2026-07-06T21:15:47.658Z - qih (architect): services revamp: WorkSection (WORK WITH US card spread) becomes the Services section with id=services, old 4-row services section removed
@@ -35,3 +26,12 @@ Current month: 2026-07
 - 2026-07-06T21:23:11.416Z - qih (architect): services heading: Work With Us -> Our Services
 - 2026-07-06T21:24:01.657Z - qih (architect): services heading: Work With Us -> Our Services
 - 2026-07-06T21:25:02.234Z - qih (architect): services heading: Work With Us -> Our Services
+- 2026-07-06T21:26:17.854Z - qih (architect): services heading changed Work With Us -> Our Services (main cf52b68, deployed)
+- 2026-07-06T21:28:56.334Z - qih (architect): content trim: remove Process + Digital Craft manifesto sections, Direction section reworked to Why Us (Kenapa BURHANDEV + Bold/Fast/Convert panels)
+- 2026-07-06T21:29:44.464Z - qih (architect): content trim: remove Process + Digital Craft manifesto sections, Direction section reworked to Why Us (Kenapa BURHANDEV + Bold/Fast/Convert panels)
+- 2026-07-06T21:30:32.264Z - qih (architect): content trim: remove Process + Digital Craft manifesto sections, Direction section reworked to Why Us (Kenapa BURHANDEV + Bold/Fast/Convert panels)
+- 2026-07-06T21:31:19.437Z - qih (architect): content trim: remove Process + Digital Craft manifesto sections, Direction section reworked to Why Us (Kenapa BURHANDEV + Bold/Fast/Convert panels)
+- 2026-07-06T21:32:07.114Z - qih (architect): content trim: remove Process + Digital Craft manifesto sections, Direction section reworked to Why Us (Kenapa BURHANDEV + Bold/Fast/Convert panels)
+- 2026-07-06T21:32:54.881Z - qih (architect): content trim: remove Process + Digital Craft manifesto sections, Direction section reworked to Why Us (Kenapa BURHANDEV + Bold/Fast/Convert panels)
+- 2026-07-06T21:33:57.691Z - qih (architect): content trim: remove Process + Digital Craft manifesto sections, Direction section reworked to Why Us (Kenapa BURHANDEV + Bold/Fast/Convert panels)
+- 2026-07-06T21:34:24.544Z - qih (architect): content trim: guardian merge

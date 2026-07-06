@@ -12,8 +12,8 @@
   "session": {
     "actor": "amad",
     "authenticatedAt": "2026-07-06T08:34:30.344Z",
-    "lastActiveAt": "2026-07-06T21:20:21.163Z",
-    "expiresAt": "2026-07-07T21:20:21.164Z"
+    "lastActiveAt": "2026-07-06T21:26:17.850Z",
+    "expiresAt": "2026-07-07T21:26:17.852Z"
   },
   "sessionPolicy": {
     "enabled": true,
@@ -3249,7 +3249,94 @@
       "actor": "BURHAN-MOP",
       "kind": "merge-approved",
       "summary": "origin/dev/amad approved and merged to main."
+    },
+    {
+      "at": "2026-07-06T21:26:17.854Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "services heading changed Work With Us -> Our Services (main cf52b68, deployed)"
+    },
+    {
+      "at": "2026-07-06T21:28:56.333Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "content trim: remove Process + Digital Craft manifesto sections, Direction section reworked to Why Us (Kenapa BURHANDEV + Bold/Fast/Convert panels)"
+    },
+    {
+      "at": "2026-07-06T21:29:44.462Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "content trim: remove Process + Digital Craft manifesto sections, Direction section reworked to Why Us (Kenapa BURHANDEV + Bold/Fast/Convert panels)"
+    },
+    {
+      "at": "2026-07-06T21:30:32.263Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "content trim: remove Process + Digital Craft manifesto sections, Direction section reworked to Why Us (Kenapa BURHANDEV + Bold/Fast/Convert panels)"
+    },
+    {
+      "at": "2026-07-06T21:31:19.436Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "content trim: remove Process + Digital Craft manifesto sections, Direction section reworked to Why Us (Kenapa BURHANDEV + Bold/Fast/Convert panels)"
+    },
+    {
+      "at": "2026-07-06T21:32:07.113Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "content trim: remove Process + Digital Craft manifesto sections, Direction section reworked to Why Us (Kenapa BURHANDEV + Bold/Fast/Convert panels)"
+    },
+    {
+      "at": "2026-07-06T21:32:54.880Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "content trim: remove Process + Digital Craft manifesto sections, Direction section reworked to Why Us (Kenapa BURHANDEV + Bold/Fast/Convert panels)"
+    },
+    {
+      "at": "2026-07-06T21:33:57.690Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "content trim: remove Process + Digital Craft manifesto sections, Direction section reworked to Why Us (Kenapa BURHANDEV + Bold/Fast/Convert panels)"
+    },
+    {
+      "at": "2026-07-06T21:34:24.543Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "content trim: guardian merge"
+    },
+    {
+      "at": "2026-07-06T21:34:33.410Z",
+      "actor": "BURHAN-MOP",
+      "kind": "merge-approved",
+      "summary": "origin/dev/amad approved and merged to main."
     }
   ],
-  "lastActiveAt": "2026-07-06T21:20:21.163Z"
+  "lastActiveAt": "2026-07-06T21:26:17.850Z"
 }
