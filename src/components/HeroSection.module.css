@@ -119,29 +119,77 @@
   100% { opacity: 0; transform: scale(1.06); filter: brightness(6) saturate(0); }
 }
 
-/* ── Headline ── */
+/* ── Bilik gamer 3D — latar penuh viewport ── */
+.roomWrap {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+/* ── Headline — terapung atas bilik, tidak halang klik hotspot ── */
 .introContent {
-  position: relative;
+  position: absolute;
+  top: clamp(36px, 9vh, 110px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
   z-index: 5;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 24px;
-  margin-bottom: 40px;
+  gap: 14px;
   text-align: center;
   padding: 0 24px;
+  pointer-events: none;
 }
 
 .introTitle {
   font-family: var(--font-bebas), "Impact", sans-serif;
-  font-size: clamp(4.5rem, 12vw, 11rem);
+  font-size: clamp(3.2rem, 9vw, 7.5rem);
   font-weight: 400;
   color: var(--cream, #fff6dc);
   line-height: 0.88;
   letter-spacing: 0.02em;
   margin: 0;
-  text-shadow: 0 0 80px rgba(200, 80, 80, 0.35);
+  text-shadow:
+    0 2px 24px rgba(0, 0, 0, 0.65),
+    0 0 80px rgba(200, 80, 80, 0.35);
 }
+
+/* ── Baris CTA: MULA PROJEK + CLICK TO PLAY ── */
+.introCtas {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+  pointer-events: auto;
+}
+
+.ctaPrimary {
+  display: inline-flex;
+  align-items: center;
+  background: var(--maroon, #7f1d1d);
+  border: 2px solid var(--maroon, #7f1d1d);
+  border-radius: 4px;
+  padding: 13px 30px;
+  color: var(--cream, #fff6dc);
+  font-family: var(--font-bebas), "Impact", sans-serif;
+  font-size: 1.4rem;
+  letter-spacing: 0.12em;
+  text-decoration: none;
+  box-shadow: 0 6px 24px rgba(127, 29, 29, 0.45);
+  transition: background 0.18s, transform 0.12s, box-shadow 0.18s;
+}
+
+.ctaPrimary:hover {
+  background: #9b2020;
+  transform: scale(1.03);
+  box-shadow: 0 8px 30px rgba(155, 32, 32, 0.6);
+}
+
+.ctaPrimary:active { transform: scale(0.97); }
 
 .introSub {
   font-family: var(--font-bebas), "Impact", sans-serif;

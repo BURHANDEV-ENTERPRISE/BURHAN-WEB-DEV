@@ -5,7 +5,7 @@ import dynamic from "next/dynamic";
 import styles from "./HeroSection.module.css";
 import BlockyChar, { type Pose } from "./BlockyChar";
 
-const Mic3D = dynamic(() => import("./Mic3D"), { ssr: false });
+const GamerRoom3D = dynamic(() => import("./room3d/GamerRoom3D"), { ssr: false });
 
 const FACE_URL = `https://crafatar.com/avatars/d5a391fb-c1cd-4385-868b-5e8a28aa1ccf?size=64&overlay=true`;
 
@@ -35,59 +35,22 @@ export default function HeroSection() {
   const [fBubble, setFBubble]         = useState<(string | null)[]>([null, null, null]);
   const [friendsVis, setFriendsVis]   = useState(false);
   const [exploding, setExploding]     = useState(false);
+  const [reducedMotion, setReducedMotion] = useState(false);
   const scrollBound                   = useRef(false);
-  const micWrapRef                    = useRef<HTMLDivElement>(null);
-  const sectionRef                    = useRef<HTMLElement>(null);
-  const scrollRef                     = useRef<number>(0);   // 0-1, hero section only
 
-  // Scroll-driven mic: reveal → rotate → fade-out → hide (bounded to hero section)
+  // Hormati prefers-reduced-motion: matikan parallax + animasi RGB bilik 3D
   useEffect(() => {
-    if (stage !== "intro") return;
-    const el = micWrapRef.current;
-    if (!el) return;
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const update = () => setReducedMotion(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
 
-    let autoTimer: ReturnType<typeof setTimeout>;
-
-    const onScroll = () => {
-      clearTimeout(autoTimer);
-      const introH = sectionRef.current?.offsetHeight ?? window.innerHeight * 2;
-      const sy     = window.scrollY;
-
-      // Hard-hide once fully past the hero section
-      if (sy >= introH) {
-        el.style.transition = "none";
-        el.style.opacity    = "0";
-        scrollRef.current   = 1;
-        return;
-      }
-
-      // Reveal: 0→1 over first 140px of scroll
-      const reveal  = Math.min(Math.max((sy - 20) / 140, 0), 1);
-      // Fade-out: starts 280px before section end → 0 at section end
-      const fadeOut = Math.min(Math.max((introH - sy) / 280, 0), 1);
-
-      el.style.transition = "none";
-      el.style.opacity    = String(reveal * fadeOut);
-      el.style.transform  = `translateX(-50%) translateY(${(1 - reveal) * -88}px)`;
-      scrollRef.current   = sy / introH;
-    };
-
-    // Auto-reveal if user never scrolls (after 1.8s)
-    autoTimer = setTimeout(() => {
-      if (!el) return;
-      el.style.transition = "opacity 0.8s ease, transform 0.9s cubic-bezier(0.34,1.3,0.64,1)";
-      el.style.opacity    = "1";
-      el.style.transform  = "translateX(-50%) translateY(0px)";
-    }, 1800);
-
-    el.style.opacity   = "0";
-    el.style.transform = "translateX(-50%) translateY(-88px)";
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => {
-      clearTimeout(autoTimer);
-      window.removeEventListener("scroll", onScroll);
-    };
-  }, [stage]);
+  // Hotspot bilik 3D: klik monitor → services, klik mic → contact
+  const goToSection = useCallback((target: "services" | "contact") => {
+    document.getElementById(target)?.scrollIntoView({ behavior: "smooth" });
+  }, []);
 
   const handlePlay = useCallback(() => {
     setExploding(true);
@@ -148,41 +111,28 @@ export default function HeroSection() {
     return "idle";
   };
 
-  // ── STAGE 1: Intro screen ───────────────────────────
+  // ── STAGE 1: Intro screen — bilik gamer/coder 3D ────
   if (stage === "intro") {
     return (
       <section
-        ref={sectionRef}
         className={`${styles.introScreen} ${exploding ? styles.exploding : ""}`}
       >
-        {/* PC Monitor frame — dark bezel + chin */}
-        <div className={styles.monitorBezel} aria-hidden="true" />
-        <div className={styles.monitorChin} aria-hidden="true">
-          <div className={styles.chinLed} />
-          <span className={styles.chinBrand}>BURHAN</span>
-          <div className={styles.chinBtn} />
-        </div>
-
-        {/* 3D Condenser Microphone (R3F) — scroll-triggered entrance + rotation */}
-        <div ref={micWrapRef} className={styles.mic3dWrap} aria-hidden="true">
-          <Mic3D scrollRef={scrollRef} />
-        </div>
-
-        {/* 3D decorative balls — left shelf */}
-        <div className={styles.balls} aria-hidden="true">
-          <div className={styles.ball1} />
-          <div className={styles.ball2} />
-          <div className={styles.ball3} />
+        {/* Bilik gamer 3D (R3F) — parallax, skrin hidup, RGB, hotspot */}
+        <div className={styles.roomWrap}>
+          <GamerRoom3D reducedMotion={reducedMotion} onHotspot={goToSection} />
         </div>
 
         {/* headline + CTA */}
         <div className={styles.introContent}>
           <h1 className={styles.introTitle}>BURHANDEV.</h1>
           <p className={styles.introSub}>BUILD YOUR NEXT BOLD SITE.</p>
-          <button className={styles.playBtn} onClick={handlePlay} aria-label="Enter BurhanDev">
-            <span className={styles.playIcon} aria-hidden="true">▶</span>
-            <span>CLICK TO PLAY</span>
-          </button>
+          <div className={styles.introCtas}>
+            <a className={styles.ctaPrimary} href="#contact">MULA PROJEK</a>
+            <button className={styles.playBtn} onClick={handlePlay} aria-label="Enter BurhanDev">
+              <span className={styles.playIcon} aria-hidden="true">▶</span>
+              <span>CLICK TO PLAY</span>
+            </button>
+          </div>
         </div>
       </section>
     );
