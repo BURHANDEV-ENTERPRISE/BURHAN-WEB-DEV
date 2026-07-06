@@ -1,6 +1,6 @@
 # MOP Session Brief
 
-Updated: 2026-07-06T15:11:39.866Z
+Updated: 2026-07-06T15:23:23.612Z
 Actor: amad
 Active agent: qih (architect)
 Current month: 2026-07
@@ -15,8 +15,6 @@ Current month: 2026-07
 
 ## Recent Memory
 
-- 2026-06-28T08:50:12.954Z - mad (frontend): hero: removed arcade controller, 3D condenser mic is now sole decorative element, PR #26 created
-- 2026-07-01T11:59:20.726Z - anis (core): buat 3D condenser mic dalam R3F (Three.js) — install @react-three/fiber @react-three/drei, buat Mic3D.tsx dengan geometry (capsule body, grille overlay, brand ring torus, clamp rings, cables), replace CSS mic dalam HeroSection dengan dynamic import R3F canvas, build OK
 - 2026-07-01T13:11:38.363Z - anis (core): hero: replace CSS mic with R3F 3D condenser mic using @react-three/fiber
 - 2026-07-01T13:19:58.059Z - mad (frontend): mic 3D: besarkan body 2x (radius 0.30), canvas 220x520, camera dikemas
 - 2026-07-01T13:20:34.070Z - mad (frontend): mic 3D: besarkan body 2x (radius 0.30), canvas 220x520, camera dikemas
@@ -35,3 +33,5 @@ Current month: 2026-07
 - 2026-07-06T14:40:06.558Z - qih (architect): reverted hero v3 cinematic per user request (commit 1f1417d, merged main f37fa0b): restored v2 gamer room hero (BURHANDEV headline + MULA PROJEK + CLICK TO PLAY), deleted src/components/cinema3d/, pruned gsap/framer-motion/@react-three/postprocessing, first load back to 117kB; v3 recoverable from git history at 290a7b0
 - 2026-07-06T15:10:44.909Z - qih (architect): hero: play Flow video on main 3D monitor via VideoTexture — fallback to code screen until loaded, auto pause offscreen/reduced-motion, root source videos gitignored
 - 2026-07-06T15:11:39.851Z - qih (architect): hero video: guardian merge after branch sync
+- 2026-07-06T15:12:06.942Z - qih (architect): hero: Flow video (12MB, public/videos/flow.mp4) now plays on main 3D monitor via THREE.VideoTexture (commit f67fb38, merged main 90240a5) — muted loop autoplay, code-screen fallback until loadeddata, pauses when hero offscreen/tab hidden/reduced-motion, root source mp4s gitignored; named nepo (ux) + nepi (design)
+- 2026-07-06T15:23:23.599Z - qih (architect): scroll effects sitewide: hero room zoom+rotate on scroll (100vh kept) + headline fade, marquee skew lean by scroll, footer reveal, remove dead data-scroll-stage listener

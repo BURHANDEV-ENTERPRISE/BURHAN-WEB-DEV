@@ -40,6 +40,8 @@ export default function HeroSection() {
   const [tabVisible, setTabVisible]   = useState(true);
   const scrollBound                   = useRef(false);
   const roomWrapRef                   = useRef<HTMLDivElement>(null);
+  const contentRef                    = useRef<HTMLDivElement>(null);
+  const heroScrollRef                 = useRef(0); // 0..1 progress keluar hero
 
   // Pause render 3D bila hero keluar viewport atau tab hidden — jimat GPU masa scroll
   useEffect(() => {
@@ -67,6 +69,31 @@ export default function HeroSection() {
     mq.addEventListener("change", update);
     return () => mq.removeEventListener("change", update);
   }, []);
+
+  // Scroll effect hero (kekal 100vh): bilik zoom-in + headline naik & pudar
+  useEffect(() => {
+    if (stage !== "intro" || reducedMotion) return;
+    let raf = 0;
+    const onScroll = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        const p = Math.min(1, Math.max(0, window.scrollY / (window.innerHeight || 1)));
+        heroScrollRef.current = p;
+        const el = contentRef.current;
+        if (el) {
+          // Kekalkan translateX(-50%) dari CSS untuk centering
+          el.style.transform = `translateX(-50%) translateY(${(-p * 72).toFixed(1)}px)`;
+          el.style.opacity = String(Math.max(0, 1 - p * 1.2));
+        }
+      });
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, [stage, reducedMotion]);
 
   // Hotspot bilik 3D: klik monitor → services, klik mic → contact
   const goToSection = useCallback((target: "services" | "contact") => {
@@ -143,12 +170,13 @@ export default function HeroSection() {
           <GamerRoom3D
             reducedMotion={reducedMotion}
             paused={!roomInView || !tabVisible}
+            scrollRef={heroScrollRef}
             onHotspot={goToSection}
           />
         </div>
 
         {/* headline + CTA */}
-        <div className={styles.introContent}>
+        <div ref={contentRef} className={styles.introContent}>
           <h1 className={styles.introTitle}>BURHANDEV.</h1>
           <p className={styles.introSub}>BUILD YOUR NEXT BOLD SITE.</p>
           <div className={styles.introCtas}>

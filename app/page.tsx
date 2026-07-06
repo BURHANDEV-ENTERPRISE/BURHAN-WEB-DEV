@@ -174,7 +174,7 @@ export default function Home() {
       </main>
 
       <footer className="site-footer site-footer--new">
-        <div className="site-footer__inner">
+        <div className="site-footer__inner reveal">
           <div className="site-footer__top">
             <nav className="site-footer__nav">
               <a href="/#hero">Home</a>
