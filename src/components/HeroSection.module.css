@@ -119,6 +119,25 @@
   100% { opacity: 0; transform: scale(1.06); filter: brightness(6) saturate(0); }
 }
 
+/* ── Hero cinematic: section tinggi untuk scroll journey ── */
+.cinemaSection {
+  position: relative;
+  height: 380vh;
+  background: #120708;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cinemaSection { height: 100vh; }
+}
+
+/* Pentas sticky — kekal di viewport sepanjang journey */
+.stickyStage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+}
+
 /* ── Bilik gamer 3D — latar penuh viewport ── */
 .roomWrap {
   position: absolute;

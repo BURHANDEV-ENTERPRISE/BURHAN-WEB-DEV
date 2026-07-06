@@ -106,6 +106,27 @@ layout yang mengikat semua section melalui satu babak scroll yang berterusan.
 - Fallback: `prefers-reduced-motion` matikan parallax + RGB cycle; skrin kecil
   guna kamera statik; tiada WebGL → hero HTML sedia ada kekal berfungsi.
 
+## Hero v3: Cinematic Scroll Journey (diluluskan 2026-07-06, gantikan v2)
+
+- Scene: bilik gaming cozy gelap — monitor ultrawide melengkung (focal point,
+  ilustrasi anime "leaves + face reveal" canvas animated), pothos instanced
+  tergantung dari rak atas-kiri, 7 panel heksagon emissive olive #c8d96f,
+  vinyl toys blind-box, keyboard mekanikal + desk mat HUD taktikal, lampu arm
+  prosedural. Monitor = cahaya utama bilik.
+- Stack tambahan: gsap + ScrollTrigger, framer-motion,
+  @react-three/postprocessing (Bloom + Vignette; DepthOfField desktop sahaja).
+- Scroll: section 380vh sticky; kamera dolly/orbit 4 stage (wide →
+  push monitor → orbit meja → close-up keyboard) dengan easing sinematik;
+  DoF bokeh menebal ketika transisi; hex + pothos parallax menentang kamera.
+- Theme "Burhan Console": maroon #6e1f1f + parchment #f0ead6 + JetBrains Mono;
+  headline besar dibuang — diganti info-card sudut (CONSOLE, V3.0.0 BETA,
+  ADMINISTRATOR, penunjuk CAM 0X/04, CTA MULA PROJEK, butang PLAY_MODE
+  easter egg) fade/slide berperingkat, segerak dengan progress kamera.
+- Reduced motion: section 100vh, satu shot statik, tanpa postprocessing,
+  reveal penuh. Pause offscreen/tab-hidden dikekalkan dari v2.
+- Komponen: src/components/cinema3d/ (CinematicHero, CozyRoom, PlantHex,
+  UltrawideMonitor, HudOverlay, textures). room3d/ v2 kekal untuk rollback.
+
 ## Fasa Pelaksanaan
 
 1. **Foundation** — buang fail sampah root, baiki footer links, betulkan

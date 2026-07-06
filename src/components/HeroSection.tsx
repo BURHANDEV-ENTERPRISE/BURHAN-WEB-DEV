@@ -2,10 +2,14 @@
 
 import { useRef, useState, useCallback, useEffect } from "react";
 import dynamic from "next/dynamic";
+import { useMotionValue } from "framer-motion";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import styles from "./HeroSection.module.css";
 import BlockyChar, { type Pose } from "./BlockyChar";
+import HudOverlay from "./cinema3d/HudOverlay";
 
-const GamerRoom3D = dynamic(() => import("./room3d/GamerRoom3D"), { ssr: false });
+const CinematicHero = dynamic(() => import("./cinema3d/CinematicHero"), { ssr: false });
 
 const FACE_URL = `https://crafatar.com/avatars/d5a391fb-c1cd-4385-868b-5e8a28aa1ccf?size=64&overlay=true`;
 
@@ -40,6 +44,9 @@ export default function HeroSection() {
   const [tabVisible, setTabVisible]   = useState(true);
   const scrollBound                   = useRef(false);
   const roomWrapRef                   = useRef<HTMLDivElement>(null);
+  const sectionRef                    = useRef<HTMLElement>(null);
+  const progressRef                   = useRef(0);         // scroll 0..1 → kamera 3D
+  const progressMV                    = useMotionValue(0); // sumber sama untuk HUD DOM
 
   // Pause render 3D bila hero keluar viewport atau tab hidden — jimat GPU masa scroll
   useEffect(() => {
@@ -68,12 +75,26 @@ export default function HeroSection() {
     return () => mq.removeEventListener("change", update);
   }, []);
 
-  // Hotspot bilik 3D: klik monitor → services, klik mic → contact
-  const goToSection = useCallback((target: "services" | "contact") => {
-    document.getElementById(target)?.scrollIntoView({ behavior: "smooth" });
-  }, []);
+  // GSAP ScrollTrigger: satu sumber progress memandu kamera 3D + HUD DOM
+  useEffect(() => {
+    if (stage !== "intro" || reducedMotion) return;
+    const el = sectionRef.current;
+    if (!el) return;
+    gsap.registerPlugin(ScrollTrigger);
+    const st = ScrollTrigger.create({
+      trigger: el,
+      start: "top top",
+      end: "bottom bottom",
+      onUpdate: (self) => {
+        progressRef.current = self.progress;
+        progressMV.set(self.progress);
+      },
+    });
+    return () => st.kill();
+  }, [stage, reducedMotion, progressMV]);
 
   const handlePlay = useCallback(() => {
+    window.scrollTo(0, 0); // easter egg bermula dari atas
     setExploding(true);
     setTimeout(() => {
       setStage("spawning");
@@ -132,32 +153,25 @@ export default function HeroSection() {
     return "idle";
   };
 
-  // ── STAGE 1: Intro screen — bilik gamer/coder 3D ────
+  // ── STAGE 1: Intro — cinematic scroll journey bilik gaming ────
   if (stage === "intro") {
     return (
       <section
-        className={`${styles.introScreen} ${exploding ? styles.exploding : ""}`}
+        ref={sectionRef}
+        className={`${styles.cinemaSection} ${exploding ? styles.exploding : ""}`}
+        aria-label="BURHANDEV cinematic hero"
       >
-        {/* Bilik gamer 3D (R3F) — parallax, skrin hidup, RGB, hotspot */}
-        <div ref={roomWrapRef} className={styles.roomWrap}>
-          <GamerRoom3D
-            reducedMotion={reducedMotion}
-            paused={!roomInView || !tabVisible}
-            onHotspot={goToSection}
-          />
-        </div>
-
-        {/* headline + CTA */}
-        <div className={styles.introContent}>
-          <h1 className={styles.introTitle}>BURHANDEV.</h1>
-          <p className={styles.introSub}>BUILD YOUR NEXT BOLD SITE.</p>
-          <div className={styles.introCtas}>
-            <a className={styles.ctaPrimary} href="#contact">MULA PROJEK</a>
-            <button className={styles.playBtn} onClick={handlePlay} aria-label="Enter BurhanDev">
-              <span className={styles.playIcon} aria-hidden="true">▶</span>
-              <span>CLICK TO PLAY</span>
-            </button>
+        <div className={styles.stickyStage}>
+          {/* Scene 3D — kamera dolly ikut scroll */}
+          <div ref={roomWrapRef} className={styles.roomWrap} aria-hidden="true">
+            <CinematicHero
+              reducedMotion={reducedMotion}
+              paused={!roomInView || !tabVisible}
+              progressRef={progressRef}
+            />
           </div>
+          {/* HUD console — segerak dengan progress kamera */}
+          <HudOverlay progress={progressMV} onPlay={handlePlay} />
         </div>
       </section>
     );

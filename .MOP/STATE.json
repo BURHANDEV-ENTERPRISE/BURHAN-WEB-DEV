@@ -12,8 +12,8 @@
   "session": {
     "actor": "amad",
     "authenticatedAt": "2026-07-06T08:34:30.344Z",
-    "lastActiveAt": "2026-07-06T11:44:42.790Z",
-    "expiresAt": "2026-07-07T11:44:42.791Z"
+    "lastActiveAt": "2026-07-06T14:22:27.944Z",
+    "expiresAt": "2026-07-07T14:22:27.945Z"
   },
   "sessionPolicy": {
     "enabled": true,
@@ -2462,7 +2462,43 @@
       "actor": "BURHAN-MOP",
       "kind": "merge-approved",
       "summary": "origin/dev/amad approved and merged to main."
+    },
+    {
+      "at": "2026-07-06T14:11:55.895Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "perf fix scroll jank (commit 93b63fb, merged main 8188fdc): paused 3D room render via IntersectionObserver+frameloop never when hero offscreen/tab hidden, dpr 1.75->1.5, removed mix-blend-mode on body::after fixed scanline, removed backdrop-filter blur(18px) on fixed header, gated WorkSection scroll rAF by in-view, deleted redundant fixed curtain layer; named turbo (performance agent); build passed"
+    },
+    {
+      "at": "2026-07-06T14:22:11.868Z",
+      "actor": "amad",
+      "agent": "gito",
+      "agentRole": "github",
+      "agentId": "agent-gito",
+      "kind": "agent-route",
+      "summary": "Routed task to gito: Matched keywords for GitHub Coordinator: pr."
+    },
+    {
+      "at": "2026-07-06T14:22:27.947Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "agent-use",
+      "summary": "Set active agent to qih."
+    },
+    {
+      "at": "2026-07-06T14:31:41.259Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "hero v3: cinematic 3D scroll journey — cozy gaming room, curved ultrawide monitor with animated anime illustration (leaves+face reveal), pothos instanced plant, hex panel lights, vinyl toys, HUD desk mat, procedural lamp arm, GSAP ScrollTrigger 4-stage camera dolly/orbit, Bloom+Vignette+DoF, Burhan Console HUD overlay (framer-motion, JetBrains Mono), removed big headline"
     }
   ],
-  "lastActiveAt": "2026-07-06T11:44:42.790Z"
+  "lastActiveAt": "2026-07-06T14:22:27.944Z"
 }
