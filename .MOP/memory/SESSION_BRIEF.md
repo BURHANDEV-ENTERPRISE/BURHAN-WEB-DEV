@@ -1,6 +1,6 @@
 # MOP Session Brief
 
-Updated: 2026-07-06T21:23:11.432Z
+Updated: 2026-07-06T21:24:01.922Z
 Actor: amad
 Active agent: qih (architect)
 Current month: 2026-07
@@ -15,7 +15,6 @@ Current month: 2026-07
 
 ## Recent Memory
 
-- 2026-07-06T20:21:54.738Z - qih (architect): marquee below services: guardian merge retry 2
 - 2026-07-06T20:22:39.844Z - qih (architect): marquee below services: guardian merge final retry
 - 2026-07-06T20:23:54.791Z - qih (architect): MarqueeStrip moved from after keyboard video to below Services section (main 8eefa25, deployed); page order now: hero, keyboard scrub, console scrub, manifesto, stats, services, MARQUEE, techstack, process...
 - 2026-07-06T21:00:54.511Z - qih (architect): console scrub section journey extended 320vh -> 500vh
@@ -35,3 +34,4 @@ Current month: 2026-07
 - 2026-07-06T21:19:15.399Z - qih (architect): services revamp: guardian merge
 - 2026-07-06T21:20:21.167Z - qih (architect): services revamp (main f170096, deployed): WorkSection WORK WITH US card-spread is now THE services section (id=services moved to it), old 4-row services section deleted from page.tsx; page order: hero, keyboard, console, manifesto, stats, WorkSection(services), marquee, techstack, process, pricing, work-direction, contact, testimonials
 - 2026-07-06T21:23:11.416Z - qih (architect): services heading: Work With Us -> Our Services
+- 2026-07-06T21:24:01.657Z - qih (architect): services heading: Work With Us -> Our Services
