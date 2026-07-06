@@ -96,6 +96,18 @@ p {
   align-items: center;
   gap: 1rem;
   pointer-events: none;
+  transition: opacity 0.45s ease, transform 0.45s ease;
+}
+
+/* Tersembunyi semasa hero dalam view (ditogol oleh ScrollEffects) */
+.top-shell.is-hidden {
+  opacity: 0;
+  transform: translateY(-12px);
+}
+
+.top-shell.is-hidden .brand-lockup,
+.top-shell.is-hidden .menu-capsule {
+  pointer-events: none;
 }
 
 .brand-lockup,

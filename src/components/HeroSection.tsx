@@ -146,10 +146,16 @@ export default function HeroSection() {
             <div className={styles.videoShade} />
           </div>
 
-          {/* headline */}
+          {/* headline — dipindah dari OpenSection */}
           <div ref={contentRef} className={styles.introContent}>
-            <h1 className={styles.introTitle}>BURHANDEV.</h1>
-            <p className={styles.introSub}>BUILD YOUR NEXT BOLD SITE.</p>
+            <h1 className={styles.introTitle} aria-label="Enter the World of BURHANDEV">
+              <span>ENTER THE</span>
+              <span>WORLD OF</span>
+              <span className={styles.introBrand}>BURHANDEV</span>
+            </h1>
+            <p className={styles.introSub}>
+              We don&apos;t just build sites — we craft experiences that convert.
+            </p>
           </div>
         </div>
       </section>
