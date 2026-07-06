@@ -2949,6 +2949,15 @@
       "agentId": "agent-qih",
       "kind": "memory",
       "summary": "transition fix: dip-to-black crossover between video sections — hero fades out last 8-10%, section 2 fades in from dark and out at end, no more hard seam at sticky handoff"
+    },
+    {
+      "at": "2026-07-06T19:46:47.735Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "dip-to-black transition: guardian merge after sync"
     }
   ],
   "lastActiveAt": "2026-07-06T19:40:47.298Z"
