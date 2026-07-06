@@ -1,6 +1,6 @@
 # MOP Session Brief
 
-Updated: 2026-07-06T14:39:07.447Z
+Updated: 2026-07-06T14:39:43.523Z
 Actor: amad
 Active agent: qih (architect)
 Current month: 2026-07
@@ -15,7 +15,6 @@ Current month: 2026-07
 
 ## Recent Memory
 
-- 2026-06-26T07:32:09.442Z - moon (reviewer): Created docs/SpiderWeb-PRD-v3.1-additions.md: 15 new sections added (webhook security, zero-downtime, concurrent deploy, API versioning, SSE logs, rate limits, cascade deletes, agent lifecycle, port isolation, build cache, wildcard DNS, PgBouncer, error pages, health checks)
 - 2026-06-26T07:42:32.997Z - moon (reviewer): moon extended SpiderWeb PRD addendum to v3.2: added sections 72-84 (SSL, email delivery, queue system, encryption, reserved slugs, API standards, admin MFA, GDPR, node draining, ownership transfer, timezone, accessibility, multi-env) — requirements 21→44, success criteria 17→34
 - 2026-06-26T09:27:01.802Z - moon (reviewer): moon extended PRD addendum to v3.3: added sections 85-91 (rollback, monitoring, plan quotas FREE vs PRO, permission matrix 4 roles x22 features, log search, CLI future, in-panel notifications) — requirements 44→51, success criteria 34→41
 - 2026-06-26T09:33:44.564Z - moon (reviewer): moon completed PRD addendum v3.4: final 5 sections 92-96 (status page, build-time env vars, SIGTERM graceful shutdown, outgoing webhooks, node capacity dashboard) — total requirements 21→56, success criteria 17→46. PRD addendum now complete.
@@ -35,3 +34,4 @@ Current month: 2026-07
 - 2026-07-06T14:33:25.130Z - qih (architect): hero v3: sync MOP memory stamps + guardian merge retry
 - 2026-07-06T14:33:50.568Z - qih (architect): hero v3 cinematic (commits 290a7b0+15888eb, merged main c3af013): src/components/cinema3d/ — cozy gaming room, curved ultrawide monitor w/ animated anime illustration (leaves+face reveal via scroll), pothos instanced, 7 hex panels olive #c8d96f, vinyl toys, HUD desk mat, lamp arm; GSAP ScrollTrigger 380vh sticky 4-stage camera dolly; Bloom+Vignette+DoF desktop; Burhan Console HUD (maroon #6e1f1f/parchment #f0ead6/JetBrains Mono) w/ framer-motion; big headline removed per request; first load 203kB (gsap+framer in main bundle); room3d v2 kept for rollback
 - 2026-07-06T14:39:07.435Z - qih (architect): revert: remove cinematic hero v3 per user request — restore v2 gamer room hero (headline+CTA), delete cinema3d components, prune gsap/framer-motion/postprocessing deps
+- 2026-07-06T14:39:43.513Z - qih (architect): revert hero v3: guardian merge after branch sync

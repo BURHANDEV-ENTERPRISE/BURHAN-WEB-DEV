@@ -2504,6 +2504,15 @@
       "agentId": "agent-qih",
       "kind": "memory",
       "summary": "revert: remove cinematic hero v3 per user request — restore v2 gamer room hero (headline+CTA), delete cinema3d components, prune gsap/framer-motion/postprocessing deps"
+    },
+    {
+      "at": "2026-07-06T14:39:43.512Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "revert hero v3: guardian merge after branch sync"
     }
   ],
   "lastActiveAt": "2026-07-06T14:33:50.564Z"
