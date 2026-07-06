@@ -52,3 +52,4 @@
 {"at":"2026-07-06T20:01:34.028Z","actor":"amad","agent":"qih","agentRole":"architect","agentId":"agent-qih","kind":"conversation","summary":"hero text swap + section restructure: OpenSection removed (text ENTER THE WORLD OF BURHANDEV + subtitle moved into hero, old hero headline removed), console.mp4 scrub section replaces OpenSection slot, header chip+hamburger hidden while hero in view (fade in after)"}
 {"at":"2026-07-06T20:02:09.416Z","actor":"amad","agent":"qih","agentRole":"architect","agentId":"agent-qih","kind":"conversation","summary":"hero text swap + console section + header hide: push retry"}
 {"at":"2026-07-06T20:02:38.555Z","actor":"amad","agent":"qih","agentRole":"architect","agentId":"agent-qih","kind":"conversation","summary":"hero text swap: guardian merge after sync"}
+{"at":"2026-07-06T20:03:18.207Z","actor":"amad","agent":"qih","agentRole":"architect","agentId":"agent-qih","kind":"conversation","summary":"hero text swap: guardian merge retry"}
