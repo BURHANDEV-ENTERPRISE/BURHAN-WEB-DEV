@@ -2916,6 +2916,15 @@
       "agentId": "agent-qih",
       "kind": "memory",
       "summary": "keyboard video swap: guardian merge after sync"
+    },
+    {
+      "at": "2026-07-06T19:39:18.673Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "keyboard video swap: guardian merge retry"
     }
   ],
   "lastActiveAt": "2026-07-06T19:32:57.291Z"

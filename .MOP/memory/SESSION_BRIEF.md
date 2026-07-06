@@ -1,6 +1,6 @@
 # MOP Session Brief
 
-Updated: 2026-07-06T19:38:23.671Z
+Updated: 2026-07-06T19:39:18.683Z
 Actor: amad
 Active agent: qih (architect)
 Current month: 2026-07
@@ -15,7 +15,6 @@ Current month: 2026-07
 
 ## Recent Memory
 
-- 2026-07-06T15:42:29.007Z - qih (architect): hero: video scroll-scrub — 260vh sticky section, video.currentTime lerped to scroll progress (scrub forward/backward), headline fades last 25%, subtle zoom, rAF gated by in-view/tab-visible, reduced-motion gets plain 100vh hero
 - 2026-07-06T15:42:51.267Z - qih (architect): video scrub hero: guardian merge after branch sync
 - 2026-07-06T15:43:03.086Z - qih (architect): hero video scroll-scrub (commit ed7e779): 260vh sticky section, video.currentTime lerp-scrubbed by scroll progress both directions, headline fade last 25% + subtle zoom, rAF loop gated by IO/tab-visible, reduced-motion = plain 100vh paused-frame hero
 - 2026-07-06T15:46:44.791Z - qih (architect): hero: remove header logo images (text-only brand lockup, hamburger-only capsule), extend scroll-scrub journey 260vh -> 420vh
@@ -35,3 +34,4 @@ Current month: 2026-07
 - 2026-07-06T19:32:57.295Z - qih (architect): scrub v2 shipped (main 029d807): shared useVideoScrub hook — seek-aware (waits seeked event), double-smoothed progress lerp 0.14, IO+visibility gate, lazy preload metadata->auto; hero rewired to hook; new ScrubVideoSection generic component; console.mp4 (7.4MB delogo+g6) added as scrub section after hero; flow.mp4 re-encoded from original delogo+g6 10.1MB; both watermark-free verified
 - 2026-07-06T19:37:55.178Z - qih (architect): section 2: swap console.mp4 -> keyboard.mp4 (Keyboard_and_monitor_dissolve, delogo+g6, 7.7MB), remove unused console.mp4
 - 2026-07-06T19:38:23.662Z - qih (architect): keyboard video swap: guardian merge after sync
+- 2026-07-06T19:39:18.673Z - qih (architect): keyboard video swap: guardian merge retry
