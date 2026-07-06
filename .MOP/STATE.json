@@ -7,17 +7,17 @@
   "activeMember": "amad",
   "activeAgents": {
     "moon": "agent-loli",
-    "amad": "agent-mad"
+    "amad": "agent-qih"
   },
   "session": {
     "actor": "amad",
-    "authenticatedAt": "2026-07-01T16:04:05.567Z",
-    "lastActiveAt": "2026-07-01T16:04:05.567Z",
-    "expiresAt": "2026-07-01T17:04:05.568Z"
+    "authenticatedAt": "2026-07-06T08:34:30.344Z",
+    "lastActiveAt": "2026-07-06T08:34:30.344Z",
+    "expiresAt": "2026-07-06T09:34:30.345Z"
   },
   "sessionPolicy": {
     "enabled": true,
-    "idleTimeoutMinutes": 60,
+    "idleTimeoutMinutes": 1440,
     "requireLoginEveryNewChat": true,
     "requireLoginAfterIdle": true,
     "doNotTrustPersistedActiveMember": true,
@@ -709,6 +709,94 @@
       ],
       "createdBy": "amad",
       "createdAt": "2026-06-12T15:48:06.128Z"
+    },
+    {
+      "id": "agent-qih",
+      "role": "architect",
+      "title": "System Architect",
+      "name": "qih",
+      "owners": [
+        "amad"
+      ],
+      "createdBy": "amad",
+      "createdAt": "2026-07-06T08:14:00.087Z"
+    },
+    {
+      "id": "agent-kaizer",
+      "role": "researcher",
+      "title": "Researcher",
+      "name": "kaizer",
+      "owners": [
+        "amad"
+      ],
+      "createdBy": "amad",
+      "createdAt": "2026-07-06T08:14:00.232Z"
+    },
+    {
+      "id": "agent-madzz",
+      "role": "prompt",
+      "title": "Prompt Engineer",
+      "name": "madzz",
+      "owners": [
+        "amad"
+      ],
+      "createdBy": "amad",
+      "createdAt": "2026-07-06T08:14:00.304Z"
+    },
+    {
+      "id": "agent-nep",
+      "role": "reviewer",
+      "title": "Reviewer",
+      "name": "nep",
+      "owners": [
+        "amad"
+      ],
+      "createdBy": "amad",
+      "createdAt": "2026-07-06T08:14:00.451Z"
+    },
+    {
+      "id": "agent-qihplan",
+      "role": "planner",
+      "title": "Product Planner",
+      "name": "qihplan",
+      "owners": [
+        "amad"
+      ],
+      "createdBy": "amad",
+      "createdAt": "2026-07-06T08:18:49.566Z"
+    },
+    {
+      "id": "agent-madcode",
+      "role": "coder",
+      "title": "Coder",
+      "name": "madcode",
+      "owners": [
+        "amad"
+      ],
+      "createdBy": "amad",
+      "createdAt": "2026-07-06T08:18:49.635Z"
+    },
+    {
+      "id": "agent-gito",
+      "role": "github",
+      "title": "GitHub Coordinator",
+      "name": "gito",
+      "owners": [
+        "amad"
+      ],
+      "createdBy": "amad",
+      "createdAt": "2026-07-06T08:18:49.704Z"
+    },
+    {
+      "id": "agent-anisweb",
+      "role": "browser",
+      "title": "Browser Automation Agent",
+      "name": "anisweb",
+      "owners": [
+        "amad"
+      ],
+      "createdBy": "amad",
+      "createdAt": "2026-07-06T08:18:49.773Z"
     }
   ],
   "agentCatalog": [
@@ -1976,7 +2064,310 @@
       "actor": "BURHAN-MOP",
       "kind": "merge-approved",
       "summary": "origin/dev/amad approved and merged to main."
+    },
+    {
+      "at": "2026-07-01T16:43:07.401Z",
+      "actor": "amad",
+      "agent": "mad",
+      "agentRole": "frontend",
+      "agentId": "agent-mad",
+      "kind": "login",
+      "summary": "Member authenticated; new session started."
+    },
+    {
+      "at": "2026-07-01T16:46:16.862Z",
+      "actor": "BURHAN-MOP",
+      "kind": "merge-approved",
+      "summary": "origin/dev/amad approved and merged to main."
+    },
+    {
+      "at": "2026-07-06T08:08:23.589Z",
+      "actor": "amad",
+      "agent": "mad",
+      "agentRole": "frontend",
+      "agentId": "agent-mad",
+      "kind": "login",
+      "summary": "Member authenticated; new session started."
+    },
+    {
+      "at": "2026-07-06T08:14:00.087Z",
+      "actor": "amad",
+      "agent": "mad",
+      "agentRole": "frontend",
+      "agentId": "agent-mad",
+      "kind": "agent-activate",
+      "summary": "Named System Architect as qih."
+    },
+    {
+      "at": "2026-07-06T08:14:00.087Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "agent-use",
+      "summary": "Set active agent to qih."
+    },
+    {
+      "at": "2026-07-06T08:14:00.158Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "agent-share",
+      "summary": "amad joined agent qih."
+    },
+    {
+      "at": "2026-07-06T08:14:00.158Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "agent-use",
+      "summary": "Set active agent to qih."
+    },
+    {
+      "at": "2026-07-06T08:14:00.233Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "agent-activate",
+      "summary": "Named Researcher as kaizer."
+    },
+    {
+      "at": "2026-07-06T08:14:00.233Z",
+      "actor": "amad",
+      "agent": "kaizer",
+      "agentRole": "researcher",
+      "agentId": "agent-kaizer",
+      "kind": "agent-use",
+      "summary": "Set active agent to kaizer."
+    },
+    {
+      "at": "2026-07-06T08:14:00.304Z",
+      "actor": "amad",
+      "agent": "kaizer",
+      "agentRole": "researcher",
+      "agentId": "agent-kaizer",
+      "kind": "agent-activate",
+      "summary": "Named Prompt Engineer as madzz."
+    },
+    {
+      "at": "2026-07-06T08:14:00.304Z",
+      "actor": "amad",
+      "agent": "madzz",
+      "agentRole": "prompt",
+      "agentId": "agent-madzz",
+      "kind": "agent-use",
+      "summary": "Set active agent to madzz."
+    },
+    {
+      "at": "2026-07-06T08:14:00.376Z",
+      "actor": "amad",
+      "agent": "madzz",
+      "agentRole": "prompt",
+      "agentId": "agent-madzz",
+      "kind": "agent-share",
+      "summary": "amad joined agent madzz."
+    },
+    {
+      "at": "2026-07-06T08:14:00.376Z",
+      "actor": "amad",
+      "agent": "madzz",
+      "agentRole": "prompt",
+      "agentId": "agent-madzz",
+      "kind": "agent-use",
+      "summary": "Set active agent to madzz."
+    },
+    {
+      "at": "2026-07-06T08:14:00.451Z",
+      "actor": "amad",
+      "agent": "madzz",
+      "agentRole": "prompt",
+      "agentId": "agent-madzz",
+      "kind": "agent-activate",
+      "summary": "Named Reviewer as nep."
+    },
+    {
+      "at": "2026-07-06T08:14:00.451Z",
+      "actor": "amad",
+      "agent": "nep",
+      "agentRole": "reviewer",
+      "agentId": "agent-nep",
+      "kind": "agent-use",
+      "summary": "Set active agent to nep."
+    },
+    {
+      "at": "2026-07-06T08:14:00.523Z",
+      "actor": "amad",
+      "agent": "nep",
+      "agentRole": "reviewer",
+      "agentId": "agent-nep",
+      "kind": "agent-share",
+      "summary": "amad joined agent anis."
+    },
+    {
+      "at": "2026-07-06T08:14:00.523Z",
+      "actor": "amad",
+      "agent": "anis",
+      "agentRole": "core",
+      "agentId": "agent-anis",
+      "kind": "agent-use",
+      "summary": "Set active agent to anis."
+    },
+    {
+      "at": "2026-07-06T08:14:00.596Z",
+      "actor": "amad",
+      "agent": "anis",
+      "agentRole": "core",
+      "agentId": "agent-anis",
+      "kind": "agent-share",
+      "summary": "amad joined agent anis."
+    },
+    {
+      "at": "2026-07-06T08:14:00.596Z",
+      "actor": "amad",
+      "agent": "anis",
+      "agentRole": "core",
+      "agentId": "agent-anis",
+      "kind": "agent-use",
+      "summary": "Set active agent to anis."
+    },
+    {
+      "at": "2026-07-06T08:14:15.432Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "agent-route",
+      "summary": "Routed task to qih: New or broad system task routed to System Architect for high-reasoning planning before implementation."
+    },
+    {
+      "at": "2026-07-06T08:18:49.566Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "agent-activate",
+      "summary": "Named Product Planner as qihplan."
+    },
+    {
+      "at": "2026-07-06T08:18:49.566Z",
+      "actor": "amad",
+      "agent": "qihplan",
+      "agentRole": "planner",
+      "agentId": "agent-qihplan",
+      "kind": "agent-use",
+      "summary": "Set active agent to qihplan."
+    },
+    {
+      "at": "2026-07-06T08:18:49.635Z",
+      "actor": "amad",
+      "agent": "qihplan",
+      "agentRole": "planner",
+      "agentId": "agent-qihplan",
+      "kind": "agent-activate",
+      "summary": "Named Coder as madcode."
+    },
+    {
+      "at": "2026-07-06T08:18:49.635Z",
+      "actor": "amad",
+      "agent": "madcode",
+      "agentRole": "coder",
+      "agentId": "agent-madcode",
+      "kind": "agent-use",
+      "summary": "Set active agent to madcode."
+    },
+    {
+      "at": "2026-07-06T08:18:49.704Z",
+      "actor": "amad",
+      "agent": "madcode",
+      "agentRole": "coder",
+      "agentId": "agent-madcode",
+      "kind": "agent-activate",
+      "summary": "Named GitHub Coordinator as gito."
+    },
+    {
+      "at": "2026-07-06T08:18:49.704Z",
+      "actor": "amad",
+      "agent": "gito",
+      "agentRole": "github",
+      "agentId": "agent-gito",
+      "kind": "agent-use",
+      "summary": "Set active agent to gito."
+    },
+    {
+      "at": "2026-07-06T08:18:49.773Z",
+      "actor": "amad",
+      "agent": "gito",
+      "agentRole": "github",
+      "agentId": "agent-gito",
+      "kind": "agent-activate",
+      "summary": "Named Browser Automation Agent as anisweb."
+    },
+    {
+      "at": "2026-07-06T08:18:49.773Z",
+      "actor": "amad",
+      "agent": "anisweb",
+      "agentRole": "browser",
+      "agentId": "agent-anisweb",
+      "kind": "agent-use",
+      "summary": "Set active agent to anisweb."
+    },
+    {
+      "at": "2026-07-06T08:18:58.364Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "agent-route",
+      "summary": "Routed task to qih: New or broad system task routed to System Architect for high-reasoning planning before implementation."
+    },
+    {
+      "at": "2026-07-06T08:18:58.437Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "agent-use",
+      "summary": "Set active agent to qih."
+    },
+    {
+      "at": "2026-07-06T08:21:21.335Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "Scanned project + created ux-spec artifact (.MOP/artifacts/design/burhandev-3d-model-layout/ux-spec.md): plan + UI direction for 3D model layout — single shared R3F canvas, scroll camera rig, per-service 3D props, 4 implementation phases; named agents qih/qihplan/kaizer/madzz/madcode/nep/gito/anisweb"
+    },
+    {
+      "at": "2026-07-06T08:32:09.173Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "ux-spec: gamer room hero spec approved (hybrid R3F, live screens, parallax, RGB, hotspots, voxel mascot) + readiness gate passed"
+    },
+    {
+      "at": "2026-07-06T08:34:30.345Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "login",
+      "summary": "Member authenticated; new session started."
+    },
+    {
+      "at": "2026-07-06T08:38:00.874Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "ux-spec: gamer room hero approved (hybrid R3F, live screens, parallax, RGB, hotspots, voxel mascot); session idle timeout 24h; readiness gate ready"
     }
   ],
-  "lastActiveAt": "2026-07-01T16:04:05.567Z"
+  "lastActiveAt": "2026-07-06T08:34:30.344Z"
 }
