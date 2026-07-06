@@ -1,6 +1,6 @@
 # MOP Session Brief
 
-Updated: 2026-07-06T15:46:44.801Z
+Updated: 2026-07-06T15:47:07.064Z
 Actor: amad
 Active agent: qih (architect)
 Current month: 2026-07
@@ -15,7 +15,6 @@ Current month: 2026-07
 
 ## Recent Memory
 
-- 2026-07-06T14:11:32.993Z - qih (architect): perf: fix scroll jank — pause 3D room when hero offscreen/tab hidden, dpr cap 1.5, remove blend-mode on fixed scanline overlay, remove fixed-header backdrop blur, gate WorkSection scroll rAF, drop redundant fixed curtain
 - 2026-07-06T14:32:34.279Z - qih (architect): hero v3: guardian merge retry after network hiccup
 - 2026-07-06T14:33:25.130Z - qih (architect): hero v3: sync MOP memory stamps + guardian merge retry
 - 2026-07-06T14:33:50.568Z - qih (architect): hero v3 cinematic (commits 290a7b0+15888eb, merged main c3af013): src/components/cinema3d/ — cozy gaming room, curved ultrawide monitor w/ animated anime illustration (leaves+face reveal via scroll), pothos instanced, 7 hex panels olive #c8d96f, vinyl toys, HUD desk mat, lamp arm; GSAP ScrollTrigger 380vh sticky 4-stage camera dolly; Bloom+Vignette+DoF desktop; Burhan Console HUD (maroon #6e1f1f/parchment #f0ead6/JetBrains Mono) w/ framer-motion; big headline removed per request; first load 203kB (gsap+framer in main bundle); room3d v2 kept for rollback
@@ -35,3 +34,4 @@ Current month: 2026-07
 - 2026-07-06T15:42:51.267Z - qih (architect): video scrub hero: guardian merge after branch sync
 - 2026-07-06T15:43:03.086Z - qih (architect): hero video scroll-scrub (commit ed7e779): 260vh sticky section, video.currentTime lerp-scrubbed by scroll progress both directions, headline fade last 25% + subtle zoom, rAF loop gated by IO/tab-visible, reduced-motion = plain 100vh paused-frame hero
 - 2026-07-06T15:46:44.791Z - qih (architect): hero: remove header logo images (text-only brand lockup, hamburger-only capsule), extend scroll-scrub journey 260vh -> 420vh
+- 2026-07-06T15:47:07.055Z - qih (architect): logo removal + longer scrub: guardian merge after sync

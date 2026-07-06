@@ -2736,6 +2736,15 @@
       "agentId": "agent-qih",
       "kind": "memory",
       "summary": "hero: remove header logo images (text-only brand lockup, hamburger-only capsule), extend scroll-scrub journey 260vh -> 420vh"
+    },
+    {
+      "at": "2026-07-06T15:47:07.054Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "logo removal + longer scrub: guardian merge after sync"
     }
   ],
   "lastActiveAt": "2026-07-06T15:43:03.083Z"
