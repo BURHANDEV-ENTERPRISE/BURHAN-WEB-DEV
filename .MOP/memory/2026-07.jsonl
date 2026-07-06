@@ -62,3 +62,4 @@
 {"at":"2026-07-06T20:22:39.844Z","actor":"amad","agent":"qih","agentRole":"architect","agentId":"agent-qih","kind":"conversation","summary":"marquee below services: guardian merge final retry"}
 {"at":"2026-07-06T20:23:54.791Z","actor":"amad","agent":"qih","agentRole":"architect","agentId":"agent-qih","kind":"conversation","summary":"MarqueeStrip moved from after keyboard video to below Services section (main 8eefa25, deployed); page order now: hero, keyboard scrub, console scrub, manifesto, stats, services, MARQUEE, techstack, process..."}
 {"at":"2026-07-06T21:00:54.511Z","actor":"amad","agent":"qih","agentRole":"architect","agentId":"agent-qih","kind":"conversation","summary":"console scrub section journey extended 320vh -> 500vh"}
+{"at":"2026-07-06T21:01:15.924Z","actor":"amad","agent":"qih","agentRole":"architect","agentId":"agent-qih","kind":"conversation","summary":"console 500vh: guardian merge after sync"}

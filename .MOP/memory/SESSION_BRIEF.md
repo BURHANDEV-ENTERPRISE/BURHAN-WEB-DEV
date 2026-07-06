@@ -1,6 +1,6 @@
 # MOP Session Brief
 
-Updated: 2026-07-06T21:00:54.522Z
+Updated: 2026-07-06T21:01:15.933Z
 Actor: amad
 Active agent: qih (architect)
 Current month: 2026-07
@@ -15,7 +15,6 @@ Current month: 2026-07
 
 ## Recent Memory
 
-- 2026-07-06T19:37:55.178Z - qih (architect): section 2: swap console.mp4 -> keyboard.mp4 (Keyboard_and_monitor_dissolve, delogo+g6, 7.7MB), remove unused console.mp4
 - 2026-07-06T19:38:23.662Z - qih (architect): keyboard video swap: guardian merge after sync
 - 2026-07-06T19:39:18.673Z - qih (architect): keyboard video swap: guardian merge retry
 - 2026-07-06T19:40:47.301Z - qih (architect): section 2 video swapped console->keyboard (Keyboard_and_monitor_dissolve delogo+g6 7.7MB, watermark verified clean incl cable edge), console.mp4 removed from public, merged main df03a9c, Pages deploy success
@@ -35,3 +34,4 @@ Current month: 2026-07
 - 2026-07-06T20:22:39.844Z - qih (architect): marquee below services: guardian merge final retry
 - 2026-07-06T20:23:54.791Z - qih (architect): MarqueeStrip moved from after keyboard video to below Services section (main 8eefa25, deployed); page order now: hero, keyboard scrub, console scrub, manifesto, stats, services, MARQUEE, techstack, process...
 - 2026-07-06T21:00:54.511Z - qih (architect): console scrub section journey extended 320vh -> 500vh
+- 2026-07-06T21:01:15.924Z - qih (architect): console 500vh: guardian merge after sync

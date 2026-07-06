@@ -3099,6 +3099,15 @@
       "agentId": "agent-qih",
       "kind": "memory",
       "summary": "console scrub section journey extended 320vh -> 500vh"
+    },
+    {
+      "at": "2026-07-06T21:01:15.923Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "console 500vh: guardian merge after sync"
     }
   ],
   "lastActiveAt": "2026-07-06T20:23:54.788Z"
