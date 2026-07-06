@@ -2991,6 +2991,15 @@
       "agentId": "agent-qih",
       "kind": "memory",
       "summary": "hero text swap + console section + header hide: push retry"
+    },
+    {
+      "at": "2026-07-06T20:02:38.554Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "hero text swap: guardian merge after sync"
     }
   ],
   "lastActiveAt": "2026-07-06T19:47:59.792Z"
