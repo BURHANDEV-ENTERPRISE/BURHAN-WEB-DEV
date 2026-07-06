@@ -1,6 +1,6 @@
 # MOP Session Brief
 
-Updated: 2026-07-06T14:39:43.523Z
+Updated: 2026-07-06T15:11:39.866Z
 Actor: amad
 Active agent: qih (architect)
 Current month: 2026-07
@@ -15,9 +15,6 @@ Current month: 2026-07
 
 ## Recent Memory
 
-- 2026-06-26T07:42:32.997Z - moon (reviewer): moon extended SpiderWeb PRD addendum to v3.2: added sections 72-84 (SSL, email delivery, queue system, encryption, reserved slugs, API standards, admin MFA, GDPR, node draining, ownership transfer, timezone, accessibility, multi-env) — requirements 21→44, success criteria 17→34
-- 2026-06-26T09:27:01.802Z - moon (reviewer): moon extended PRD addendum to v3.3: added sections 85-91 (rollback, monitoring, plan quotas FREE vs PRO, permission matrix 4 roles x22 features, log search, CLI future, in-panel notifications) — requirements 44→51, success criteria 34→41
-- 2026-06-26T09:33:44.564Z - moon (reviewer): moon completed PRD addendum v3.4: final 5 sections 92-96 (status page, build-time env vars, SIGTERM graceful shutdown, outgoing webhooks, node capacity dashboard) — total requirements 21→56, success criteria 17→46. PRD addendum now complete.
 - 2026-06-28T08:50:12.954Z - mad (frontend): hero: removed arcade controller, 3D condenser mic is now sole decorative element, PR #26 created
 - 2026-07-01T11:59:20.726Z - anis (core): buat 3D condenser mic dalam R3F (Three.js) — install @react-three/fiber @react-three/drei, buat Mic3D.tsx dengan geometry (capsule body, grille overlay, brand ring torus, clamp rings, cables), replace CSS mic dalam HeroSection dengan dynamic import R3F canvas, build OK
 - 2026-07-01T13:11:38.363Z - anis (core): hero: replace CSS mic with R3F 3D condenser mic using @react-three/fiber
@@ -35,3 +32,6 @@ Current month: 2026-07
 - 2026-07-06T14:33:50.568Z - qih (architect): hero v3 cinematic (commits 290a7b0+15888eb, merged main c3af013): src/components/cinema3d/ — cozy gaming room, curved ultrawide monitor w/ animated anime illustration (leaves+face reveal via scroll), pothos instanced, 7 hex panels olive #c8d96f, vinyl toys, HUD desk mat, lamp arm; GSAP ScrollTrigger 380vh sticky 4-stage camera dolly; Bloom+Vignette+DoF desktop; Burhan Console HUD (maroon #6e1f1f/parchment #f0ead6/JetBrains Mono) w/ framer-motion; big headline removed per request; first load 203kB (gsap+framer in main bundle); room3d v2 kept for rollback
 - 2026-07-06T14:39:07.435Z - qih (architect): revert: remove cinematic hero v3 per user request — restore v2 gamer room hero (headline+CTA), delete cinema3d components, prune gsap/framer-motion/postprocessing deps
 - 2026-07-06T14:39:43.513Z - qih (architect): revert hero v3: guardian merge after branch sync
+- 2026-07-06T14:40:06.558Z - qih (architect): reverted hero v3 cinematic per user request (commit 1f1417d, merged main f37fa0b): restored v2 gamer room hero (BURHANDEV headline + MULA PROJEK + CLICK TO PLAY), deleted src/components/cinema3d/, pruned gsap/framer-motion/@react-three/postprocessing, first load back to 117kB; v3 recoverable from git history at 290a7b0
+- 2026-07-06T15:10:44.909Z - qih (architect): hero: play Flow video on main 3D monitor via VideoTexture — fallback to code screen until loaded, auto pause offscreen/reduced-motion, root source videos gitignored
+- 2026-07-06T15:11:39.851Z - qih (architect): hero video: guardian merge after branch sync

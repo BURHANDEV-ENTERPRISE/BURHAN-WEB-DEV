@@ -12,8 +12,8 @@
   "session": {
     "actor": "amad",
     "authenticatedAt": "2026-07-06T08:34:30.344Z",
-    "lastActiveAt": "2026-07-06T14:33:50.564Z",
-    "expiresAt": "2026-07-07T14:33:50.565Z"
+    "lastActiveAt": "2026-07-06T15:08:40.389Z",
+    "expiresAt": "2026-07-07T15:08:40.392Z"
   },
   "sessionPolicy": {
     "enabled": true,
@@ -808,6 +808,28 @@
       ],
       "createdBy": "amad",
       "createdAt": "2026-07-06T11:44:42.706Z"
+    },
+    {
+      "id": "agent-nepo",
+      "role": "ux",
+      "title": "UX Researcher",
+      "name": "nepo",
+      "owners": [
+        "amad"
+      ],
+      "createdBy": "amad",
+      "createdAt": "2026-07-06T15:08:40.126Z"
+    },
+    {
+      "id": "agent-nepi",
+      "role": "design",
+      "title": "Design",
+      "name": "nepi",
+      "owners": [
+        "amad"
+      ],
+      "createdBy": "amad",
+      "createdAt": "2026-07-06T15:08:40.263Z"
     }
   ],
   "agentCatalog": [
@@ -2519,7 +2541,85 @@
       "actor": "BURHAN-MOP",
       "kind": "merge-approved",
       "summary": "origin/dev/amad approved and merged to main."
+    },
+    {
+      "at": "2026-07-06T14:40:06.558Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "reverted hero v3 cinematic per user request (commit 1f1417d, merged main f37fa0b): restored v2 gamer room hero (BURHANDEV headline + MULA PROJEK + CLICK TO PLAY), deleted src/components/cinema3d/, pruned gsap/framer-motion/@react-three/postprocessing, first load back to 117kB; v3 recoverable from git history at 290a7b0"
+    },
+    {
+      "at": "2026-07-06T15:08:40.126Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "agent-activate",
+      "summary": "Named UX Researcher as nepo."
+    },
+    {
+      "at": "2026-07-06T15:08:40.126Z",
+      "actor": "amad",
+      "agent": "nepo",
+      "agentRole": "ux",
+      "agentId": "agent-nepo",
+      "kind": "agent-use",
+      "summary": "Set active agent to nepo."
+    },
+    {
+      "at": "2026-07-06T15:08:40.263Z",
+      "actor": "amad",
+      "agent": "nepo",
+      "agentRole": "ux",
+      "agentId": "agent-nepo",
+      "kind": "agent-activate",
+      "summary": "Named Design as nepi."
+    },
+    {
+      "at": "2026-07-06T15:08:40.263Z",
+      "actor": "amad",
+      "agent": "nepi",
+      "agentRole": "design",
+      "agentId": "agent-nepi",
+      "kind": "agent-use",
+      "summary": "Set active agent to nepi."
+    },
+    {
+      "at": "2026-07-06T15:08:40.395Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "agent-use",
+      "summary": "Set active agent to qih."
+    },
+    {
+      "at": "2026-07-06T15:10:44.908Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "hero: play Flow video on main 3D monitor via VideoTexture — fallback to code screen until loaded, auto pause offscreen/reduced-motion, root source videos gitignored"
+    },
+    {
+      "at": "2026-07-06T15:11:39.850Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "hero video: guardian merge after branch sync"
+    },
+    {
+      "at": "2026-07-06T15:11:51.051Z",
+      "actor": "BURHAN-MOP",
+      "kind": "merge-approved",
+      "summary": "origin/dev/amad approved and merged to main."
     }
   ],
-  "lastActiveAt": "2026-07-06T14:33:50.564Z"
+  "lastActiveAt": "2026-07-06T15:08:40.389Z"
 }
