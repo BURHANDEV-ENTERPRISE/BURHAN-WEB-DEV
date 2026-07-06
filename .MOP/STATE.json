@@ -2874,6 +2874,15 @@
       "agentId": "agent-qih",
       "kind": "memory",
       "summary": "scrub v2: guardian merge after sync"
+    },
+    {
+      "at": "2026-07-06T19:32:27.254Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "scrub v2: guardian merge after network recovery"
     }
   ],
   "lastActiveAt": "2026-07-06T19:04:27.634Z"
