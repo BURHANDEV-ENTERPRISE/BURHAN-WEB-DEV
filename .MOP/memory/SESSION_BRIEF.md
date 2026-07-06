@@ -1,6 +1,6 @@
 # MOP Session Brief
 
-Updated: 2026-07-06T15:23:23.612Z
+Updated: 2026-07-06T15:23:46.260Z
 Actor: amad
 Active agent: qih (architect)
 Current month: 2026-07
@@ -15,7 +15,6 @@ Current month: 2026-07
 
 ## Recent Memory
 
-- 2026-07-01T13:11:38.363Z - anis (core): hero: replace CSS mic with R3F 3D condenser mic using @react-three/fiber
 - 2026-07-01T13:19:58.059Z - mad (frontend): mic 3D: besarkan body 2x (radius 0.30), canvas 220x520, camera dikemas
 - 2026-07-01T13:20:34.070Z - mad (frontend): mic 3D: besarkan body 2x (radius 0.30), canvas 220x520, camera dikemas
 - 2026-07-06T08:21:21.335Z - qih (architect): Scanned project + created ux-spec artifact (.MOP/artifacts/design/burhandev-3d-model-layout/ux-spec.md): plan + UI direction for 3D model layout — single shared R3F canvas, scroll camera rig, per-service 3D props, 4 implementation phases; named agents qih/qihplan/kaizer/madzz/madcode/nep/gito/anisweb
@@ -35,3 +34,4 @@ Current month: 2026-07
 - 2026-07-06T15:11:39.851Z - qih (architect): hero video: guardian merge after branch sync
 - 2026-07-06T15:12:06.942Z - qih (architect): hero: Flow video (12MB, public/videos/flow.mp4) now plays on main 3D monitor via THREE.VideoTexture (commit f67fb38, merged main 90240a5) — muted loop autoplay, code-screen fallback until loadeddata, pauses when hero offscreen/tab hidden/reduced-motion, root source mp4s gitignored; named nepo (ux) + nepi (design)
 - 2026-07-06T15:23:23.599Z - qih (architect): scroll effects sitewide: hero room zoom+rotate on scroll (100vh kept) + headline fade, marquee skew lean by scroll, footer reveal, remove dead data-scroll-stage listener
+- 2026-07-06T15:23:46.246Z - qih (architect): scroll effects: guardian merge after branch sync

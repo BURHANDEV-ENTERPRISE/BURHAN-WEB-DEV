@@ -2637,6 +2637,15 @@
       "agentId": "agent-qih",
       "kind": "memory",
       "summary": "scroll effects sitewide: hero room zoom+rotate on scroll (100vh kept) + headline fade, marquee skew lean by scroll, footer reveal, remove dead data-scroll-stage listener"
+    },
+    {
+      "at": "2026-07-06T15:23:46.245Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "scroll effects: guardian merge after branch sync"
     }
   ],
   "lastActiveAt": "2026-07-06T15:12:06.937Z"
