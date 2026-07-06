@@ -3321,6 +3321,15 @@
       "agentId": "agent-qih",
       "kind": "memory",
       "summary": "content trim: remove Process + Digital Craft manifesto sections, Direction section reworked to Why Us (Kenapa BURHANDEV + Bold/Fast/Convert panels)"
+    },
+    {
+      "at": "2026-07-06T21:34:24.543Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "content trim: guardian merge"
     }
   ],
   "lastActiveAt": "2026-07-06T21:26:17.850Z"
