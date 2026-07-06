@@ -1,6 +1,6 @@
 # MOP Session Brief
 
-Updated: 2026-07-06T08:38:00.900Z
+Updated: 2026-07-06T08:48:31.211Z
 Actor: amad
 Active agent: qih (architect)
 Current month: 2026-07
@@ -15,7 +15,6 @@ Current month: 2026-07
 
 ## Recent Memory
 
-- 2026-06-20T08:50:59.104Z - madszz (backend): fix hero visual bugs: ghost text z-index above canvas, camera zoom closer, canvas 58vh, cream bg color matched
 - 2026-06-23T11:11:36.282Z - mad (frontend): Replace hero screenFrame with CSS 3D PC monitor frame (dark bezel + green LED chin) and hanging camera with animated condenser mic (sway, dot-mesh grille, maroon brand ring)
 - 2026-06-23T11:13:41.872Z - mad (frontend): hero: replace bezel with 3D monitor frame + condenser mic
 - 2026-06-23T11:14:30.250Z - mad (frontend): hero: 3D PC monitor frame + condenser mic animation
@@ -35,3 +34,4 @@ Current month: 2026-07
 - 2026-07-06T08:21:21.335Z - qih (architect): Scanned project + created ux-spec artifact (.MOP/artifacts/design/burhandev-3d-model-layout/ux-spec.md): plan + UI direction for 3D model layout — single shared R3F canvas, scroll camera rig, per-service 3D props, 4 implementation phases; named agents qih/qihplan/kaizer/madzz/madcode/nep/gito/anisweb
 - 2026-07-06T08:32:09.173Z - qih (architect): ux-spec: gamer room hero spec approved (hybrid R3F, live screens, parallax, RGB, hotspots, voxel mascot) + readiness gate passed
 - 2026-07-06T08:38:00.875Z - qih (architect): ux-spec: gamer room hero approved (hybrid R3F, live screens, parallax, RGB, hotspots, voxel mascot); session idle timeout 24h; readiness gate ready
+- 2026-07-06T08:48:31.203Z - qih (architect): hero: 3D gamer/coder room (R3F) — live code+stream screens, cursor parallax, RGB breathing, click hotspots (monitor->services, mic->contact), voxel mascot typing at PC, business CTA MULA PROJEK, reduced-motion fallback
