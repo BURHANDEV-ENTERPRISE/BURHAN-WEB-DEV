@@ -18,6 +18,8 @@ interface GamerRoom3DProps {
   reducedMotion?: boolean;
   /** true bila hero di luar viewport / tab hidden — hentikan render loop */
   paused?: boolean;
+  /** 0..1 progress scroll keluar hero — zoom-in + pusing bilik */
+  scrollRef?: React.MutableRefObject<number>;
   onHotspot?: (target: HotspotTarget) => void;
 }
 
@@ -35,12 +37,14 @@ function CameraRig() {
   return null;
 }
 
-/* Parallax: pusing seluruh bilik halus ikut kursor */
+/* Parallax kursor + scroll: pusing bilik ikut mouse, zoom-in bila scroll keluar */
 function ParallaxRig({
   reducedMotion,
+  scrollRef,
   children,
 }: {
   reducedMotion: boolean;
+  scrollRef?: React.MutableRefObject<number>;
   children: React.ReactNode;
 }) {
   const group = useRef<THREE.Group>(null!);
@@ -60,8 +64,14 @@ function ParallaxRig({
     if (!group.current) return;
     const tx = reducedMotion ? 0 : target.current.x;
     const ty = reducedMotion ? 0 : target.current.y;
-    group.current.rotation.y += (-tx * 0.055 - group.current.rotation.y) * 0.05;
-    group.current.rotation.x += (-ty * 0.03 - group.current.rotation.x) * 0.05;
+    const sp = reducedMotion ? 0 : scrollRef?.current ?? 0;
+    // Scroll menolak bilik ke arah kamera (zoom) + pusing sedikit
+    group.current.rotation.y +=
+      (-tx * 0.055 + sp * 0.22 - group.current.rotation.y) * 0.05;
+    group.current.rotation.x +=
+      (-ty * 0.03 + sp * 0.05 - group.current.rotation.x) * 0.05;
+    group.current.position.z += (sp * 1.35 - group.current.position.z) * 0.06;
+    group.current.position.y += (-sp * 0.25 - group.current.position.y) * 0.06;
   });
 
   return <group ref={group}>{children}</group>;
@@ -70,6 +80,7 @@ function ParallaxRig({
 export default function GamerRoom3D({
   reducedMotion = false,
   paused = false,
+  scrollRef,
   onHotspot,
 }: GamerRoom3DProps) {
   return (
@@ -91,7 +102,7 @@ export default function GamerRoom3D({
       <pointLight position={[-1.9, 1.4, -1.4]} intensity={1.2} color="#ffb45e" distance={4.2} />
       <pointLight position={[1.75, 0.75, -0.9]} intensity={1.1} color="#c084fc" distance={3.2} />
 
-      <ParallaxRig reducedMotion={reducedMotion}>
+      <ParallaxRig reducedMotion={reducedMotion} scrollRef={scrollRef}>
         <RoomShell reducedMotion={reducedMotion} />
         <DeskSetup reducedMotion={reducedMotion} paused={paused} onHotspot={onHotspot} />
         <VoxelMascot reducedMotion={reducedMotion} />
