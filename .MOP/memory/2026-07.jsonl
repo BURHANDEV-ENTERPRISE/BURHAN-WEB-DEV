@@ -36,3 +36,5 @@
 {"at":"2026-07-06T16:55:34.391Z","actor":"amad","agent":"qih","agentRole":"architect","agentId":"agent-qih","kind":"conversation","summary":"600vh scrub: guardian merge after sync"}
 {"at":"2026-07-06T19:03:21.236Z","actor":"amad","agent":"qih","agentRole":"architect","agentId":"agent-qih","kind":"conversation","summary":"hero: remove MULA PROJEK + CLICK TO PLAY buttons — headline only over scrub video"}
 {"at":"2026-07-06T19:03:56.561Z","actor":"amad","agent":"qih","agentRole":"architect","agentId":"agent-qih","kind":"conversation","summary":"remove hero CTA buttons: guardian merge after sync"}
+{"at":"2026-07-06T19:04:27.638Z","actor":"amad","agent":"qih","agentRole":"architect","agentId":"agent-qih","kind":"conversation","summary":"removed MULA PROJEK + CLICK TO PLAY buttons from hero — headline only over scrub video; BlockyChar easter egg now unreachable (code kept)"}
+{"at":"2026-07-06T19:06:07.966Z","actor":"amad","agent":"qih","agentRole":"architect","agentId":"agent-qih","kind":"conversation","summary":"sync MOP memory stamps after CTA removal"}
