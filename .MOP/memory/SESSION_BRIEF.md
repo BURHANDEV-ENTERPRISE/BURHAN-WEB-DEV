@@ -1,6 +1,6 @@
 # MOP Session Brief
 
-Updated: 2026-07-06T20:01:34.038Z
+Updated: 2026-07-06T20:02:09.429Z
 Actor: amad
 Active agent: qih (architect)
 Current month: 2026-07
@@ -15,7 +15,6 @@ Current month: 2026-07
 
 ## Recent Memory
 
-- 2026-07-06T16:49:11.447Z - qih (architect): watermark-free video: guardian merge retry
 - 2026-07-06T16:54:14.595Z - qih (architect): hero: extend scroll-scrub journey 420vh -> 600vh for slower cinematic video control
 - 2026-07-06T16:55:00.441Z - qih (architect): 600vh scrub: guardian merge after sync
 - 2026-07-06T16:55:34.391Z - qih (architect): 600vh scrub: guardian merge after sync
@@ -35,3 +34,4 @@ Current month: 2026-07
 - 2026-07-06T19:46:47.736Z - qih (architect): dip-to-black transition: guardian merge after sync
 - 2026-07-06T19:47:59.800Z - qih (architect): fixed hard seam between video sections with dip-to-black: hero video fades out p 0.9-0.98, section2 fades in 0-0.08 and out 0.92-1, both sections share bg #0e0806 so sticky handoff is dark-on-dark invisible (main 937d54a, deployed)
 - 2026-07-06T20:01:34.028Z - qih (architect): hero text swap + section restructure: OpenSection removed (text ENTER THE WORLD OF BURHANDEV + subtitle moved into hero, old hero headline removed), console.mp4 scrub section replaces OpenSection slot, header chip+hamburger hidden while hero in view (fade in after)
+- 2026-07-06T20:02:09.416Z - qih (architect): hero text swap + console section + header hide: push retry
