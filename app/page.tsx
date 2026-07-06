@@ -7,23 +7,18 @@ import StatsSection from "../src/components/StatsSection";
 import TechStackSection from "../src/components/TechStackSection";
 import PricingSection from "../src/components/PricingSection";
 import TestimonialsSection from "../src/components/TestimonialsSection";
-import Image from "next/image";
 
 export default function Home() {
   return (
     <div id="app">
       <header className="top-shell" aria-label="Primary navigation">
         <a className="brand-lockup" href="#top" aria-label="BURHANDEV home">
-          <Image src="/brand/burhan-logo2.png" alt="" width={40} height={40} />
           <span>BURHANDEV</span>
         </a>
         <a className="menu-capsule" href="#contact" aria-label="Contact BURHANDEV">
           <span className="hamburger-icon" aria-hidden="true">
             <i></i>
             <i></i>
-          </span>
-          <span className="capsule-orb" aria-hidden="true">
-            <Image src="/brand/burhan-logo2.png" alt="" width={32} height={32} />
           </span>
         </a>
       </header>

@@ -12,8 +12,8 @@
   "session": {
     "actor": "amad",
     "authenticatedAt": "2026-07-06T08:34:30.344Z",
-    "lastActiveAt": "2026-07-06T15:35:44.791Z",
-    "expiresAt": "2026-07-07T15:35:44.792Z"
+    "lastActiveAt": "2026-07-06T15:43:03.083Z",
+    "expiresAt": "2026-07-07T15:43:03.084Z"
   },
   "sessionPolicy": {
     "enabled": true,
@@ -2718,7 +2718,40 @@
       "actor": "BURHAN-MOP",
       "kind": "merge-approved",
       "summary": "origin/dev/amad approved and merged to main."
+    },
+    {
+      "at": "2026-07-06T15:43:03.086Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "hero video scroll-scrub (commit ed7e779): 260vh sticky section, video.currentTime lerp-scrubbed by scroll progress both directions, headline fade last 25% + subtle zoom, rAF loop gated by IO/tab-visible, reduced-motion = plain 100vh paused-frame hero"
+    },
+    {
+      "at": "2026-07-06T15:46:44.790Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "hero: remove header logo images (text-only brand lockup, hamburger-only capsule), extend scroll-scrub journey 260vh -> 420vh"
+    },
+    {
+      "at": "2026-07-06T15:47:07.054Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "logo removal + longer scrub: guardian merge after sync"
+    },
+    {
+      "at": "2026-07-06T15:47:15.221Z",
+      "actor": "BURHAN-MOP",
+      "kind": "merge-approved",
+      "summary": "origin/dev/amad approved and merged to main."
     }
   ],
-  "lastActiveAt": "2026-07-06T15:35:44.791Z"
+  "lastActiveAt": "2026-07-06T15:43:03.083Z"
 }
