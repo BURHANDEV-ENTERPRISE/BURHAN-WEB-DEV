@@ -109,7 +109,7 @@ export default function WorkSection() {
       <div className={styles.sticky}>
 
         <div className={styles.header}>
-          <h2 className={styles.heading}>Work<br />With Us</h2>
+          <h2 className={styles.heading}>Our<br />Services</h2>
           <a href="#contact" className={styles.ctaBtn} aria-label="Contact BURHANDEV">
             <div className={styles.ctaBorder} />
             <span className={styles.ctaLabel}>Say Hello</span>
