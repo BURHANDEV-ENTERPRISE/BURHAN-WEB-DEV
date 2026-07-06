@@ -1,6 +1,6 @@
 # MOP Session Brief
 
-Updated: 2026-07-06T20:21:54.748Z
+Updated: 2026-07-06T20:22:39.859Z
 Actor: amad
 Active agent: qih (architect)
 Current month: 2026-07
@@ -15,7 +15,6 @@ Current month: 2026-07
 
 ## Recent Memory
 
-- 2026-07-06T19:31:29.007Z - qih (architect): scrub v2: guardian merge after sync
 - 2026-07-06T19:32:27.254Z - qih (architect): scrub v2: guardian merge after network recovery
 - 2026-07-06T19:32:57.295Z - qih (architect): scrub v2 shipped (main 029d807): shared useVideoScrub hook — seek-aware (waits seeked event), double-smoothed progress lerp 0.14, IO+visibility gate, lazy preload metadata->auto; hero rewired to hook; new ScrubVideoSection generic component; console.mp4 (7.4MB delogo+g6) added as scrub section after hero; flow.mp4 re-encoded from original delogo+g6 10.1MB; both watermark-free verified
 - 2026-07-06T19:37:55.178Z - qih (architect): section 2: swap console.mp4 -> keyboard.mp4 (Keyboard_and_monitor_dissolve, delogo+g6, 7.7MB), remove unused console.mp4
@@ -35,3 +34,4 @@ Current month: 2026-07
 - 2026-07-06T20:20:40.037Z - qih (architect): marquee below services: guardian merge after sync
 - 2026-07-06T20:21:12.416Z - qih (architect): marquee below services: guardian merge retry
 - 2026-07-06T20:21:54.738Z - qih (architect): marquee below services: guardian merge retry 2
+- 2026-07-06T20:22:39.844Z - qih (architect): marquee below services: guardian merge final retry
