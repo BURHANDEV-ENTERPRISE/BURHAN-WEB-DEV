@@ -39,6 +39,7 @@ export default function HeroSection() {
   const roomWrapRef                   = useRef<HTMLDivElement>(null);
   const contentRef                    = useRef<HTMLDivElement>(null);
   const videoRef                      = useRef<HTMLVideoElement>(null);
+  const sectionRef                    = useRef<HTMLElement>(null);
 
   // Pause video bila hero keluar viewport atau tab hidden — jimat bateri/CPU
   useEffect(() => {
@@ -58,15 +59,6 @@ export default function HeroSection() {
     };
   }, [stage]);
 
-  // Main/pause video ikut visibility; reduced-motion = frame pertama statik
-  useEffect(() => {
-    if (stage !== "intro") return;
-    const v = videoRef.current;
-    if (!v) return;
-    if (!roomInView || !tabVisible || reducedMotion) v.pause();
-    else v.play().catch(() => {});
-  }, [stage, roomInView, tabVisible, reducedMotion]);
-
   // Hormati prefers-reduced-motion: matikan parallax + animasi RGB bilik 3D
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -76,33 +68,53 @@ export default function HeroSection() {
     return () => mq.removeEventListener("change", update);
   }, []);
 
-  // Scroll effect hero (kekal 100vh): video zoom perlahan + headline naik & pudar
+  // Scroll-scrub: frame video dipandu progress scroll dalam section 260vh.
+  // Video sentiasa paused; currentTime di-lerp ke sasaran supaya smooth.
   useEffect(() => {
     if (stage !== "intro" || reducedMotion) return;
+    const v = videoRef.current;
+    const sec = sectionRef.current;
+    if (!v || !sec) return;
+    v.pause();
+
     let raf = 0;
-    const onScroll = () => {
-      cancelAnimationFrame(raf);
-      raf = requestAnimationFrame(() => {
-        const p = Math.min(1, Math.max(0, window.scrollY / (window.innerHeight || 1)));
-        const el = contentRef.current;
-        if (el) {
-          // Kekalkan translateX(-50%) dari CSS untuk centering
-          el.style.transform = `translateX(-50%) translateY(${(-p * 72).toFixed(1)}px)`;
-          el.style.opacity = String(Math.max(0, 1 - p * 1.2));
-        }
-        const v = videoRef.current;
-        if (v) v.style.transform = `scale(${(1 + p * 0.08).toFixed(3)})`;
-      });
+    let alive = true;
+    const tick = () => {
+      if (!alive) return;
+      raf = requestAnimationFrame(tick);
+      // Jangan buat kerja bila hero luar viewport / tab hidden
+      if (!roomInView || !tabVisible) return;
+
+      const rect = sec.getBoundingClientRect();
+      const travel = Math.max(1, rect.height - window.innerHeight);
+      const p = Math.min(1, Math.max(0, -rect.top / travel));
+
+      // Scrub frame video ikut scroll (lerp supaya tak tersentak)
+      if (v.readyState >= 1 && v.duration) {
+        const target = p * Math.max(0, v.duration - 0.08);
+        const diff = target - v.currentTime;
+        if (Math.abs(diff) > 0.02) v.currentTime += diff * 0.22;
+      }
+
+      // Headline kekal, naik & pudar pada 25% akhir journey
+      const el = contentRef.current;
+      if (el) {
+        const fade = p < 0.75 ? 0 : (p - 0.75) / 0.25;
+        el.style.transform = `translateX(-50%) translateY(${(-fade * 64).toFixed(1)}px)`;
+        el.style.opacity = String(Math.max(0, 1 - fade * 1.1));
+      }
+      // Zoom halus sepanjang journey
+      v.style.transform = `scale(${(1 + p * 0.07).toFixed(3)})`;
     };
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
+    raf = requestAnimationFrame(tick);
     return () => {
+      alive = false;
       cancelAnimationFrame(raf);
-      window.removeEventListener("scroll", onScroll);
     };
-  }, [stage, reducedMotion]);
+  }, [stage, reducedMotion, roomInView, tabVisible]);
 
   const handlePlay = useCallback(() => {
+    window.scrollTo(0, 0); // easter egg bermula dari atas
     setExploding(true);
     setTimeout(() => {
       setStage("spawning");
@@ -161,37 +173,39 @@ export default function HeroSection() {
     return "idle";
   };
 
-  // ── STAGE 1: Intro screen — bilik gamer/coder 3D ────
+  // ── STAGE 1: Intro — video Flow scroll-scrub (260vh, sticky) ────
   if (stage === "intro") {
     return (
       <section
-        className={`${styles.introScreen} ${exploding ? styles.exploding : ""}`}
+        ref={sectionRef}
+        className={`${styles.videoScrubSection} ${exploding ? styles.exploding : ""}`}
+        aria-label="BURHANDEV hero"
       >
-        {/* Video Flow — latar penuh hero */}
-        <div ref={roomWrapRef} className={styles.roomWrap} aria-hidden="true">
-          <video
-            ref={videoRef}
-            className={styles.heroVideo}
-            src="/videos/flow.mp4"
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="auto"
-          />
-          <div className={styles.videoShade} />
-        </div>
+        <div className={styles.videoSticky}>
+          {/* Video Flow — frame dipandu scroll */}
+          <div ref={roomWrapRef} className={styles.roomWrap} aria-hidden="true">
+            <video
+              ref={videoRef}
+              className={styles.heroVideo}
+              src="/videos/flow.mp4"
+              muted
+              playsInline
+              preload="auto"
+            />
+            <div className={styles.videoShade} />
+          </div>
 
-        {/* headline + CTA */}
-        <div ref={contentRef} className={styles.introContent}>
-          <h1 className={styles.introTitle}>BURHANDEV.</h1>
-          <p className={styles.introSub}>BUILD YOUR NEXT BOLD SITE.</p>
-          <div className={styles.introCtas}>
-            <a className={styles.ctaPrimary} href="#contact">MULA PROJEK</a>
-            <button className={styles.playBtn} onClick={handlePlay} aria-label="Enter BurhanDev">
-              <span className={styles.playIcon} aria-hidden="true">▶</span>
-              <span>CLICK TO PLAY</span>
-            </button>
+          {/* headline + CTA */}
+          <div ref={contentRef} className={styles.introContent}>
+            <h1 className={styles.introTitle}>BURHANDEV.</h1>
+            <p className={styles.introSub}>BUILD YOUR NEXT BOLD SITE.</p>
+            <div className={styles.introCtas}>
+              <a className={styles.ctaPrimary} href="#contact">MULA PROJEK</a>
+              <button className={styles.playBtn} onClick={handlePlay} aria-label="Enter BurhanDev">
+                <span className={styles.playIcon} aria-hidden="true">▶</span>
+                <span>CLICK TO PLAY</span>
+              </button>
+            </div>
           </div>
         </div>
       </section>
