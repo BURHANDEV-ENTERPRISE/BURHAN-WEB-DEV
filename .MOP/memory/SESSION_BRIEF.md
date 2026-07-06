@@ -1,6 +1,6 @@
 # MOP Session Brief
 
-Updated: 2026-07-06T21:01:15.933Z
+Updated: 2026-07-06T21:05:15.380Z
 Actor: amad
 Active agent: qih (architect)
 Current month: 2026-07
@@ -15,10 +15,6 @@ Current month: 2026-07
 
 ## Recent Memory
 
-- 2026-07-06T19:38:23.662Z - qih (architect): keyboard video swap: guardian merge after sync
-- 2026-07-06T19:39:18.673Z - qih (architect): keyboard video swap: guardian merge retry
-- 2026-07-06T19:40:47.301Z - qih (architect): section 2 video swapped console->keyboard (Keyboard_and_monitor_dissolve delogo+g6 7.7MB, watermark verified clean incl cable edge), console.mp4 removed from public, merged main df03a9c, Pages deploy success
-- 2026-07-06T19:46:04.694Z - qih (architect): transition fix: dip-to-black crossover between video sections — hero fades out last 8-10%, section 2 fades in from dark and out at end, no more hard seam at sticky handoff
 - 2026-07-06T19:46:47.736Z - qih (architect): dip-to-black transition: guardian merge after sync
 - 2026-07-06T19:47:59.800Z - qih (architect): fixed hard seam between video sections with dip-to-black: hero video fades out p 0.9-0.98, section2 fades in 0-0.08 and out 0.92-1, both sections share bg #0e0806 so sticky handoff is dark-on-dark invisible (main 937d54a, deployed)
 - 2026-07-06T20:01:34.028Z - qih (architect): hero text swap + section restructure: OpenSection removed (text ENTER THE WORLD OF BURHANDEV + subtitle moved into hero, old hero headline removed), console.mp4 scrub section replaces OpenSection slot, header chip+hamburger hidden while hero in view (fade in after)
@@ -35,3 +31,7 @@ Current month: 2026-07
 - 2026-07-06T20:23:54.791Z - qih (architect): MarqueeStrip moved from after keyboard video to below Services section (main 8eefa25, deployed); page order now: hero, keyboard scrub, console scrub, manifesto, stats, services, MARQUEE, techstack, process...
 - 2026-07-06T21:00:54.511Z - qih (architect): console scrub section journey extended 320vh -> 500vh
 - 2026-07-06T21:01:15.924Z - qih (architect): console 500vh: guardian merge after sync
+- 2026-07-06T21:02:13.050Z - qih (architect): console 500vh: guardian push retry
+- 2026-07-06T21:03:33.033Z - qih (architect): console 500vh: guardian push retry 2
+- 2026-07-06T21:04:23.290Z - qih (architect): console 500vh: guardian push final
+- 2026-07-06T21:05:15.370Z - qih (architect): console 500vh: guardian push loop
