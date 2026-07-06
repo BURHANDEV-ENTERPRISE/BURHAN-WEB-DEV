@@ -2670,6 +2670,15 @@
       "agentId": "agent-qih",
       "kind": "memory",
       "summary": "hero: replace 3D room with fullscreen Flow video background — video hero w/ shade overlay for headline contrast, scroll zoom + headline fade kept, pause offscreen/tab-hidden/reduced-motion; removed room3d+Mic3D components and pruned three/@react-three/skinview3d deps"
+    },
+    {
+      "at": "2026-07-06T15:35:21.495Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "video hero: guardian merge after branch sync"
     }
   ],
   "lastActiveAt": "2026-07-06T15:24:18.033Z"
