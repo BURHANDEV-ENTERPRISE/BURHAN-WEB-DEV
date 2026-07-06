@@ -1,8 +1,9 @@
 "use client";
 
-import { useRef, useState, useCallback, useEffect } from "react";
+import { useRef, useState, useCallback } from "react";
 import styles from "./HeroSection.module.css";
 import BlockyChar, { type Pose } from "./BlockyChar";
+import useVideoScrub from "./useVideoScrub";
 
 const FACE_URL = `https://crafatar.com/avatars/d5a391fb-c1cd-4385-868b-5e8a28aa1ccf?size=64&overlay=true`;
 
@@ -32,86 +33,29 @@ export default function HeroSection() {
   const [fBubble, setFBubble]         = useState<(string | null)[]>([null, null, null]);
   const [friendsVis, setFriendsVis]   = useState(false);
   const [exploding, setExploding]     = useState(false);
-  const [reducedMotion, setReducedMotion] = useState(false);
-  const [roomInView, setRoomInView]   = useState(true);
-  const [tabVisible, setTabVisible]   = useState(true);
   const scrollBound                   = useRef(false);
-  const roomWrapRef                   = useRef<HTMLDivElement>(null);
   const contentRef                    = useRef<HTMLDivElement>(null);
   const videoRef                      = useRef<HTMLVideoElement>(null);
   const sectionRef                    = useRef<HTMLElement>(null);
 
-  // Pause video bila hero keluar viewport atau tab hidden — jimat bateri/CPU
-  useEffect(() => {
-    if (stage !== "intro") return;
-    const el = roomWrapRef.current;
-    if (!el) return;
-    const io = new IntersectionObserver(
-      ([entry]) => setRoomInView(entry.isIntersecting),
-      { threshold: 0.02 }
-    );
-    io.observe(el);
-    const onVis = () => setTabVisible(document.visibilityState === "visible");
-    document.addEventListener("visibilitychange", onVis);
-    return () => {
-      io.disconnect();
-      document.removeEventListener("visibilitychange", onVis);
-    };
-  }, [stage]);
-
-  // Hormati prefers-reduced-motion: matikan parallax + animasi RGB bilik 3D
-  useEffect(() => {
-    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const update = () => setReducedMotion(mq.matches);
-    update();
-    mq.addEventListener("change", update);
-    return () => mq.removeEventListener("change", update);
+  // Overlay ikut progress terlembut: headline naik & pudar pada 25% akhir,
+  // video zoom halus sepanjang journey
+  const onScrubProgress = useCallback((p: number) => {
+    const el = contentRef.current;
+    if (el) {
+      const fade = p < 0.75 ? 0 : (p - 0.75) / 0.25;
+      el.style.transform = `translateX(-50%) translateY(${(-fade * 64).toFixed(1)}px)`;
+      el.style.opacity = String(Math.max(0, 1 - fade * 1.1));
+    }
+    const v = videoRef.current;
+    if (v) v.style.transform = `scale(${(1 + p * 0.07).toFixed(3)})`;
   }, []);
 
-  // Scroll-scrub: frame video dipandu progress scroll dalam section 600vh.
-  // Video sentiasa paused; currentTime di-lerp ke sasaran supaya smooth.
-  useEffect(() => {
-    if (stage !== "intro" || reducedMotion) return;
-    const v = videoRef.current;
-    const sec = sectionRef.current;
-    if (!v || !sec) return;
-    v.pause();
-
-    let raf = 0;
-    let alive = true;
-    const tick = () => {
-      if (!alive) return;
-      raf = requestAnimationFrame(tick);
-      // Jangan buat kerja bila hero luar viewport / tab hidden
-      if (!roomInView || !tabVisible) return;
-
-      const rect = sec.getBoundingClientRect();
-      const travel = Math.max(1, rect.height - window.innerHeight);
-      const p = Math.min(1, Math.max(0, -rect.top / travel));
-
-      // Scrub frame video ikut scroll (lerp supaya tak tersentak)
-      if (v.readyState >= 1 && v.duration) {
-        const target = p * Math.max(0, v.duration - 0.08);
-        const diff = target - v.currentTime;
-        if (Math.abs(diff) > 0.02) v.currentTime += diff * 0.22;
-      }
-
-      // Headline kekal, naik & pudar pada 25% akhir journey
-      const el = contentRef.current;
-      if (el) {
-        const fade = p < 0.75 ? 0 : (p - 0.75) / 0.25;
-        el.style.transform = `translateX(-50%) translateY(${(-fade * 64).toFixed(1)}px)`;
-        el.style.opacity = String(Math.max(0, 1 - fade * 1.1));
-      }
-      // Zoom halus sepanjang journey
-      v.style.transform = `scale(${(1 + p * 0.07).toFixed(3)})`;
-    };
-    raf = requestAnimationFrame(tick);
-    return () => {
-      alive = false;
-      cancelAnimationFrame(raf);
-    };
-  }, [stage, reducedMotion, roomInView, tabVisible]);
+  // Enjin scrub dikongsi (seek-aware + IO gate + reduced-motion safe)
+  useVideoScrub(sectionRef, videoRef, {
+    enabled: stage === "intro",
+    onProgress: onScrubProgress,
+  });
 
   const handlePlay = useCallback(() => {
     window.scrollTo(0, 0); // easter egg bermula dari atas
@@ -183,7 +127,7 @@ export default function HeroSection() {
       >
         <div className={styles.videoSticky}>
           {/* Video Flow — frame dipandu scroll */}
-          <div ref={roomWrapRef} className={styles.roomWrap} aria-hidden="true">
+          <div className={styles.roomWrap} aria-hidden="true">
             <video
               ref={videoRef}
               className={styles.heroVideo}

@@ -2856,6 +2856,15 @@
       "agentId": "agent-qih",
       "kind": "memory",
       "summary": "sync MOP memory stamps after CTA removal"
+    },
+    {
+      "at": "2026-07-06T19:30:42.061Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "scrub v2: shared useVideoScrub hook (seek-aware, smoothed progress, IO gate, lazy preload), hero rewired to hook, new ScrubVideoSection with console.mp4 (delogo+g6) after hero, flow.mp4 re-encoded from original delogo+g6 for silkier scrub"
     }
   ],
   "lastActiveAt": "2026-07-06T19:04:27.634Z"

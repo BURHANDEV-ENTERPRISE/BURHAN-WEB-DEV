@@ -1,5 +1,6 @@
 import ScrollEffects from "../src/components/ScrollEffects";
 import HeroSection from "../src/components/HeroSection";
+import ScrubVideoSection from "../src/components/ScrubVideoSection";
 import OpenSection from "../src/components/OpenSection";
 import WorkSection from "../src/components/WorkSection";
 import MarqueeStrip from "../src/components/MarqueeStrip";
@@ -25,6 +26,11 @@ export default function Home() {
 
       <main>
         <HeroSection />
+        <ScrubVideoSection
+          src="/videos/console.mp4"
+          heightVh={320}
+          ariaLabel="BURHANDEV console reveal"
+        />
         <MarqueeStrip />
         <OpenSection />
 
