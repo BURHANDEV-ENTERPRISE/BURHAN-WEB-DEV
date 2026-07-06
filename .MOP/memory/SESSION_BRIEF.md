@@ -1,6 +1,6 @@
 # MOP Session Brief
 
-Updated: 2026-07-06T14:11:33.052Z
+Updated: 2026-07-06T14:33:25.141Z
 Actor: amad
 Active agent: qih (architect)
 Current month: 2026-07
@@ -15,8 +15,6 @@ Current month: 2026-07
 
 ## Recent Memory
 
-- 2026-06-23T11:16:34.265Z - mad (frontend): hero: 3D PC monitor frame + condenser mic + fix secret scan exclusions
-- 2026-06-23T14:05:19.676Z - mad (frontend): fix: mic chrome/silver body — visible on dark hero bg
 - 2026-06-26T06:59:39.441Z - moon (reviewer): Review SpiderWeb PRD v3.0: solid foundation, gaps found in API versioning, real-time logs spec, zero-downtime deploy, concurrent deploy, webhook secret, cascade delete behaviors, agent upgrade strategy
 - 2026-06-26T07:16:55.791Z - moon (reviewer): Review BURHANDEV website code: bugs found (footer dead links, Space Grotesk unloaded, data-scroll-stage ghost selector, Press Start 2P unused), UX gaps (hero no CTA, no portfolio, identical service visuals, no contact form)
 - 2026-06-26T07:32:09.442Z - moon (reviewer): Created docs/SpiderWeb-PRD-v3.1-additions.md: 15 new sections added (webhook security, zero-downtime, concurrent deploy, API versioning, SSE logs, rate limits, cascade deletes, agent lifecycle, port isolation, build cache, wildcard DNS, PgBouncer, error pages, health checks)
@@ -35,3 +33,5 @@ Current month: 2026-07
 - 2026-07-06T08:48:56.046Z - qih (architect): Built 3D gamer room hero (commit a74d4bc, merged to main 8a7e2c9): src/components/room3d/ GamerRoom3D+RoomShell+DeskSetup+VoxelMascot+screens — live typing code screen, stream chat screen, cursor parallax, RGB breathing, hotspots monitor->services mic->contact, voxel mascot typing, CTA MULA PROJEK, prefers-reduced-motion fallback; build passed 117kB first load; session idle timeout raised to 24h (auto-login new chat refused per MOP auth policy)
 - 2026-07-06T14:10:43.943Z - qih (architect): perf: fix scroll jank — pause 3D room render when hero offscreen/tab hidden (IntersectionObserver + frameloop never), dpr cap 1.5, remove mix-blend-mode on fixed scanline overlay, remove backdrop-filter on fixed header, gate WorkSection scroll rAF by in-view, remove redundant fixed curtain layer
 - 2026-07-06T14:11:32.993Z - qih (architect): perf: fix scroll jank — pause 3D room when hero offscreen/tab hidden, dpr cap 1.5, remove blend-mode on fixed scanline overlay, remove fixed-header backdrop blur, gate WorkSection scroll rAF, drop redundant fixed curtain
+- 2026-07-06T14:32:34.279Z - qih (architect): hero v3: guardian merge retry after network hiccup
+- 2026-07-06T14:33:25.130Z - qih (architect): hero v3: sync MOP memory stamps + guardian merge retry

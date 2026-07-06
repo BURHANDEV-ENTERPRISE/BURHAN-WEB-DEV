@@ -2462,6 +2462,30 @@
       "actor": "BURHAN-MOP",
       "kind": "merge-approved",
       "summary": "origin/dev/amad approved and merged to main."
+    },
+    {
+      "at": "2026-07-06T14:32:34.279Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "hero v3: guardian merge retry after network hiccup"
+    },
+    {
+      "at": "2026-07-06T14:33:25.129Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "hero v3: sync MOP memory stamps + guardian merge retry"
+    },
+    {
+      "at": "2026-07-06T14:33:34.339Z",
+      "actor": "BURHAN-MOP",
+      "kind": "merge-approved",
+      "summary": "origin/dev/amad approved and merged to main."
     }
   ],
   "lastActiveAt": "2026-07-06T11:44:42.790Z"
