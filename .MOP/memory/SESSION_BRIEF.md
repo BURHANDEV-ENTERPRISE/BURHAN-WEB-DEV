@@ -1,6 +1,6 @@
 # MOP Session Brief
 
-Updated: 2026-07-06T08:48:31.211Z
+Updated: 2026-07-06T14:11:33.052Z
 Actor: amad
 Active agent: qih (architect)
 Current month: 2026-07
@@ -15,9 +15,6 @@ Current month: 2026-07
 
 ## Recent Memory
 
-- 2026-06-23T11:11:36.282Z - mad (frontend): Replace hero screenFrame with CSS 3D PC monitor frame (dark bezel + green LED chin) and hanging camera with animated condenser mic (sway, dot-mesh grille, maroon brand ring)
-- 2026-06-23T11:13:41.872Z - mad (frontend): hero: replace bezel with 3D monitor frame + condenser mic
-- 2026-06-23T11:14:30.250Z - mad (frontend): hero: 3D PC monitor frame + condenser mic animation
 - 2026-06-23T11:16:34.265Z - mad (frontend): hero: 3D PC monitor frame + condenser mic + fix secret scan exclusions
 - 2026-06-23T14:05:19.676Z - mad (frontend): fix: mic chrome/silver body — visible on dark hero bg
 - 2026-06-26T06:59:39.441Z - moon (reviewer): Review SpiderWeb PRD v3.0: solid foundation, gaps found in API versioning, real-time logs spec, zero-downtime deploy, concurrent deploy, webhook secret, cascade delete behaviors, agent upgrade strategy
@@ -35,3 +32,6 @@ Current month: 2026-07
 - 2026-07-06T08:32:09.173Z - qih (architect): ux-spec: gamer room hero spec approved (hybrid R3F, live screens, parallax, RGB, hotspots, voxel mascot) + readiness gate passed
 - 2026-07-06T08:38:00.875Z - qih (architect): ux-spec: gamer room hero approved (hybrid R3F, live screens, parallax, RGB, hotspots, voxel mascot); session idle timeout 24h; readiness gate ready
 - 2026-07-06T08:48:31.203Z - qih (architect): hero: 3D gamer/coder room (R3F) — live code+stream screens, cursor parallax, RGB breathing, click hotspots (monitor->services, mic->contact), voxel mascot typing at PC, business CTA MULA PROJEK, reduced-motion fallback
+- 2026-07-06T08:48:56.046Z - qih (architect): Built 3D gamer room hero (commit a74d4bc, merged to main 8a7e2c9): src/components/room3d/ GamerRoom3D+RoomShell+DeskSetup+VoxelMascot+screens — live typing code screen, stream chat screen, cursor parallax, RGB breathing, hotspots monitor->services mic->contact, voxel mascot typing, CTA MULA PROJEK, prefers-reduced-motion fallback; build passed 117kB first load; session idle timeout raised to 24h (auto-login new chat refused per MOP auth policy)
+- 2026-07-06T14:10:43.943Z - qih (architect): perf: fix scroll jank — pause 3D room render when hero offscreen/tab hidden (IntersectionObserver + frameloop never), dpr cap 1.5, remove mix-blend-mode on fixed scanline overlay, remove backdrop-filter on fixed header, gate WorkSection scroll rAF by in-view, remove redundant fixed curtain layer
+- 2026-07-06T14:11:32.993Z - qih (architect): perf: fix scroll jank — pause 3D room when hero offscreen/tab hidden, dpr cap 1.5, remove blend-mode on fixed scanline overlay, remove fixed-header backdrop blur, gate WorkSection scroll rAF, drop redundant fixed curtain

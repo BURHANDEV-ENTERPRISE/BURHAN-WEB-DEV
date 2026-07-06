@@ -12,8 +12,8 @@
   "session": {
     "actor": "amad",
     "authenticatedAt": "2026-07-06T08:34:30.344Z",
-    "lastActiveAt": "2026-07-06T08:34:30.344Z",
-    "expiresAt": "2026-07-06T09:34:30.345Z"
+    "lastActiveAt": "2026-07-06T11:44:42.790Z",
+    "expiresAt": "2026-07-07T11:44:42.791Z"
   },
   "sessionPolicy": {
     "enabled": true,
@@ -797,6 +797,17 @@
       ],
       "createdBy": "amad",
       "createdAt": "2026-07-06T08:18:49.773Z"
+    },
+    {
+      "id": "agent-turbo",
+      "role": "performance",
+      "title": "Performance Engineer",
+      "name": "turbo",
+      "owners": [
+        "amad"
+      ],
+      "createdBy": "amad",
+      "createdAt": "2026-07-06T11:44:42.706Z"
     }
   ],
   "agentCatalog": [
@@ -2382,7 +2393,76 @@
       "actor": "BURHAN-MOP",
       "kind": "merge-approved",
       "summary": "origin/dev/amad approved and merged to main."
+    },
+    {
+      "at": "2026-07-06T08:48:56.045Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "Built 3D gamer room hero (commit a74d4bc, merged to main 8a7e2c9): src/components/room3d/ GamerRoom3D+RoomShell+DeskSetup+VoxelMascot+screens — live typing code screen, stream chat screen, cursor parallax, RGB breathing, hotspots monitor->services mic->contact, voxel mascot typing, CTA MULA PROJEK, prefers-reduced-motion fallback; build passed 117kB first load; session idle timeout raised to 24h (auto-login new chat refused per MOP auth policy)"
+    },
+    {
+      "at": "2026-07-06T11:43:52.522Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "agent-route",
+      "summary": "Routed task to qih: New or broad system task routed to System Architect for high-reasoning planning before implementation."
+    },
+    {
+      "at": "2026-07-06T11:44:42.706Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "agent-activate",
+      "summary": "Named Performance Engineer as turbo."
+    },
+    {
+      "at": "2026-07-06T11:44:42.706Z",
+      "actor": "amad",
+      "agent": "turbo",
+      "agentRole": "performance",
+      "agentId": "agent-turbo",
+      "kind": "agent-use",
+      "summary": "Set active agent to turbo."
+    },
+    {
+      "at": "2026-07-06T11:44:42.794Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "agent-use",
+      "summary": "Set active agent to qih."
+    },
+    {
+      "at": "2026-07-06T14:10:43.941Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "perf: fix scroll jank — pause 3D room render when hero offscreen/tab hidden (IntersectionObserver + frameloop never), dpr cap 1.5, remove mix-blend-mode on fixed scanline overlay, remove backdrop-filter on fixed header, gate WorkSection scroll rAF by in-view, remove redundant fixed curtain layer"
+    },
+    {
+      "at": "2026-07-06T14:11:32.979Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "perf: fix scroll jank — pause 3D room when hero offscreen/tab hidden, dpr cap 1.5, remove blend-mode on fixed scanline overlay, remove fixed-header backdrop blur, gate WorkSection scroll rAF, drop redundant fixed curtain"
+    },
+    {
+      "at": "2026-07-06T14:11:42.400Z",
+      "actor": "BURHAN-MOP",
+      "kind": "merge-approved",
+      "summary": "origin/dev/amad approved and merged to main."
     }
   ],
-  "lastActiveAt": "2026-07-06T08:34:30.344Z"
+  "lastActiveAt": "2026-07-06T11:44:42.790Z"
 }

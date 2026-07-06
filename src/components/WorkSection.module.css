@@ -22,16 +22,9 @@
   box-sizing: border-box;
 }
 
-/* Dark curtain covers the full viewport so spreading cards never show
-   against mismatched backgrounds on mobile / small viewports */
-.sticky::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background: #020D0D;
-  z-index: -1;
-  pointer-events: none;
-}
+/* Curtain fixed penuh viewport dibuang — .section background (#020D0D,
+   280vh) sudah meliputi kawasan spread kad; layer fixed kekal aktif
+   sepanjang page dan membebankan compositing masa scroll. */
 
 /* ── Header ── */
 .header {

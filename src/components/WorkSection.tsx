@@ -60,7 +60,21 @@ export default function WorkSection() {
   }, [getProgress]);
 
   useEffect(() => {
+    // Hanya kira transform bila section hampir/dalam viewport —
+    // elak kerja rAF pada setiap scroll event di seluruh page.
+    const inView = { current: false };
+    const el = sectionRef.current;
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        inView.current = entry.isIntersecting;
+        if (entry.isIntersecting) render();
+      },
+      { rootMargin: "30% 0px" }
+    );
+    if (el) io.observe(el);
+
     const onScroll = () => {
+      if (!inView.current) return;
       cancelAnimationFrame(rafRef.current);
       rafRef.current = requestAnimationFrame(render);
     };
@@ -69,6 +83,7 @@ export default function WorkSection() {
     return () => {
       window.removeEventListener("scroll", onScroll);
       cancelAnimationFrame(rafRef.current);
+      io.disconnect();
     };
   }, [render]);
 
