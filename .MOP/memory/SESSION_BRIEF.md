@@ -1,6 +1,6 @@
 # MOP Session Brief
 
-Updated: 2026-07-06T14:31:41.270Z
+Updated: 2026-07-06T14:33:25.141Z
 Actor: amad
 Active agent: qih (architect)
 Current month: 2026-07
@@ -33,5 +33,5 @@ Current month: 2026-07
 - 2026-07-06T08:48:56.046Z - qih (architect): Built 3D gamer room hero (commit a74d4bc, merged to main 8a7e2c9): src/components/room3d/ GamerRoom3D+RoomShell+DeskSetup+VoxelMascot+screens — live typing code screen, stream chat screen, cursor parallax, RGB breathing, hotspots monitor->services mic->contact, voxel mascot typing, CTA MULA PROJEK, prefers-reduced-motion fallback; build passed 117kB first load; session idle timeout raised to 24h (auto-login new chat refused per MOP auth policy)
 - 2026-07-06T14:10:43.943Z - qih (architect): perf: fix scroll jank — pause 3D room render when hero offscreen/tab hidden (IntersectionObserver + frameloop never), dpr cap 1.5, remove mix-blend-mode on fixed scanline overlay, remove backdrop-filter on fixed header, gate WorkSection scroll rAF by in-view, remove redundant fixed curtain layer
 - 2026-07-06T14:11:32.993Z - qih (architect): perf: fix scroll jank — pause 3D room when hero offscreen/tab hidden, dpr cap 1.5, remove blend-mode on fixed scanline overlay, remove fixed-header backdrop blur, gate WorkSection scroll rAF, drop redundant fixed curtain
-- 2026-07-06T14:11:55.895Z - qih (architect): perf fix scroll jank (commit 93b63fb, merged main 8188fdc): paused 3D room render via IntersectionObserver+frameloop never when hero offscreen/tab hidden, dpr 1.75->1.5, removed mix-blend-mode on body::after fixed scanline, removed backdrop-filter blur(18px) on fixed header, gated WorkSection scroll rAF by in-view, deleted redundant fixed curtain layer; named turbo (performance agent); build passed
-- 2026-07-06T14:31:41.260Z - qih (architect): hero v3: cinematic 3D scroll journey — cozy gaming room, curved ultrawide monitor with animated anime illustration (leaves+face reveal), pothos instanced plant, hex panel lights, vinyl toys, HUD desk mat, procedural lamp arm, GSAP ScrollTrigger 4-stage camera dolly/orbit, Bloom+Vignette+DoF, Burhan Console HUD overlay (framer-motion, JetBrains Mono), removed big headline
+- 2026-07-06T14:32:34.279Z - qih (architect): hero v3: guardian merge retry after network hiccup
+- 2026-07-06T14:33:25.130Z - qih (architect): hero v3: sync MOP memory stamps + guardian merge retry
