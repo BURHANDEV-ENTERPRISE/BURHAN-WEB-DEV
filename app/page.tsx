@@ -30,7 +30,6 @@ export default function Home() {
           heightVh={320}
           ariaLabel="BURHANDEV keyboard and monitor dissolve"
         />
-        <MarqueeStrip />
         <ScrubVideoSection
           src="/videos/console.mp4"
           heightVh={320}
@@ -102,6 +101,8 @@ export default function Home() {
             </article>
           </div>
         </section>
+
+        <MarqueeStrip />
 
         <TechStackSection />
 
