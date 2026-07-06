@@ -119,6 +119,25 @@
   100% { opacity: 0; transform: scale(1.06); filter: brightness(6) saturate(0); }
 }
 
+/* ── Hero scroll-scrub: section tinggi, video sticky ── */
+.videoScrubSection {
+  position: relative;
+  height: 260vh;
+  background: #0e0806;
+}
+
+.videoSticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Reduced motion: tiada journey scrub — hero biasa 100vh */
+@media (prefers-reduced-motion: reduce) {
+  .videoScrubSection { height: 100vh; }
+}
+
 /* ── Latar video penuh viewport ── */
 .roomWrap {
   position: absolute;
