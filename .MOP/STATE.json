@@ -3387,6 +3387,15 @@
       "agentId": "agent-qih",
       "kind": "memory",
       "summary": "ui polish: hide all eyebrow pill badges (START etc), shrink footer wordmark 14vw->7vw and tighten footer paddings"
+    },
+    {
+      "at": "2026-07-07T11:13:32.715Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "ui polish: hide all eyebrow pill badges (START etc), shrink footer wordmark 14vw->7vw and tighten footer paddings"
     }
   ],
   "lastActiveAt": "2026-07-07T11:09:01.894Z"
