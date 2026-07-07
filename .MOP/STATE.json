@@ -3354,6 +3354,15 @@
       "agentId": "agent-qih",
       "kind": "memory",
       "summary": "transition: replace long dip-to-black with curtain reveal — outgoing video darkens only last 4pct, incoming visible from start, black gap shrinks from ~130vh to moment"
+    },
+    {
+      "at": "2026-07-07T11:07:45.786Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "transition: replace long dip-to-black with curtain reveal — outgoing video darkens only last 4pct, incoming visible from start, black gap shrinks from ~130vh to moment"
     }
   ],
   "lastActiveAt": "2026-07-06T21:35:48.978Z"
