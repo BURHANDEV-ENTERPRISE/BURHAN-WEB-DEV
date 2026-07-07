@@ -1,6 +1,7 @@
 import ScrollEffects from "../src/components/ScrollEffects";
 import HeroSection from "../src/components/HeroSection";
 import ScrubVideoSection from "../src/components/ScrubVideoSection";
+import NavMenu from "../src/components/NavMenu";
 import WorkSection from "../src/components/WorkSection";
 import MarqueeStrip from "../src/components/MarqueeStrip";
 import StatsSection from "../src/components/StatsSection";
@@ -15,12 +16,7 @@ export default function Home() {
         <a className="brand-lockup" href="#top" aria-label="BURHANDEV home">
           <span>BURHANDEV</span>
         </a>
-        <a className="menu-capsule" href="#contact" aria-label="Contact BURHANDEV">
-          <span className="hamburger-icon" aria-hidden="true">
-            <i></i>
-            <i></i>
-          </span>
-        </a>
+        <NavMenu />
       </header>
 
       <main>
