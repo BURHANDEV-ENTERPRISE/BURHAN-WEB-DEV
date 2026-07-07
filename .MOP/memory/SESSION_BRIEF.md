@@ -1,6 +1,6 @@
 # MOP Session Brief
 
-Updated: 2026-07-06T21:34:24.556Z
+Updated: 2026-07-07T11:06:57.529Z
 Actor: amad
 Active agent: qih (architect)
 Current month: 2026-07
@@ -15,8 +15,6 @@ Current month: 2026-07
 
 ## Recent Memory
 
-- 2026-07-06T21:14:01.796Z - qih (architect): services revamp: WorkSection (WORK WITH US card spread) becomes the Services section with id=services, old 4-row services section removed
-- 2026-07-06T21:14:55.075Z - qih (architect): services revamp: WorkSection (WORK WITH US card spread) becomes the Services section with id=services, old 4-row services section removed
 - 2026-07-06T21:15:47.658Z - qih (architect): services revamp: WorkSection (WORK WITH US card spread) becomes the Services section with id=services, old 4-row services section removed
 - 2026-07-06T21:16:41.399Z - qih (architect): services revamp: WorkSection (WORK WITH US card spread) becomes the Services section with id=services, old 4-row services section removed
 - 2026-07-06T21:17:34.800Z - qih (architect): services revamp: WorkSection (WORK WITH US card spread) becomes the Services section with id=services, old 4-row services section removed
@@ -35,3 +33,5 @@ Current month: 2026-07
 - 2026-07-06T21:32:54.881Z - qih (architect): content trim: remove Process + Digital Craft manifesto sections, Direction section reworked to Why Us (Kenapa BURHANDEV + Bold/Fast/Convert panels)
 - 2026-07-06T21:33:57.691Z - qih (architect): content trim: remove Process + Digital Craft manifesto sections, Direction section reworked to Why Us (Kenapa BURHANDEV + Bold/Fast/Convert panels)
 - 2026-07-06T21:34:24.544Z - qih (architect): content trim: guardian merge
+- 2026-07-06T21:35:48.985Z - qih (architect): content trim (main d8dfee5, deployed): removed Process section + Digital Craft manifesto; Direction section reworked to Why Us — Kenapa BURHANDEV heading, Bold/Fast/Convert panels; page now: hero, keyboard, console, stats, services(WorkSection), marquee, techstack, pricing, why-us, contact, testimonials, footer
+- 2026-07-07T11:06:57.519Z - qih (architect): transition: replace long dip-to-black with curtain reveal — outgoing video darkens only last 4pct, incoming visible from start, black gap shrinks from ~130vh to moment

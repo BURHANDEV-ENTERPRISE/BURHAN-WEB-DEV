@@ -26,15 +26,15 @@ export default function ScrubVideoSection({
   const sectionRef = useRef<HTMLElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  // Zoom halus + muncul dari gelap / pudar ke gelap di kedua-dua hujung —
-  // sambungan antara section jadi dip-to-black yang bersih, tiada seam
+  // Zoom halus; video kelihatan penuh dari awal (curtain reveal dari
+  // section sebelumnya) dan hanya gelap saat-saat akhir journey sendiri
   const onProgress = useCallback((p: number) => {
     const v = videoRef.current;
     if (!v) return;
     v.style.transform = `scale(${(1 + p * 0.07).toFixed(3)})`;
-    const fadeIn = Math.min(1, p / 0.08);
-    const fadeOut = p > 0.92 ? Math.max(0, 1 - (p - 0.92) / 0.08) : 1;
-    v.style.opacity = Math.min(fadeIn, fadeOut).toFixed(3);
+    v.style.opacity = String(
+      p > 0.96 ? Math.max(0, 1 - (p - 0.96) / 0.035) : 1
+    );
   }, []);
 
   useVideoScrub(sectionRef, videoRef, { onProgress });

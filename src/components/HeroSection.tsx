@@ -50,10 +50,10 @@ export default function HeroSection() {
     const v = videoRef.current;
     if (v) {
       v.style.transform = `scale(${(1 + p * 0.07).toFixed(3)})`;
-      // Dip-to-black di hujung journey — handoff ke section seterusnya
-      // jadi gelap-ke-gelap, tiada seam video bertindih
+      // Gelap hanya saat akhir (curtain) — video seterusnya sudah penuh
+      // di bawah, jadi tirai gelap tarik naik tanpa jurang hitam panjang
       v.style.opacity = String(
-        p > 0.9 ? Math.max(0, 1 - (p - 0.9) / 0.08) : 1
+        p > 0.96 ? Math.max(0, 1 - (p - 0.96) / 0.035) : 1
       );
     }
   }, []);
