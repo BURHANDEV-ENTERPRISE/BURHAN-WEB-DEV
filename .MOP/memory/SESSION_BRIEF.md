@@ -1,6 +1,6 @@
 # MOP Session Brief
 
-Updated: 2026-07-07T11:07:45.797Z
+Updated: 2026-07-07T11:13:32.727Z
 Actor: amad
 Active agent: qih (architect)
 Current month: 2026-07
@@ -15,9 +15,6 @@ Current month: 2026-07
 
 ## Recent Memory
 
-- 2026-07-06T21:16:41.399Z - qih (architect): services revamp: WorkSection (WORK WITH US card spread) becomes the Services section with id=services, old 4-row services section removed
-- 2026-07-06T21:17:34.800Z - qih (architect): services revamp: WorkSection (WORK WITH US card spread) becomes the Services section with id=services, old 4-row services section removed
-- 2026-07-06T21:18:47.563Z - qih (architect): services revamp: WorkSection (WORK WITH US card spread) becomes the Services section with id=services, old 4-row services section removed
 - 2026-07-06T21:19:15.399Z - qih (architect): services revamp: guardian merge
 - 2026-07-06T21:20:21.167Z - qih (architect): services revamp (main f170096, deployed): WorkSection WORK WITH US card-spread is now THE services section (id=services moved to it), old 4-row services section deleted from page.tsx; page order: hero, keyboard, console, manifesto, stats, WorkSection(services), marquee, techstack, process, pricing, work-direction, contact, testimonials
 - 2026-07-06T21:23:11.416Z - qih (architect): services heading: Work With Us -> Our Services
@@ -35,3 +32,6 @@ Current month: 2026-07
 - 2026-07-06T21:35:48.985Z - qih (architect): content trim (main d8dfee5, deployed): removed Process section + Digital Craft manifesto; Direction section reworked to Why Us — Kenapa BURHANDEV heading, Bold/Fast/Convert panels; page now: hero, keyboard, console, stats, services(WorkSection), marquee, techstack, pricing, why-us, contact, testimonials, footer
 - 2026-07-07T11:06:57.519Z - qih (architect): transition: replace long dip-to-black with curtain reveal — outgoing video darkens only last 4pct, incoming visible from start, black gap shrinks from ~130vh to moment
 - 2026-07-07T11:07:45.787Z - qih (architect): transition: replace long dip-to-black with curtain reveal — outgoing video darkens only last 4pct, incoming visible from start, black gap shrinks from ~130vh to moment
+- 2026-07-07T11:09:01.897Z - qih (architect): fixed long black gap between video sections (main e531a99, deployed): curtain-reveal transition — outgoing video fades only p 0.96-0.995, incoming video fully visible from p=0 (no fade-in), black void cut from ~130vh to a blink
+- 2026-07-07T11:12:44.487Z - qih (architect): ui polish: hide all eyebrow pill badges (START etc), shrink footer wordmark 14vw->7vw and tighten footer paddings
+- 2026-07-07T11:13:32.716Z - qih (architect): ui polish: hide all eyebrow pill badges (START etc), shrink footer wordmark 14vw->7vw and tighten footer paddings

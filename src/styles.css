@@ -242,8 +242,9 @@ p {
   width: min(34rem, calc(100% - 8rem));
 }
 
+/* Badge pill eyebrow dibuang dari paparan (elemen kekal untuk struktur) */
 .eyebrow {
-  display: inline-flex;
+  display: none;
   width: fit-content;
   margin: 0 0 1rem;
   padding: 0.45rem 0.82rem;
@@ -1020,7 +1021,7 @@ p {
 
 .site-footer__inner {
   width: 100%;
-  padding: 5rem 1.5rem 2rem;
+  padding: 2.5rem 1.5rem 1.5rem;
 }
 
 .site-footer__top {
@@ -1029,7 +1030,7 @@ p {
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  margin-bottom: 4rem;
+  margin-bottom: 2rem;
 }
 
 .site-footer__nav {
@@ -1082,12 +1083,12 @@ p {
   justify-content: space-between;
   gap: 1.5rem;
   border-top: 1px solid rgba(255, 246, 220, 0.15);
-  padding-top: 2.5rem;
+  padding-top: 1.5rem;
 }
 
 .site-footer__wordmark {
   width: 100%;
-  font-size: 14vw;
+  font-size: 7vw;
   font-weight: 900;
   line-height: 1;
   letter-spacing: -0.04em;
@@ -1150,11 +1151,11 @@ p {
   }
 
   .site-footer__brand {
-    padding-top: 3rem;
+    padding-top: 2rem;
   }
 
   .site-footer__wordmark {
-    font-size: 13vw;
+    font-size: 6.5vw;
   }
 
   .site-footer__topbutton {

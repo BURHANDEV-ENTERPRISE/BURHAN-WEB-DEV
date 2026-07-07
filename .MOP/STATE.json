@@ -12,8 +12,8 @@
   "session": {
     "actor": "amad",
     "authenticatedAt": "2026-07-06T08:34:30.344Z",
-    "lastActiveAt": "2026-07-06T21:35:48.978Z",
-    "expiresAt": "2026-07-07T21:35:48.979Z"
+    "lastActiveAt": "2026-07-07T11:09:01.894Z",
+    "expiresAt": "2026-07-08T11:09:01.894Z"
   },
   "sessionPolicy": {
     "enabled": true,
@@ -3369,7 +3369,40 @@
       "actor": "BURHAN-MOP",
       "kind": "merge-approved",
       "summary": "origin/dev/amad approved and merged to main."
+    },
+    {
+      "at": "2026-07-07T11:09:01.897Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "fixed long black gap between video sections (main e531a99, deployed): curtain-reveal transition — outgoing video fades only p 0.96-0.995, incoming video fully visible from p=0 (no fade-in), black void cut from ~130vh to a blink"
+    },
+    {
+      "at": "2026-07-07T11:12:44.486Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "ui polish: hide all eyebrow pill badges (START etc), shrink footer wordmark 14vw->7vw and tighten footer paddings"
+    },
+    {
+      "at": "2026-07-07T11:13:32.715Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "ui polish: hide all eyebrow pill badges (START etc), shrink footer wordmark 14vw->7vw and tighten footer paddings"
+    },
+    {
+      "at": "2026-07-07T11:13:42.647Z",
+      "actor": "BURHAN-MOP",
+      "kind": "merge-approved",
+      "summary": "origin/dev/amad approved and merged to main."
     }
   ],
-  "lastActiveAt": "2026-07-06T21:35:48.978Z"
+  "lastActiveAt": "2026-07-07T11:09:01.894Z"
 }
