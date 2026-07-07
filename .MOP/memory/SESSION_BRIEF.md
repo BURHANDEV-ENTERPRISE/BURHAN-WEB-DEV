@@ -1,6 +1,6 @@
 # MOP Session Brief
 
-Updated: 2026-07-07T16:23:07.089Z
+Updated: 2026-07-07T16:23:32.983Z
 Actor: amad
 Active agent: qih (architect)
 Current month: 2026-07
@@ -15,7 +15,6 @@ Current month: 2026-07
 
 ## Recent Memory
 
-- 2026-07-06T21:26:17.854Z - qih (architect): services heading changed Work With Us -> Our Services (main cf52b68, deployed)
 - 2026-07-06T21:28:56.334Z - qih (architect): content trim: remove Process + Digital Craft manifesto sections, Direction section reworked to Why Us (Kenapa BURHANDEV + Bold/Fast/Convert panels)
 - 2026-07-06T21:29:44.464Z - qih (architect): content trim: remove Process + Digital Craft manifesto sections, Direction section reworked to Why Us (Kenapa BURHANDEV + Bold/Fast/Convert panels)
 - 2026-07-06T21:30:32.264Z - qih (architect): content trim: remove Process + Digital Craft manifesto sections, Direction section reworked to Why Us (Kenapa BURHANDEV + Bold/Fast/Convert panels)
@@ -35,3 +34,4 @@ Current month: 2026-07
 - 2026-07-07T11:42:44.070Z - qih (architect): nav + harmony: hamburger now functional section-picker menu (Home/Services/Pricing/WhyUs/Contact, aligned 3rem circle), smooth scroll-behavior, section boundary gradients (video black -> stats -> services) remove abrupt color seams, id=pricing added
 - 2026-07-07T11:44:08.038Z - qih (architect): nav + color harmony shipped (main 5623999, deployed): NavMenu component — hamburger 3rem circle aligned, click opens section-picker panel (Home/Services/Pricing/WhyUs/Contact) w/ outside-click+Escape close, html smooth scroll; boundary gradients: stats top blends #0e0806->#060d0d, worksection top #060d0d->#020d0d; id=pricing added to PricingSection
 - 2026-07-07T16:23:07.076Z - qih (architect): skill: fable-5-mode — provider-portable working-style contract (12 rules + response checklist + paste-ready system prompt), installed in .claude/skills and .agents/skills, bridged via MOP Flow manifest to codex/gemini/antigravity
+- 2026-07-07T16:23:32.970Z - qih (architect): fable-5-mode skill: guardian merge

@@ -3453,6 +3453,15 @@
       "agentId": "agent-qih",
       "kind": "memory",
       "summary": "skill: fable-5-mode — provider-portable working-style contract (12 rules + response checklist + paste-ready system prompt), installed in .claude/skills and .agents/skills, bridged via MOP Flow manifest to codex/gemini/antigravity"
+    },
+    {
+      "at": "2026-07-07T16:23:32.969Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "fable-5-mode skill: guardian merge"
     }
   ],
   "lastActiveAt": "2026-07-07T11:44:08.034Z"
