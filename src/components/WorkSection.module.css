@@ -2,7 +2,8 @@
 
 .section {
   height: 280vh;
-  background: #020D0D;
+  /* Atas berpadu dari bg Stats (#060d0d) supaya sempadan harmoni */
+  background: linear-gradient(180deg, #060d0d 0%, #020d0d 8%);
   color: #fff;
   /* Dark bg fills the full 280vh so overflowing cards during animation
      appear against the right background */

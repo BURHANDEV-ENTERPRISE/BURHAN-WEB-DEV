@@ -54,7 +54,7 @@ const PLANS = [
 
 export default function PricingSection() {
   return (
-    <section className={`${styles.section} reveal`} aria-labelledby="pricing-title">
+    <section id="pricing" className={`${styles.section} reveal`} aria-labelledby="pricing-title">
       <p className={`eyebrow ${styles.eyebrow}`}>Pricing</p>
       <h2 id="pricing-title" className={styles.heading}>
         Pick your build level.
