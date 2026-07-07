@@ -12,8 +12,8 @@
   "session": {
     "actor": "amad",
     "authenticatedAt": "2026-07-06T08:34:30.344Z",
-    "lastActiveAt": "2026-07-07T11:44:08.034Z",
-    "expiresAt": "2026-07-08T11:44:08.035Z"
+    "lastActiveAt": "2026-07-07T16:25:23.708Z",
+    "expiresAt": "2026-07-08T16:25:23.709Z"
   },
   "sessionPolicy": {
     "enabled": true,
@@ -3477,7 +3477,40 @@
       "actor": "BURHAN-MOP",
       "kind": "merge-approved",
       "summary": "origin/dev/amad approved and merged to main."
+    },
+    {
+      "at": "2026-07-07T16:25:23.711Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "built fable-5-mode skill (main c5b5af7): 12-rule Fable-5 working-style contract (outcome-first, evidence-before-action, finish-the-turn, faithful reporting, etc) + response checklist + paste-ready resources/system-prompt.txt for any model; installed .claude/skills + .agents/skills portable copy, MOP Flow manifest bridged to all 4 providers (42 skills each)"
+    },
+    {
+      "at": "2026-07-07T16:56:40.096Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "fable-5-mode -> Pro: add process layer (mandatory verification loop w/ 5-iteration cap, docs-on-demand no-API-from-memory, plan-step-verify scaffolding, critic pass) to SKILL.md + system-prompt.txt, portable copy synced, manifest refreshed"
+    },
+    {
+      "at": "2026-07-07T16:57:29.281Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "fable-5-mode -> Pro: add process layer (mandatory verification loop w/ 5-iteration cap, docs-on-demand no-API-from-memory, plan-step-verify scaffolding, critic pass) to SKILL.md + system-prompt.txt, portable copy synced, manifest refreshed"
+    },
+    {
+      "at": "2026-07-07T16:57:38.544Z",
+      "actor": "BURHAN-MOP",
+      "kind": "merge-approved",
+      "summary": "origin/dev/amad approved and merged to main."
     }
   ],
-  "lastActiveAt": "2026-07-07T11:44:08.034Z"
+  "lastActiveAt": "2026-07-07T16:25:23.708Z"
 }

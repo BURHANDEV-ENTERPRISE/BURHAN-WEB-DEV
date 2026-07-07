@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.1.0",
-  "generatedAt": "2026-07-07T16:22:46.051Z",
+  "generatedAt": "2026-07-07T16:56:21.677Z",
   "brand": {
     "name": "MOP Flow",
     "ownerSystem": "MOP",
@@ -235,9 +235,9 @@
         "runtimeNative": true
       },
       {
-        "id": "fable-5-mode",
-        "title": "Fable-5 Mode",
-        "description": "Emulate the Fable 5 working style: lead with the outcome, verify evidence before acting, finish the turn, report failures plainly, and write readable prose instead of shorthand. Use when you want any model (Claude, Codex, Gemini, Antigravity) to reason and communicate with Fable-5 discipline — agent tasks, code work, debugging, or long autonomous sessions.",
+        "id": "fable-5-mode-pro",
+        "title": "Fable-5 Mode Pro",
+        "description": "Emulate the Fable 5 working style AND its output-lifting process: outcome-first answers, evidence-gated actions, mandatory build/test verification loops, docs-on-demand before using any API, plan-step-verify scaffolding, and a critic pass before final answers. Use when you want any model (Claude, Codex, Gemini, Antigravity) to work with Fable-5 discipline on agent tasks, code work, debugging, or long autonomous sessions.",
         "sources": [
           "portable",
           "claude-native"

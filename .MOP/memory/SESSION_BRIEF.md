@@ -1,6 +1,6 @@
 # MOP Session Brief
 
-Updated: 2026-07-07T16:24:43.286Z
+Updated: 2026-07-07T16:57:29.292Z
 Actor: amad
 Active agent: qih (architect)
 Current month: 2026-07
@@ -15,9 +15,6 @@ Current month: 2026-07
 
 ## Recent Memory
 
-- 2026-07-06T21:29:44.464Z - qih (architect): content trim: remove Process + Digital Craft manifesto sections, Direction section reworked to Why Us (Kenapa BURHANDEV + Bold/Fast/Convert panels)
-- 2026-07-06T21:30:32.264Z - qih (architect): content trim: remove Process + Digital Craft manifesto sections, Direction section reworked to Why Us (Kenapa BURHANDEV + Bold/Fast/Convert panels)
-- 2026-07-06T21:31:19.437Z - qih (architect): content trim: remove Process + Digital Craft manifesto sections, Direction section reworked to Why Us (Kenapa BURHANDEV + Bold/Fast/Convert panels)
 - 2026-07-06T21:32:07.114Z - qih (architect): content trim: remove Process + Digital Craft manifesto sections, Direction section reworked to Why Us (Kenapa BURHANDEV + Bold/Fast/Convert panels)
 - 2026-07-06T21:32:54.881Z - qih (architect): content trim: remove Process + Digital Craft manifesto sections, Direction section reworked to Why Us (Kenapa BURHANDEV + Bold/Fast/Convert panels)
 - 2026-07-06T21:33:57.691Z - qih (architect): content trim: remove Process + Digital Craft manifesto sections, Direction section reworked to Why Us (Kenapa BURHANDEV + Bold/Fast/Convert panels)
@@ -35,3 +32,6 @@ Current month: 2026-07
 - 2026-07-07T16:23:07.076Z - qih (architect): skill: fable-5-mode — provider-portable working-style contract (12 rules + response checklist + paste-ready system prompt), installed in .claude/skills and .agents/skills, bridged via MOP Flow manifest to codex/gemini/antigravity
 - 2026-07-07T16:23:32.970Z - qih (architect): fable-5-mode skill: guardian merge
 - 2026-07-07T16:24:43.275Z - qih (architect): fable-5-mode skill: guardian merge
+- 2026-07-07T16:25:23.711Z - qih (architect): built fable-5-mode skill (main c5b5af7): 12-rule Fable-5 working-style contract (outcome-first, evidence-before-action, finish-the-turn, faithful reporting, etc) + response checklist + paste-ready resources/system-prompt.txt for any model; installed .claude/skills + .agents/skills portable copy, MOP Flow manifest bridged to all 4 providers (42 skills each)
+- 2026-07-07T16:56:40.097Z - qih (architect): fable-5-mode -> Pro: add process layer (mandatory verification loop w/ 5-iteration cap, docs-on-demand no-API-from-memory, plan-step-verify scaffolding, critic pass) to SKILL.md + system-prompt.txt, portable copy synced, manifest refreshed
+- 2026-07-07T16:57:29.281Z - qih (architect): fable-5-mode -> Pro: add process layer (mandatory verification loop w/ 5-iteration cap, docs-on-demand no-API-from-memory, plan-step-verify scaffolding, critic pass) to SKILL.md + system-prompt.txt, portable copy synced, manifest refreshed
