@@ -25,9 +25,11 @@ export default function ScrubVideoSection({
 }: ScrubVideoSectionProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const blendRef = useRef<HTMLDivElement>(null);
 
   // Zoom halus; video kelihatan penuh dari awal (curtain reveal dari
-  // section sebelumnya) dan hanya gelap saat-saat akhir journey sendiri
+  // section sebelumnya) dan hanya gelap saat-saat akhir journey sendiri.
+  // topBlend melembutkan garis sempadan semasa handoff, kemudian larut.
   const onProgress = useCallback((p: number) => {
     const v = videoRef.current;
     if (!v) return;
@@ -35,6 +37,8 @@ export default function ScrubVideoSection({
     v.style.opacity = String(
       p > 0.96 ? Math.max(0, 1 - (p - 0.96) / 0.035) : 1
     );
+    const b = blendRef.current;
+    if (b) b.style.opacity = String(Math.max(0, 1 - p * 4));
   }, []);
 
   useVideoScrub(sectionRef, videoRef, { onProgress });
@@ -57,6 +61,7 @@ export default function ScrubVideoSection({
           aria-hidden="true"
         />
         {shade && <div className={styles.shade} aria-hidden="true" />}
+        <div ref={blendRef} className={styles.topBlend} aria-hidden="true" />
         {children && <div className={styles.overlay}>{children}</div>}
       </div>
     </section>

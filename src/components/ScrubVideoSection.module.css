@@ -42,6 +42,19 @@
   pointer-events: none;
 }
 
+/* Pelembut sempadan atas — warna sama dengan tirai section sebelum,
+   larut ke telus; opacity dipandu progress (hilang selepas ~25% journey) */
+.topBlend {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 34vh;
+  background: linear-gradient(180deg, #0e0806 0%, rgba(14, 8, 6, 0) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
 .overlay {
   position: absolute;
   inset: 0;
