@@ -1,6 +1,6 @@
 # MOP Session Brief
 
-Updated: 2026-07-07T16:57:29.292Z
+Updated: 2026-07-11T15:13:24.003Z
 Actor: amad
 Active agent: qih (architect)
 Current month: 2026-07
@@ -15,8 +15,6 @@ Current month: 2026-07
 
 ## Recent Memory
 
-- 2026-07-06T21:32:07.114Z - qih (architect): content trim: remove Process + Digital Craft manifesto sections, Direction section reworked to Why Us (Kenapa BURHANDEV + Bold/Fast/Convert panels)
-- 2026-07-06T21:32:54.881Z - qih (architect): content trim: remove Process + Digital Craft manifesto sections, Direction section reworked to Why Us (Kenapa BURHANDEV + Bold/Fast/Convert panels)
 - 2026-07-06T21:33:57.691Z - qih (architect): content trim: remove Process + Digital Craft manifesto sections, Direction section reworked to Why Us (Kenapa BURHANDEV + Bold/Fast/Convert panels)
 - 2026-07-06T21:34:24.544Z - qih (architect): content trim: guardian merge
 - 2026-07-06T21:35:48.985Z - qih (architect): content trim (main d8dfee5, deployed): removed Process section + Digital Craft manifesto; Direction section reworked to Why Us — Kenapa BURHANDEV heading, Bold/Fast/Convert panels; page now: hero, keyboard, console, stats, services(WorkSection), marquee, techstack, pricing, why-us, contact, testimonials, footer
@@ -35,3 +33,5 @@ Current month: 2026-07
 - 2026-07-07T16:25:23.711Z - qih (architect): built fable-5-mode skill (main c5b5af7): 12-rule Fable-5 working-style contract (outcome-first, evidence-before-action, finish-the-turn, faithful reporting, etc) + response checklist + paste-ready resources/system-prompt.txt for any model; installed .claude/skills + .agents/skills portable copy, MOP Flow manifest bridged to all 4 providers (42 skills each)
 - 2026-07-07T16:56:40.097Z - qih (architect): fable-5-mode -> Pro: add process layer (mandatory verification loop w/ 5-iteration cap, docs-on-demand no-API-from-memory, plan-step-verify scaffolding, critic pass) to SKILL.md + system-prompt.txt, portable copy synced, manifest refreshed
 - 2026-07-07T16:57:29.281Z - qih (architect): fable-5-mode -> Pro: add process layer (mandatory verification loop w/ 5-iteration cap, docs-on-demand no-API-from-memory, plan-step-verify scaffolding, critic pass) to SKILL.md + system-prompt.txt, portable copy synced, manifest refreshed
+- 2026-07-07T16:57:53.377Z - qih (architect): fable-5-mode upgraded to Pro (main 5360465): added Layer 2 process protocol — A) mandatory verification loop (run real feedback tool, verbatim errors, 5-iteration cap, done-requires-named-check), B) docs-on-demand no-API-from-memory, C) plan-step-verify scaffolding w/ requirement map, D) critic pass; system-prompt.txt updated, portable copy + manifest refreshed (4 providers ready)
+- 2026-07-11T15:13:23.994Z - qih (architect): fable-5-mode compact: system prompt 900->350 tokens (imperatives only, merged rules), 3 cheap high-yield cognitive moves added (task restate+unknowns, 2-approach sketch, tools-over-memory), SKILL.md 7.4KB->2.6KB, Gemini/AI Studio setup steps
