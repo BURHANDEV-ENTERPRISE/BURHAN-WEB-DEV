@@ -11,9 +11,9 @@
   },
   "session": {
     "actor": "amad",
-    "authenticatedAt": "2026-07-11T15:13:09.514Z",
-    "lastActiveAt": "2026-07-11T15:13:09.514Z",
-    "expiresAt": "2026-07-12T15:13:09.515Z"
+    "authenticatedAt": "2026-07-11T20:16:06.142Z",
+    "lastActiveAt": "2026-07-11T20:16:06.142Z",
+    "expiresAt": "2026-07-12T20:16:06.142Z"
   },
   "sessionPolicy": {
     "enabled": true,
@@ -3552,7 +3552,49 @@
       "actor": "BURHAN-MOP",
       "kind": "merge-approved",
       "summary": "origin/dev/amad approved and merged to main."
+    },
+    {
+      "at": "2026-07-11T15:14:50.084Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "fable-5-mode compacted (main 1e6ecda): system-prompt.txt 900->350 tokens keeping only high-yield imperatives, added 3 cheap cognitive moves (restate task+unknowns, 2-approach sketch for hard problems, tools-over-memory), SKILL.md 7.4KB->2.6KB progressive disclosure + Gemini/AI Studio setup steps, portable copy + manifest synced"
+    },
+    {
+      "at": "2026-07-11T20:16:06.143Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "login",
+      "summary": "Member authenticated; new session started."
+    },
+    {
+      "at": "2026-07-11T20:16:21.362Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "transition: soft top-blend gradient (34vh, curtain color -> transparent, fades out by 25pct journey) on incoming video sections — removes hard seam line at sticky handoff"
+    },
+    {
+      "at": "2026-07-11T20:17:09.720Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "transition: soft top-blend gradient (34vh, curtain color -> transparent, fades out by 25pct journey) on incoming video sections — removes hard seam line at sticky handoff"
+    },
+    {
+      "at": "2026-07-11T20:17:19.010Z",
+      "actor": "BURHAN-MOP",
+      "kind": "merge-approved",
+      "summary": "origin/dev/amad approved and merged to main."
     }
   ],
-  "lastActiveAt": "2026-07-11T15:13:09.514Z"
+  "lastActiveAt": "2026-07-11T20:16:06.142Z"
 }
