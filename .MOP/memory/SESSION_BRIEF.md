@@ -1,6 +1,6 @@
 # MOP Session Brief
 
-Updated: 2026-07-11T20:16:21.372Z
+Updated: 2026-07-11T20:17:09.730Z
 Actor: amad
 Active agent: qih (architect)
 Current month: 2026-07
@@ -15,7 +15,6 @@ Current month: 2026-07
 
 ## Recent Memory
 
-- 2026-07-07T11:06:57.519Z - qih (architect): transition: replace long dip-to-black with curtain reveal — outgoing video darkens only last 4pct, incoming visible from start, black gap shrinks from ~130vh to moment
 - 2026-07-07T11:07:45.787Z - qih (architect): transition: replace long dip-to-black with curtain reveal — outgoing video darkens only last 4pct, incoming visible from start, black gap shrinks from ~130vh to moment
 - 2026-07-07T11:09:01.897Z - qih (architect): fixed long black gap between video sections (main e531a99, deployed): curtain-reveal transition — outgoing video fades only p 0.96-0.995, incoming video fully visible from p=0 (no fade-in), black void cut from ~130vh to a blink
 - 2026-07-07T11:12:44.487Z - qih (architect): ui polish: hide all eyebrow pill badges (START etc), shrink footer wordmark 14vw->7vw and tighten footer paddings
@@ -35,3 +34,4 @@ Current month: 2026-07
 - 2026-07-11T15:14:12.993Z - qih (architect): fable-5-mode compact: system prompt 900->350 tokens (imperatives only, merged rules), 3 cheap high-yield cognitive moves added (task restate+unknowns, 2-approach sketch, tools-over-memory), SKILL.md 7.4KB->2.6KB, Gemini/AI Studio setup steps
 - 2026-07-11T15:14:50.084Z - qih (architect): fable-5-mode compacted (main 1e6ecda): system-prompt.txt 900->350 tokens keeping only high-yield imperatives, added 3 cheap cognitive moves (restate task+unknowns, 2-approach sketch for hard problems, tools-over-memory), SKILL.md 7.4KB->2.6KB progressive disclosure + Gemini/AI Studio setup steps, portable copy + manifest synced
 - 2026-07-11T20:16:21.363Z - qih (architect): transition: soft top-blend gradient (34vh, curtain color -> transparent, fades out by 25pct journey) on incoming video sections — removes hard seam line at sticky handoff
+- 2026-07-11T20:17:09.721Z - qih (architect): transition: soft top-blend gradient (34vh, curtain color -> transparent, fades out by 25pct journey) on incoming video sections — removes hard seam line at sticky handoff

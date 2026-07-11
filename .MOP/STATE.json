@@ -3579,6 +3579,15 @@
       "agentId": "agent-qih",
       "kind": "memory",
       "summary": "transition: soft top-blend gradient (34vh, curtain color -> transparent, fades out by 25pct journey) on incoming video sections — removes hard seam line at sticky handoff"
+    },
+    {
+      "at": "2026-07-11T20:17:09.720Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "transition: soft top-blend gradient (34vh, curtain color -> transparent, fades out by 25pct journey) on incoming video sections — removes hard seam line at sticky handoff"
     }
   ],
   "lastActiveAt": "2026-07-11T20:16:06.142Z"
