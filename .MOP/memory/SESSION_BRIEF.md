@@ -1,6 +1,6 @@
 # MOP Session Brief
 
-Updated: 2026-07-20T11:06:09.291Z
+Updated: 2026-07-20T11:23:21.367Z
 Actor: amad
 Active agent: qih (architect)
 Current month: 2026-07
@@ -15,8 +15,6 @@ Current month: 2026-07
 
 ## Recent Memory
 
-- 2026-07-07T16:23:32.970Z - qih (architect): fable-5-mode skill: guardian merge
-- 2026-07-07T16:24:43.275Z - qih (architect): fable-5-mode skill: guardian merge
 - 2026-07-07T16:25:23.711Z - qih (architect): built fable-5-mode skill (main c5b5af7): 12-rule Fable-5 working-style contract (outcome-first, evidence-before-action, finish-the-turn, faithful reporting, etc) + response checklist + paste-ready resources/system-prompt.txt for any model; installed .claude/skills + .agents/skills portable copy, MOP Flow manifest bridged to all 4 providers (42 skills each)
 - 2026-07-07T16:56:40.097Z - qih (architect): fable-5-mode -> Pro: add process layer (mandatory verification loop w/ 5-iteration cap, docs-on-demand no-API-from-memory, plan-step-verify scaffolding, critic pass) to SKILL.md + system-prompt.txt, portable copy synced, manifest refreshed
 - 2026-07-07T16:57:29.281Z - qih (architect): fable-5-mode -> Pro: add process layer (mandatory verification loop w/ 5-iteration cap, docs-on-demand no-API-from-memory, plan-step-verify scaffolding, critic pass) to SKILL.md + system-prompt.txt, portable copy synced, manifest refreshed
@@ -35,3 +33,5 @@ Current month: 2026-07
 - 2026-07-20T11:00:11.103Z - qih (architect): hero scrub journey extended 600vh->850vh for slower scroll pace (main 9ce535b, deployed)
 - 2026-07-20T11:05:21.482Z - qih (architect): hero fixes: headline now fades within first 10pct of scroll (was last 25pct) to stop overlapping the BURHAN text baked into the gaming-monitor video from frame 1; smoothed section handoff — hero end-curtain darkens gradually over 11pct instead of compressed 3.5pct, incoming topBlend 34vh->58vh with longer solid+fade for a seamless transition
 - 2026-07-20T11:06:09.278Z - qih (architect): hero fixes: headline now fades within first 10pct of scroll (was last 25pct) to stop overlapping the BURHAN text baked into the gaming-monitor video from frame 1; smoothed section handoff — hero end-curtain darkens gradually over 11pct instead of compressed 3.5pct, incoming topBlend 34vh->58vh with longer solid+fade for a seamless transition
+- 2026-07-20T11:07:18.705Z - qih (architect): hero fixes (main 9718970, deployed): headline fade window moved from p 0.75-1.0 to p 0.01-0.10 (disappears within ~1 viewport of scroll) since gaming-monitor.mp4 has BURHAN text baked into footage from t=0 causing persistent overlap; hero end-curtain darken window widened p 0.96-0.995 -> p 0.88-0.99 for gradual fade; ScrubVideoSection topBlend 34vh->58vh w/ 22pct solid hold before gradient, fade-out slowed p*4->p*2.2 to eliminate visible seam at section handoff
+- 2026-07-20T11:23:21.354Z - qih (architect): keyboard scrub section: added scroll-triggered heading (Built for Performance) + subheading + endTag synced to video's dissolve ending (Turning Ideas Into Interfaces), all fade in/out driven by scroll progress via new ScrubVideoSection heading/endTag props; smoothed end-curtain to match hero (gradual p 0.88-0.99 vs compressed 0.96-0.995); slowed pace 320vh->460vh; re-verified Gemini watermark clean across full 10s duration (already removed)
