@@ -49,8 +49,8 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 34vh;
-  background: linear-gradient(180deg, #0e0806 0%, rgba(14, 8, 6, 0) 100%);
+  height: 58vh;
+  background: linear-gradient(180deg, #0e0806 0%, #0e0806 22%, rgba(14, 8, 6, 0) 100%);
   pointer-events: none;
   z-index: 1;
 }

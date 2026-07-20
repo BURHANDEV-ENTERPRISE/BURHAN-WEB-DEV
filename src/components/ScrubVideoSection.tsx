@@ -37,8 +37,10 @@ export default function ScrubVideoSection({
     v.style.opacity = String(
       p > 0.96 ? Math.max(0, 1 - (p - 0.96) / 0.035) : 1
     );
+    // Larut lebih beransur (gone by ~45% journey) — sepadan tempoh tirai
+    // akhir video sebelumnya supaya tiada sempadan tegas semasa handoff
     const b = blendRef.current;
-    if (b) b.style.opacity = String(Math.max(0, 1 - p * 4));
+    if (b) b.style.opacity = String(Math.max(0, 1 - p * 2.2));
   }, []);
 
   useVideoScrub(sectionRef, videoRef, { onProgress });
