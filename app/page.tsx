@@ -23,8 +23,11 @@ export default function Home() {
         <HeroSection />
         <ScrubVideoSection
           src="/videos/keyboard.mp4"
-          heightVh={320}
+          heightVh={460}
           ariaLabel="BURHANDEV keyboard and monitor dissolve"
+          heading="Built for Performance."
+          subheading="Real hardware, real focus — the setup behind every line we ship."
+          endTag="Turning Ideas Into Interfaces"
         />
         <ScrubVideoSection
           src="/videos/console.mp4"
