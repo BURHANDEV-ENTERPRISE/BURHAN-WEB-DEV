@@ -133,9 +133,13 @@
   overflow: hidden;
 }
 
-/* Reduced motion: tiada journey scrub — hero biasa 100vh */
+/* Reduced motion: tiada journey scrub — hero biasa 100vh. Vignette
+   monitor (.textCover) hanya larut melalui JS scroll-progress yang tidak
+   berjalan dalam mod ini, jadi sembunyikan terus — headline sudah ada
+   text-shadow sendiri, tak perlukan vignette tambahan bila statik. */
 @media (prefers-reduced-motion: reduce) {
   .videoScrubSection { height: 100vh; }
+  .textCover { display: none; }
 }
 
 /* ── Latar video penuh viewport ── */

@@ -12,8 +12,8 @@
   "session": {
     "actor": "amad",
     "authenticatedAt": "2026-07-20T10:50:57.676Z",
-    "lastActiveAt": "2026-07-20T11:32:30.117Z",
-    "expiresAt": "2026-07-21T11:32:30.118Z"
+    "lastActiveAt": "2026-07-20T11:44:40.461Z",
+    "expiresAt": "2026-07-21T11:44:40.462Z"
   },
   "sessionPolicy": {
     "enabled": true,
@@ -3801,7 +3801,40 @@
       "actor": "BURHAN-MOP",
       "kind": "merge-approved",
       "summary": "origin/dev/amad approved and merged to main."
+    },
+    {
+      "at": "2026-07-20T11:44:40.465Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "sections 2/3 replaced (main 85f0e51, deployed): keyboard-transition.mp4 (keyboard shot->ember dissolve->maroon-void game menu w/ START/OPTIONS) replaces old keyboard.mp4; geometric.mp4 (Burhan Console dashboard cards assembling via ink-splatter, matches earlier-discussed dashboard palette) replaces old console.mp4; both delogo'd at (1128,565,72x72) for this 1280x720 export, g6 keyframes; ScrubVideoSection gained curtainWindow prop (default [0.88,0.11]) so keyboard-transition can delay its dark curtain to [0.95,0.045] and let its own menu payoff stay visible; heading/subheading/endTag copy written per video's own narrative beats"
+    },
+    {
+      "at": "2026-07-20T14:25:33.568Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "fix reduced-motion bug: scroll-triggered headings/endTags in ScrubVideoSection were permanently stuck at opacity:0 (initial inline style, never set to 1 because useVideoScrub's effect returns early under prefers-reduced-motion, so onProgress never runs) — confirmed via Playwright emulating reduced-motion on live site, text was 100pct invisible on keyboard-transition/geometric sections. Added CSS fallback forcing opacity:1 for textBlock/endTag and hiding hero's monitor-cover vignette under this media query. Verified fix locally"
+    },
+    {
+      "at": "2026-07-20T14:26:23.743Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "fix reduced-motion bug: scroll-triggered headings/endTags in ScrubVideoSection were permanently stuck at opacity:0 (initial inline style, never set to 1 because useVideoScrub's effect returns early under prefers-reduced-motion, so onProgress never runs) — confirmed via Playwright emulating reduced-motion on live site, text was 100pct invisible on keyboard-transition/geometric sections. Added CSS fallback forcing opacity:1 for textBlock/endTag and hiding hero's monitor-cover vignette under this media query. Verified fix locally"
+    },
+    {
+      "at": "2026-07-20T14:26:33.317Z",
+      "actor": "BURHAN-MOP",
+      "kind": "merge-approved",
+      "summary": "origin/dev/amad approved and merged to main."
     }
   ],
-  "lastActiveAt": "2026-07-20T11:32:30.117Z"
+  "lastActiveAt": "2026-07-20T11:44:40.461Z"
 }

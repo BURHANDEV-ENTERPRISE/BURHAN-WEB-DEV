@@ -5,10 +5,17 @@
   background: #0e0806;
 }
 
-/* Reduced motion: tiada journey — satu skrin statik */
+/* Reduced motion: tiada journey — satu skrin statik. Teks (yang mula
+   pada opacity:0 menunggu JS scroll-progress) mesti dipaksa nampak sebab
+   JS scrub tidak berjalan langsung dalam mod ini. */
 @media (prefers-reduced-motion: reduce) {
   .section {
     height: 100vh !important;
+  }
+  .textBlock,
+  .endTag {
+    opacity: 1 !important;
+    transform: none !important;
   }
 }
 
