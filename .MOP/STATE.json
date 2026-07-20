@@ -3687,6 +3687,15 @@
       "agentId": "agent-qih",
       "kind": "memory",
       "summary": "hero fixes: headline now fades within first 10pct of scroll (was last 25pct) to stop overlapping the BURHAN text baked into the gaming-monitor video from frame 1; smoothed section handoff — hero end-curtain darkens gradually over 11pct instead of compressed 3.5pct, incoming topBlend 34vh->58vh with longer solid+fade for a seamless transition"
+    },
+    {
+      "at": "2026-07-20T11:06:09.278Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "hero fixes: headline now fades within first 10pct of scroll (was last 25pct) to stop overlapping the BURHAN text baked into the gaming-monitor video from frame 1; smoothed section handoff — hero end-curtain darkens gradually over 11pct instead of compressed 3.5pct, incoming topBlend 34vh->58vh with longer solid+fade for a seamless transition"
     }
   ],
   "lastActiveAt": "2026-07-20T11:00:11.098Z"

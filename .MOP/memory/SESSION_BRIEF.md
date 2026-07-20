@@ -1,6 +1,6 @@
 # MOP Session Brief
 
-Updated: 2026-07-20T11:05:21.493Z
+Updated: 2026-07-20T11:06:09.291Z
 Actor: amad
 Active agent: qih (architect)
 Current month: 2026-07
@@ -15,7 +15,6 @@ Current month: 2026-07
 
 ## Recent Memory
 
-- 2026-07-07T16:23:07.076Z - qih (architect): skill: fable-5-mode — provider-portable working-style contract (12 rules + response checklist + paste-ready system prompt), installed in .claude/skills and .agents/skills, bridged via MOP Flow manifest to codex/gemini/antigravity
 - 2026-07-07T16:23:32.970Z - qih (architect): fable-5-mode skill: guardian merge
 - 2026-07-07T16:24:43.275Z - qih (architect): fable-5-mode skill: guardian merge
 - 2026-07-07T16:25:23.711Z - qih (architect): built fable-5-mode skill (main c5b5af7): 12-rule Fable-5 working-style contract (outcome-first, evidence-before-action, finish-the-turn, faithful reporting, etc) + response checklist + paste-ready resources/system-prompt.txt for any model; installed .claude/skills + .agents/skills portable copy, MOP Flow manifest bridged to all 4 providers (42 skills each)
@@ -35,3 +34,4 @@ Current month: 2026-07
 - 2026-07-20T10:58:57.601Z - qih (architect): hero scrub journey extended 600vh -> 850vh for slower scroll pace
 - 2026-07-20T11:00:11.103Z - qih (architect): hero scrub journey extended 600vh->850vh for slower scroll pace (main 9ce535b, deployed)
 - 2026-07-20T11:05:21.482Z - qih (architect): hero fixes: headline now fades within first 10pct of scroll (was last 25pct) to stop overlapping the BURHAN text baked into the gaming-monitor video from frame 1; smoothed section handoff — hero end-curtain darkens gradually over 11pct instead of compressed 3.5pct, incoming topBlend 34vh->58vh with longer solid+fade for a seamless transition
+- 2026-07-20T11:06:09.278Z - qih (architect): hero fixes: headline now fades within first 10pct of scroll (was last 25pct) to stop overlapping the BURHAN text baked into the gaming-monitor video from frame 1; smoothed section handoff — hero end-curtain darkens gradually over 11pct instead of compressed 3.5pct, incoming topBlend 34vh->58vh with longer solid+fade for a seamless transition
