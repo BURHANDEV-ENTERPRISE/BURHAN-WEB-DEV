@@ -3852,6 +3852,15 @@
       "agentId": "agent-qih",
       "kind": "memory",
       "summary": "sections 2/3: longer scroll (460->650vh, 500->700vh) + new generic overlays system in ScrubVideoSection (positioned text/badge/button synced to scroll progress, pixel-mapped via ffmpeg grid extraction) - keyboard-transition gets clickable pulsing Contact Us button covering the video's baked ROBBINT label (navigates to #contact), geometric gets blinking DEV badge during early ink-reveal + 01/02/03 Landing Page/Business Site/Product UI labels inside the 3 blank cards; verified positions and click-through with local Playwright test before deploy"
+    },
+    {
+      "at": "2026-07-20T14:47:20.176Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "sections 2/3: longer scroll (460->650vh, 500->700vh) + new generic overlays system in ScrubVideoSection (positioned text/badge/button synced to scroll progress, pixel-mapped via ffmpeg grid extraction) - keyboard-transition gets clickable pulsing Contact Us button covering the video's baked ROBBINT label (navigates to #contact), geometric gets blinking DEV badge during early ink-reveal + 01/02/03 Landing Page/Business Site/Product UI labels inside the 3 blank cards; verified positions and click-through with local Playwright test before deploy"
     }
   ],
   "lastActiveAt": "2026-07-20T14:30:08.166Z"
