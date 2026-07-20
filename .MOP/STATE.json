@@ -3654,6 +3654,15 @@
       "agentId": "agent-qih",
       "kind": "memory",
       "summary": "hero scrub journey extended 600vh -> 850vh for slower scroll pace"
+    },
+    {
+      "at": "2026-07-20T10:58:57.600Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "hero scrub journey extended 600vh -> 850vh for slower scroll pace"
     }
   ],
   "lastActiveAt": "2026-07-20T10:53:25.359Z"

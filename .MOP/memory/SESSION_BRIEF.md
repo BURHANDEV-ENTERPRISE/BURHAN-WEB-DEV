@@ -1,6 +1,6 @@
 # MOP Session Brief
 
-Updated: 2026-07-20T10:58:09.336Z
+Updated: 2026-07-20T10:58:57.613Z
 Actor: amad
 Active agent: qih (architect)
 Current month: 2026-07
@@ -15,7 +15,6 @@ Current month: 2026-07
 
 ## Recent Memory
 
-- 2026-07-07T11:41:55.659Z - qih (architect): nav + harmony: hamburger now functional section-picker menu (Home/Services/Pricing/WhyUs/Contact, aligned 3rem circle), smooth scroll-behavior, section boundary gradients (video black -> stats -> services) remove abrupt color seams, id=pricing added
 - 2026-07-07T11:42:44.070Z - qih (architect): nav + harmony: hamburger now functional section-picker menu (Home/Services/Pricing/WhyUs/Contact, aligned 3rem circle), smooth scroll-behavior, section boundary gradients (video black -> stats -> services) remove abrupt color seams, id=pricing added
 - 2026-07-07T11:44:08.038Z - qih (architect): nav + color harmony shipped (main 5623999, deployed): NavMenu component — hamburger 3rem circle aligned, click opens section-picker panel (Home/Services/Pricing/WhyUs/Contact) w/ outside-click+Escape close, html smooth scroll; boundary gradients: stats top blends #0e0806->#060d0d, worksection top #060d0d->#020d0d; id=pricing added to PricingSection
 - 2026-07-07T16:23:07.076Z - qih (architect): skill: fable-5-mode — provider-portable working-style contract (12 rules + response checklist + paste-ready system prompt), installed in .claude/skills and .agents/skills, bridged via MOP Flow manifest to codex/gemini/antigravity
@@ -35,3 +34,4 @@ Current month: 2026-07
 - 2026-07-20T10:52:14.371Z - qih (architect): hero: swap video Flow -> Gaming Monitor (Gaming_room_monitor_displays_BURHAN, delogo watermark removed at 1110,559,85x85, g6 keyframes for smooth scrub), reuses existing scroll-scrub engine (useVideoScrub, 600vh sticky section), old flow.mp4 removed
 - 2026-07-20T10:53:25.364Z - qih (architect): hero video swapped Flow -> Gaming Monitor (main 836e36d, deployed): source Gaming_room_monitor_displays_BURHAN_202607121905.mp4, Gemini watermark removed via delogo (found true position 1150,599 after first attempt missed by ~35px producing arrow artifact, fixed box 1110,559,85x85), re-encoded g6 crf21 2.7MB, reused existing scroll-scrub engine unchanged (600vh sticky, useVideoScrub hook), old flow.mp4 deleted
 - 2026-07-20T10:58:09.326Z - qih (architect): hero scrub journey extended 600vh -> 850vh for slower scroll pace
+- 2026-07-20T10:58:57.601Z - qih (architect): hero scrub journey extended 600vh -> 850vh for slower scroll pace
