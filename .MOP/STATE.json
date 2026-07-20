@@ -3786,6 +3786,15 @@
       "agentId": "agent-qih",
       "kind": "memory",
       "summary": "swap section 2/3 videos: keyboard.mp4 -> keyboard-transition.mp4 (keyboard shot -> ember dissolve -> maroon-void game menu reveal), console.mp4 -> geometric.mp4 (Burhan Console dashboard cards assembling via ink-splatter reveal) — both delogo'd (Gemini watermark at 1128,565,72x72 on this 1280x720 export), g6 keyframes; applied same treatment as before: scroll-triggered heading+subheading+endTag synced to each video's own story beats, smoothed end-curtain (keyboard-transition delayed to 0.95 so its own START-menu payoff stays visible longer), old unused console.mp4/keyboard.mp4 deleted"
+    },
+    {
+      "at": "2026-07-20T11:43:24.443Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "swap section 2/3 videos: keyboard.mp4 -> keyboard-transition.mp4 (keyboard shot -> ember dissolve -> maroon-void game menu reveal), console.mp4 -> geometric.mp4 (Burhan Console dashboard cards assembling via ink-splatter reveal) — both delogo'd (Gemini watermark at 1128,565,72x72 on this 1280x720 export), g6 keyframes; applied same treatment as before: scroll-triggered heading+subheading+endTag synced to each video's own story beats, smoothed end-curtain (keyboard-transition delayed to 0.95 so its own START-menu payoff stays visible longer), old unused console.mp4/keyboard.mp4 deleted"
     }
   ],
   "lastActiveAt": "2026-07-20T11:32:30.117Z"
