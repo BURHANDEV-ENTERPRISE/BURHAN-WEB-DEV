@@ -3819,6 +3819,15 @@
       "agentId": "agent-qih",
       "kind": "memory",
       "summary": "fix reduced-motion bug: scroll-triggered headings/endTags in ScrubVideoSection were permanently stuck at opacity:0 (initial inline style, never set to 1 because useVideoScrub's effect returns early under prefers-reduced-motion, so onProgress never runs) — confirmed via Playwright emulating reduced-motion on live site, text was 100pct invisible on keyboard-transition/geometric sections. Added CSS fallback forcing opacity:1 for textBlock/endTag and hiding hero's monitor-cover vignette under this media query. Verified fix locally"
+    },
+    {
+      "at": "2026-07-20T14:26:23.743Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "fix reduced-motion bug: scroll-triggered headings/endTags in ScrubVideoSection were permanently stuck at opacity:0 (initial inline style, never set to 1 because useVideoScrub's effect returns early under prefers-reduced-motion, so onProgress never runs) — confirmed via Playwright emulating reduced-motion on live site, text was 100pct invisible on keyboard-transition/geometric sections. Added CSS fallback forcing opacity:1 for textBlock/endTag and hiding hero's monitor-cover vignette under this media query. Verified fix locally"
     }
   ],
   "lastActiveAt": "2026-07-20T11:44:40.461Z"

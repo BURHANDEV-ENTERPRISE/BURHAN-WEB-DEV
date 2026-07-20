@@ -1,6 +1,6 @@
 # MOP Session Brief
 
-Updated: 2026-07-20T14:25:33.583Z
+Updated: 2026-07-20T14:26:23.756Z
 Actor: amad
 Active agent: qih (architect)
 Current month: 2026-07
@@ -15,7 +15,6 @@ Current month: 2026-07
 
 ## Recent Memory
 
-- 2026-07-11T20:18:24.788Z - qih (architect): seam transition fix (main 2864b40, deployed): 34vh top-blend gradient on ScrubVideoSection (curtain #0e0806 -> transparent, opacity fades out by 25pct of journey via onProgress) — hard handoff line between video sections now a soft transition
 - 2026-07-20T10:51:23.414Z - qih (architect): hero: swap video Flow -> Gaming Monitor (Gaming_room_monitor_displays_BURHAN, delogo watermark removed at 1110,559,85x85, g6 keyframes for smooth scrub), reuses existing scroll-scrub engine (useVideoScrub, 600vh sticky section), old flow.mp4 removed
 - 2026-07-20T10:52:14.371Z - qih (architect): hero: swap video Flow -> Gaming Monitor (Gaming_room_monitor_displays_BURHAN, delogo watermark removed at 1110,559,85x85, g6 keyframes for smooth scrub), reuses existing scroll-scrub engine (useVideoScrub, 600vh sticky section), old flow.mp4 removed
 - 2026-07-20T10:53:25.364Z - qih (architect): hero video swapped Flow -> Gaming Monitor (main 836e36d, deployed): source Gaming_room_monitor_displays_BURHAN_202607121905.mp4, Gemini watermark removed via delogo (found true position 1150,599 after first attempt missed by ~35px producing arrow artifact, fixed box 1110,559,85x85), re-encoded g6 crf21 2.7MB, reused existing scroll-scrub engine unchanged (600vh sticky, useVideoScrub hook), old flow.mp4 deleted
@@ -35,3 +34,4 @@ Current month: 2026-07
 - 2026-07-20T11:43:24.444Z - qih (architect): swap section 2/3 videos: keyboard.mp4 -> keyboard-transition.mp4 (keyboard shot -> ember dissolve -> maroon-void game menu reveal), console.mp4 -> geometric.mp4 (Burhan Console dashboard cards assembling via ink-splatter reveal) — both delogo'd (Gemini watermark at 1128,565,72x72 on this 1280x720 export), g6 keyframes; applied same treatment as before: scroll-triggered heading+subheading+endTag synced to each video's own story beats, smoothed end-curtain (keyboard-transition delayed to 0.95 so its own START-menu payoff stays visible longer), old unused console.mp4/keyboard.mp4 deleted
 - 2026-07-20T11:44:40.465Z - qih (architect): sections 2/3 replaced (main 85f0e51, deployed): keyboard-transition.mp4 (keyboard shot->ember dissolve->maroon-void game menu w/ START/OPTIONS) replaces old keyboard.mp4; geometric.mp4 (Burhan Console dashboard cards assembling via ink-splatter, matches earlier-discussed dashboard palette) replaces old console.mp4; both delogo'd at (1128,565,72x72) for this 1280x720 export, g6 keyframes; ScrubVideoSection gained curtainWindow prop (default [0.88,0.11]) so keyboard-transition can delay its dark curtain to [0.95,0.045] and let its own menu payoff stay visible; heading/subheading/endTag copy written per video's own narrative beats
 - 2026-07-20T14:25:33.570Z - qih (architect): fix reduced-motion bug: scroll-triggered headings/endTags in ScrubVideoSection were permanently stuck at opacity:0 (initial inline style, never set to 1 because useVideoScrub's effect returns early under prefers-reduced-motion, so onProgress never runs) — confirmed via Playwright emulating reduced-motion on live site, text was 100pct invisible on keyboard-transition/geometric sections. Added CSS fallback forcing opacity:1 for textBlock/endTag and hiding hero's monitor-cover vignette under this media query. Verified fix locally
+- 2026-07-20T14:26:23.744Z - qih (architect): fix reduced-motion bug: scroll-triggered headings/endTags in ScrubVideoSection were permanently stuck at opacity:0 (initial inline style, never set to 1 because useVideoScrub's effect returns early under prefers-reduced-motion, so onProgress never runs) — confirmed via Playwright emulating reduced-motion on live site, text was 100pct invisible on keyboard-transition/geometric sections. Added CSS fallback forcing opacity:1 for textBlock/endTag and hiding hero's monitor-cover vignette under this media query. Verified fix locally
