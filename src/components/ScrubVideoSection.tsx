@@ -27,6 +27,10 @@ interface ScrubVideoSectionProps {
    * fade out sebelum tirai akhir mula gelap. */
   endTag?: string;
   endTagWindow?: FadeWindow["window"];
+  /** [mula, tempoh] tirai akhir gelap — lalai [0.88, 0.11]. Naikkan "mula"
+   * kalau video ada payoff visual lewat (contoh reveal menu) yang perlu
+   * kekal jelas lebih lama sebelum digelapkan. */
+  curtainWindow?: [number, number];
 }
 
 /** Segitiga fade: 0 -> 1 antara [inStart,inEnd], kekal 1, 1 -> 0 antara [outStart,outEnd] */
@@ -48,6 +52,7 @@ export default function ScrubVideoSection({
   headingWindow = [0.05, 0.15, 0.42, 0.52],
   endTag,
   endTagWindow = [0.6, 0.68, 0.82, 0.87],
+  curtainWindow = [0.88, 0.11],
 }: ScrubVideoSectionProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -64,7 +69,8 @@ export default function ScrubVideoSection({
     const v = videoRef.current;
     if (v) {
       v.style.transform = `scale(${(1 + p * 0.07).toFixed(3)})`;
-      const dim = Math.min(1, Math.max(0, (p - 0.88) / 0.11));
+      const [cStart, cDur] = curtainWindow;
+      const dim = Math.min(1, Math.max(0, (p - cStart) / cDur));
       v.style.opacity = String(Math.max(0, 1 - dim));
     }
     // Larut lebih beransur (gone by ~45% journey) — sepadan tempoh tirai
@@ -84,7 +90,7 @@ export default function ScrubVideoSection({
       e.style.opacity = String(f);
       e.style.transform = `translateY(${((1 - f) * 14).toFixed(1)}px)`;
     }
-  }, [headingWindow, endTagWindow]);
+  }, [headingWindow, endTagWindow, curtainWindow]);
 
   useVideoScrub(sectionRef, videoRef, { onProgress });
 
