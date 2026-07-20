@@ -37,6 +37,7 @@ export default function HeroSection() {
   const contentRef                    = useRef<HTMLDivElement>(null);
   const videoRef                      = useRef<HTMLVideoElement>(null);
   const sectionRef                    = useRef<HTMLElement>(null);
+  const textCoverRef                  = useRef<HTMLDivElement>(null);
 
   // Overlay ikut progress terlembut: headline hilang awal (video ada teks
   // "BURHAN" terbakar dalam footage dari saat pertama — headline mesti
@@ -48,6 +49,14 @@ export default function HeroSection() {
       const fade = Math.min(1, Math.max(0, (p - 0.01) / 0.09));
       el.style.transform = `translateX(-50%) translateY(${(-fade * 40).toFixed(1)}px)`;
       el.style.opacity = String(Math.max(0, 1 - fade * 1.15));
+    }
+    // Tutup kawasan monitor (teks "BURHAN" terbakar dalam video) pada
+    // permulaan — larut hanya SELEPAS headline dah hilang, supaya tiada
+    // waktu kedua-dua teks kelihatan serentak.
+    const cover = textCoverRef.current;
+    if (cover) {
+      const clear = Math.min(1, Math.max(0, (p - 0.04) / 0.1));
+      cover.style.opacity = String(1 - clear);
     }
     const v = videoRef.current;
     if (v) {
@@ -146,6 +155,7 @@ export default function HeroSection() {
               preload="auto"
             />
             <div className={styles.videoShade} />
+            <div ref={textCoverRef} className={styles.textCover} />
           </div>
 
           {/* headline — dipindah dari OpenSection */}
