@@ -3885,6 +3885,15 @@
       "agentId": "agent-qih",
       "kind": "memory",
       "summary": "geometric section (3): removed all text overlays (heading, subheading, endTag, DEV badge, card labels) — plain video only now. Fixed button ghosting bug: Contact Us CTA opacity was fading gradually via windowedFade, making its solid cream background translucent mid-transition and letting the video's baked ROBBINT text bleed through; buttons now snap opacity 0->1 past a small threshold instead of fading proportionally, keeping the cover box always fully opaque when visible"
+    },
+    {
+      "at": "2026-07-20T14:56:35.937Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "geometric section (3): removed all text overlays (heading, subheading, endTag, DEV badge, card labels) — plain video only now. Fixed button ghosting bug: Contact Us CTA opacity was fading gradually via windowedFade, making its solid cream background translucent mid-transition and letting the video's baked ROBBINT text bleed through; buttons now snap opacity 0->1 past a small threshold instead of fading proportionally, keeping the cover box always fully opaque when visible"
     }
   ],
   "lastActiveAt": "2026-07-20T14:49:08.943Z"

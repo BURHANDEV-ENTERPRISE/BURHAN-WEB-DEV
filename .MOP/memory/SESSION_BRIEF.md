@@ -1,6 +1,6 @@
 # MOP Session Brief
 
-Updated: 2026-07-20T14:55:47.512Z
+Updated: 2026-07-20T14:56:35.948Z
 Actor: amad
 Active agent: qih (architect)
 Current month: 2026-07
@@ -15,7 +15,6 @@ Current month: 2026-07
 
 ## Recent Memory
 
-- 2026-07-20T11:00:11.103Z - qih (architect): hero scrub journey extended 600vh->850vh for slower scroll pace (main 9ce535b, deployed)
 - 2026-07-20T11:05:21.482Z - qih (architect): hero fixes: headline now fades within first 10pct of scroll (was last 25pct) to stop overlapping the BURHAN text baked into the gaming-monitor video from frame 1; smoothed section handoff — hero end-curtain darkens gradually over 11pct instead of compressed 3.5pct, incoming topBlend 34vh->58vh with longer solid+fade for a seamless transition
 - 2026-07-20T11:06:09.278Z - qih (architect): hero fixes: headline now fades within first 10pct of scroll (was last 25pct) to stop overlapping the BURHAN text baked into the gaming-monitor video from frame 1; smoothed section handoff — hero end-curtain darkens gradually over 11pct instead of compressed 3.5pct, incoming topBlend 34vh->58vh with longer solid+fade for a seamless transition
 - 2026-07-20T11:07:18.705Z - qih (architect): hero fixes (main 9718970, deployed): headline fade window moved from p 0.75-1.0 to p 0.01-0.10 (disappears within ~1 viewport of scroll) since gaming-monitor.mp4 has BURHAN text baked into footage from t=0 causing persistent overlap; hero end-curtain darken window widened p 0.96-0.995 -> p 0.88-0.99 for gradual fade; ScrubVideoSection topBlend 34vh->58vh w/ 22pct solid hold before gradient, fade-out slowed p*4->p*2.2 to eliminate visible seam at section handoff
@@ -35,3 +34,4 @@ Current month: 2026-07
 - 2026-07-20T14:47:20.176Z - qih (architect): sections 2/3: longer scroll (460->650vh, 500->700vh) + new generic overlays system in ScrubVideoSection (positioned text/badge/button synced to scroll progress, pixel-mapped via ffmpeg grid extraction) - keyboard-transition gets clickable pulsing Contact Us button covering the video's baked ROBBINT label (navigates to #contact), geometric gets blinking DEV badge during early ink-reveal + 01/02/03 Landing Page/Business Site/Product UI labels inside the 3 blank cards; verified positions and click-through with local Playwright test before deploy
 - 2026-07-20T14:49:08.947Z - qih (architect): sections 2/3 overlays shipped (main e5a44d6, deployed+verified live): heightVh keyboard-transition 460->650, geometric 500->700; new positioned-overlays system in ScrubVideoSection (percentage box + progress window + optional href/blink); keyboard-transition has clickable pulsing Contact Us button at (51.3,37.1,19.4,15.7)% covering video's baked ROBBINT text, scrolls to #contact on click; geometric has blinking DEV badge (repositioned to 18,6% after first placement collided with fixed header) + 01/02/03 Landing Page/Business Site/Product UI labels inside the 3 blank cards at their exact grid-measured positions; all confirmed via Playwright screenshots + real click-through both locally and on live site
 - 2026-07-20T14:55:47.501Z - qih (architect): geometric section (3): removed all text overlays (heading, subheading, endTag, DEV badge, card labels) — plain video only now. Fixed button ghosting bug: Contact Us CTA opacity was fading gradually via windowedFade, making its solid cream background translucent mid-transition and letting the video's baked ROBBINT text bleed through; buttons now snap opacity 0->1 past a small threshold instead of fading proportionally, keeping the cover box always fully opaque when visible
+- 2026-07-20T14:56:35.938Z - qih (architect): geometric section (3): removed all text overlays (heading, subheading, endTag, DEV badge, card labels) — plain video only now. Fixed button ghosting bug: Contact Us CTA opacity was fading gradually via windowedFade, making its solid cream background translucent mid-transition and letting the video's baked ROBBINT text bleed through; buttons now snap opacity 0->1 past a small threshold instead of fading proportionally, keeping the cover box always fully opaque when visible
