@@ -124,7 +124,7 @@ export default function HeroSection() {
     return "idle";
   };
 
-  // ── STAGE 1: Intro — video Flow scroll-scrub (260vh, sticky) ────
+  // ── STAGE 1: Intro — video Gaming Monitor scroll-scrub (600vh, sticky) ──
   if (stage === "intro") {
     return (
       <section
@@ -133,12 +133,12 @@ export default function HeroSection() {
         aria-label="BURHANDEV hero"
       >
         <div className={styles.videoSticky}>
-          {/* Video Flow — frame dipandu scroll */}
+          {/* Video Gaming Monitor — frame dipandu scroll */}
           <div className={styles.roomWrap} aria-hidden="true">
             <video
               ref={videoRef}
               className={styles.heroVideo}
-              src="/videos/flow.mp4"
+              src="/videos/gaming-monitor.mp4"
               muted
               playsInline
               preload="auto"

@@ -11,9 +11,9 @@
   },
   "session": {
     "actor": "amad",
-    "authenticatedAt": "2026-07-11T20:16:06.142Z",
-    "lastActiveAt": "2026-07-11T20:16:06.142Z",
-    "expiresAt": "2026-07-12T20:16:06.142Z"
+    "authenticatedAt": "2026-07-20T10:50:57.676Z",
+    "lastActiveAt": "2026-07-20T10:50:57.676Z",
+    "expiresAt": "2026-07-21T10:50:57.689Z"
   },
   "sessionPolicy": {
     "enabled": true,
@@ -3588,7 +3588,40 @@
       "agentId": "agent-qih",
       "kind": "memory",
       "summary": "transition: soft top-blend gradient (34vh, curtain color -> transparent, fades out by 25pct journey) on incoming video sections — removes hard seam line at sticky handoff"
+    },
+    {
+      "at": "2026-07-11T20:17:19.010Z",
+      "actor": "BURHAN-MOP",
+      "kind": "merge-approved",
+      "summary": "origin/dev/amad approved and merged to main."
+    },
+    {
+      "at": "2026-07-11T20:18:24.788Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "seam transition fix (main 2864b40, deployed): 34vh top-blend gradient on ScrubVideoSection (curtain #0e0806 -> transparent, opacity fades out by 25pct of journey via onProgress) — hard handoff line between video sections now a soft transition"
+    },
+    {
+      "at": "2026-07-20T10:50:57.689Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "login",
+      "summary": "Member authenticated; new session started."
+    },
+    {
+      "at": "2026-07-20T10:51:23.412Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "hero: swap video Flow -> Gaming Monitor (Gaming_room_monitor_displays_BURHAN, delogo watermark removed at 1110,559,85x85, g6 keyframes for smooth scrub), reuses existing scroll-scrub engine (useVideoScrub, 600vh sticky section), old flow.mp4 removed"
     }
   ],
-  "lastActiveAt": "2026-07-11T20:16:06.142Z"
+  "lastActiveAt": "2026-07-20T10:50:57.676Z"
 }
