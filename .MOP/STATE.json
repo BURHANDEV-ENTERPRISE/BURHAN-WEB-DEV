@@ -3753,6 +3753,15 @@
       "agentId": "agent-qih",
       "kind": "memory",
       "summary": "hero: cover the monitor area (where BURHAN text is baked into gaming-monitor.mp4 from frame 1) with a radial vignette at page load; it only clears after the headline has finished fading out (p 0.04-0.14 vs headline fade 0.01-0.10), so the two texts never appear together even at scroll=0"
+    },
+    {
+      "at": "2026-07-20T11:31:01.553Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "hero: cover the monitor area (where BURHAN text is baked into gaming-monitor.mp4 from frame 1) with a radial vignette at page load; it only clears after the headline has finished fading out (p 0.04-0.14 vs headline fade 0.01-0.10), so the two texts never appear together even at scroll=0"
     }
   ],
   "lastActiveAt": "2026-07-20T11:25:23.250Z"

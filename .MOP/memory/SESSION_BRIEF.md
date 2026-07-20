@@ -1,6 +1,6 @@
 # MOP Session Brief
 
-Updated: 2026-07-20T11:30:12.701Z
+Updated: 2026-07-20T11:31:01.564Z
 Actor: amad
 Active agent: qih (architect)
 Current month: 2026-07
@@ -15,7 +15,6 @@ Current month: 2026-07
 
 ## Recent Memory
 
-- 2026-07-07T16:57:53.377Z - qih (architect): fable-5-mode upgraded to Pro (main 5360465): added Layer 2 process protocol — A) mandatory verification loop (run real feedback tool, verbatim errors, 5-iteration cap, done-requires-named-check), B) docs-on-demand no-API-from-memory, C) plan-step-verify scaffolding w/ requirement map, D) critic pass; system-prompt.txt updated, portable copy + manifest refreshed (4 providers ready)
 - 2026-07-11T15:13:23.994Z - qih (architect): fable-5-mode compact: system prompt 900->350 tokens (imperatives only, merged rules), 3 cheap high-yield cognitive moves added (task restate+unknowns, 2-approach sketch, tools-over-memory), SKILL.md 7.4KB->2.6KB, Gemini/AI Studio setup steps
 - 2026-07-11T15:14:12.993Z - qih (architect): fable-5-mode compact: system prompt 900->350 tokens (imperatives only, merged rules), 3 cheap high-yield cognitive moves added (task restate+unknowns, 2-approach sketch, tools-over-memory), SKILL.md 7.4KB->2.6KB, Gemini/AI Studio setup steps
 - 2026-07-11T15:14:50.084Z - qih (architect): fable-5-mode compacted (main 1e6ecda): system-prompt.txt 900->350 tokens keeping only high-yield imperatives, added 3 cheap cognitive moves (restate task+unknowns, 2-approach sketch for hard problems, tools-over-memory), SKILL.md 7.4KB->2.6KB progressive disclosure + Gemini/AI Studio setup steps, portable copy + manifest synced
@@ -35,3 +34,4 @@ Current month: 2026-07
 - 2026-07-20T11:24:10.214Z - qih (architect): keyboard scrub section: added scroll-triggered heading (Built for Performance) + subheading + endTag synced to video's dissolve ending (Turning Ideas Into Interfaces), all fade in/out driven by scroll progress via new ScrubVideoSection heading/endTag props; smoothed end-curtain to match hero (gradual p 0.88-0.99 vs compressed 0.96-0.995); slowed pace 320vh->460vh; re-verified Gemini watermark clean across full 10s duration (already removed)
 - 2026-07-20T11:25:23.254Z - qih (architect): keyboard scrub section redesigned (main 63c86bb, deployed): ScrubVideoSection gained heading/subheading/endTag props with windowedFade helper (progress-driven fade-in/hold/fade-out, no re-render, direct DOM style like rest of scrub engine); keyboard section now shows 'Built for Performance.' early, 'Turning Ideas Into Interfaces' synced to the video's ember-dissolve ending before curtain; end-curtain smoothed to match hero pattern; heightVh 320->460 for slower scroll; Gemini watermark re-verified clean at 8 timestamps across full duration
 - 2026-07-20T11:30:12.689Z - qih (architect): hero: cover the monitor area (where BURHAN text is baked into gaming-monitor.mp4 from frame 1) with a radial vignette at page load; it only clears after the headline has finished fading out (p 0.04-0.14 vs headline fade 0.01-0.10), so the two texts never appear together even at scroll=0
+- 2026-07-20T11:31:01.554Z - qih (architect): hero: cover the monitor area (where BURHAN text is baked into gaming-monitor.mp4 from frame 1) with a radial vignette at page load; it only clears after the headline has finished fading out (p 0.04-0.14 vs headline fade 0.01-0.10), so the two texts never appear together even at scroll=0
