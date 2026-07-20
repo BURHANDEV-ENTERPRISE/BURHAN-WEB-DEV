@@ -23,7 +23,7 @@ export default function Home() {
         <HeroSection />
         <ScrubVideoSection
           src="/videos/keyboard-transition.mp4"
-          heightVh={460}
+          heightVh={650}
           ariaLabel="BURHANDEV keyboard transition"
           heading="Built for Performance."
           subheading="Real hardware, real focus — the setup behind every line we ship."
@@ -31,16 +31,53 @@ export default function Home() {
           endTag="Loading the Next Level."
           endTagWindow={[0.85, 0.91, 0.97, 0.995]}
           curtainWindow={[0.95, 0.045]}
+          overlays={[
+            {
+              box: { top: 37.1, left: 51.3, width: 19.4, height: 15.7 },
+              text: "Contact Us",
+              window: [0.87, 0.92, 0.97, 0.995],
+              blink: true,
+              href: "#contact",
+              variant: "button",
+            },
+          ]}
         />
         <ScrubVideoSection
           src="/videos/geometric.mp4"
-          heightVh={500}
+          heightVh={700}
           ariaLabel="BURHANDEV console interface reveal"
           heading="Crafted With Precision."
           subheading="Every panel, every pixel — assembled like a real product, not a placeholder."
           headingWindow={[0.05, 0.15, 0.34, 0.42]}
           endTag="Your Console, Your Control."
           endTagWindow={[0.62, 0.7, 0.83, 0.87]}
+          overlays={[
+            {
+              box: { top: 18, left: 6, width: 11, height: 5.5 },
+              text: "● DEV",
+              window: [0.3, 0.36, 0.55, 0.6],
+              blink: true,
+              variant: "badge",
+            },
+            {
+              box: { top: 13.9, left: 5.5, width: 27.3, height: 73.6 },
+              text: "01\nLanding Page",
+              window: [0.42, 0.5, 0.83, 0.87],
+              variant: "card",
+            },
+            {
+              box: { top: 13.2, left: 35.9, width: 28.5, height: 74.3 },
+              text: "02\nBusiness Site",
+              window: [0.42, 0.5, 0.83, 0.87],
+              variant: "card",
+            },
+            {
+              box: { top: 13.9, left: 67.6, width: 27.3, height: 73.6 },
+              text: "03\nProduct UI",
+              window: [0.42, 0.5, 0.83, 0.87],
+              variant: "card",
+            },
+          ]}
         />
 
         <StatsSection />

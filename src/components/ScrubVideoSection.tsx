@@ -12,6 +12,18 @@ interface FadeWindow {
   window: [number, number, number, number];
 }
 
+interface PositionedOverlay {
+  /** Kotak posisi sebagai peratus kawasan video (left/top/width/height, "0-100"). */
+  box: { top: number; left: number; width: number; height: number };
+  text: string;
+  window: [number, number, number, number];
+  /** Animasi kelip berterusan (bukan sekadar fade in/out sekali). */
+  blink?: boolean;
+  /** Ada href = jadi butang boleh klik yang scroll ke section tersebut. */
+  href?: string;
+  variant?: "badge" | "card" | "button";
+}
+
 interface ScrubVideoSectionProps {
   src: string;
   /** Tinggi journey dalam vh (lalai 320). */
@@ -31,6 +43,9 @@ interface ScrubVideoSectionProps {
    * kalau video ada payoff visual lewat (contoh reveal menu) yang perlu
    * kekal jelas lebih lama sebelum digelapkan. */
   curtainWindow?: [number, number];
+  /** Elemen berposisi bebas atas video: badge berkelip, label kad, atau
+   * butang boleh klik (href) — semua digerakkan oleh progress yang sama. */
+  overlays?: PositionedOverlay[];
 }
 
 /** Segitiga fade: 0 -> 1 antara [inStart,inEnd], kekal 1, 1 -> 0 antara [outStart,outEnd] */
@@ -53,12 +68,14 @@ export default function ScrubVideoSection({
   endTag,
   endTagWindow = [0.6, 0.68, 0.82, 0.87],
   curtainWindow = [0.88, 0.11],
+  overlays = [],
 }: ScrubVideoSectionProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const blendRef = useRef<HTMLDivElement>(null);
   const headingRef = useRef<HTMLDivElement>(null);
   const endTagRef = useRef<HTMLDivElement>(null);
+  const overlayRefs = useRef<Array<HTMLDivElement | HTMLAnchorElement | null>>([]);
 
   // Zoom halus; video kelihatan penuh dari awal (curtain reveal dari
   // section sebelumnya) dan gelap beransur menjelang hujung journey
@@ -90,7 +107,15 @@ export default function ScrubVideoSection({
       e.style.opacity = String(f);
       e.style.transform = `translateY(${((1 - f) * 14).toFixed(1)}px)`;
     }
-  }, [headingWindow, endTagWindow, curtainWindow]);
+
+    overlays.forEach((ov, i) => {
+      const el = overlayRefs.current[i];
+      if (!el) return;
+      const f = windowedFade(p, ov.window);
+      el.style.opacity = String(f);
+      el.style.pointerEvents = ov.href && f > 0.5 ? "auto" : "none";
+    });
+  }, [headingWindow, endTagWindow, curtainWindow, overlays]);
 
   useVideoScrub(sectionRef, videoRef, { onProgress });
 
@@ -125,6 +150,71 @@ export default function ScrubVideoSection({
             {endTag}
           </div>
         )}
+
+        {overlays.map((ov, i) => {
+          const boxStyle: React.CSSProperties = {
+            position: "absolute",
+            top: `${ov.box.top}%`,
+            left: `${ov.box.left}%`,
+            width: `${ov.box.width}%`,
+            height: `${ov.box.height}%`,
+            opacity: 0,
+            pointerEvents: "none",
+          };
+          const cls = [
+            styles.posOverlay,
+            ov.variant === "card" ? styles.posCard : "",
+            ov.variant === "button" ? styles.posButton : "",
+            ov.variant === "badge" ? styles.posBadge : "",
+            ov.blink ? styles.blinking : "",
+          ]
+            .filter(Boolean)
+            .join(" ");
+
+          const content =
+            ov.variant === "card" && ov.text.includes("\n") ? (
+              (() => {
+                const [idx, label] = ov.text.split("\n");
+                return (
+                  <>
+                    <span className={styles.cardIndex}>{idx}</span>
+                    <span className={styles.cardLabel}>{label}</span>
+                  </>
+                );
+              })()
+            ) : (
+              ov.text
+            );
+
+          if (ov.href) {
+            return (
+              <a
+                key={i}
+                ref={(el) => {
+                  overlayRefs.current[i] = el;
+                }}
+                href={ov.href}
+                className={cls}
+                style={boxStyle}
+              >
+                {content}
+              </a>
+            );
+          }
+          return (
+            <div
+              key={i}
+              ref={(el) => {
+                overlayRefs.current[i] = el;
+              }}
+              className={cls}
+              style={boxStyle}
+              aria-hidden="true"
+            >
+              {content}
+            </div>
+          );
+        })}
 
         {children && <div className={styles.overlay}>{children}</div>}
       </div>
