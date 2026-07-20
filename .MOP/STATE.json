@@ -12,8 +12,8 @@
   "session": {
     "actor": "amad",
     "authenticatedAt": "2026-07-20T10:50:57.676Z",
-    "lastActiveAt": "2026-07-20T14:30:08.166Z",
-    "expiresAt": "2026-07-21T14:30:08.167Z"
+    "lastActiveAt": "2026-07-20T14:49:08.943Z",
+    "expiresAt": "2026-07-21T14:49:08.944Z"
   },
   "sessionPolicy": {
     "enabled": true,
@@ -3861,7 +3861,31 @@
       "agentId": "agent-qih",
       "kind": "memory",
       "summary": "sections 2/3: longer scroll (460->650vh, 500->700vh) + new generic overlays system in ScrubVideoSection (positioned text/badge/button synced to scroll progress, pixel-mapped via ffmpeg grid extraction) - keyboard-transition gets clickable pulsing Contact Us button covering the video's baked ROBBINT label (navigates to #contact), geometric gets blinking DEV badge during early ink-reveal + 01/02/03 Landing Page/Business Site/Product UI labels inside the 3 blank cards; verified positions and click-through with local Playwright test before deploy"
+    },
+    {
+      "at": "2026-07-20T14:47:29.210Z",
+      "actor": "BURHAN-MOP",
+      "kind": "merge-approved",
+      "summary": "origin/dev/amad approved and merged to main."
+    },
+    {
+      "at": "2026-07-20T14:49:08.947Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "sections 2/3 overlays shipped (main e5a44d6, deployed+verified live): heightVh keyboard-transition 460->650, geometric 500->700; new positioned-overlays system in ScrubVideoSection (percentage box + progress window + optional href/blink); keyboard-transition has clickable pulsing Contact Us button at (51.3,37.1,19.4,15.7)% covering video's baked ROBBINT text, scrolls to #contact on click; geometric has blinking DEV badge (repositioned to 18,6% after first placement collided with fixed header) + 01/02/03 Landing Page/Business Site/Product UI labels inside the 3 blank cards at their exact grid-measured positions; all confirmed via Playwright screenshots + real click-through both locally and on live site"
+    },
+    {
+      "at": "2026-07-20T14:55:47.501Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "geometric section (3): removed all text overlays (heading, subheading, endTag, DEV badge, card labels) — plain video only now. Fixed button ghosting bug: Contact Us CTA opacity was fading gradually via windowedFade, making its solid cream background translucent mid-transition and letting the video's baked ROBBINT text bleed through; buttons now snap opacity 0->1 past a small threshold instead of fading proportionally, keeping the cover box always fully opaque when visible"
     }
   ],
-  "lastActiveAt": "2026-07-20T14:30:08.166Z"
+  "lastActiveAt": "2026-07-20T14:49:08.943Z"
 }

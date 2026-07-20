@@ -46,38 +46,6 @@ export default function Home() {
           src="/videos/geometric.mp4"
           heightVh={700}
           ariaLabel="BURHANDEV console interface reveal"
-          heading="Crafted With Precision."
-          subheading="Every panel, every pixel — assembled like a real product, not a placeholder."
-          headingWindow={[0.05, 0.15, 0.34, 0.42]}
-          endTag="Your Console, Your Control."
-          endTagWindow={[0.62, 0.7, 0.83, 0.87]}
-          overlays={[
-            {
-              box: { top: 18, left: 6, width: 11, height: 5.5 },
-              text: "● DEV",
-              window: [0.3, 0.36, 0.55, 0.6],
-              blink: true,
-              variant: "badge",
-            },
-            {
-              box: { top: 13.9, left: 5.5, width: 27.3, height: 73.6 },
-              text: "01\nLanding Page",
-              window: [0.42, 0.5, 0.83, 0.87],
-              variant: "card",
-            },
-            {
-              box: { top: 13.2, left: 35.9, width: 28.5, height: 74.3 },
-              text: "02\nBusiness Site",
-              window: [0.42, 0.5, 0.83, 0.87],
-              variant: "card",
-            },
-            {
-              box: { top: 13.9, left: 67.6, width: 27.3, height: 73.6 },
-              text: "03\nProduct UI",
-              window: [0.42, 0.5, 0.83, 0.87],
-              variant: "card",
-            },
-          ]}
         />
 
         <StatsSection />
