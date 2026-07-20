@@ -22,17 +22,25 @@ export default function Home() {
       <main>
         <HeroSection />
         <ScrubVideoSection
-          src="/videos/keyboard.mp4"
+          src="/videos/keyboard-transition.mp4"
           heightVh={460}
-          ariaLabel="BURHANDEV keyboard and monitor dissolve"
+          ariaLabel="BURHANDEV keyboard transition"
           heading="Built for Performance."
           subheading="Real hardware, real focus — the setup behind every line we ship."
-          endTag="Turning Ideas Into Interfaces"
+          headingWindow={[0.04, 0.13, 0.32, 0.4]}
+          endTag="Loading the Next Level."
+          endTagWindow={[0.85, 0.91, 0.97, 0.995]}
+          curtainWindow={[0.95, 0.045]}
         />
         <ScrubVideoSection
-          src="/videos/console.mp4"
+          src="/videos/geometric.mp4"
           heightVh={500}
-          ariaLabel="BURHANDEV console reveal"
+          ariaLabel="BURHANDEV console interface reveal"
+          heading="Crafted With Precision."
+          subheading="Every panel, every pixel — assembled like a real product, not a placeholder."
+          headingWindow={[0.05, 0.15, 0.34, 0.42]}
+          endTag="Your Console, Your Control."
+          endTagWindow={[0.62, 0.7, 0.83, 0.87]}
         />
 
         <StatsSection />

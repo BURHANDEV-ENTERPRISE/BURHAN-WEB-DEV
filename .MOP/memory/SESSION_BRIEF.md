@@ -1,6 +1,6 @@
 # MOP Session Brief
 
-Updated: 2026-07-20T11:31:01.564Z
+Updated: 2026-07-20T11:42:35.303Z
 Actor: amad
 Active agent: qih (architect)
 Current month: 2026-07
@@ -15,8 +15,6 @@ Current month: 2026-07
 
 ## Recent Memory
 
-- 2026-07-11T15:13:23.994Z - qih (architect): fable-5-mode compact: system prompt 900->350 tokens (imperatives only, merged rules), 3 cheap high-yield cognitive moves added (task restate+unknowns, 2-approach sketch, tools-over-memory), SKILL.md 7.4KB->2.6KB, Gemini/AI Studio setup steps
-- 2026-07-11T15:14:12.993Z - qih (architect): fable-5-mode compact: system prompt 900->350 tokens (imperatives only, merged rules), 3 cheap high-yield cognitive moves added (task restate+unknowns, 2-approach sketch, tools-over-memory), SKILL.md 7.4KB->2.6KB, Gemini/AI Studio setup steps
 - 2026-07-11T15:14:50.084Z - qih (architect): fable-5-mode compacted (main 1e6ecda): system-prompt.txt 900->350 tokens keeping only high-yield imperatives, added 3 cheap cognitive moves (restate task+unknowns, 2-approach sketch for hard problems, tools-over-memory), SKILL.md 7.4KB->2.6KB progressive disclosure + Gemini/AI Studio setup steps, portable copy + manifest synced
 - 2026-07-11T20:16:21.363Z - qih (architect): transition: soft top-blend gradient (34vh, curtain color -> transparent, fades out by 25pct journey) on incoming video sections — removes hard seam line at sticky handoff
 - 2026-07-11T20:17:09.721Z - qih (architect): transition: soft top-blend gradient (34vh, curtain color -> transparent, fades out by 25pct journey) on incoming video sections — removes hard seam line at sticky handoff
@@ -35,3 +33,5 @@ Current month: 2026-07
 - 2026-07-20T11:25:23.254Z - qih (architect): keyboard scrub section redesigned (main 63c86bb, deployed): ScrubVideoSection gained heading/subheading/endTag props with windowedFade helper (progress-driven fade-in/hold/fade-out, no re-render, direct DOM style like rest of scrub engine); keyboard section now shows 'Built for Performance.' early, 'Turning Ideas Into Interfaces' synced to the video's ember-dissolve ending before curtain; end-curtain smoothed to match hero pattern; heightVh 320->460 for slower scroll; Gemini watermark re-verified clean at 8 timestamps across full duration
 - 2026-07-20T11:30:12.689Z - qih (architect): hero: cover the monitor area (where BURHAN text is baked into gaming-monitor.mp4 from frame 1) with a radial vignette at page load; it only clears after the headline has finished fading out (p 0.04-0.14 vs headline fade 0.01-0.10), so the two texts never appear together even at scroll=0
 - 2026-07-20T11:31:01.554Z - qih (architect): hero: cover the monitor area (where BURHAN text is baked into gaming-monitor.mp4 from frame 1) with a radial vignette at page load; it only clears after the headline has finished fading out (p 0.04-0.14 vs headline fade 0.01-0.10), so the two texts never appear together even at scroll=0
+- 2026-07-20T11:32:30.120Z - qih (architect): hero fix (main 137f92a, deployed): initial-load overlap fixed — radial vignette (.textCover, ellipse 46%x40% at 50%,40%) covers the monitor screen area at p=0, so video's baked-in BURHAN text is hidden while headline is visible; vignette clears p 0.04-0.14, after headline fade completes at p=0.10, guaranteeing the two texts never coexist even before any scrolling
+- 2026-07-20T11:42:35.294Z - qih (architect): swap section 2/3 videos: keyboard.mp4 -> keyboard-transition.mp4 (keyboard shot -> ember dissolve -> maroon-void game menu reveal), console.mp4 -> geometric.mp4 (Burhan Console dashboard cards assembling via ink-splatter reveal) — both delogo'd (Gemini watermark at 1128,565,72x72 on this 1280x720 export), g6 keyframes; applied same treatment as before: scroll-triggered heading+subheading+endTag synced to each video's own story beats, smoothed end-curtain (keyboard-transition delayed to 0.95 so its own START-menu payoff stays visible longer), old unused console.mp4/keyboard.mp4 deleted

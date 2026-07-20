@@ -12,8 +12,8 @@
   "session": {
     "actor": "amad",
     "authenticatedAt": "2026-07-20T10:50:57.676Z",
-    "lastActiveAt": "2026-07-20T11:25:23.250Z",
-    "expiresAt": "2026-07-21T11:25:23.251Z"
+    "lastActiveAt": "2026-07-20T11:32:30.117Z",
+    "expiresAt": "2026-07-21T11:32:30.118Z"
   },
   "sessionPolicy": {
     "enabled": true,
@@ -3762,7 +3762,31 @@
       "agentId": "agent-qih",
       "kind": "memory",
       "summary": "hero: cover the monitor area (where BURHAN text is baked into gaming-monitor.mp4 from frame 1) with a radial vignette at page load; it only clears after the headline has finished fading out (p 0.04-0.14 vs headline fade 0.01-0.10), so the two texts never appear together even at scroll=0"
+    },
+    {
+      "at": "2026-07-20T11:31:10.001Z",
+      "actor": "BURHAN-MOP",
+      "kind": "merge-approved",
+      "summary": "origin/dev/amad approved and merged to main."
+    },
+    {
+      "at": "2026-07-20T11:32:30.120Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "hero fix (main 137f92a, deployed): initial-load overlap fixed — radial vignette (.textCover, ellipse 46%x40% at 50%,40%) covers the monitor screen area at p=0, so video's baked-in BURHAN text is hidden while headline is visible; vignette clears p 0.04-0.14, after headline fade completes at p=0.10, guaranteeing the two texts never coexist even before any scrolling"
+    },
+    {
+      "at": "2026-07-20T11:42:35.293Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "swap section 2/3 videos: keyboard.mp4 -> keyboard-transition.mp4 (keyboard shot -> ember dissolve -> maroon-void game menu reveal), console.mp4 -> geometric.mp4 (Burhan Console dashboard cards assembling via ink-splatter reveal) — both delogo'd (Gemini watermark at 1128,565,72x72 on this 1280x720 export), g6 keyframes; applied same treatment as before: scroll-triggered heading+subheading+endTag synced to each video's own story beats, smoothed end-curtain (keyboard-transition delayed to 0.95 so its own START-menu payoff stays visible longer), old unused console.mp4/keyboard.mp4 deleted"
     }
   ],
-  "lastActiveAt": "2026-07-20T11:25:23.250Z"
+  "lastActiveAt": "2026-07-20T11:32:30.117Z"
 }
