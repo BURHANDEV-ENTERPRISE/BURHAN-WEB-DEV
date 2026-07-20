@@ -170,6 +170,21 @@
   pointer-events: none;
 }
 
+/* Tutup kawasan monitor (teks "BURHAN" terbakar dalam video) pada
+   permulaan journey — larut selepas headline hilang, elak dua teks
+   kelihatan serentak. Opacity dikawal oleh onScrubProgress (JS). */
+.textCover {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 46% 40% at 50% 40%,
+    rgba(14, 8, 6, 0.97) 0%,
+    rgba(14, 8, 6, 0.85) 45%,
+    rgba(14, 8, 6, 0) 78%
+  );
+  pointer-events: none;
+}
+
 /* ── Headline — terapung atas bilik, tidak halang klik hotspot ── */
 .introContent {
   position: absolute;
