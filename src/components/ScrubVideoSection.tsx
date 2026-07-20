@@ -112,8 +112,12 @@ export default function ScrubVideoSection({
       const el = overlayRefs.current[i];
       if (!el) return;
       const f = windowedFade(p, ov.window);
-      el.style.opacity = String(f);
-      el.style.pointerEvents = ov.href && f > 0.5 ? "auto" : "none";
+      // Butang perlu box pekat sepenuhnya bila nampak — opacity separa
+      // buat latar cream jadi lut sinar dan dedahkan teks asal video
+      // (contoh "ROBBINT") tembus di belakang. Snap terus ke 1 lepas
+      // ambang kecil, bukan fade berperingkat.
+      el.style.opacity = ov.variant === "button" ? (f > 0.12 ? "1" : "0") : String(f);
+      el.style.pointerEvents = ov.href && f > 0.12 ? "auto" : "none";
     });
   }, [headingWindow, endTagWindow, curtainWindow, overlays]);
 
