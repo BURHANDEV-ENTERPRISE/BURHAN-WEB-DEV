@@ -12,8 +12,8 @@
   "session": {
     "actor": "amad",
     "authenticatedAt": "2026-07-20T10:50:57.676Z",
-    "lastActiveAt": "2026-07-20T11:44:40.461Z",
-    "expiresAt": "2026-07-21T11:44:40.462Z"
+    "lastActiveAt": "2026-07-20T14:30:08.166Z",
+    "expiresAt": "2026-07-21T14:30:08.167Z"
   },
   "sessionPolicy": {
     "enabled": true,
@@ -3834,7 +3834,40 @@
       "actor": "BURHAN-MOP",
       "kind": "merge-approved",
       "summary": "origin/dev/amad approved and merged to main."
+    },
+    {
+      "at": "2026-07-20T14:30:08.170Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "found and fixed real bug (main a185f3e, deployed+verified): under prefers-reduced-motion, ScrubVideoSection heading/endTag were permanently invisible (opacity:0 initial inline style never updated since useVideoScrub skips its effect entirely for reduced-motion users) — this was the actual cause of user's 'xde scrolling trigger animation' report, not a video-loading issue; confirmed via Playwright with reducedMotion:'reduce' emulation, fixed with CSS fallback forcing opacity:1, re-verified against live site post-deploy"
+    },
+    {
+      "at": "2026-07-20T14:46:31.823Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "sections 2/3: longer scroll (460->650vh, 500->700vh) + new generic overlays system in ScrubVideoSection (positioned text/badge/button synced to scroll progress, pixel-mapped via ffmpeg grid extraction) - keyboard-transition gets clickable pulsing Contact Us button covering the video's baked ROBBINT label (navigates to #contact), geometric gets blinking DEV badge during early ink-reveal + 01/02/03 Landing Page/Business Site/Product UI labels inside the 3 blank cards; verified positions and click-through with local Playwright test before deploy"
+    },
+    {
+      "at": "2026-07-20T14:47:20.176Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "sections 2/3: longer scroll (460->650vh, 500->700vh) + new generic overlays system in ScrubVideoSection (positioned text/badge/button synced to scroll progress, pixel-mapped via ffmpeg grid extraction) - keyboard-transition gets clickable pulsing Contact Us button covering the video's baked ROBBINT label (navigates to #contact), geometric gets blinking DEV badge during early ink-reveal + 01/02/03 Landing Page/Business Site/Product UI labels inside the 3 blank cards; verified positions and click-through with local Playwright test before deploy"
+    },
+    {
+      "at": "2026-07-20T14:47:29.210Z",
+      "actor": "BURHAN-MOP",
+      "kind": "merge-approved",
+      "summary": "origin/dev/amad approved and merged to main."
     }
   ],
-  "lastActiveAt": "2026-07-20T11:44:40.461Z"
+  "lastActiveAt": "2026-07-20T14:30:08.166Z"
 }

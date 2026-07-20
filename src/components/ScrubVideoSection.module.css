@@ -13,9 +13,18 @@
     height: 100vh !important;
   }
   .textBlock,
-  .endTag {
+  .endTag,
+  .posOverlay {
     opacity: 1 !important;
     transform: none !important;
+  }
+  .blinking {
+    animation: none !important;
+  }
+  /* JS tak jalan dalam mod ini — butang mesti tetap boleh diklik walaupun
+     inline pointer-events default JS ("none") tak pernah ditimpa */
+  .posButton {
+    pointer-events: auto !important;
   }
 }
 
@@ -124,4 +133,82 @@
   letter-spacing: 0.14em;
   text-transform: uppercase;
   white-space: nowrap;
+}
+
+/* ── Overlay berposisi bebas (badge/kad/butang) atas video ── */
+.posOverlay {
+  box-sizing: border-box;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: var(--font-bebas), "Impact", sans-serif;
+  text-decoration: none;
+  will-change: opacity;
+}
+
+/* Kelipan berterusan — pulse box-shadow, bukan opacity (elak konflik
+   dengan opacity yang dikawal JS ikut progress scroll) */
+@keyframes posPulseGlow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(127, 29, 29, 0.45); }
+  50%      { box-shadow: 0 0 0 8px rgba(127, 29, 29, 0); }
+}
+
+.blinking {
+  animation: posPulseGlow 1.6s ease-in-out infinite;
+}
+
+/* Label kad servis — duduk dalam kad kosong video (kad sendiri cream) */
+.posCard {
+  flex-direction: column;
+  gap: 6px;
+  padding: 8% 10%;
+  color: #1d2a1f;
+}
+
+.cardIndex {
+  font-size: clamp(0.7rem, 1.3vw, 0.95rem);
+  letter-spacing: 0.18em;
+  color: #7f1d1d;
+}
+
+.cardLabel {
+  font-size: clamp(1rem, 2.1vw, 1.6rem);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  line-height: 1.05;
+}
+
+/* Badge kecil berkelip (contoh "DEV") — gaya Burhan Console */
+.posBadge {
+  border-radius: 999px;
+  border: 1.5px solid #7f1d1d;
+  background: rgba(240, 234, 214, 0.94);
+  color: #7f1d1d;
+  font-size: clamp(0.7rem, 1.3vw, 0.9rem);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+/* Butang boleh klik — reka bentuk sepadan butang video (cream + border
+   hijau gelap) supaya "menutup" label asal dalam video dengan kemas */
+.posButton {
+  cursor: pointer;
+  border-radius: 4px;
+  border: 2.5px solid #1d2a1f;
+  background: #f0ead6;
+  color: #1d2a1f;
+  font-size: clamp(0.95rem, 2vw, 1.4rem);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.25);
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.posButton:hover {
+  background: #fff6dc;
+  transform: translateY(-2px);
 }
