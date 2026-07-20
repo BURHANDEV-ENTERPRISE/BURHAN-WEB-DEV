@@ -1,6 +1,6 @@
 # MOP Session Brief
 
-Updated: 2026-07-20T10:51:23.432Z
+Updated: 2026-07-20T10:52:14.382Z
 Actor: amad
 Active agent: qih (architect)
 Current month: 2026-07
@@ -15,7 +15,6 @@ Current month: 2026-07
 
 ## Recent Memory
 
-- 2026-07-07T11:12:44.487Z - qih (architect): ui polish: hide all eyebrow pill badges (START etc), shrink footer wordmark 14vw->7vw and tighten footer paddings
 - 2026-07-07T11:13:32.716Z - qih (architect): ui polish: hide all eyebrow pill badges (START etc), shrink footer wordmark 14vw->7vw and tighten footer paddings
 - 2026-07-07T11:14:48.958Z - qih (architect): ui polish (main 80621c4, deployed): all eyebrow pill badges hidden via CSS display:none (START/Pricing/Testimonials/WhyUs etc), footer wordmark shrunk 14vw->7vw (13vw->6.5vw desktop), footer paddings tightened 5rem->2.5rem top, brand padding 2.5->1.5rem
 - 2026-07-07T11:41:55.659Z - qih (architect): nav + harmony: hamburger now functional section-picker menu (Home/Services/Pricing/WhyUs/Contact, aligned 3rem circle), smooth scroll-behavior, section boundary gradients (video black -> stats -> services) remove abrupt color seams, id=pricing added
@@ -35,3 +34,4 @@ Current month: 2026-07
 - 2026-07-11T20:17:09.721Z - qih (architect): transition: soft top-blend gradient (34vh, curtain color -> transparent, fades out by 25pct journey) on incoming video sections — removes hard seam line at sticky handoff
 - 2026-07-11T20:18:24.788Z - qih (architect): seam transition fix (main 2864b40, deployed): 34vh top-blend gradient on ScrubVideoSection (curtain #0e0806 -> transparent, opacity fades out by 25pct of journey via onProgress) — hard handoff line between video sections now a soft transition
 - 2026-07-20T10:51:23.414Z - qih (architect): hero: swap video Flow -> Gaming Monitor (Gaming_room_monitor_displays_BURHAN, delogo watermark removed at 1110,559,85x85, g6 keyframes for smooth scrub), reuses existing scroll-scrub engine (useVideoScrub, 600vh sticky section), old flow.mp4 removed
+- 2026-07-20T10:52:14.371Z - qih (architect): hero: swap video Flow -> Gaming Monitor (Gaming_room_monitor_displays_BURHAN, delogo watermark removed at 1110,559,85x85, g6 keyframes for smooth scrub), reuses existing scroll-scrub engine (useVideoScrub, 600vh sticky section), old flow.mp4 removed

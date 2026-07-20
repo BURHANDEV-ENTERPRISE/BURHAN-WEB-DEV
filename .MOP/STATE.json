@@ -3621,6 +3621,15 @@
       "agentId": "agent-qih",
       "kind": "memory",
       "summary": "hero: swap video Flow -> Gaming Monitor (Gaming_room_monitor_displays_BURHAN, delogo watermark removed at 1110,559,85x85, g6 keyframes for smooth scrub), reuses existing scroll-scrub engine (useVideoScrub, 600vh sticky section), old flow.mp4 removed"
+    },
+    {
+      "at": "2026-07-20T10:52:14.371Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "hero: swap video Flow -> Gaming Monitor (Gaming_room_monitor_displays_BURHAN, delogo watermark removed at 1110,559,85x85, g6 keyframes for smooth scrub), reuses existing scroll-scrub engine (useVideoScrub, 600vh sticky section), old flow.mp4 removed"
     }
   ],
   "lastActiveAt": "2026-07-20T10:50:57.676Z"
