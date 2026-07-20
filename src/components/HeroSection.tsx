@@ -38,23 +38,25 @@ export default function HeroSection() {
   const videoRef                      = useRef<HTMLVideoElement>(null);
   const sectionRef                    = useRef<HTMLElement>(null);
 
-  // Overlay ikut progress terlembut: headline naik & pudar pada 25% akhir,
-  // video zoom halus sepanjang journey
+  // Overlay ikut progress terlembut: headline hilang awal (video ada teks
+  // "BURHAN" terbakar dalam footage dari saat pertama — headline mesti
+  // pudar sebelum kamera zoom bawa teks tu jadi besar & bertindih),
+  // video zoom halus sepanjang journey, tirai akhir digelapkan beransur.
   const onScrubProgress = useCallback((p: number) => {
     const el = contentRef.current;
     if (el) {
-      const fade = p < 0.75 ? 0 : (p - 0.75) / 0.25;
-      el.style.transform = `translateX(-50%) translateY(${(-fade * 64).toFixed(1)}px)`;
-      el.style.opacity = String(Math.max(0, 1 - fade * 1.1));
+      const fade = Math.min(1, Math.max(0, (p - 0.01) / 0.09));
+      el.style.transform = `translateX(-50%) translateY(${(-fade * 40).toFixed(1)}px)`;
+      el.style.opacity = String(Math.max(0, 1 - fade * 1.15));
     }
     const v = videoRef.current;
     if (v) {
       v.style.transform = `scale(${(1 + p * 0.07).toFixed(3)})`;
-      // Gelap hanya saat akhir (curtain) — video seterusnya sudah penuh
-      // di bawah, jadi tirai gelap tarik naik tanpa jurang hitam panjang
-      v.style.opacity = String(
-        p > 0.96 ? Math.max(0, 1 - (p - 0.96) / 0.035) : 1
-      );
+      // Tirai akhir digelapkan beransur atas jarak lebih panjang (bukan
+      // dimampatkan ke saat terakhir sahaja) — handoff rasa lebih licin,
+      // sepadan tempoh topBlend section seterusnya.
+      const dim = Math.min(1, Math.max(0, (p - 0.88) / 0.11));
+      v.style.opacity = String(Math.max(0, 1 - dim));
     }
   }, []);
 
