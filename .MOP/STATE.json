@@ -3993,6 +3993,15 @@
       "agentId": "agent-qih",
       "kind": "memory",
       "summary": "removed Contact Us overlay from section 2. Performance: useVideoScrub rAF loop now fully stops (not just early-returns) when offscreen/tab-hidden, restarted by IO/visibilitychange instead of perpetually self-scheduling; removed ~980 lines (60pct) of dead CSS left over from the pre-video hero design (hero-stage/hero-pin/hero-words/build-scene/screen-card/core-*/frame-panel/bottom-ticker/manifesto-section/process-section/service-row/mini-browser/mini-stack and their media-query variants) - all verified zero JSX references before removal; fixed a regression found during cleanup where mobile brand-lockup text was hidden with no image fallback since the logo was removed earlier. Slowed scroll pace further (hero 850->950vh, section2 650->750vh). Verified with build + Playwright visual regression across Why Us/Contact/Footer/mobile header before deploy"
+    },
+    {
+      "at": "2026-07-27T08:10:10.501Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "removed Contact Us overlay from section 2. Performance: useVideoScrub rAF loop now fully stops (not just early-returns) when offscreen/tab-hidden, restarted by IO/visibilitychange instead of perpetually self-scheduling; removed ~980 lines (60pct) of dead CSS left over from the pre-video hero design (hero-stage/hero-pin/hero-words/build-scene/screen-card/core-*/frame-panel/bottom-ticker/manifesto-section/process-section/service-row/mini-browser/mini-stack and their media-query variants) - all verified zero JSX references before removal; fixed a regression found during cleanup where mobile brand-lockup text was hidden with no image fallback since the logo was removed earlier. Slowed scroll pace further (hero 850->950vh, section2 650->750vh). Verified with build + Playwright visual regression across Why Us/Contact/Footer/mobile header before deploy"
     }
   ],
   "lastActiveAt": "2026-07-27T07:47:45.912Z"
