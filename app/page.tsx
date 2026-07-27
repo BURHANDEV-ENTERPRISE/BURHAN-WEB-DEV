@@ -23,7 +23,7 @@ export default function Home() {
         <HeroSection />
         <ScrubVideoSection
           src="/videos/project1.mp4"
-          heightVh={650}
+          heightVh={750}
           ariaLabel="BURHANDEV keyboard transition"
           heading="Built for Performance."
           subheading="Real hardware, real focus — the setup behind every line we ship."
@@ -31,16 +31,6 @@ export default function Home() {
           endTag="Loading the Next Level."
           endTagWindow={[0.85, 0.91, 0.97, 0.995]}
           curtainWindow={[0.95, 0.045]}
-          overlays={[
-            {
-              box: { top: 44, left: 38, width: 24, height: 12 },
-              text: "Contact Us",
-              window: [0.87, 0.92, 0.97, 0.995],
-              blink: true,
-              href: "#contact",
-              variant: "button",
-            },
-          ]}
         />
 
         <StatsSection />
