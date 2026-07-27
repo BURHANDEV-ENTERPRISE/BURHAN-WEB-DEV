@@ -1,6 +1,6 @@
 # MOP Session Brief
 
-Updated: 2026-07-27T09:05:27.990Z
+Updated: 2026-07-27T09:06:15.037Z
 Actor: amad
 Active agent: qih (architect)
 Current month: 2026-07
@@ -15,7 +15,6 @@ Current month: 2026-07
 
 ## Recent Memory
 
-- 2026-07-27T07:34:18.524Z - qih (architect): pricing: removed Vercel deployment line item from Landing Page plan. Full site localization: translated all remaining Malay/mixed-language user-facing text to English — Why Us section (heading+body+3 panels), Contact section (heading+body), hero character speech bubbles (3 lines), Tech Stack heading, all 8 testimonial quotes + heading + note, NavMenu aria-labels, Pricing plan descriptions/CTA. Verified with repo-wide grep for common Malay markers - none remain in user-facing text
 - 2026-07-27T07:35:07.137Z - qih (architect): pricing: removed Vercel deployment line item from Landing Page plan. Full site localization: translated all remaining Malay/mixed-language user-facing text to English — Why Us section (heading+body+3 panels), Contact section (heading+body), hero character speech bubbles (3 lines), Tech Stack heading, all 8 testimonial quotes + heading + note, NavMenu aria-labels, Pricing plan descriptions/CTA. Verified with repo-wide grep for common Malay markers - none remain in user-facing text
 - 2026-07-27T07:36:49.569Z - qih (architect): removed Vercel deployment from Landing Page pricing plan; translated entire site from mixed Malay/English to full English (main 36aaa3a, deployed+verified live) — Why Us, Contact, hero speech bubbles, Tech Stack heading, all 8 testimonials, NavMenu aria-labels, Pricing descriptions/CTA. Site now consistently English throughout
 - 2026-07-27T07:44:59.889Z - qih (architect): header now hidden across hero + video section, only revealed once Our Services section reaches viewport top (scroll-based check on #services replacing hero-only IntersectionObserver). Removed section 3 (geometric) entirely from page. Section 2 video swapped to Video Project 1 (delogo watermark at 1700,856,90x90 on 1920x1080 source, g6 keyframes), Contact Us CTA overlay recentered since new video has no baked ROBBINT text to cover; unused geometric.mp4/keyboard-transition.mp4 deleted. Verified header hide/show transition point and video count with local Playwright test
@@ -35,3 +34,4 @@ Current month: 2026-07
 - 2026-07-27T09:03:54.761Z - qih (architect): fixed marquee strip: removed the flash/gap bug caused by only 2 duplicated copies not covering wide viewports (now 6 copies), swapped scroll direction so top row moves left-to-right and bottom row right-to-left per request, and removed the VERCEL tag from the bottom row
 - 2026-07-27T09:04:41.444Z - qih (architect): fixed marquee strip: removed the flash/gap bug caused by only 2 duplicated copies not covering wide viewports (now 6 copies), swapped scroll direction so top row moves left-to-right and bottom row right-to-left per request, and removed the VERCEL tag from the bottom row
 - 2026-07-27T09:05:27.981Z - qih (architect): fixed marquee strip: removed the flash/gap bug caused by only 2 duplicated copies not covering wide viewports (now 6 copies), swapped scroll direction so top row moves left-to-right and bottom row right-to-left per request, and removed the VERCEL tag from the bottom row
+- 2026-07-27T09:06:15.026Z - qih (architect): fixed marquee strip: removed the flash/gap bug caused by only 2 duplicated copies not covering wide viewports (now 6 copies), swapped scroll direction so top row moves left-to-right and bottom row right-to-left per request, and removed the VERCEL tag from the bottom row
