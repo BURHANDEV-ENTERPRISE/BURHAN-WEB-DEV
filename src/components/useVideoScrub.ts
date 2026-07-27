@@ -41,6 +41,7 @@ export default function useVideoScrub(
           v.preload = "auto";
           v.load();
         }
+        updateRunning();
       },
       { rootMargin: "80% 0px" }
     );
@@ -53,13 +54,17 @@ export default function useVideoScrub(
     };
     v.addEventListener("seeked", onSeeked);
 
+    // rAF hanya dijadualkan semula selagi berjalan — dihentikan terus
+    // (bukan sekadar early-return) bila offscreen/tab hidden, supaya tiada
+    // callback sia-sia berjalan setiap frame di seluruh page.
     let raf = 0;
     let alive = true;
+    let running = false;
     let smooth = 0;
+
     const tick = () => {
-      if (!alive) return;
+      if (!alive || !running) return;
       raf = requestAnimationFrame(tick);
-      if (!inView || document.visibilityState !== "visible") return;
 
       const rect = sec.getBoundingClientRect();
       const travel = Math.max(1, rect.height - window.innerHeight);
@@ -78,12 +83,26 @@ export default function useVideoScrub(
         }
       }
     };
-    raf = requestAnimationFrame(tick);
+
+    function updateRunning() {
+      const shouldRun = inView && document.visibilityState === "visible";
+      if (shouldRun && !running) {
+        running = true;
+        raf = requestAnimationFrame(tick);
+      } else if (!shouldRun && running) {
+        running = false;
+        cancelAnimationFrame(raf);
+      }
+    }
+
+    document.addEventListener("visibilitychange", updateRunning);
 
     return () => {
       alive = false;
+      running = false;
       cancelAnimationFrame(raf);
       v.removeEventListener("seeked", onSeeked);
+      document.removeEventListener("visibilitychange", updateRunning);
       io.disconnect();
     };
   }, [enabled, sectionRef, videoRef, onProgress]);
