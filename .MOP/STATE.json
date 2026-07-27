@@ -4026,6 +4026,15 @@
       "agentId": "agent-qih",
       "kind": "memory",
       "summary": "fix marquee gap bug (skewX applied to overflow:hidden track sheared its clip box, exposing bg at edges) - removed scroll skew, rows now straight; pricing cards unified with same pixel-dot texture background + consistent maroon text across all 3 (featured plan distinguished by border+badge only, no more solid-maroon color flip); replaced single hello@ + website link with two designed contact cards (sales@burhan.my, support@burhan.my) each a full mailto click target; reduced AI-writing-tell copy patterns (em-dash-heavy sentences, cliche 'craft' word) in hero and why-us copy; removed now-dead .button/.contact-actions/.ctaFeatured CSS"
+    },
+    {
+      "at": "2026-07-27T08:27:32.525Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "fix marquee gap bug (skewX applied to overflow:hidden track sheared its clip box, exposing bg at edges) - removed scroll skew, rows now straight; pricing cards unified with same pixel-dot texture background + consistent maroon text across all 3 (featured plan distinguished by border+badge only, no more solid-maroon color flip); replaced single hello@ + website link with two designed contact cards (sales@burhan.my, support@burhan.my) each a full mailto click target; reduced AI-writing-tell copy patterns (em-dash-heavy sentences, cliche 'craft' word) in hero and why-us copy; removed now-dead .button/.contact-actions/.ctaFeatured CSS"
     }
   ],
   "lastActiveAt": "2026-07-27T08:12:03.629Z"
