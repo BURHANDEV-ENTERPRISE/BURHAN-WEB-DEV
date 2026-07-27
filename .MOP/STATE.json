@@ -3927,6 +3927,15 @@
       "agentId": "agent-qih",
       "kind": "memory",
       "summary": "pricing: removed Vercel deployment line item from Landing Page plan. Full site localization: translated all remaining Malay/mixed-language user-facing text to English — Why Us section (heading+body+3 panels), Contact section (heading+body), hero character speech bubbles (3 lines), Tech Stack heading, all 8 testimonial quotes + heading + note, NavMenu aria-labels, Pricing plan descriptions/CTA. Verified with repo-wide grep for common Malay markers - none remain in user-facing text"
+    },
+    {
+      "at": "2026-07-27T07:35:07.136Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "pricing: removed Vercel deployment line item from Landing Page plan. Full site localization: translated all remaining Malay/mixed-language user-facing text to English — Why Us section (heading+body+3 panels), Contact section (heading+body), hero character speech bubbles (3 lines), Tech Stack heading, all 8 testimonial quotes + heading + note, NavMenu aria-labels, Pricing plan descriptions/CTA. Verified with repo-wide grep for common Malay markers - none remain in user-facing text"
     }
   ],
   "lastActiveAt": "2026-07-27T07:33:52.075Z"
