@@ -20,11 +20,11 @@
   display: flex;
   width: max-content;
   white-space: nowrap;
-  animation: scrollLeft 32s linear infinite;
+  animation: marqueeLTR 32s linear infinite;
 }
 
 .reverse .inner {
-  animation: scrollRight 26s linear infinite;
+  animation: marqueeRTL 26s linear infinite;
 }
 
 .item {
@@ -44,13 +44,14 @@
   font-size: 1.3em;
 }
 
-@keyframes scrollLeft {
+/* satu "set" item kini 1/6 lebar trek (6 salinan) */
+@keyframes marqueeRTL {
   from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
+  to   { transform: translateX(-16.6667%); }
 }
 
-@keyframes scrollRight {
-  from { transform: translateX(-50%); }
+@keyframes marqueeLTR {
+  from { transform: translateX(-16.6667%); }
   to   { transform: translateX(0); }
 }
 
