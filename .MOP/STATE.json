@@ -12,8 +12,8 @@
   "session": {
     "actor": "amad",
     "authenticatedAt": "2026-07-27T07:33:52.075Z",
-    "lastActiveAt": "2026-07-27T07:47:45.912Z",
-    "expiresAt": "2026-07-28T07:47:45.913Z"
+    "lastActiveAt": "2026-07-27T08:12:03.629Z",
+    "expiresAt": "2026-07-28T08:12:03.630Z"
   },
   "sessionPolicy": {
     "enabled": true,
@@ -4002,7 +4002,31 @@
       "agentId": "agent-qih",
       "kind": "memory",
       "summary": "removed Contact Us overlay from section 2. Performance: useVideoScrub rAF loop now fully stops (not just early-returns) when offscreen/tab-hidden, restarted by IO/visibilitychange instead of perpetually self-scheduling; removed ~980 lines (60pct) of dead CSS left over from the pre-video hero design (hero-stage/hero-pin/hero-words/build-scene/screen-card/core-*/frame-panel/bottom-ticker/manifesto-section/process-section/service-row/mini-browser/mini-stack and their media-query variants) - all verified zero JSX references before removal; fixed a regression found during cleanup where mobile brand-lockup text was hidden with no image fallback since the logo was removed earlier. Slowed scroll pace further (hero 850->950vh, section2 650->750vh). Verified with build + Playwright visual regression across Why Us/Contact/Footer/mobile header before deploy"
+    },
+    {
+      "at": "2026-07-27T08:10:19.187Z",
+      "actor": "BURHAN-MOP",
+      "kind": "merge-approved",
+      "summary": "origin/dev/amad approved and merged to main."
+    },
+    {
+      "at": "2026-07-27T08:12:03.633Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "optimization + cleanup pass (main 06b3f26, deployed+verified live): removed Contact Us video overlay; useVideoScrub rAF loop now stops entirely offscreen/tab-hidden instead of perpetually self-scheduling with early-return; removed 980 lines (60pct) of dead legacy-hero CSS (hero-stage/build-scene/screen-card/core-*/frame-panel/bottom-ticker/manifesto/process/service-row/mini-browser/mini-stack families) verified zero JSX refs; fixed mobile brand-lockup text visibility regression (was display:none with no img fallback since logo removal); heightVh bumped hero 850->950, section2 650->750 for slower scroll. Full Playwright visual regression pass (Why Us, Contact, Footer, mobile header) showed zero regressions"
+    },
+    {
+      "at": "2026-07-27T08:26:44.536Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "fix marquee gap bug (skewX applied to overflow:hidden track sheared its clip box, exposing bg at edges) - removed scroll skew, rows now straight; pricing cards unified with same pixel-dot texture background + consistent maroon text across all 3 (featured plan distinguished by border+badge only, no more solid-maroon color flip); replaced single hello@ + website link with two designed contact cards (sales@burhan.my, support@burhan.my) each a full mailto click target; reduced AI-writing-tell copy patterns (em-dash-heavy sentences, cliche 'craft' word) in hero and why-us copy; removed now-dead .button/.contact-actions/.ctaFeatured CSS"
     }
   ],
-  "lastActiveAt": "2026-07-27T07:47:45.912Z"
+  "lastActiveAt": "2026-07-27T08:12:03.629Z"
 }

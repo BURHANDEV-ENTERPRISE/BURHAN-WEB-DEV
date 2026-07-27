@@ -103,15 +103,9 @@ p {
 }
 
 .brand-lockup,
-.menu-capsule,
-.button {
+.menu-capsule {
   display: inline-flex;
   align-items: center;
-}
-
-.brand-lockup,
-.menu-capsule,
-.button {
   pointer-events: auto;
 }
 
@@ -227,40 +221,72 @@ p {
   font-weight: 650;
 }
 
-.contact-actions {
+/* Kad email Sales / Support — klik terus buka mailto */
+.contact-cards {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.75rem;
-  margin-top: 1.6rem;
-}
-
-.button {
   justify-content: center;
-  min-height: 3rem;
-  padding: 0.85rem 1.05rem;
-  border: 1px solid var(--maroon);
-  border-radius: 999px;
-  font-size: 0.82rem;
-  font-weight: 950;
-  text-transform: uppercase;
+  gap: 1.1rem;
+  margin-top: 2rem;
 }
 
-.button-dark {
-  background: var(--maroon);
-  color: var(--cream);
+.contact-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  width: min(19rem, 100%);
+  padding: 1.6rem 1.5rem;
+  border: 1.5px solid rgba(255, 246, 220, 0.35);
+  border-radius: 14px;
+  background: rgba(255, 250, 240, 0.08);
+  text-align: center;
+  transition: transform 0.22s ease, background 0.22s ease, border-color 0.22s ease;
 }
 
-.button-light {
-  background: rgba(255, 250, 240, 0.84);
-  color: var(--maroon);
-}
-
-.button:hover,
-.button:focus-visible {
-  border-color: var(--orange);
-  background: var(--orange);
-  color: var(--cream);
+.contact-card:hover,
+.contact-card:focus-visible {
+  transform: translateY(-4px);
+  background: rgba(255, 250, 240, 0.95);
+  border-color: rgba(255, 250, 240, 0.95);
   outline: none;
+}
+
+.contact-card__label {
+  font-family: var(--font-bebas), "Impact", sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--peach, #ffb078);
+}
+
+.contact-card:hover .contact-card__label,
+.contact-card:focus-visible .contact-card__label {
+  color: var(--orange, #ff5a2a);
+}
+
+.contact-card__email {
+  font-family: var(--font-bebas), "Impact", sans-serif;
+  font-size: 1.3rem;
+  letter-spacing: 0.02em;
+  color: var(--cream, #fff6dc);
+}
+
+.contact-card:hover .contact-card__email,
+.contact-card:focus-visible .contact-card__email {
+  color: var(--maroon, #7f1d1d);
+}
+
+.contact-card__hint {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: rgba(255, 246, 220, 0.65);
+}
+
+.contact-card:hover .contact-card__hint,
+.contact-card:focus-visible .contact-card__hint {
+  color: rgba(127, 29, 29, 0.65);
 }
 
 .work-section,
@@ -613,12 +639,6 @@ p {
   .work-copy p,
   .contact-section p {
     font-size: 0.96rem;
-  }
-
-  .button {
-    min-height: 2.7rem;
-    padding: 0.74rem 0.85rem;
-    font-size: 0.74rem;
   }
 
   .work-section,

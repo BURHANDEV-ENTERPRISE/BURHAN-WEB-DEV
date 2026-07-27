@@ -26,7 +26,7 @@ export default function Home() {
           heightVh={750}
           ariaLabel="BURHANDEV keyboard transition"
           heading="Built for Performance."
-          subheading="Real hardware, real focus — the setup behind every line we ship."
+          subheading="Real hardware, real focus. The setup behind every line we ship."
           headingWindow={[0.04, 0.13, 0.32, 0.4]}
           endTag="Loading the Next Level."
           endTagWindow={[0.85, 0.91, 0.97, 0.995]}
@@ -48,8 +48,8 @@ export default function Home() {
             <p className="eyebrow">Why Us</p>
             <h2 id="work-title">Why BURHANDEV?</h2>
             <p>
-              Because we build websites like products — with a visual system,
-              a brand story, and a flow that drives visitors straight to action.
+              We build websites like products: a visual system, a brand story,
+              and a flow that drives visitors straight to action.
             </p>
           </div>
 
@@ -73,9 +73,17 @@ export default function Home() {
           <p className="eyebrow">Start</p>
           <h2 id="contact-title">Want a BURHANDEV-style website for your project?</h2>
           <p>Send us a brief scope, deadline, and style references. We&apos;ll map out the next step.</p>
-          <div className="contact-actions">
-            <a className="button button-light" href="mailto:hello@burhan.my">hello@burhan.my</a>
-            <a className="button button-dark" href="https://burhan.my/">burhan.my</a>
+          <div className="contact-cards">
+            <a className="contact-card" href="mailto:sales@burhan.my">
+              <span className="contact-card__label">Sales</span>
+              <span className="contact-card__email">sales@burhan.my</span>
+              <span className="contact-card__hint">New projects &amp; quotes <span aria-hidden="true">→</span></span>
+            </a>
+            <a className="contact-card" href="mailto:support@burhan.my">
+              <span className="contact-card__label">Support</span>
+              <span className="contact-card__email">support@burhan.my</span>
+              <span className="contact-card__hint">Existing projects &amp; help <span aria-hidden="true">→</span></span>
+            </a>
           </div>
         </section>
 
