@@ -21,6 +21,7 @@ pnpm-debug.log*
 *.log
 
 next-env.d.ts
+*.tsbuildinfo
 
 # Video sumber mentah di root — hanya public/videos/ masuk repo
 /*.mp4

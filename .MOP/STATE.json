@@ -4131,6 +4131,15 @@
       "agentId": "agent-qih",
       "kind": "memory",
       "summary": "sync pending polish: testimonials anti-flash marquee fix mirroring MarqueeStrip, footer logo swap replacing back-to-top arrow, pricing featured-card hover-only highlight"
+    },
+    {
+      "at": "2026-07-27T17:59:32.115Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "code quality cleanup: removed ~600 lines of unreachable dead code (Hero Minecraft easter-egg state machine that never triggered + orphaned BlockyChar component), deleted untracked tsconfig.tsbuildinfo build-cache artifact, fixed broken footer nav (linked to nonexistent #hero/#about/#story anchors and a nonexistent /contact route), switched footer logo to next/image, and wired up a working ESLint config (npm run lint was previously non-functional)"
     }
   ],
   "lastActiveAt": "2026-07-27T13:02:10.204Z"

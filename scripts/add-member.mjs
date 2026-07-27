@@ -1,7 +1,7 @@
-import { existsSync, mkdirSync, readFileSync, writeFileSync, renameSync } from 'node:fs';
+import { mkdirSync, readFileSync, writeFileSync, renameSync } from 'node:fs';
 import { join, resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { randomBytes, scryptSync, timingSafeEqual } from 'node:crypto';
+import { randomBytes, scryptSync } from 'node:crypto';
 
 const coreDir = resolve(join(dirname(fileURLToPath(import.meta.url)), '..', '.MOP'));
 const statePath = join(coreDir, 'STATE.json');
