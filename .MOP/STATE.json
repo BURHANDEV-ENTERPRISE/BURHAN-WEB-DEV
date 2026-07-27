@@ -4133,6 +4133,12 @@
       "summary": "sync pending polish: testimonials anti-flash marquee fix mirroring MarqueeStrip, footer logo swap replacing back-to-top arrow, pricing featured-card hover-only highlight"
     },
     {
+      "at": "2026-07-27T17:43:42.341Z",
+      "actor": "BURHAN-MOP",
+      "kind": "merge-approved",
+      "summary": "origin/dev/amad approved and merged to main."
+    },
+    {
       "at": "2026-07-27T17:59:32.115Z",
       "actor": "amad",
       "agent": "qih",
