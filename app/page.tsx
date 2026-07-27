@@ -114,12 +114,13 @@ export default function Home() {
           </div>
           <div className="site-footer__brand">
             <h2 className="site-footer__wordmark">BURHANDEV</h2>
-            <a className="site-footer__topbutton" href="#top" aria-label="Back to top">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <path d="m5 12 7-7 7 7"></path>
-                <path d="M12 19V5"></path>
-              </svg>
-            </a>
+            <img
+              className="site-footer__logo"
+              src="/brand/burhan-logo2.png"
+              alt="BURHANDEV logo"
+              width={64}
+              height={64}
+            />
           </div>
           <div className="site-footer__bottom">
             <p className="site-footer__tagline">DESIGN TO DISRUPT.</p>

@@ -28,12 +28,14 @@ function Card({ quote, name, role }: { quote: string; name: string; role: string
   );
 }
 
+const COPIES = 4;
+
 function Row({ items, reverse }: { items: typeof ROW_A; reverse?: boolean }) {
-  const doubled = [...items, ...items];
+  const repeated = Array.from({ length: COPIES }, () => items).flat();
   return (
     <div className={`${styles.row} ${reverse ? styles.reverse : ""}`} aria-hidden="true">
       <div className={styles.inner}>
-        {doubled.map((t, i) => <Card key={i} {...t} />)}
+        {repeated.map((t, i) => <Card key={i} {...t} />)}
       </div>
     </div>
   );

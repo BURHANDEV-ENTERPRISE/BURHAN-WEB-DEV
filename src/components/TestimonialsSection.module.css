@@ -56,11 +56,11 @@
   display: flex;
   gap: 1rem;
   width: max-content;
-  animation: scrollL 40s linear infinite;
+  animation: testiLTR 40s linear infinite;
 }
 
 .reverse .inner {
-  animation: scrollR 34s linear infinite;
+  animation: testiRTL 34s linear infinite;
 }
 
 .row:hover .inner {
@@ -123,13 +123,14 @@
   letter-spacing: 0.04em;
 }
 
-@keyframes scrollL {
+/* satu "set" kad ialah 1/4 lebar trek (4 salinan, elak jurang kosong) */
+@keyframes testiRTL {
   from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
+  to   { transform: translateX(-25%); }
 }
 
-@keyframes scrollR {
-  from { transform: translateX(-50%); }
+@keyframes testiLTR {
+  from { transform: translateX(-25%); }
   to   { transform: translateX(0); }
 }
 

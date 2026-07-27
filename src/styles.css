@@ -512,21 +512,16 @@ p {
   color: #fff6dc;
 }
 
-.site-footer__topbutton {
-  display: none;
-  height: 3rem;
-  width: 3rem;
-  align-items: center;
-  justify-content: center;
-  border-radius: 999px;
-  background: #fff6dc;
-  color: #21493f;
-  transition: background 180ms ease, color 180ms ease;
+.site-footer__logo {
+  flex-shrink: 0;
+  height: 3.25rem;
+  width: 3.25rem;
+  object-fit: contain;
+  transition: transform 180ms ease;
 }
 
-.site-footer__topbutton:hover {
-  background: #ff5a2a;
-  color: #fff6dc;
+.site-footer__logo:hover {
+  transform: scale(1.06);
 }
 
 .site-footer__bottom {
@@ -572,10 +567,6 @@ p {
 
   .site-footer__wordmark {
     font-size: 6.5vw;
-  }
-
-  .site-footer__topbutton {
-    display: flex;
   }
 }
 
