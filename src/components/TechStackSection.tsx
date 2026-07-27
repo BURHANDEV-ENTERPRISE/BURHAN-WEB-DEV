@@ -20,7 +20,7 @@ export default function TechStackSection() {
     <section className={`${styles.section} reveal`} aria-labelledby="tech-title">
       <p className={`eyebrow ${styles.eyebrow}`}>Tech Stack</p>
       <h2 id="tech-title" className={styles.heading}>
-        Tools yang kita guna untuk build.
+        Tools we use to build.
       </h2>
       <div className={styles.grid} role="list">
         {TECHS.map(({ name, mark, color }, i) => (

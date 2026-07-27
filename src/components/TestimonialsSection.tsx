@@ -1,17 +1,17 @@
 import styles from "./TestimonialsSection.module.css";
 
 const ROW_A = [
-  { quote: "Website siap dalam 7 hari, response laju, result impressive. Memang recommended.", name: "Hafiz A.",  role: "Brand Owner"        },
-  { quote: "Landing page conversion kami naik 3x selepas redesign dengan BURHANDEV.",          name: "Siti R.",   role: "Founder, SR Studio" },
-  { quote: "Clean code, mudah maintain sendiri. First hire web dev terus puas hati.",          name: "Ahmad Z.",  role: "SME Owner"          },
-  { quote: "Animation hero section tu betul-betul wow. Client puji berkali-kali.",             name: "Rizal M.",  role: "Startup Founder"    },
+  { quote: "Website delivered in 7 days, fast response, impressive results. Highly recommended.", name: "Hafiz A.",  role: "Brand Owner"        },
+  { quote: "Our landing page conversion went up 3x after redesigning with BURHANDEV.",             name: "Siti R.",   role: "Founder, SR Studio" },
+  { quote: "Clean code, easy to maintain ourselves. First web dev hire and we're already satisfied.", name: "Ahmad Z.",  role: "SME Owner"          },
+  { quote: "The hero section animation is genuinely wow. Clients keep complimenting it.",          name: "Rizal M.",  role: "Startup Founder"    },
 ];
 
 const ROW_B = [
-  { quote: "UI match 100% dengan brand kami. Tak payah banyak revision, terus kena.",         name: "Nadia K.",  role: "Creative Director"  },
-  { quote: "Best web dev yang pernah kami hire. Delivery on time, quality above expectation.", name: "Farah B.",  role: "Agency Principal"   },
-  { quote: "Dari scope sampai launch dalam 2 minggu. Process smooth, comms always clear.",     name: "Danial H.", role: "E-commerce Founder" },
-  { quote: "Mobile experience dia flawless. Scroll animation pun buttery smooth.",             name: "Izzah M.",  role: "Content Creator"    },
+  { quote: "The UI matched our brand 100%. Barely needed revisions, nailed it first try.",     name: "Nadia K.",  role: "Creative Director"  },
+  { quote: "Best web dev we've ever hired. On-time delivery, quality above expectations.",      name: "Farah B.",  role: "Agency Principal"   },
+  { quote: "From scope to launch in 2 weeks. Smooth process, communication always clear.",      name: "Danial H.", role: "E-commerce Founder" },
+  { quote: "The mobile experience is flawless. Scroll animation is buttery smooth too.",         name: "Izzah M.",  role: "Content Creator"    },
 ];
 
 function Card({ quote, name, role }: { quote: string; name: string; role: string }) {
@@ -43,12 +43,12 @@ export default function TestimonialsSection() {
   return (
     <section className={`${styles.section} reveal`} aria-labelledby="testi-title">
       <p className={`eyebrow ${styles.eyebrow}`}>Testimonials</p>
-      <h2 id="testi-title" className={styles.heading}>Apa client kata.</h2>
+      <h2 id="testi-title" className={styles.heading}>What clients say.</h2>
       <div className={styles.marqueeWrap} aria-hidden="true">
         <Row items={ROW_A} />
         <Row items={ROW_B} reverse />
       </div>
-      <p className={styles.note}>Real feedback dari real projects.</p>
+      <p className={styles.note}>Real feedback from real projects.</p>
     </section>
   );
 }

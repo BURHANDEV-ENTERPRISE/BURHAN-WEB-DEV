@@ -42,7 +42,7 @@ export default function NavMenu() {
         className="menu-capsule"
         aria-expanded={open}
         aria-haspopup="true"
-        aria-label={open ? "Tutup menu" : "Buka menu navigasi"}
+        aria-label={open ? "Close menu" : "Open navigation menu"}
         onClick={() => setOpen((o) => !o)}
       >
         <span className="hamburger-icon" aria-hidden="true">
@@ -51,7 +51,7 @@ export default function NavMenu() {
         </span>
       </button>
       {open && (
-        <nav className="nav-menu__panel" aria-label="Navigasi section">
+        <nav className="nav-menu__panel" aria-label="Section navigation">
           {LINKS.map((l) => (
             <a key={l.href} href={l.href} onClick={() => setOpen(false)}>
               {l.label}
