@@ -4124,15 +4124,6 @@
       "summary": "mobile/tablet responsiveness audit + fixes: Pricing and Why Us headings were colliding with the fixed header at mobile/tablet widths (insufficient top padding), footer nav/social links had 14px-tall tap targets - both fixed and verified across iPhone/Android/iPad, no horizontal overflow found. Deployed main@21ca985"
     },
     {
-      "at": "2026-07-27T17:40:17.854Z",
-      "actor": "amad",
-      "agent": "qih",
-      "agentRole": "architect",
-      "agentId": "agent-qih",
-      "kind": "memory",
-      "summary": "sync pending polish: testimonials anti-flash marquee fix mirroring MarqueeStrip, footer logo swap replacing back-to-top arrow, pricing featured-card hover-only highlight"
-    },
-    {
       "at": "2026-07-27T17:42:19.311Z",
       "actor": "amad",
       "agent": "qih",
