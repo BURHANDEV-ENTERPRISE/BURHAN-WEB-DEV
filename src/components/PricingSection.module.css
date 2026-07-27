@@ -61,17 +61,13 @@
   border-color: rgba(127, 29, 29, 0.28);
 }
 
-/* Kad featured: latar & warna teks kekal sama dengan kad lain (seragam) —
-   dibezakan hanya melalui border tebal + badge "Most Popular". */
-.featured {
+/* Kad featured: sama seperti kad lain secara lalai (seragam) — border
+   tebal + highlight hanya muncul bila hover, badge "Most Popular" kekal. */
+.featured:hover {
   border-width: 2.5px;
   border-color: var(--maroon, #7f1d1d);
-}
-
-.featured:hover {
   box-shadow: 0 20px 56px rgba(127, 29, 29, 0.16);
   transform: translateY(-10px);
-  border-color: #9b2020;
 }
 
 .badge {

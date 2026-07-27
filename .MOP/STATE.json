@@ -12,8 +12,8 @@
   "session": {
     "actor": "amad",
     "authenticatedAt": "2026-07-27T07:33:52.075Z",
-    "lastActiveAt": "2026-07-27T09:09:25.715Z",
-    "expiresAt": "2026-07-28T09:09:25.716Z"
+    "lastActiveAt": "2026-07-27T13:02:10.204Z",
+    "expiresAt": "2026-07-28T13:02:10.204Z"
   },
   "sessionPolicy": {
     "enabled": true,
@@ -4107,7 +4107,40 @@
       "agentId": "agent-qih",
       "kind": "memory",
       "summary": "mobile/tablet responsiveness pass: fixed fixed-header colliding with Pricing and Why Us section headings at mobile/tablet widths (top padding was equal to or less than the header's clearance, causing text to render behind the BURHANDEV chip), and enlarged undersized footer nav/social link tap targets (14px tall) to ~41px for touch usability. Verified across iPhone SE/14, Pixel 7, Galaxy S9, iPad Mini, iPad Pro portrait+landscape with no horizontal overflow anywhere"
+    },
+    {
+      "at": "2026-07-27T13:00:29.435Z",
+      "actor": "BURHAN-MOP",
+      "kind": "merge-approved",
+      "summary": "origin/dev/amad approved and merged to main."
+    },
+    {
+      "at": "2026-07-27T13:02:10.207Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "mobile/tablet responsiveness audit + fixes: Pricing and Why Us headings were colliding with the fixed header at mobile/tablet widths (insufficient top padding), footer nav/social links had 14px-tall tap targets - both fixed and verified across iPhone/Android/iPad, no horizontal overflow found. Deployed main@21ca985"
+    },
+    {
+      "at": "2026-07-27T17:40:17.854Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "sync pending polish: testimonials anti-flash marquee fix mirroring MarqueeStrip, footer logo swap replacing back-to-top arrow, pricing featured-card hover-only highlight"
+    },
+    {
+      "at": "2026-07-27T17:42:19.311Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "sync pending polish: testimonials anti-flash marquee fix mirroring MarqueeStrip, footer logo swap replacing back-to-top arrow, pricing featured-card hover-only highlight"
     }
   ],
-  "lastActiveAt": "2026-07-27T09:09:25.715Z"
+  "lastActiveAt": "2026-07-27T13:02:10.204Z"
 }
