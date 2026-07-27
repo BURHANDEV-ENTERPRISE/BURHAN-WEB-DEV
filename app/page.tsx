@@ -22,7 +22,7 @@ export default function Home() {
       <main>
         <HeroSection />
         <ScrubVideoSection
-          src="/videos/keyboard-transition.mp4"
+          src="/videos/project1.mp4"
           heightVh={650}
           ariaLabel="BURHANDEV keyboard transition"
           heading="Built for Performance."
@@ -33,7 +33,7 @@ export default function Home() {
           curtainWindow={[0.95, 0.045]}
           overlays={[
             {
-              box: { top: 37.1, left: 51.3, width: 19.4, height: 15.7 },
+              box: { top: 44, left: 38, width: 24, height: 12 },
               text: "Contact Us",
               window: [0.87, 0.92, 0.97, 0.995],
               blink: true,
@@ -41,11 +41,6 @@ export default function Home() {
               variant: "button",
             },
           ]}
-        />
-        <ScrubVideoSection
-          src="/videos/geometric.mp4"
-          heightVh={700}
-          ariaLabel="BURHANDEV console interface reveal"
         />
 
         <StatsSection />
