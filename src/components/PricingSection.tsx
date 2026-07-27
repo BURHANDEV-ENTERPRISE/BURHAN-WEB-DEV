@@ -84,10 +84,7 @@ export default function PricingSection() {
                 </li>
               ))}
             </ul>
-            <a
-              href="#contact"
-              className={`${styles.cta} ${plan.featured ? styles.ctaFeatured : ""}`}
-            >
+            <a href="#contact" className={styles.cta}>
               {plan.cta}
             </a>
           </div>

@@ -45,7 +45,10 @@
   border: 1.5px solid rgba(127, 29, 29, 0.14);
   border-radius: 20px;
   padding: 2.5rem 2rem 2rem;
-  background: rgba(255, 250, 240, 0.9);
+  background:
+    radial-gradient(rgba(127, 29, 29, 0.08) 1px, transparent 1px),
+    rgba(255, 250, 240, 0.9);
+  background-size: 10px 10px, auto;
   display: flex;
   flex-direction: column;
   gap: 1.75rem;
@@ -58,14 +61,15 @@
   border-color: rgba(127, 29, 29, 0.28);
 }
 
+/* Kad featured: latar & warna teks kekal sama dengan kad lain (seragam) —
+   dibezakan hanya melalui border tebal + badge "Most Popular". */
 .featured {
-  background: var(--maroon, #7f1d1d);
+  border-width: 2.5px;
   border-color: var(--maroon, #7f1d1d);
-  color: var(--cream, #fff6dc);
 }
 
 .featured:hover {
-  box-shadow: 0 20px 56px rgba(127, 29, 29, 0.45);
+  box-shadow: 0 20px 56px rgba(127, 29, 29, 0.16);
   transform: translateY(-10px);
   border-color: #9b2020;
 }
@@ -100,8 +104,6 @@
   color: var(--orange, #ff5a2a);
 }
 
-.featured .num { color: rgba(255, 180, 120, 0.75); }
-
 .planName {
   font-family: var(--font-bebas), "Impact", sans-serif;
   font-size: 1.7rem;
@@ -111,8 +113,6 @@
   font-weight: 400;
   margin: 0;
 }
-
-.featured .planName { color: rgba(255, 246, 220, 0.6); }
 
 .priceRow {
   display: flex;
@@ -129,15 +129,11 @@
   letter-spacing: -0.01em;
 }
 
-.featured .price { color: var(--cream, #fff6dc); }
-
 .period {
   font-family: "Space Grotesk", sans-serif;
   font-size: 0.78rem;
   color: rgba(127, 29, 29, 0.45);
 }
-
-.featured .period { color: rgba(255, 246, 220, 0.45); }
 
 .desc {
   font-family: "Space Grotesk", sans-serif;
@@ -146,8 +142,6 @@
   color: rgba(127, 29, 29, 0.6);
   margin: 0.25rem 0 0;
 }
-
-.featured .desc { color: rgba(255, 246, 220, 0.6); }
 
 .features {
   list-style: none;
@@ -161,8 +155,6 @@
   padding-top: 1.5rem;
 }
 
-.featured .features { border-color: rgba(255, 246, 220, 0.12); }
-
 .features li {
   display: flex;
   align-items: flex-start;
@@ -173,8 +165,6 @@
   color: rgba(127, 29, 29, 0.78);
 }
 
-.featured .features li { color: rgba(255, 246, 220, 0.78); }
-
 .check {
   color: var(--green, #21493f);
   font-weight: 800;
@@ -182,8 +172,6 @@
   font-size: 0.9rem;
   line-height: 1.5;
 }
-
-.featured .check { color: var(--peach, #ffb078); }
 
 .cta {
   display: block;
@@ -204,17 +192,6 @@
 .cta:hover {
   background: var(--maroon, #7f1d1d);
   color: var(--cream, #fff6dc);
-}
-
-.ctaFeatured {
-  border-color: rgba(255, 246, 220, 0.5);
-  color: var(--cream, #fff6dc);
-  background: rgba(255, 246, 220, 0.08);
-}
-
-.ctaFeatured:hover {
-  background: var(--cream, #fff6dc);
-  color: var(--maroon, #7f1d1d);
 }
 
 @media (max-width: 900px) {

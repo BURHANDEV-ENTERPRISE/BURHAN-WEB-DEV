@@ -166,7 +166,7 @@ export default function HeroSection() {
               <span className={styles.introBrand}>BURHANDEV</span>
             </h1>
             <p className={styles.introSub}>
-              We don&apos;t just build sites — we craft experiences that convert.
+              We don&apos;t just build sites. We build experiences that convert.
             </p>
           </div>
         </div>
