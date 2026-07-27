@@ -4074,6 +4074,21 @@
       "actor": "BURHAN-MOP",
       "kind": "merge-approved",
       "summary": "origin/dev/amad approved and merged to main."
+    },
+    {
+      "at": "2026-07-27T09:07:35.821Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "fixed marquee strip: removed flash/gap bug (increased duplicated copies 2->6 so the track always overflows the viewport), swapped scroll direction so top row moves left-to-right and bottom row right-to-left, and removed the VERCEL tag from bottom row"
+    },
+    {
+      "at": "2026-07-27T09:07:44.271Z",
+      "actor": "BURHAN-MOP",
+      "kind": "merge-approved",
+      "summary": "origin/dev/amad approved and merged to main."
     }
   ],
   "lastActiveAt": "2026-07-27T08:28:55.886Z"
