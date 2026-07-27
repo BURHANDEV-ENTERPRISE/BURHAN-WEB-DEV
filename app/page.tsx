@@ -61,33 +61,33 @@ export default function Home() {
         <section id="work" className="work-section reveal" aria-labelledby="work-title">
           <div className="work-copy">
             <p className="eyebrow">Why Us</p>
-            <h2 id="work-title">Kenapa BURHANDEV?</h2>
+            <h2 id="work-title">Why BURHANDEV?</h2>
             <p>
-              Sebab kami bina website macam produk — ada sistem visual, cerita
-              brand, dan flow yang bawa visitor terus kepada tindakan.
+              Because we build websites like products — with a visual system,
+              a brand story, and a flow that drives visitors straight to action.
             </p>
           </div>
 
           <div className="work-panels" aria-hidden="true">
             <article>
               <span>Bold</span>
-              <strong>Design berani ikut brand</strong>
+              <strong>Bold design that fits your brand</strong>
             </article>
             <article>
               <span>Fast</span>
-              <strong>Laju & smooth semua device</strong>
+              <strong>Fast & smooth on every device</strong>
             </article>
             <article>
               <span>Convert</span>
-              <strong>Visitor jadi customer</strong>
+              <strong>Visitors turn into customers</strong>
             </article>
           </div>
         </section>
 
         <section id="contact" className="contact-section reveal" aria-labelledby="contact-title">
           <p className="eyebrow">Start</p>
-          <h2 id="contact-title">Nak website BURHANDEV-style untuk project anda?</h2>
-          <p>Hantar scope ringkas, deadline, dan contoh style. Kita susun next step.</p>
+          <h2 id="contact-title">Want a BURHANDEV-style website for your project?</h2>
+          <p>Send us a brief scope, deadline, and style references. We&apos;ll map out the next step.</p>
           <div className="contact-actions">
             <a className="button button-light" href="mailto:hello@burhan.my">hello@burhan.my</a>
             <a className="button button-dark" href="https://burhan.my/">burhan.my</a>

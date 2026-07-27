@@ -86,7 +86,7 @@ export default function HeroSection() {
     // Hero lands
     setTimeout(() => {
       setStage("wave");
-      setHeroBubble("Hi! Selamat datang ke BurhanDev! 👋");
+      setHeroBubble("Hi! Welcome to BurhanDev! 👋");
     }, 1600);
 
     // Attach scroll trigger
@@ -99,7 +99,7 @@ export default function HeroSection() {
         window.removeEventListener("scroll", onScroll);
 
         setStage("calling");
-        setHeroBubble("Jom korang! Lari cepat! 📣");
+        setHeroBubble("Come on guys! Run fast! 📣");
         setTimeout(() => setFriendsVis(true), 400);
 
         setTimeout(() => setStage("running"), 1000);
@@ -108,7 +108,7 @@ export default function HeroSection() {
         setTimeout(() => {
           setStage("collision");
           setHeroBubble("Ouch! 💥");
-          setFBubble(["Ouch! 💢", "Aduh! ⭐", "Aiya! 💫"]);
+          setFBubble(["Ouch! 💢", "Ow! ⭐", "Argh! 💫"]);
         }, 3600);
 
         // Pullup

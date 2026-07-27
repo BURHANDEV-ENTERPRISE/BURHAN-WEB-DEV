@@ -11,9 +11,9 @@
   },
   "session": {
     "actor": "amad",
-    "authenticatedAt": "2026-07-20T10:50:57.676Z",
-    "lastActiveAt": "2026-07-20T14:49:08.943Z",
-    "expiresAt": "2026-07-21T14:49:08.944Z"
+    "authenticatedAt": "2026-07-27T07:33:52.075Z",
+    "lastActiveAt": "2026-07-27T07:33:52.075Z",
+    "expiresAt": "2026-07-28T07:33:52.075Z"
   },
   "sessionPolicy": {
     "enabled": true,
@@ -3894,7 +3894,40 @@
       "agentId": "agent-qih",
       "kind": "memory",
       "summary": "geometric section (3): removed all text overlays (heading, subheading, endTag, DEV badge, card labels) — plain video only now. Fixed button ghosting bug: Contact Us CTA opacity was fading gradually via windowedFade, making its solid cream background translucent mid-transition and letting the video's baked ROBBINT text bleed through; buttons now snap opacity 0->1 past a small threshold instead of fading proportionally, keeping the cover box always fully opaque when visible"
+    },
+    {
+      "at": "2026-07-20T14:56:44.690Z",
+      "actor": "BURHAN-MOP",
+      "kind": "merge-approved",
+      "summary": "origin/dev/amad approved and merged to main."
+    },
+    {
+      "at": "2026-07-20T14:59:06.037Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "removed all text overlays from geometric section 3 (heading/subheading/endTag/DEV badge/card labels) leaving plain video only; fixed Contact Us button ghosting bug (main 130cf7f, deployed+verified) — button opacity was fading 0..1 gradually making its solid cream background translucent and letting baked ROBBINT text bleed through, now snaps binary 0/1 past small threshold, confirmed no ghosting visible on live site"
+    },
+    {
+      "at": "2026-07-27T07:33:52.076Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "login",
+      "summary": "Member authenticated; new session started."
+    },
+    {
+      "at": "2026-07-27T07:34:18.523Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "pricing: removed Vercel deployment line item from Landing Page plan. Full site localization: translated all remaining Malay/mixed-language user-facing text to English — Why Us section (heading+body+3 panels), Contact section (heading+body), hero character speech bubbles (3 lines), Tech Stack heading, all 8 testimonial quotes + heading + note, NavMenu aria-labels, Pricing plan descriptions/CTA. Verified with repo-wide grep for common Malay markers - none remain in user-facing text"
     }
   ],
-  "lastActiveAt": "2026-07-20T14:49:08.943Z"
+  "lastActiveAt": "2026-07-27T07:33:52.075Z"
 }

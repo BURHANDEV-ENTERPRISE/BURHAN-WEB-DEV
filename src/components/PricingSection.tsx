@@ -6,13 +6,12 @@ const PLANS = [
     label:    "Landing Page",
     price:    "RM 800",
     period:   "one-time",
-    desc:     "Untuk offer, campaign, atau launch. Satu page, fully focused pada conversion.",
+    desc:     "For offers, campaigns, or launches. One page, fully focused on conversion.",
     features: [
       "1 responsive page",
       "Mobile-first design",
       "5–7 day delivery",
       "Contact / WhatsApp form",
-      "Vercel deployment",
     ],
     cta:      "Start Project",
     featured: false,
@@ -22,7 +21,7 @@ const PLANS = [
     label:    "Business Website",
     price:    "RM 2,500",
     period:   "one-time",
-    desc:     "Company profile lengkap. Semua pages, clear structure, siap untuk grow.",
+    desc:     "Complete company profile. All pages, clear structure, ready to grow.",
     features: [
       "5–8 pages full build",
       "CMS / editable content",
@@ -31,7 +30,7 @@ const PLANS = [
       "14-day delivery",
       "1 month post-launch support",
     ],
-    cta:      "Pilih Plan Ini",
+    cta:      "Choose This Plan",
     featured: true,
   },
   {
@@ -39,7 +38,7 @@ const PLANS = [
     label:    "Custom Build",
     price:    "Contact Us",
     period:   "",
-    desc:     "Dashboard, portal, member area, atau apa-apa yang complex. Scope-based.",
+    desc:     "Dashboard, portal, member area, or anything complex. Scope-based.",
     features: [
       "Product UI / dashboard",
       "API integration",
