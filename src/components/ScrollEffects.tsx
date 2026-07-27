@@ -7,15 +7,18 @@ export default function ScrollEffects() {
     const revealItems = document.querySelectorAll<HTMLElement>(".reveal");
     const serviceRows = document.querySelectorAll<HTMLElement>("[data-service-row]");
 
-    // Header tersembunyi semasa hero dalam view; muncul selepas lepas hero
+    // Header tersembunyi merentasi hero + section video; muncul sebaik
+    // section "Our Services" sampai ke atas viewport (bukan sekadar lepas hero)
     const topShell = document.querySelector<HTMLElement>(".top-shell");
-    const heroSection = document.querySelector<HTMLElement>("main > section");
-    let headerObserver: IntersectionObserver | undefined;
-    if (topShell && heroSection) {
-      headerObserver = new IntersectionObserver(([entry]) => {
-        topShell.classList.toggle("is-hidden", entry.isIntersecting);
-      });
-      headerObserver.observe(heroSection);
+    const servicesSection = document.getElementById("services");
+    let onHeaderScroll: (() => void) | undefined;
+    if (topShell && servicesSection) {
+      onHeaderScroll = () => {
+        const rect = servicesSection.getBoundingClientRect();
+        topShell.classList.toggle("is-hidden", rect.top > 0);
+      };
+      window.addEventListener("scroll", onHeaderScroll, { passive: true });
+      onHeaderScroll();
     }
 
     function activateServiceRow(row: HTMLElement) {
@@ -47,7 +50,7 @@ export default function ScrollEffects() {
 
     return () => {
       revealObserver.disconnect();
-      headerObserver?.disconnect();
+      if (onHeaderScroll) window.removeEventListener("scroll", onHeaderScroll);
     };
   }, []);
 
