@@ -1,3 +1,4 @@
+import Image from "next/image";
 import ScrollEffects from "../src/components/ScrollEffects";
 import HeroSection from "../src/components/HeroSection";
 import ScrubVideoSection from "../src/components/ScrubVideoSection";
@@ -94,11 +95,11 @@ export default function Home() {
         <div className="site-footer__inner reveal">
           <div className="site-footer__top">
             <nav className="site-footer__nav">
-              <a href="/#hero">Home</a>
-              <a href="/#about">About Us</a>
-              <a href="/#story">Story</a>
-              <a href="/#services">Services</a>
-              <a href="/contact">Contact Us</a>
+              <a href="#top">Home</a>
+              <a href="#services">Services</a>
+              <a href="#pricing">Pricing</a>
+              <a href="#work">Why Us</a>
+              <a href="#contact">Contact Us</a>
             </nav>
             <div className="site-footer__social">
               <a href="https://www.threads.com/@burhanbistro" target="_blank" rel="noreferrer">Threads</a>
@@ -114,7 +115,7 @@ export default function Home() {
           </div>
           <div className="site-footer__brand">
             <h2 className="site-footer__wordmark">BURHANDEV</h2>
-            <img
+            <Image
               className="site-footer__logo"
               src="/brand/burhan-logo2.png"
               alt="BURHANDEV logo"
