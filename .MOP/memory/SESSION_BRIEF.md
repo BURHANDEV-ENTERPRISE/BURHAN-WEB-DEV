@@ -1,6 +1,6 @@
 # MOP Session Brief
 
-Updated: 2026-07-27T09:03:08.193Z
+Updated: 2026-07-27T09:03:54.770Z
 Actor: amad
 Active agent: qih (architect)
 Current month: 2026-07
@@ -15,7 +15,6 @@ Current month: 2026-07
 
 ## Recent Memory
 
-- 2026-07-20T14:55:47.501Z - qih (architect): geometric section (3): removed all text overlays (heading, subheading, endTag, DEV badge, card labels) — plain video only now. Fixed button ghosting bug: Contact Us CTA opacity was fading gradually via windowedFade, making its solid cream background translucent mid-transition and letting the video's baked ROBBINT text bleed through; buttons now snap opacity 0->1 past a small threshold instead of fading proportionally, keeping the cover box always fully opaque when visible
 - 2026-07-20T14:56:35.938Z - qih (architect): geometric section (3): removed all text overlays (heading, subheading, endTag, DEV badge, card labels) — plain video only now. Fixed button ghosting bug: Contact Us CTA opacity was fading gradually via windowedFade, making its solid cream background translucent mid-transition and letting the video's baked ROBBINT text bleed through; buttons now snap opacity 0->1 past a small threshold instead of fading proportionally, keeping the cover box always fully opaque when visible
 - 2026-07-20T14:59:06.037Z - qih (architect): removed all text overlays from geometric section 3 (heading/subheading/endTag/DEV badge/card labels) leaving plain video only; fixed Contact Us button ghosting bug (main 130cf7f, deployed+verified) — button opacity was fading 0..1 gradually making its solid cream background translucent and letting baked ROBBINT text bleed through, now snaps binary 0/1 past small threshold, confirmed no ghosting visible on live site
 - 2026-07-27T07:34:18.524Z - qih (architect): pricing: removed Vercel deployment line item from Landing Page plan. Full site localization: translated all remaining Malay/mixed-language user-facing text to English — Why Us section (heading+body+3 panels), Contact section (heading+body), hero character speech bubbles (3 lines), Tech Stack heading, all 8 testimonial quotes + heading + note, NavMenu aria-labels, Pricing plan descriptions/CTA. Verified with repo-wide grep for common Malay markers - none remain in user-facing text
@@ -35,3 +34,4 @@ Current month: 2026-07
 - 2026-07-27T08:43:02.728Z - qih (architect): applied pixel-grid background texture (main 7d0b145, deployed) to Why Us and Testimonials sections, matching the pattern already used in Pricing (9x9px hairline grid, maroon+green at 4pct opacity) — both were previously flat cream with no texture
 - 2026-07-27T09:02:21.311Z - qih (architect): fixed marquee strip: removed the flash/gap bug caused by only 2 duplicated copies not covering wide viewports (now 6 copies), swapped scroll direction so top row moves left-to-right and bottom row right-to-left per request, and removed the VERCEL tag from the bottom row
 - 2026-07-27T09:03:08.183Z - qih (architect): fixed marquee strip: removed the flash/gap bug caused by only 2 duplicated copies not covering wide viewports (now 6 copies), swapped scroll direction so top row moves left-to-right and bottom row right-to-left per request, and removed the VERCEL tag from the bottom row
+- 2026-07-27T09:03:54.761Z - qih (architect): fixed marquee strip: removed the flash/gap bug caused by only 2 duplicated copies not covering wide viewports (now 6 copies), swapped scroll direction so top row moves left-to-right and bottom row right-to-left per request, and removed the VERCEL tag from the bottom row
