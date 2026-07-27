@@ -455,6 +455,9 @@ p {
 }
 
 .site-footer__nav a {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.85rem 0.15rem;
   transition: color 180ms ease;
 }
 
@@ -475,6 +478,9 @@ p {
 }
 
 .site-footer__social a {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.85rem 0.15rem;
   transition: color 180ms ease;
 }
 
@@ -602,7 +608,7 @@ p {
 
   .work-section,
   .contact-section {
-    padding: 5.2rem 1.1rem;
+    padding: 7.5rem 1.1rem 5.2rem;
   }
 
   .work-copy h2,
@@ -654,7 +660,7 @@ p {
 
   .work-section,
   .contact-section {
-    padding: 4.4rem 0.85rem;
+    padding: 6.5rem 0.85rem 4.4rem;
   }
 
   .work-copy h2,

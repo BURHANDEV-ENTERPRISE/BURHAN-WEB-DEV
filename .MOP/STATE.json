@@ -12,8 +12,8 @@
   "session": {
     "actor": "amad",
     "authenticatedAt": "2026-07-27T07:33:52.075Z",
-    "lastActiveAt": "2026-07-27T08:28:55.886Z",
-    "expiresAt": "2026-07-28T08:28:55.887Z"
+    "lastActiveAt": "2026-07-27T09:09:25.715Z",
+    "expiresAt": "2026-07-28T09:09:25.716Z"
   },
   "sessionPolicy": {
     "enabled": true,
@@ -4089,7 +4089,31 @@
       "actor": "BURHAN-MOP",
       "kind": "merge-approved",
       "summary": "origin/dev/amad approved and merged to main."
+    },
+    {
+      "at": "2026-07-27T09:09:25.718Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "fixed marquee strip flash/gap bug (2->6 duplicated copies so track always overflows viewport), swapped scroll direction (top row left-to-right, bottom row right-to-left per request), removed VERCEL tag - deployed main@abe0afd"
+    },
+    {
+      "at": "2026-07-27T13:00:19.576Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "mobile/tablet responsiveness pass: fixed fixed-header colliding with Pricing and Why Us section headings at mobile/tablet widths (top padding was equal to or less than the header's clearance, causing text to render behind the BURHANDEV chip), and enlarged undersized footer nav/social link tap targets (14px tall) to ~41px for touch usability. Verified across iPhone SE/14, Pixel 7, Galaxy S9, iPad Mini, iPad Pro portrait+landscape with no horizontal overflow anywhere"
+    },
+    {
+      "at": "2026-07-27T13:00:29.435Z",
+      "actor": "BURHAN-MOP",
+      "kind": "merge-approved",
+      "summary": "origin/dev/amad approved and merged to main."
     }
   ],
-  "lastActiveAt": "2026-07-27T08:28:55.886Z"
+  "lastActiveAt": "2026-07-27T09:09:25.715Z"
 }
