@@ -1,8 +1,8 @@
 # MOP Session Brief
 
-Updated: 2026-07-27T18:06:22.311Z
+Updated: 2026-07-28T17:17:05.441Z
 Actor: amad
-Active agent: qih (architect)
+Active agent: mad (frontend)
 Current month: 2026-07
 
 ## Required Session Flow
@@ -10,12 +10,11 @@ Current month: 2026-07
 1. Read `.MOP/STATE.json` and follow `.MOP/PROTOCOL.md`.
 2. Restore memory with `node .MOP/scripts/mop-core.mjs memory brief --actor <codename>`.
 3. Run `agent route` for the user task before answering.
-4. Start every authenticated answer with: `agent: qih (architect) to amad`
+4. Start every authenticated answer with: `agent: mad (frontend) to amad`
 5. Save a one-line memory after meaningful work.
 
 ## Recent Memory
 
-- 2026-07-27T08:26:44.537Z - qih (architect): fix marquee gap bug (skewX applied to overflow:hidden track sheared its clip box, exposing bg at edges) - removed scroll skew, rows now straight; pricing cards unified with same pixel-dot texture background + consistent maroon text across all 3 (featured plan distinguished by border+badge only, no more solid-maroon color flip); replaced single hello@ + website link with two designed contact cards (sales@burhan.my, support@burhan.my) each a full mailto click target; reduced AI-writing-tell copy patterns (em-dash-heavy sentences, cliche 'craft' word) in hero and why-us copy; removed now-dead .button/.contact-actions/.ctaFeatured CSS
 - 2026-07-27T08:27:32.526Z - qih (architect): fix marquee gap bug (skewX applied to overflow:hidden track sheared its clip box, exposing bg at edges) - removed scroll skew, rows now straight; pricing cards unified with same pixel-dot texture background + consistent maroon text across all 3 (featured plan distinguished by border+badge only, no more solid-maroon color flip); replaced single hello@ + website link with two designed contact cards (sales@burhan.my, support@burhan.my) each a full mailto click target; reduced AI-writing-tell copy patterns (em-dash-heavy sentences, cliche 'craft' word) in hero and why-us copy; removed now-dead .button/.contact-actions/.ctaFeatured CSS
 - 2026-07-27T08:28:55.889Z - qih (architect): 4-part fix shipped (main 776a1f8, deployed): marquee edge-gap bug fixed (removed scroll-skewX which sheared the overflow:hidden track's clip box); pricing cards unified to same pixel-dot cream background + consistent text colors across all 3 (featured plan now distinguished only by border+badge, not solid-maroon flip); contact section replaced hello@/website link with two designed mailto cards (sales@burhan.my, support@burhan.my); reduced AI-writing-tell copy (em-dashes, 'craft' cliche) in hero/why-us text
 - 2026-07-27T08:40:45.645Z - qih (architect): applied the site's existing subtle pixel-grid background pattern (9x9px, maroon+green hairlines at 4pct opacity, already used in Pricing) to Why Us and Testimonials sections, which were previously flat cream with no texture — now visually consistent across the page
@@ -35,3 +34,4 @@ Current month: 2026-07
 - 2026-07-27T17:42:19.312Z - qih (architect): sync pending polish: testimonials anti-flash marquee fix mirroring MarqueeStrip, footer logo swap replacing back-to-top arrow, pricing featured-card hover-only highlight
 - 2026-07-27T17:59:32.116Z - qih (architect): code quality cleanup: removed ~600 lines of unreachable dead code (Hero Minecraft easter-egg state machine that never triggered + orphaned BlockyChar component), deleted untracked tsconfig.tsbuildinfo build-cache artifact, fixed broken footer nav (linked to nonexistent #hero/#about/#story anchors and a nonexistent /contact route), switched footer logo to next/image, and wired up a working ESLint config (npm run lint was previously non-functional)
 - 2026-07-27T18:06:22.294Z - qih (architect): fix CI break: package-lock.json was out of sync with package.json after adding ESLint devDependencies, causing npm ci to fail in GitHub Actions with EUSAGE (missing/invalid @emnapi/* optional deps). Regenerated a clean lockfile from scratch and verified npm ci succeeds locally before pushing
+- 2026-07-28T17:17:05.402Z - mad (frontend): hero: vertically center headline (was anchored near top) and add burhan logo image beside BURHANDEV wordmark; pricing: give featured card a subtle default highlight (border+shadow) instead of hover-only; why-us panels: add hover interactivity (straighten rotation, lift, deepen shadow) since they were fully static before

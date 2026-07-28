@@ -61,8 +61,13 @@
   border-color: rgba(127, 29, 29, 0.28);
 }
 
-/* Kad featured: sama seperti kad lain secara lalai (seragam) — border
-   tebal + highlight hanya muncul bila hover, badge "Most Popular" kekal. */
+/* Kad featured: highlight lembut secara lalai (border + bayang sedikit
+   lebih pekat daripada kad lain), lebih ketara lagi bila hover. */
+.featured {
+  border-color: rgba(127, 29, 29, 0.35);
+  box-shadow: 0 8px 28px rgba(127, 29, 29, 0.08);
+}
+
 .featured:hover {
   border-width: 2.5px;
   border-color: var(--maroon, #7f1d1d);

@@ -356,6 +356,13 @@ p {
   background: var(--cream-2);
   box-shadow: 0.85rem 0.85rem 0 rgba(127, 29, 29, 0.18);
   transform: rotate(-1deg);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  cursor: default;
+}
+
+.work-panels article:hover {
+  transform: rotate(0deg) translateY(-8px) scale(1.03);
+  box-shadow: 1.15rem 1.15rem 0 rgba(127, 29, 29, 0.3);
 }
 
 .work-panels article:nth-child(2) {
