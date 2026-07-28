@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useCallback } from "react";
+import Image from "next/image";
 import styles from "./HeroSection.module.css";
 import useVideoScrub from "./useVideoScrub";
 
@@ -18,7 +19,7 @@ export default function HeroSection() {
     const el = contentRef.current;
     if (el) {
       const fade = Math.min(1, Math.max(0, (p - 0.01) / 0.09));
-      el.style.transform = `translateX(-50%) translateY(${(-fade * 40).toFixed(1)}px)`;
+      el.style.setProperty("--fade-lift", `${(fade * 40).toFixed(1)}px`);
       el.style.opacity = String(Math.max(0, 1 - fade * 1.15));
     }
     // Tutup kawasan monitor (teks "BURHAN" terbakar dalam video) pada
@@ -72,7 +73,17 @@ export default function HeroSection() {
           <h1 className={styles.introTitle} aria-label="Enter the World of BURHANDEV">
             <span>ENTER THE</span>
             <span>WORLD OF</span>
-            <span className={styles.introBrand}>BURHANDEV</span>
+            <span className={styles.introBrandRow}>
+              <Image
+                className={styles.introLogo}
+                src="/brand/burhan-logo2.png"
+                alt=""
+                width={64}
+                height={64}
+                priority
+              />
+              <span className={styles.introBrand}>BURHANDEV</span>
+            </span>
           </h1>
           <p className={styles.introSub}>
             We don&apos;t just build sites. We build experiences that convert.
