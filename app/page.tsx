@@ -17,7 +17,7 @@ export default function Home() {
         <a className="brand-lockup" href="#top" aria-label="BURHANDEV home">
           <Image
             className="brand-lockup__logo"
-            src="/brand/burhan-logo2.png"
+            src="/brand/burhan-logo2.webp"
             alt=""
             width={32}
             height={32}
@@ -124,7 +124,7 @@ export default function Home() {
             <h2 className="site-footer__wordmark">BURHANDEV</h2>
             <Image
               className="site-footer__logo"
-              src="/brand/burhan-logo2.png"
+              src="/brand/burhan-logo2.webp"
               alt="BURHANDEV logo"
               width={64}
               height={64}

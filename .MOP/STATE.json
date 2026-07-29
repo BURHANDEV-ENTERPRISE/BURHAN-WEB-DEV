@@ -7,13 +7,13 @@
   "activeMember": "amad",
   "activeAgents": {
     "moon": "agent-loli",
-    "amad": "agent-mad"
+    "amad": "agent-qih"
   },
   "session": {
     "actor": "amad",
     "authenticatedAt": "2026-07-29T12:07:59.685Z",
-    "lastActiveAt": "2026-07-29T12:54:24.930Z",
-    "expiresAt": "2026-07-30T12:54:24.930Z"
+    "lastActiveAt": "2026-07-29T13:46:06.052Z",
+    "expiresAt": "2026-07-30T13:46:06.053Z"
   },
   "sessionPolicy": {
     "enabled": true,
@@ -4344,7 +4344,40 @@
       "actor": "BURHAN-MOP",
       "kind": "merge-approved",
       "summary": "origin/dev/amad approved and merged to main."
+    },
+    {
+      "at": "2026-07-29T13:38:45.675Z",
+      "actor": "amad",
+      "agent": "mad",
+      "agentRole": "frontend",
+      "agentId": "agent-mad",
+      "kind": "memory",
+      "summary": "shipped to main (b62c3c4): removed the burhan logo image from the hero's BURHANDEV wordmark row per amad's request; also deleted the now-dead .introBrandRow/.introLogo CSS and unused Image import that only existed to support it"
+    },
+    {
+      "at": "2026-07-29T13:43:18.686Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "agent-route",
+      "summary": "Routed task to qih: New or broad system task routed to System Architect for high-reasoning planning before implementation."
+    },
+    {
+      "at": "2026-07-29T13:53:48.651Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "perf: re-encode both videos with libx264 CRF-based compression (project1.mp4 CRF30, gaming-monitor.mp4 CRF27, tight GOP kept for scrub smoothness) cutting video weight from 8.27MB to 3.78MB (54% smaller); resize+convert oversized 1660px logo PNG to a 256px WebP (107KB->6.3KB); delete unreferenced 326KB box_2048px_Normal.png"
+    },
+    {
+      "at": "2026-07-29T13:55:31.233Z",
+      "actor": "BURHAN-MOP",
+      "kind": "merge-approved",
+      "summary": "origin/dev/amad approved and merged to main."
     }
   ],
-  "lastActiveAt": "2026-07-29T12:54:24.930Z"
+  "lastActiveAt": "2026-07-29T13:46:06.052Z"
 }
