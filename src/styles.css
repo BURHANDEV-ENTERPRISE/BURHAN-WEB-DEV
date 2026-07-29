@@ -123,6 +123,13 @@ p {
   font-weight: 950;
 }
 
+.brand-lockup__logo {
+  flex-shrink: 0;
+  height: 1.7rem;
+  width: 1.7rem;
+  object-fit: contain;
+}
+
 /* Butang bulat hamburger — saiz seragam dengan chip brand, betul-betul center */
 .menu-capsule {
   display: inline-flex;
@@ -377,6 +384,11 @@ p {
   background: var(--maroon);
   color: var(--cream);
   transform: rotate(-1deg);
+}
+
+.work-panels article:nth-child(2):hover,
+.work-panels article:nth-child(3):hover {
+  transform: rotate(0deg) translateY(-8px) scale(1.03);
 }
 
 .work-panels span {

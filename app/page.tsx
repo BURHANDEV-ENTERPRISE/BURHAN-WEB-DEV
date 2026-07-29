@@ -15,6 +15,13 @@ export default function Home() {
     <div id="app">
       <header className="top-shell" aria-label="Primary navigation">
         <a className="brand-lockup" href="#top" aria-label="BURHANDEV home">
+          <Image
+            className="brand-lockup__logo"
+            src="/brand/burhan-logo2.png"
+            alt=""
+            width={32}
+            height={32}
+          />
           <span>BURHANDEV</span>
         </a>
         <NavMenu />

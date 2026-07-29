@@ -1,6 +1,6 @@
 # MOP Session Brief
 
-Updated: 2026-07-29T12:39:06.621Z
+Updated: 2026-07-29T12:53:11.748Z
 Actor: amad
 Active agent: mad (frontend)
 Current month: 2026-07
@@ -15,8 +15,6 @@ Current month: 2026-07
 
 ## Recent Memory
 
-- 2026-07-27T09:02:21.311Z - qih (architect): fixed marquee strip: removed the flash/gap bug caused by only 2 duplicated copies not covering wide viewports (now 6 copies), swapped scroll direction so top row moves left-to-right and bottom row right-to-left per request, and removed the VERCEL tag from the bottom row
-- 2026-07-27T09:03:08.183Z - qih (architect): fixed marquee strip: removed the flash/gap bug caused by only 2 duplicated copies not covering wide viewports (now 6 copies), swapped scroll direction so top row moves left-to-right and bottom row right-to-left per request, and removed the VERCEL tag from the bottom row
 - 2026-07-27T09:03:54.761Z - qih (architect): fixed marquee strip: removed the flash/gap bug caused by only 2 duplicated copies not covering wide viewports (now 6 copies), swapped scroll direction so top row moves left-to-right and bottom row right-to-left per request, and removed the VERCEL tag from the bottom row
 - 2026-07-27T09:04:41.444Z - qih (architect): fixed marquee strip: removed the flash/gap bug caused by only 2 duplicated copies not covering wide viewports (now 6 copies), swapped scroll direction so top row moves left-to-right and bottom row right-to-left per request, and removed the VERCEL tag from the bottom row
 - 2026-07-27T09:05:27.981Z - qih (architect): fixed marquee strip: removed the flash/gap bug caused by only 2 duplicated copies not covering wide viewports (now 6 copies), swapped scroll direction so top row moves left-to-right and bottom row right-to-left per request, and removed the VERCEL tag from the bottom row
@@ -35,3 +33,5 @@ Current month: 2026-07
 - 2026-07-29T12:18:51.505Z - anis (core): mobbin MCP server now registered (claude mcp add done) but shows 'Needs authentication' - amad still needs to run /mcp and authenticate via browser sign-in before tools become available
 - 2026-07-29T12:37:14.397Z - mad (frontend): pricing: unify hover glow across all cards to match featured card's border+shadow highlight (smoothed with border-width transition); add SEO-ready feature bullet to Landing Page plan
 - 2026-07-29T12:39:06.612Z - mad (frontend): pricing: unify hover glow across all cards to match featured card's border+shadow highlight (smoothed with border-width transition); add SEO-ready feature bullet to Landing Page plan
+- 2026-07-29T12:43:35.642Z - mad (frontend): shipped to main (dfa8087): pricing cards now all glow on hover (2.5px solid maroon border + deep box-shadow) matching the featured card's look, smoothed with a border-width transition; Landing Page plan gained an 'SEO-ready page' feature bullet alongside Business Website's existing 'SEO-ready structure'
+- 2026-07-29T12:53:11.738Z - mad (frontend): fix why-us panels 2/3 hover cancelled by later nth-child rotate rule (equal CSS specificity, source-order lost); add missing burhan logo image beside BURHANDEV wordmark in header brand-lockup
