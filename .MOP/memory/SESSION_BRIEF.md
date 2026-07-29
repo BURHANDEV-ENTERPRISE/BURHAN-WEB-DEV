@@ -1,6 +1,6 @@
 # MOP Session Brief
 
-Updated: 2026-07-29T12:53:11.748Z
+Updated: 2026-07-29T13:37:27.333Z
 Actor: amad
 Active agent: mad (frontend)
 Current month: 2026-07
@@ -15,8 +15,6 @@ Current month: 2026-07
 
 ## Recent Memory
 
-- 2026-07-27T09:03:54.761Z - qih (architect): fixed marquee strip: removed the flash/gap bug caused by only 2 duplicated copies not covering wide viewports (now 6 copies), swapped scroll direction so top row moves left-to-right and bottom row right-to-left per request, and removed the VERCEL tag from the bottom row
-- 2026-07-27T09:04:41.444Z - qih (architect): fixed marquee strip: removed the flash/gap bug caused by only 2 duplicated copies not covering wide viewports (now 6 copies), swapped scroll direction so top row moves left-to-right and bottom row right-to-left per request, and removed the VERCEL tag from the bottom row
 - 2026-07-27T09:05:27.981Z - qih (architect): fixed marquee strip: removed the flash/gap bug caused by only 2 duplicated copies not covering wide viewports (now 6 copies), swapped scroll direction so top row moves left-to-right and bottom row right-to-left per request, and removed the VERCEL tag from the bottom row
 - 2026-07-27T09:06:15.026Z - qih (architect): fixed marquee strip: removed the flash/gap bug caused by only 2 duplicated copies not covering wide viewports (now 6 copies), swapped scroll direction so top row moves left-to-right and bottom row right-to-left per request, and removed the VERCEL tag from the bottom row
 - 2026-07-27T09:07:35.822Z - qih (architect): fixed marquee strip: removed flash/gap bug (increased duplicated copies 2->6 so the track always overflows the viewport), swapped scroll direction so top row moves left-to-right and bottom row right-to-left, and removed the VERCEL tag from bottom row
@@ -35,3 +33,5 @@ Current month: 2026-07
 - 2026-07-29T12:39:06.612Z - mad (frontend): pricing: unify hover glow across all cards to match featured card's border+shadow highlight (smoothed with border-width transition); add SEO-ready feature bullet to Landing Page plan
 - 2026-07-29T12:43:35.642Z - mad (frontend): shipped to main (dfa8087): pricing cards now all glow on hover (2.5px solid maroon border + deep box-shadow) matching the featured card's look, smoothed with a border-width transition; Landing Page plan gained an 'SEO-ready page' feature bullet alongside Business Website's existing 'SEO-ready structure'
 - 2026-07-29T12:53:11.738Z - mad (frontend): fix why-us panels 2/3 hover cancelled by later nth-child rotate rule (equal CSS specificity, source-order lost); add missing burhan logo image beside BURHANDEV wordmark in header brand-lockup
+- 2026-07-29T12:54:24.933Z - mad (frontend): shipped to main (6fde032): fixed why-us panels 2&3 not animating on hover (nth-child rotate rule had equal CSS specificity to :hover and came later, so it silently won and cancelled the hover transform); added the missing burhan-logo2.png image beside the BURHANDEV wordmark in the top header brand-lockup (hero and footer already had it, header never did)
+- 2026-07-29T13:37:27.321Z - mad (frontend): hero: remove burhan logo image from the BURHANDEV wordmark row (kept hero/header/footer wordmarks consistent per request); drop now-dead introBrandRow/introLogo CSS
