@@ -12,8 +12,8 @@
   "session": {
     "actor": "amad",
     "authenticatedAt": "2026-07-29T12:07:59.685Z",
-    "lastActiveAt": "2026-07-29T12:33:59.666Z",
-    "expiresAt": "2026-07-30T12:33:59.667Z"
+    "lastActiveAt": "2026-07-29T12:43:35.638Z",
+    "expiresAt": "2026-07-30T12:43:35.639Z"
   },
   "sessionPolicy": {
     "enabled": true,
@@ -4290,7 +4290,31 @@
       "agentId": "agent-mad",
       "kind": "memory",
       "summary": "pricing: unify hover glow across all cards to match featured card's border+shadow highlight (smoothed with border-width transition); add SEO-ready feature bullet to Landing Page plan"
+    },
+    {
+      "at": "2026-07-29T12:43:17.398Z",
+      "actor": "BURHAN-MOP",
+      "kind": "merge-approved",
+      "summary": "origin/dev/amad approved and merged to main."
+    },
+    {
+      "at": "2026-07-29T12:43:35.642Z",
+      "actor": "amad",
+      "agent": "mad",
+      "agentRole": "frontend",
+      "agentId": "agent-mad",
+      "kind": "memory",
+      "summary": "shipped to main (dfa8087): pricing cards now all glow on hover (2.5px solid maroon border + deep box-shadow) matching the featured card's look, smoothed with a border-width transition; Landing Page plan gained an 'SEO-ready page' feature bullet alongside Business Website's existing 'SEO-ready structure'"
+    },
+    {
+      "at": "2026-07-29T12:53:11.738Z",
+      "actor": "amad",
+      "agent": "mad",
+      "agentRole": "frontend",
+      "agentId": "agent-mad",
+      "kind": "memory",
+      "summary": "fix why-us panels 2/3 hover cancelled by later nth-child rotate rule (equal CSS specificity, source-order lost); add missing burhan logo image beside BURHANDEV wordmark in header brand-lockup"
     }
   ],
-  "lastActiveAt": "2026-07-29T12:33:59.666Z"
+  "lastActiveAt": "2026-07-29T12:43:35.638Z"
 }
