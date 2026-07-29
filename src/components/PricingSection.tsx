@@ -10,6 +10,7 @@ const PLANS = [
     features: [
       "1 responsive page",
       "Mobile-first design",
+      "SEO-ready page",
       "5–7 day delivery",
       "Contact / WhatsApp form",
     ],
