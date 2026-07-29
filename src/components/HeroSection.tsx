@@ -1,7 +1,6 @@
 "use client";
 
 import { useRef, useCallback } from "react";
-import Image from "next/image";
 import styles from "./HeroSection.module.css";
 import useVideoScrub from "./useVideoScrub";
 
@@ -73,17 +72,7 @@ export default function HeroSection() {
           <h1 className={styles.introTitle} aria-label="Enter the World of BURHANDEV">
             <span>ENTER THE</span>
             <span>WORLD OF</span>
-            <span className={styles.introBrandRow}>
-              <Image
-                className={styles.introLogo}
-                src="/brand/burhan-logo2.png"
-                alt=""
-                width={64}
-                height={64}
-                priority
-              />
-              <span className={styles.introBrand}>BURHANDEV</span>
-            </span>
+            <span className={styles.introBrand}>BURHANDEV</span>
           </h1>
           <p className={styles.introSub}>
             We don&apos;t just build sites. We build experiences that convert.
