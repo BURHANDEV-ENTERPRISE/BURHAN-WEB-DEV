@@ -27,3 +27,8 @@ next-env.d.ts
 /*.mp4
 /*.mov
 /*.webm
+
+# Dataset training AI — local-only per keputusan Amad (repo ni public,
+# diary/rekod kerja dalam dataset tak nak jadi visible kat GitHub)
+/scripts/build-training-dataset.mjs
+/docs/training-dataset/

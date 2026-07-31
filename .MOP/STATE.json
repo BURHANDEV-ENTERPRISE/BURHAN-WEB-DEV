@@ -6,14 +6,13 @@
   "ownerCodename": "moon",
   "activeMember": "amad",
   "activeAgents": {
-    "moon": "agent-loli",
     "amad": "agent-qih"
   },
   "session": {
     "actor": "amad",
-    "authenticatedAt": "2026-07-29T12:07:59.685Z",
-    "lastActiveAt": "2026-07-29T13:46:06.052Z",
-    "expiresAt": "2026-07-30T13:46:06.053Z"
+    "authenticatedAt": "2026-07-31T07:39:03.766Z",
+    "lastActiveAt": "2026-07-31T08:08:13.972Z",
+    "expiresAt": "2026-08-01T08:08:13.972Z"
   },
   "sessionPolicy": {
     "enabled": true,
@@ -830,6 +829,28 @@
       ],
       "createdBy": "amad",
       "createdAt": "2026-07-06T15:08:40.263Z"
+    },
+    {
+      "id": "agent-guard",
+      "role": "security",
+      "title": "Security Specialist",
+      "name": "guard",
+      "owners": [
+        "amad"
+      ],
+      "createdBy": "amad",
+      "createdAt": "2026-07-31T08:07:34.387Z"
+    },
+    {
+      "id": "agent-keeper",
+      "role": "memory",
+      "title": "Memory Keeper",
+      "name": "keeper",
+      "owners": [
+        "amad"
+      ],
+      "createdBy": "amad",
+      "createdAt": "2026-07-31T08:07:34.481Z"
     }
   ],
   "agentCatalog": [
@@ -4371,7 +4392,100 @@
       "agentId": "agent-qih",
       "kind": "memory",
       "summary": "perf: re-encode both videos with libx264 CRF-based compression (project1.mp4 CRF30, gaming-monitor.mp4 CRF27, tight GOP kept for scrub smoothness) cutting video weight from 8.27MB to 3.78MB (54% smaller); resize+convert oversized 1660px logo PNG to a 256px WebP (107KB->6.3KB); delete unreferenced 326KB box_2048px_Normal.png"
+    },
+    {
+      "at": "2026-07-29T13:55:31.233Z",
+      "actor": "BURHAN-MOP",
+      "kind": "merge-approved",
+      "summary": "origin/dev/amad approved and merged to main."
+    },
+    {
+      "at": "2026-07-29T13:55:48.599Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "shipped to main (5f20f72): site optimization pass - re-encoded both videos (project1.mp4 CRF30, gaming-monitor.mp4 CRF27, kept tight GOP for scrub smoothness), total video weight 8.27MB->3.78MB (54% smaller), verified visually via extracted frames including the hero's burned-in BURHAN text (no visible artifacts); shrunk oversized 1660px logo PNG to a 256px WebP (107KB->6.3KB); deleted unreferenced 326KB box_2048px_Normal.png. JS bundle was already lean (~115KB) so left untouched"
+    },
+    {
+      "at": "2026-07-31T07:39:03.768Z",
+      "actor": "amad",
+      "kind": "login",
+      "summary": "Member authenticated; new session started."
+    },
+    {
+      "at": "2026-07-31T07:39:15.265Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "agent-route",
+      "summary": "Routed task to qih: New or broad system task routed to System Architect for high-reasoning planning before implementation."
+    },
+    {
+      "at": "2026-07-31T08:07:34.388Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "agent-activate",
+      "summary": "Named Security Specialist as guard."
+    },
+    {
+      "at": "2026-07-31T08:07:34.388Z",
+      "actor": "amad",
+      "agent": "guard",
+      "agentRole": "security",
+      "agentId": "agent-guard",
+      "kind": "agent-use",
+      "summary": "Set active agent to guard."
+    },
+    {
+      "at": "2026-07-31T08:07:34.481Z",
+      "actor": "amad",
+      "agent": "guard",
+      "agentRole": "security",
+      "agentId": "agent-guard",
+      "kind": "agent-activate",
+      "summary": "Named Memory Keeper as keeper."
+    },
+    {
+      "at": "2026-07-31T08:07:34.481Z",
+      "actor": "amad",
+      "agent": "keeper",
+      "agentRole": "memory",
+      "agentId": "agent-keeper",
+      "kind": "agent-use",
+      "summary": "Set active agent to keeper."
+    },
+    {
+      "at": "2026-07-31T08:07:48.164Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "agent-route",
+      "summary": "Routed task to qih: New or broad system task routed to System Architect for high-reasoning planning before implementation."
+    },
+    {
+      "at": "2026-07-31T08:08:01.561Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "agent-route",
+      "summary": "Routed task to qih: New or broad system task routed to System Architect for high-reasoning planning before implementation."
+    },
+    {
+      "at": "2026-07-31T08:23:33.613Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "add .gitignore rules to keep the AI-training dataset (script + generated JSONL, built from MOP memory diary) local-only per decision: repo is public and dataset content isn't cleared for publishing even with credentials redacted"
     }
   ],
-  "lastActiveAt": "2026-07-29T13:46:06.052Z"
+  "lastActiveAt": "2026-07-31T08:08:13.972Z"
 }
