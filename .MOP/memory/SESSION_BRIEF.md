@@ -1,6 +1,6 @@
 # MOP Session Brief
 
-Updated: 2026-07-29T13:53:48.675Z
+Updated: 2026-07-31T08:23:33.660Z
 Actor: amad
 Active agent: qih (architect)
 Current month: 2026-07
@@ -15,8 +15,6 @@ Current month: 2026-07
 
 ## Recent Memory
 
-- 2026-07-27T09:07:35.822Z - qih (architect): fixed marquee strip: removed flash/gap bug (increased duplicated copies 2->6 so the track always overflows the viewport), swapped scroll direction so top row moves left-to-right and bottom row right-to-left, and removed the VERCEL tag from bottom row
-- 2026-07-27T09:09:25.718Z - qih (architect): fixed marquee strip flash/gap bug (2->6 duplicated copies so track always overflows viewport), swapped scroll direction (top row left-to-right, bottom row right-to-left per request), removed VERCEL tag - deployed main@abe0afd
 - 2026-07-27T13:00:19.577Z - qih (architect): mobile/tablet responsiveness pass: fixed fixed-header colliding with Pricing and Why Us section headings at mobile/tablet widths (top padding was equal to or less than the header's clearance, causing text to render behind the BURHANDEV chip), and enlarged undersized footer nav/social link tap targets (14px tall) to ~41px for touch usability. Verified across iPhone SE/14, Pixel 7, Galaxy S9, iPad Mini, iPad Pro portrait+landscape with no horizontal overflow anywhere
 - 2026-07-27T13:02:10.207Z - qih (architect): mobile/tablet responsiveness audit + fixes: Pricing and Why Us headings were colliding with the fixed header at mobile/tablet widths (insufficient top padding), footer nav/social links had 14px-tall tap targets - both fixed and verified across iPhone/Android/iPad, no horizontal overflow found. Deployed main@21ca985
 - 2026-07-27T17:40:17.855Z - qih (architect): sync pending polish: testimonials anti-flash marquee fix mirroring MarqueeStrip, footer logo swap replacing back-to-top arrow, pricing featured-card hover-only highlight
@@ -35,3 +33,5 @@ Current month: 2026-07
 - 2026-07-29T13:37:27.321Z - mad (frontend): hero: remove burhan logo image from the BURHANDEV wordmark row (kept hero/header/footer wordmarks consistent per request); drop now-dead introBrandRow/introLogo CSS
 - 2026-07-29T13:38:45.675Z - mad (frontend): shipped to main (b62c3c4): removed the burhan logo image from the hero's BURHANDEV wordmark row per amad's request; also deleted the now-dead .introBrandRow/.introLogo CSS and unused Image import that only existed to support it
 - 2026-07-29T13:53:48.653Z - qih (architect): perf: re-encode both videos with libx264 CRF-based compression (project1.mp4 CRF30, gaming-monitor.mp4 CRF27, tight GOP kept for scrub smoothness) cutting video weight from 8.27MB to 3.78MB (54% smaller); resize+convert oversized 1660px logo PNG to a 256px WebP (107KB->6.3KB); delete unreferenced 326KB box_2048px_Normal.png
+- 2026-07-29T13:55:48.599Z - qih (architect): shipped to main (5f20f72): site optimization pass - re-encoded both videos (project1.mp4 CRF30, gaming-monitor.mp4 CRF27, kept tight GOP for scrub smoothness), total video weight 8.27MB->3.78MB (54% smaller), verified visually via extracted frames including the hero's burned-in BURHAN text (no visible artifacts); shrunk oversized 1660px logo PNG to a 256px WebP (107KB->6.3KB); deleted unreferenced 326KB box_2048px_Normal.png. JS bundle was already lean (~115KB) so left untouched
+- 2026-07-31T08:23:33.620Z - qih (architect): add .gitignore rules to keep the AI-training dataset (script + generated JSONL, built from MOP memory diary) local-only per decision: repo is public and dataset content isn't cleared for publishing even with credentials redacted
