@@ -1,0 +1,112 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: min(38rem, 100%);
+  padding: 2rem;
+  border: 1.5px solid rgba(255, 246, 220, 0.35);
+  border-radius: 14px;
+  background: rgba(255, 250, 240, 0.08);
+  text-align: left;
+}
+
+.row {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.field {
+  display: block;
+  flex: 1;
+  min-width: 12rem;
+}
+
+.fieldLabel {
+  display: block;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255, 246, 220, 0.65);
+  margin-bottom: 0.35rem;
+}
+
+.input,
+.textarea {
+  width: 100%;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 0.92rem;
+  color: var(--cream, #fff6dc);
+  padding: 0.6rem 0.75rem;
+  border: 1.5px solid rgba(255, 246, 220, 0.3);
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.12);
+  outline: none;
+  transition: border-color 0.18s;
+}
+
+.input::placeholder,
+.textarea::placeholder {
+  color: rgba(255, 246, 220, 0.4);
+}
+
+.input:focus,
+.textarea:focus {
+  border-color: var(--cream, #fff6dc);
+}
+
+.textarea {
+  resize: vertical;
+}
+
+.honeypot {
+  position: absolute;
+  left: -9999px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.submit {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid var(--cream, #fff6dc);
+  border-radius: 8px;
+  padding: 0.75rem 1.75rem;
+  font-family: var(--font-bebas), "Impact", sans-serif;
+  font-size: 1rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--cream, #fff6dc);
+  background: transparent;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.submit:hover:not(:disabled) {
+  background: var(--cream, #fff6dc);
+  color: var(--maroon, #7f1d1d);
+}
+
+.submit:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.errorText {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 0.85rem;
+  color: var(--peach, #ffb078);
+  margin: 0;
+}
+
+.sentMessage {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 1rem;
+  color: var(--cream, #fff6dc);
+  text-align: center;
+  margin: 0;
+}
