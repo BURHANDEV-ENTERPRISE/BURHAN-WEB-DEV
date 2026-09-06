@@ -1,6 +1,6 @@
 # MOP Session Brief
 
-Updated: 2026-09-06T14:10:12.125Z
+Updated: 2026-09-06T14:28:32.551Z
 Actor: amad
 Active agent: qih (architect)
 Current month: 2026-09
@@ -15,8 +15,6 @@ Current month: 2026-09
 
 ## Recent Memory
 
-- 2026-07-29T12:53:11.738Z - mad (frontend): fix why-us panels 2/3 hover cancelled by later nth-child rotate rule (equal CSS specificity, source-order lost); add missing burhan logo image beside BURHANDEV wordmark in header brand-lockup
-- 2026-07-29T12:54:24.933Z - mad (frontend): shipped to main (6fde032): fixed why-us panels 2&3 not animating on hover (nth-child rotate rule had equal CSS specificity to :hover and came later, so it silently won and cancelled the hover transform); added the missing burhan-logo2.png image beside the BURHANDEV wordmark in the top header brand-lockup (hero and footer already had it, header never did)
 - 2026-07-29T13:37:27.321Z - mad (frontend): hero: remove burhan logo image from the BURHANDEV wordmark row (kept hero/header/footer wordmarks consistent per request); drop now-dead introBrandRow/introLogo CSS
 - 2026-07-29T13:38:45.675Z - mad (frontend): shipped to main (b62c3c4): removed the burhan logo image from the hero's BURHANDEV wordmark row per amad's request; also deleted the now-dead .introBrandRow/.introLogo CSS and unused Image import that only existed to support it
 - 2026-07-29T13:53:48.653Z - qih (architect): perf: re-encode both videos with libx264 CRF-based compression (project1.mp4 CRF30, gaming-monitor.mp4 CRF27, tight GOP kept for scrub smoothness) cutting video weight from 8.27MB to 3.78MB (54% smaller); resize+convert oversized 1660px logo PNG to a 256px WebP (107KB->6.3KB); delete unreferenced 326KB box_2048px_Normal.png
@@ -35,3 +33,5 @@ Current month: 2026-09
 - 2026-09-06T13:59:18.284Z - anisweb (browser): harden the content-editor page per Amad's request: moved it from the guessable /admin to a hidden path (/staff-burhan-only, excluded from robots.txt/search index), and added a client-side login gate (PBKDF2-SHA256 hashed credentials, no plaintext password anywhere in source, session-scoped unlock) so a casual visitor who finds the URL still can't see the editor UI. The GitHub PAT entered in the editor remains the actual write-access boundary regardless - this login only gates visibility of the form
 - 2026-09-06T14:02:45.831Z - anisweb (browser): Hardened content editor to main@53fc7c1 per Amad's request: moved /admin to hidden /staff-burhan-only (old path now 404s, excluded from robots.txt), added client-side login gate (username AdminBurhan, PBKDF2-SHA256 hashed password, session-scoped unlock, no plaintext in source). Verified live: login gate blocks access without credentials, real credentials unlock it, secret scan passed
 - 2026-09-06T14:10:12.113Z - qih (architect): restyle /staff-burhan-only login gate and content editor with the BURHANDEV brand design system (maroon/cream/orange palette, Bebas Neue headings, dot-grid card texture, Space Grotesk body font) instead of generic inline styles - moved styling into a proper CSS module (admin.module.css) matching the pattern used by the rest of the site's components. Verified locally: login/unlock/logout flow unchanged, no visual/behavioral regressions
+- 2026-09-06T14:13:05.900Z - qih (architect): Restyled /staff-burhan-only to match BURHANDEV brand (main@48da8cd): maroon/cream/orange palette, Bebas Neue headings, dot-grid card texture, proper CSS module instead of inline styles. Verified live: login/unlock flow works correctly, matches site's visual identity
+- 2026-09-06T14:28:32.537Z - qih (architect): TechStackSection: add magnetic cursor-tilt + brand-color spotlight glow on hover for each badge (mouse-position-driven rotateX/rotateY + radial-gradient glow using each tool's own color), and add 6 more tool badges (Playwright, ESLint, GitHub Actions, Docker, PostgreSQL, Stripe) - 12 to 18 total. Respects prefers-reduced-motion (tilt/glow disabled)

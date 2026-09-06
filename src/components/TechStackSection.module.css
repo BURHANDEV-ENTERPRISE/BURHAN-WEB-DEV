@@ -51,6 +51,7 @@
 }
 
 .badge {
+  position: relative;
   display: inline-flex;
   align-items: center;
   gap: 0.55rem;
@@ -59,16 +60,30 @@
   border-radius: 999px;
   background: rgba(255, 246, 220, 0.03);
   cursor: default;
+  overflow: hidden;
   animation: floatBadge 3.8s ease-in-out infinite;
-  transition: border-color 0.25s, background 0.25s, transform 0.22s, box-shadow 0.25s;
+  transition: border-color 0.25s, background 0.25s, transform 0.18s ease-out, box-shadow 0.25s;
+  transform-style: preserve-3d;
+  perspective: 300px;
+  transform: perspective(300px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
 }
 
 .badge:hover {
   border-color: var(--tc, rgba(255,246,220,0.4));
   background: rgba(255, 246, 220, 0.06);
-  transform: translateY(-5px) scale(1.05);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), 0 0 12px -4px var(--tc, transparent);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45), 0 0 16px -4px var(--tc, transparent);
   animation-play-state: paused;
+  z-index: 1;
+}
+
+.glow {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  opacity: var(--glow, 0);
+  transition: opacity 0.25s;
+  background: radial-gradient(90px circle at var(--mx, 50%) var(--my, 50%), color-mix(in srgb, var(--tc, #fff6dc) 35%, transparent), transparent 70%);
+  pointer-events: none;
 }
 
 .mark {
@@ -96,7 +111,8 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .badge { animation: none; }
+  .badge { animation: none; transform: none; }
+  .glow { display: none; }
 }
 
 @media (max-width: 640px) {
