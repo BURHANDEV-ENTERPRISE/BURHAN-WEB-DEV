@@ -2,18 +2,7 @@
 
 import { useEffect, useRef, useCallback } from "react";
 import styles from "./WorkSection.module.css";
-
-const WORKS = [
-  { label: "Landing Page",  sub: "Conversion hero",    theme: "maroon" },
-  { label: "Business Site", sub: "Company profile",    theme: "navy"   },
-  { label: "Product UI",    sub: "Dashboard & portal", theme: "teal",  featured: true },
-  { label: "E-Commerce",    sub: "Shop & checkout",    theme: "amber"  },
-  { label: "Fix & Care",    sub: "Polish & deploy",    theme: "slate"  },
-  { label: "Portfolio",     sub: "Personal brand",     theme: "maroon" },
-  { label: "Startup Web",   sub: "MVP launch",         theme: "navy"   },
-  { label: "Restaurant",    sub: "Local business",     theme: "amber"  },
-  { label: "Agency Studio", sub: "Creative studio",    theme: "slate"  },
-];
+import WORKS from "../content/services.json";
 
 // Start transform for each card: [translateX%, translateY%, scale, rotateDeg]
 // % is relative to each card's own size.

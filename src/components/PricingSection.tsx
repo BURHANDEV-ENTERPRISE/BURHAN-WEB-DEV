@@ -1,56 +1,5 @@
 import styles from "./PricingSection.module.css";
-
-const PLANS = [
-  {
-    num:      "01",
-    label:    "Landing Page",
-    price:    "RM 800",
-    period:   "one-time",
-    desc:     "For offers, campaigns, or launches. One page, fully focused on conversion.",
-    features: [
-      "1 responsive page",
-      "Mobile-first design",
-      "SEO-ready page",
-      "5–7 day delivery",
-      "Contact / WhatsApp form",
-    ],
-    cta:      "Start Project",
-    featured: false,
-  },
-  {
-    num:      "02",
-    label:    "Business Website",
-    price:    "RM 2,500",
-    period:   "one-time",
-    desc:     "Complete company profile. All pages, clear structure, ready to grow.",
-    features: [
-      "5–8 pages full build",
-      "CMS / editable content",
-      "SEO-ready structure",
-      "Gallery & service pages",
-      "14-day delivery",
-      "1 month post-launch support",
-    ],
-    cta:      "Choose This Plan",
-    featured: true,
-  },
-  {
-    num:      "03",
-    label:    "Custom Build",
-    price:    "Contact Us",
-    period:   "",
-    desc:     "Dashboard, portal, member area, or anything complex. Scope-based.",
-    features: [
-      "Product UI / dashboard",
-      "API integration",
-      "Authentication system",
-      "Multi-role access",
-      "Timeline & cost by scope",
-    ],
-    cta:      "Discuss Scope",
-    featured: false,
-  },
-];
+import PLANS from "../content/pricing.json";
 
 export default function PricingSection() {
   return (

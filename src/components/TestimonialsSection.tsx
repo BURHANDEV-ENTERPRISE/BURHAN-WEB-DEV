@@ -1,18 +1,7 @@
 import styles from "./TestimonialsSection.module.css";
+import testimonials from "../content/testimonials.json";
 
-const ROW_A = [
-  { quote: "Website delivered in 7 days, fast response, impressive results. Highly recommended.", name: "Hafiz A.",  role: "Brand Owner"        },
-  { quote: "Our landing page conversion went up 3x after redesigning with BURHANDEV.",             name: "Siti R.",   role: "Founder, SR Studio" },
-  { quote: "Clean code, easy to maintain ourselves. First web dev hire and we're already satisfied.", name: "Ahmad Z.",  role: "SME Owner"          },
-  { quote: "The hero section animation is genuinely wow. Clients keep complimenting it.",          name: "Rizal M.",  role: "Startup Founder"    },
-];
-
-const ROW_B = [
-  { quote: "The UI matched our brand 100%. Barely needed revisions, nailed it first try.",     name: "Nadia K.",  role: "Creative Director"  },
-  { quote: "Best web dev we've ever hired. On-time delivery, quality above expectations.",      name: "Farah B.",  role: "Agency Principal"   },
-  { quote: "From scope to launch in 2 weeks. Smooth process, communication always clear.",      name: "Danial H.", role: "E-commerce Founder" },
-  { quote: "The mobile experience is flawless. Scroll animation is buttery smooth too.",         name: "Izzah M.",  role: "Content Creator"    },
-];
+const { rowA: ROW_A, rowB: ROW_B } = testimonials;
 
 function Card({ quote, name, role }: { quote: string; name: string; role: string }) {
   return (

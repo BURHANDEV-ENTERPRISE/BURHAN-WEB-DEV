@@ -53,7 +53,9 @@ const CSP = [
   "img-src 'self' data:",
   "font-src 'self'",
   "media-src 'self'",
-  "connect-src 'self'",
+  // api.github.com: /admin's content editor commits content/*.json via the
+  // GitHub Contents API directly from the browser (no backend to proxy it).
+  "connect-src 'self' https://api.github.com",
   "object-src 'none'",
   "base-uri 'self'",
   "form-action 'self'",
