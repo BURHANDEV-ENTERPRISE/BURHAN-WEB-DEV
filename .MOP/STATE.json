@@ -6,13 +6,13 @@
   "ownerCodename": "moon",
   "activeMember": "amad",
   "activeAgents": {
-    "amad": "agent-qih"
+    "amad": "agent-guard"
   },
   "session": {
     "actor": "amad",
-    "authenticatedAt": "2026-07-31T07:39:03.766Z",
-    "lastActiveAt": "2026-07-31T08:08:13.972Z",
-    "expiresAt": "2026-08-01T08:08:13.972Z"
+    "authenticatedAt": "2026-09-06T08:35:14.927Z",
+    "lastActiveAt": "2026-09-06T09:40:32.265Z",
+    "expiresAt": "2026-09-07T09:40:32.265Z"
   },
   "sessionPolicy": {
     "enabled": true,
@@ -851,6 +851,17 @@
       ],
       "createdBy": "amad",
       "createdAt": "2026-07-31T08:07:34.481Z"
+    },
+    {
+      "id": "agent-nix",
+      "role": "tester",
+      "title": "Tester",
+      "name": "nix",
+      "owners": [
+        "amad"
+      ],
+      "createdBy": "amad",
+      "createdAt": "2026-09-06T09:01:32.560Z"
     }
   ],
   "agentCatalog": [
@@ -4491,7 +4502,166 @@
       "actor": "BURHAN-MOP",
       "kind": "merge-approved",
       "summary": "origin/dev/amad approved and merged to main."
+    },
+    {
+      "at": "2026-07-31T08:24:56.858Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "Explained + built AI training-dataset request: pipeline (scripts/build-training-dataset.mjs) reads .MOP/memory/*.jsonl, dedupes by content (fixes cross-file timestamp-skew duplicates), redacts secrets/emails/tokens, exports 162 chat-format examples to docs/training-dataset/burhandev-dataset.jsonl. Kept local-only (.gitignore) per Amad's decision since repo is public and diary content isn't cleared for publishing"
+    },
+    {
+      "at": "2026-08-15T09:29:25.698Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "login",
+      "summary": "Member authenticated; new session started."
+    },
+    {
+      "at": "2026-08-15T09:29:32.131Z",
+      "actor": "amad",
+      "agent": "nepi",
+      "agentRole": "design",
+      "agentId": "agent-nepi",
+      "kind": "agent-route",
+      "summary": "Routed task to nepi: Matched keywords for Design: design."
+    },
+    {
+      "at": "2026-08-15T09:32:48.845Z",
+      "actor": "amad",
+      "agent": "nepi",
+      "agentRole": "design",
+      "agentId": "agent-nepi",
+      "kind": "memory",
+      "summary": "amad shared a Canva /edit share link and asked me to gain access into his Canva account; clarified no Canva MCP/browser-automation tool is connected in this session (only mop-flow MCP registered, WebFetch can't render Canva's auth-gated JS editor) so live account access isn't currently possible - offered to help via content/copy+layout guidance instead, or note that real browser automation would need a connected browser tool + the user's own already-logged-in session (never their password)"
+    },
+    {
+      "at": "2026-08-15T14:32:39.975Z",
+      "actor": "amad",
+      "agent": "nepi",
+      "agentRole": "design",
+      "agentId": "agent-nepi",
+      "kind": "memory",
+      "summary": "Browser task: help amad with Canva design via live automation | engine: Playwright (browser-act unavailable, agent-browser available as fallback) | url: https://www.canva.com/design/DAHSWMT2zVw/in5I3w1wU5w_QE57NaXbwg/edit | status: awaiting explicit go-ahead before launching browser (PAUSE gate)"
+    },
+    {
+      "at": "2026-08-15T15:07:55.860Z",
+      "actor": "amad",
+      "agent": "nepi",
+      "agentRole": "design",
+      "agentId": "agent-nepi",
+      "kind": "memory",
+      "summary": "Canva live-edit attempt on the Tanah Melayu/Merdeka 100-player RP presentation: drafted full Malay content for all 10 slides, successfully filled slide 2 initially, but automated click/dblclick text-editing on Canva's canvas proved unreliable (accessible element bounding boxes don't reliably match visible click targets, animation-preview overlays intercept pointer events) - caused a stray duplicate text box on slide 3 and truncated text on slide 2 during recovery attempts via undo/redo (Canva's undo history is global/non-linear across pages, redo did not cleanly restore). Stopped automation to avoid further corruption; handed amad the full drafted text for every slide plus exact manual-fix instructions for slides 2 and 3 instead of continuing risky automation"
+    },
+    {
+      "at": "2026-09-06T08:35:14.928Z",
+      "actor": "amad",
+      "agent": "nepi",
+      "agentRole": "design",
+      "agentId": "agent-nepi",
+      "kind": "login",
+      "summary": "Member authenticated; new session started."
+    },
+    {
+      "at": "2026-09-06T08:36:15.828Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "agent-route",
+      "summary": "Routed task to qih: New or broad system task routed to System Architect for high-reasoning planning before implementation."
+    },
+    {
+      "at": "2026-09-06T08:52:02.584Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "agent-route",
+      "summary": "Routed task to qih: New or broad system task routed to System Architect for high-reasoning planning before implementation."
+    },
+    {
+      "at": "2026-09-06T08:52:08.422Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "agent-route",
+      "summary": "Routed task to qih: New or broad system task routed to System Architect for high-reasoning planning before implementation."
+    },
+    {
+      "at": "2026-09-06T08:53:54.535Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "agent-route",
+      "summary": "Routed task to qih: New or broad system task routed to System Architect for high-reasoning planning before implementation."
+    },
+    {
+      "at": "2026-09-06T09:01:32.560Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "agent-activate",
+      "summary": "Named Tester as nix."
+    },
+    {
+      "at": "2026-09-06T09:01:32.560Z",
+      "actor": "amad",
+      "agent": "nix",
+      "agentRole": "tester",
+      "agentId": "agent-nix",
+      "kind": "agent-use",
+      "summary": "Set active agent to nix."
+    },
+    {
+      "at": "2026-09-06T09:01:38.969Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "agent-route",
+      "summary": "Routed task to qih: New or broad system task routed to System Architect for high-reasoning planning before implementation."
+    },
+    {
+      "at": "2026-09-06T09:01:45.689Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "agent-route",
+      "summary": "Routed task to qih: New or broad system task routed to System Architect for high-reasoning planning before implementation."
+    },
+    {
+      "at": "2026-09-06T09:39:50.496Z",
+      "actor": "amad",
+      "agent": "guard",
+      "agentRole": "security",
+      "agentId": "agent-guard",
+      "kind": "agent-route",
+      "summary": "Routed task to guard: Matched keywords for Security Specialist: security."
+    },
+    {
+      "at": "2026-09-06T09:48:24.817Z",
+      "actor": "amad",
+      "agent": "guard",
+      "agentRole": "security",
+      "agentId": "agent-guard",
+      "kind": "memory",
+      "summary": "SEO + security hardening: add favicon (app/icon.png + apple-icon.png generated from brand logo), Open Graph/Twitter Card meta tags, robots.txt + sitemap.xml (Next.js metadata routes, force-static for export compat); security - moved the boot-flash-prevention inline script to public/boot.js loaded via next/script beforeInteractive (removes the only dangerouslySetInnerHTML in the codebase), added a Content-Security-Policy meta tag (default-src self, blocks cross-origin script/style/img/connect - confirmed no API routes/forms/eval/fetch exist anywhere in the app) and a referrer-policy meta tag"
+    },
+    {
+      "at": "2026-09-06T09:49:22.808Z",
+      "actor": "BURHAN-MOP",
+      "kind": "merge-approved",
+      "summary": "origin/dev/amad approved and merged to main."
     }
   ],
-  "lastActiveAt": "2026-07-31T08:08:13.972Z"
+  "lastActiveAt": "2026-09-06T09:40:32.265Z"
 }
