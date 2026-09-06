@@ -1,6 +1,6 @@
 # MOP Session Brief
 
-Updated: 2026-09-06T14:28:32.551Z
+Updated: 2026-09-06T14:41:10.611Z
 Actor: amad
 Active agent: qih (architect)
 Current month: 2026-09
@@ -15,8 +15,6 @@ Current month: 2026-09
 
 ## Recent Memory
 
-- 2026-07-29T13:37:27.321Z - mad (frontend): hero: remove burhan logo image from the BURHANDEV wordmark row (kept hero/header/footer wordmarks consistent per request); drop now-dead introBrandRow/introLogo CSS
-- 2026-07-29T13:38:45.675Z - mad (frontend): shipped to main (b62c3c4): removed the burhan logo image from the hero's BURHANDEV wordmark row per amad's request; also deleted the now-dead .introBrandRow/.introLogo CSS and unused Image import that only existed to support it
 - 2026-07-29T13:53:48.653Z - qih (architect): perf: re-encode both videos with libx264 CRF-based compression (project1.mp4 CRF30, gaming-monitor.mp4 CRF27, tight GOP kept for scrub smoothness) cutting video weight from 8.27MB to 3.78MB (54% smaller); resize+convert oversized 1660px logo PNG to a 256px WebP (107KB->6.3KB); delete unreferenced 326KB box_2048px_Normal.png
 - 2026-07-29T13:55:48.599Z - qih (architect): shipped to main (5f20f72): site optimization pass - re-encoded both videos (project1.mp4 CRF30, gaming-monitor.mp4 CRF27, kept tight GOP for scrub smoothness), total video weight 8.27MB->3.78MB (54% smaller), verified visually via extracted frames including the hero's burned-in BURHAN text (no visible artifacts); shrunk oversized 1660px logo PNG to a 256px WebP (107KB->6.3KB); deleted unreferenced 326KB box_2048px_Normal.png. JS bundle was already lean (~115KB) so left untouched
 - 2026-07-31T08:23:33.620Z - qih (architect): add .gitignore rules to keep the AI-training dataset (script + generated JSONL, built from MOP memory diary) local-only per decision: repo is public and dataset content isn't cleared for publishing even with credentials redacted
@@ -35,3 +33,5 @@ Current month: 2026-09
 - 2026-09-06T14:10:12.113Z - qih (architect): restyle /staff-burhan-only login gate and content editor with the BURHANDEV brand design system (maroon/cream/orange palette, Bebas Neue headings, dot-grid card texture, Space Grotesk body font) instead of generic inline styles - moved styling into a proper CSS module (admin.module.css) matching the pattern used by the rest of the site's components. Verified locally: login/unlock/logout flow unchanged, no visual/behavioral regressions
 - 2026-09-06T14:13:05.900Z - qih (architect): Restyled /staff-burhan-only to match BURHANDEV brand (main@48da8cd): maroon/cream/orange palette, Bebas Neue headings, dot-grid card texture, proper CSS module instead of inline styles. Verified live: login/unlock flow works correctly, matches site's visual identity
 - 2026-09-06T14:28:32.537Z - qih (architect): TechStackSection: add magnetic cursor-tilt + brand-color spotlight glow on hover for each badge (mouse-position-driven rotateX/rotateY + radial-gradient glow using each tool's own color), and add 6 more tool badges (Playwright, ESLint, GitHub Actions, Docker, PostgreSQL, Stripe) - 12 to 18 total. Respects prefers-reduced-motion (tilt/glow disabled)
+- 2026-09-06T14:30:54.867Z - qih (architect): Shipped TechStackSection interactivity to main@1808636: magnetic cursor-tilt + brand-color spotlight glow per badge, 6 new tools added (Playwright, ESLint, GitHub Actions, Docker, PostgreSQL, Stripe) - 12 to 18 total. Verified live: 18 badges render, zero failed requests
+- 2026-09-06T14:41:10.598Z - qih (architect): fix long empty/black scroll dead-zone before Stats: ScrubVideoSection (project1.mp4, 'Built for Performance') was heightVh=750 - after the curtain finishes darkening (~progress 0.995) there's an unavoidable ~1-viewport-height flat black hold before the sticky section releases into Stats, and 750vh made this feel like a very long empty scroll. Cut to heightVh=400 (same fractional choreography, much less absolute dead scroll distance) - verified Stats is now fully visible almost immediately after the curtain darkens instead of a long black gap. Also removed the large ghost-logo icon from the footer brand row per request (kept the BURHANDEV wordmark), deleted the now-dead .site-footer__logo CSS
