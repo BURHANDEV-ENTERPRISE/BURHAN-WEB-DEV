@@ -1,8 +1,8 @@
 # MOP Session Brief
 
-Updated: 2026-09-06T09:48:24.830Z
+Updated: 2026-09-06T13:43:17.983Z
 Actor: amad
-Active agent: guard (security)
+Active agent: qihplan (planner)
 Current month: 2026-09
 
 ## Required Session Flow
@@ -10,15 +10,11 @@ Current month: 2026-09
 1. Read `.MOP/STATE.json` and follow `.MOP/PROTOCOL.md`.
 2. Restore memory with `node .MOP/scripts/mop-core.mjs memory brief --actor <codename>`.
 3. Run `agent route` for the user task before answering.
-4. Start every authenticated answer with: `agent: guard (security) to amad`
+4. Start every authenticated answer with: `agent: qihplan (planner) to amad`
 5. Save a one-line memory after meaningful work.
 
 ## Recent Memory
 
-- 2026-07-27T18:06:22.294Z - qih (architect): fix CI break: package-lock.json was out of sync with package.json after adding ESLint devDependencies, causing npm ci to fail in GitHub Actions with EUSAGE (missing/invalid @emnapi/* optional deps). Regenerated a clean lockfile from scratch and verified npm ci succeeds locally before pushing
-- 2026-07-28T17:17:05.402Z - mad (frontend): hero: vertically center headline (was anchored near top) and add burhan logo image beside BURHANDEV wordmark; pricing: give featured card a subtle default highlight (border+shadow) instead of hover-only; why-us panels: add hover interactivity (straighten rotation, lift, deepen shadow) since they were fully static before
-- 2026-07-29T12:08:34.603Z - anis (core): amad asked if I can access 'mobin' - no match found anywhere in repo/tools; asked amad to clarify what mobin refers to (site, account, person, or typo)
-- 2026-07-29T12:16:37.600Z - anis (core): clarified 'mobin' = Mobbin MCP (design inspiration tool); confirmed via claude mcp list that only mop-flow is registered in this project, not mobbin; gave amad the claude mcp add command + noted browser auth step must be done by amad since this session is non-interactive
 - 2026-07-29T12:18:51.505Z - anis (core): mobbin MCP server now registered (claude mcp add done) but shows 'Needs authentication' - amad still needs to run /mcp and authenticate via browser sign-in before tools become available
 - 2026-07-29T12:37:14.397Z - mad (frontend): pricing: unify hover glow across all cards to match featured card's border+shadow highlight (smoothed with border-width transition); add SEO-ready feature bullet to Landing Page plan
 - 2026-07-29T12:39:06.612Z - mad (frontend): pricing: unify hover glow across all cards to match featured card's border+shadow highlight (smoothed with border-width transition); add SEO-ready feature bullet to Landing Page plan
@@ -35,3 +31,7 @@ Current month: 2026-09
 - 2026-08-15T14:32:39.975Z - nepi (design): Browser task: help amad with Canva design via live automation | engine: Playwright (browser-act unavailable, agent-browser available as fallback) | url: https://www.canva.com/design/DAHSWMT2zVw/in5I3w1wU5w_QE57NaXbwg/edit | status: awaiting explicit go-ahead before launching browser (PAUSE gate)
 - 2026-08-15T15:07:55.860Z - nepi (design): Canva live-edit attempt on the Tanah Melayu/Merdeka 100-player RP presentation: drafted full Malay content for all 10 slides, successfully filled slide 2 initially, but automated click/dblclick text-editing on Canva's canvas proved unreliable (accessible element bounding boxes don't reliably match visible click targets, animation-preview overlays intercept pointer events) - caused a stray duplicate text box on slide 3 and truncated text on slide 2 during recovery attempts via undo/redo (Canva's undo history is global/non-linear across pages, redo did not cleanly restore). Stopped automation to avoid further corruption; handed amad the full drafted text for every slide plus exact manual-fix instructions for slides 2 and 3 instead of continuing risky automation
 - 2026-09-06T09:48:24.817Z - guard (security): SEO + security hardening: add favicon (app/icon.png + apple-icon.png generated from brand logo), Open Graph/Twitter Card meta tags, robots.txt + sitemap.xml (Next.js metadata routes, force-static for export compat); security - moved the boot-flash-prevention inline script to public/boot.js loaded via next/script beforeInteractive (removes the only dangerouslySetInnerHTML in the codebase), added a Content-Security-Policy meta tag (default-src self, blocks cross-origin script/style/img/connect - confirmed no API routes/forms/eval/fetch exist anywhere in the app) and a referrer-policy meta tag
+- 2026-09-06T09:51:05.160Z - guard (security): Shipped SEO+security hardening to main@a9ddece: favicon/OG/Twitter meta/robots.txt/sitemap.xml added, boot script moved out of dangerouslySetInnerHTML into public/boot.js, CSP+referrer-policy meta tags added (confirmed zero API routes/forms/eval/fetch in codebase already - low injection surface). Verified live: zero failed requests, zero CSP violations
+- 2026-09-06T11:59:02.111Z - guard (security): Amad declined Cloudflare recommendation - already has his own hosting/DDoS setup separately. Current GitHub Pages HTTPS/HSTS + Fastly edge CDN protection is sufficient for now; no further action needed on this thread
+- 2026-09-06T12:12:34.895Z - qihplan (planner): Delivered fix-list + content ideas from website critique (Services mockups, testimonials). Amad wants self-service content editing (testimonials/pricing/services) without needing code edits - scoping a lightweight admin page for a fully-static site (no backend/DB) before building
+- 2026-09-06T13:43:17.970Z - qihplan (planner): add self-service content editing: extracted testimonials/pricing/services from hardcoded arrays into src/content/*.json (components now import from JSON, same rendered output verified), added /admin page (client-side, GitHub PAT-gated since there is no backend to enforce access server-side - the PAT is the real security boundary) that edits and commits those JSON files straight to main via the GitHub Contents API, triggering the existing auto-deploy. Excluded /admin from robots.txt + added noindex. Also added a critique-website skill (.claude/skills) for repeatable design/UX/copy critique of the live site
