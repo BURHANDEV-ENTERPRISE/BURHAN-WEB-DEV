@@ -7,7 +7,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: "*",
       allow: "/",
-      disallow: "/admin",
+      disallow: "/staff-burhan-only",
     },
     sitemap: "https://dev.burhan.my/sitemap.xml",
   };

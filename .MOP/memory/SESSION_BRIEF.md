@@ -1,8 +1,8 @@
 # MOP Session Brief
 
-Updated: 2026-09-06T13:43:17.983Z
+Updated: 2026-09-06T13:59:18.295Z
 Actor: amad
-Active agent: qihplan (planner)
+Active agent: anisweb (browser)
 Current month: 2026-09
 
 ## Required Session Flow
@@ -10,13 +10,11 @@ Current month: 2026-09
 1. Read `.MOP/STATE.json` and follow `.MOP/PROTOCOL.md`.
 2. Restore memory with `node .MOP/scripts/mop-core.mjs memory brief --actor <codename>`.
 3. Run `agent route` for the user task before answering.
-4. Start every authenticated answer with: `agent: qihplan (planner) to amad`
+4. Start every authenticated answer with: `agent: anisweb (browser) to amad`
 5. Save a one-line memory after meaningful work.
 
 ## Recent Memory
 
-- 2026-07-29T12:18:51.505Z - anis (core): mobbin MCP server now registered (claude mcp add done) but shows 'Needs authentication' - amad still needs to run /mcp and authenticate via browser sign-in before tools become available
-- 2026-07-29T12:37:14.397Z - mad (frontend): pricing: unify hover glow across all cards to match featured card's border+shadow highlight (smoothed with border-width transition); add SEO-ready feature bullet to Landing Page plan
 - 2026-07-29T12:39:06.612Z - mad (frontend): pricing: unify hover glow across all cards to match featured card's border+shadow highlight (smoothed with border-width transition); add SEO-ready feature bullet to Landing Page plan
 - 2026-07-29T12:43:35.642Z - mad (frontend): shipped to main (dfa8087): pricing cards now all glow on hover (2.5px solid maroon border + deep box-shadow) matching the featured card's look, smoothed with a border-width transition; Landing Page plan gained an 'SEO-ready page' feature bullet alongside Business Website's existing 'SEO-ready structure'
 - 2026-07-29T12:53:11.738Z - mad (frontend): fix why-us panels 2/3 hover cancelled by later nth-child rotate rule (equal CSS specificity, source-order lost); add missing burhan logo image beside BURHANDEV wordmark in header brand-lockup
@@ -35,3 +33,5 @@ Current month: 2026-09
 - 2026-09-06T11:59:02.111Z - guard (security): Amad declined Cloudflare recommendation - already has his own hosting/DDoS setup separately. Current GitHub Pages HTTPS/HSTS + Fastly edge CDN protection is sufficient for now; no further action needed on this thread
 - 2026-09-06T12:12:34.895Z - qihplan (planner): Delivered fix-list + content ideas from website critique (Services mockups, testimonials). Amad wants self-service content editing (testimonials/pricing/services) without needing code edits - scoping a lightweight admin page for a fully-static site (no backend/DB) before building
 - 2026-09-06T13:43:17.970Z - qihplan (planner): add self-service content editing: extracted testimonials/pricing/services from hardcoded arrays into src/content/*.json (components now import from JSON, same rendered output verified), added /admin page (client-side, GitHub PAT-gated since there is no backend to enforce access server-side - the PAT is the real security boundary) that edits and commits those JSON files straight to main via the GitHub Contents API, triggering the existing auto-deploy. Excluded /admin from robots.txt + added noindex. Also added a critique-website skill (.claude/skills) for repeatable design/UX/copy critique of the live site
+- 2026-09-06T13:46:19.315Z - qihplan (planner): Shipped self-service content editing to main@7ad786d: testimonials/pricing/services now in src/content/*.json, /admin page (GitHub PAT-gated, commits via GitHub Contents API) lets Amad edit them without code changes. Also shipped critique-website skill. Verified live: homepage zero regressions, admin page loads correctly, robots.txt excludes /admin, secret scan passed
+- 2026-09-06T13:59:18.284Z - anisweb (browser): harden the content-editor page per Amad's request: moved it from the guessable /admin to a hidden path (/staff-burhan-only, excluded from robots.txt/search index), and added a client-side login gate (PBKDF2-SHA256 hashed credentials, no plaintext password anywhere in source, session-scoped unlock) so a casual visitor who finds the URL still can't see the editor UI. The GitHub PAT entered in the editor remains the actual write-access boundary regardless - this login only gates visibility of the form
