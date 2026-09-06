@@ -1,25 +1,20 @@
 # MOP Session Brief
 
-Updated: 2026-07-31T08:23:33.660Z
+Updated: 2026-09-06T09:48:24.830Z
 Actor: amad
-Active agent: qih (architect)
-Current month: 2026-07
+Active agent: guard (security)
+Current month: 2026-09
 
 ## Required Session Flow
 
 1. Read `.MOP/STATE.json` and follow `.MOP/PROTOCOL.md`.
 2. Restore memory with `node .MOP/scripts/mop-core.mjs memory brief --actor <codename>`.
 3. Run `agent route` for the user task before answering.
-4. Start every authenticated answer with: `agent: qih (architect) to amad`
+4. Start every authenticated answer with: `agent: guard (security) to amad`
 5. Save a one-line memory after meaningful work.
 
 ## Recent Memory
 
-- 2026-07-27T13:00:19.577Z - qih (architect): mobile/tablet responsiveness pass: fixed fixed-header colliding with Pricing and Why Us section headings at mobile/tablet widths (top padding was equal to or less than the header's clearance, causing text to render behind the BURHANDEV chip), and enlarged undersized footer nav/social link tap targets (14px tall) to ~41px for touch usability. Verified across iPhone SE/14, Pixel 7, Galaxy S9, iPad Mini, iPad Pro portrait+landscape with no horizontal overflow anywhere
-- 2026-07-27T13:02:10.207Z - qih (architect): mobile/tablet responsiveness audit + fixes: Pricing and Why Us headings were colliding with the fixed header at mobile/tablet widths (insufficient top padding), footer nav/social links had 14px-tall tap targets - both fixed and verified across iPhone/Android/iPad, no horizontal overflow found. Deployed main@21ca985
-- 2026-07-27T17:40:17.855Z - qih (architect): sync pending polish: testimonials anti-flash marquee fix mirroring MarqueeStrip, footer logo swap replacing back-to-top arrow, pricing featured-card hover-only highlight
-- 2026-07-27T17:42:19.312Z - qih (architect): sync pending polish: testimonials anti-flash marquee fix mirroring MarqueeStrip, footer logo swap replacing back-to-top arrow, pricing featured-card hover-only highlight
-- 2026-07-27T17:59:32.116Z - qih (architect): code quality cleanup: removed ~600 lines of unreachable dead code (Hero Minecraft easter-egg state machine that never triggered + orphaned BlockyChar component), deleted untracked tsconfig.tsbuildinfo build-cache artifact, fixed broken footer nav (linked to nonexistent #hero/#about/#story anchors and a nonexistent /contact route), switched footer logo to next/image, and wired up a working ESLint config (npm run lint was previously non-functional)
 - 2026-07-27T18:06:22.294Z - qih (architect): fix CI break: package-lock.json was out of sync with package.json after adding ESLint devDependencies, causing npm ci to fail in GitHub Actions with EUSAGE (missing/invalid @emnapi/* optional deps). Regenerated a clean lockfile from scratch and verified npm ci succeeds locally before pushing
 - 2026-07-28T17:17:05.402Z - mad (frontend): hero: vertically center headline (was anchored near top) and add burhan logo image beside BURHANDEV wordmark; pricing: give featured card a subtle default highlight (border+shadow) instead of hover-only; why-us panels: add hover interactivity (straighten rotation, lift, deepen shadow) since they were fully static before
 - 2026-07-29T12:08:34.603Z - anis (core): amad asked if I can access 'mobin' - no match found anywhere in repo/tools; asked amad to clarify what mobin refers to (site, account, person, or typo)
@@ -35,3 +30,8 @@ Current month: 2026-07
 - 2026-07-29T13:53:48.653Z - qih (architect): perf: re-encode both videos with libx264 CRF-based compression (project1.mp4 CRF30, gaming-monitor.mp4 CRF27, tight GOP kept for scrub smoothness) cutting video weight from 8.27MB to 3.78MB (54% smaller); resize+convert oversized 1660px logo PNG to a 256px WebP (107KB->6.3KB); delete unreferenced 326KB box_2048px_Normal.png
 - 2026-07-29T13:55:48.599Z - qih (architect): shipped to main (5f20f72): site optimization pass - re-encoded both videos (project1.mp4 CRF30, gaming-monitor.mp4 CRF27, kept tight GOP for scrub smoothness), total video weight 8.27MB->3.78MB (54% smaller), verified visually via extracted frames including the hero's burned-in BURHAN text (no visible artifacts); shrunk oversized 1660px logo PNG to a 256px WebP (107KB->6.3KB); deleted unreferenced 326KB box_2048px_Normal.png. JS bundle was already lean (~115KB) so left untouched
 - 2026-07-31T08:23:33.620Z - qih (architect): add .gitignore rules to keep the AI-training dataset (script + generated JSONL, built from MOP memory diary) local-only per decision: repo is public and dataset content isn't cleared for publishing even with credentials redacted
+- 2026-07-31T08:24:56.858Z - qih (architect): Explained + built AI training-dataset request: pipeline (scripts/build-training-dataset.mjs) reads .MOP/memory/*.jsonl, dedupes by content (fixes cross-file timestamp-skew duplicates), redacts secrets/emails/tokens, exports 162 chat-format examples to docs/training-dataset/burhandev-dataset.jsonl. Kept local-only (.gitignore) per Amad's decision since repo is public and diary content isn't cleared for publishing
+- 2026-08-15T09:32:48.845Z - nepi (design): amad shared a Canva /edit share link and asked me to gain access into his Canva account; clarified no Canva MCP/browser-automation tool is connected in this session (only mop-flow MCP registered, WebFetch can't render Canva's auth-gated JS editor) so live account access isn't currently possible - offered to help via content/copy+layout guidance instead, or note that real browser automation would need a connected browser tool + the user's own already-logged-in session (never their password)
+- 2026-08-15T14:32:39.975Z - nepi (design): Browser task: help amad with Canva design via live automation | engine: Playwright (browser-act unavailable, agent-browser available as fallback) | url: https://www.canva.com/design/DAHSWMT2zVw/in5I3w1wU5w_QE57NaXbwg/edit | status: awaiting explicit go-ahead before launching browser (PAUSE gate)
+- 2026-08-15T15:07:55.860Z - nepi (design): Canva live-edit attempt on the Tanah Melayu/Merdeka 100-player RP presentation: drafted full Malay content for all 10 slides, successfully filled slide 2 initially, but automated click/dblclick text-editing on Canva's canvas proved unreliable (accessible element bounding boxes don't reliably match visible click targets, animation-preview overlays intercept pointer events) - caused a stray duplicate text box on slide 3 and truncated text on slide 2 during recovery attempts via undo/redo (Canva's undo history is global/non-linear across pages, redo did not cleanly restore). Stopped automation to avoid further corruption; handed amad the full drafted text for every slide plus exact manual-fix instructions for slides 2 and 3 instead of continuing risky automation
+- 2026-09-06T09:48:24.817Z - guard (security): SEO + security hardening: add favicon (app/icon.png + apple-icon.png generated from brand logo), Open Graph/Twitter Card meta tags, robots.txt + sitemap.xml (Next.js metadata routes, force-static for export compat); security - moved the boot-flash-prevention inline script to public/boot.js loaded via next/script beforeInteractive (removes the only dangerouslySetInnerHTML in the codebase), added a Content-Security-Policy meta tag (default-src self, blocks cross-origin script/style/img/connect - confirmed no API routes/forms/eval/fetch exist anywhere in the app) and a referrer-policy meta tag
