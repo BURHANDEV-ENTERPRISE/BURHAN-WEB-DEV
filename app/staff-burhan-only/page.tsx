@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
+import styles from "./admin.module.css";
 import { fetchContentFile, saveContentFile } from "../../src/lib/githubContent";
 import { checkCredentials, isUnlockedThisSession, markUnlockedThisSession, lockSession } from "../../src/lib/adminAuth";
 import testimonialsDefault from "../../src/content/testimonials.json";
@@ -82,21 +83,12 @@ function Field({
   textarea?: boolean;
 }) {
   return (
-    <label style={{ display: "block", marginBottom: 8, fontSize: 13 }}>
-      <span style={{ display: "block", opacity: 0.7, marginBottom: 2 }}>{label}</span>
+    <label className={styles.field}>
+      <span className={styles.fieldLabel}>{label}</span>
       {textarea ? (
-        <textarea
-          value={value}
-          onChange={(e) => onChange(e.target.value)}
-          rows={3}
-          style={{ width: "100%", fontFamily: "inherit", padding: 6 }}
-        />
+        <textarea className={styles.textarea} value={value} onChange={(e) => onChange(e.target.value)} rows={3} />
       ) : (
-        <input
-          value={value}
-          onChange={(e) => onChange(e.target.value)}
-          style={{ width: "100%", padding: 6, fontFamily: "inherit" }}
-        />
+        <input className={styles.input} value={value} onChange={(e) => onChange(e.target.value)} />
       )}
     </label>
   );
@@ -114,16 +106,16 @@ function SaveBar({
   onReload: () => void;
 }) {
   return (
-    <div style={{ display: "flex", alignItems: "center", gap: 12, margin: "12px 0 28px" }}>
-      <button onClick={onSave} disabled={status === "saving" || status === "loading"}>
+    <div className={styles.saveBar}>
+      <button className={styles.btnPrimary} onClick={onSave} disabled={status === "saving" || status === "loading"}>
         {status === "saving" ? "Saving…" : "Save to GitHub"}
       </button>
-      <button onClick={onReload} disabled={status === "loading"}>
+      <button className={styles.btnGhost} onClick={onReload} disabled={status === "loading"}>
         Reload from GitHub
       </button>
-      {status === "loading" && <span>Loading…</span>}
-      {status === "saved" && <span style={{ color: "green" }}>Saved — site redeploys in ~1 min</span>}
-      {status === "error" && <span style={{ color: "crimson" }}>{error}</span>}
+      {status === "loading" && <span className={styles.statusLoading}>Loading…</span>}
+      {status === "saved" && <span className={styles.statusSaved}>Saved — site redeploys in ~1 min</span>}
+      {status === "error" && <span className={styles.statusError}>{error}</span>}
     </div>
   );
 }
@@ -152,21 +144,25 @@ function TestimonialsEditor({ token }: { token: string }) {
   };
 
   return (
-    <section style={{ marginBottom: 40 }}>
-      <h2>Testimonials</h2>
-      <SaveBar status={status} error={error} onSave={() => save("Update testimonials via /admin")} onReload={reload} />
+    <section className={styles.section}>
+      <h2 className={styles.sectionTitle}>Testimonials</h2>
+      <SaveBar status={status} error={error} onSave={() => save("Update testimonials via /staff-burhan-only")} onReload={reload} />
       {(["rowA", "rowB"] as const).map((row) => (
-        <div key={row} style={{ marginBottom: 20 }}>
-          <h3 style={{ fontSize: 15 }}>{row === "rowA" ? "Row A" : "Row B"}</h3>
+        <div key={row}>
+          <h3 className={styles.rowLabel}>{row === "rowA" ? "Row A" : "Row B"}</h3>
           {value[row].map((t, i) => (
-            <div key={i} style={{ border: "1px solid #ccc", padding: 10, marginBottom: 8, borderRadius: 6 }}>
+            <div key={i} className={styles.itemCard}>
               <Field label="Quote" value={t.quote} onChange={(v) => updateRow(row, i, { quote: v })} textarea />
               <Field label="Name" value={t.name} onChange={(v) => updateRow(row, i, { name: v })} />
               <Field label="Role" value={t.role} onChange={(v) => updateRow(row, i, { role: v })} />
-              <button onClick={() => removeRow(row, i)}>Remove</button>
+              <button className={styles.btnGhost} onClick={() => removeRow(row, i)}>
+                Remove
+              </button>
             </div>
           ))}
-          <button onClick={() => addRow(row)}>+ Add testimonial to {row === "rowA" ? "Row A" : "Row B"}</button>
+          <button className={styles.btnGhost} onClick={() => addRow(row)}>
+            + Add testimonial to {row === "rowA" ? "Row A" : "Row B"}
+          </button>
         </div>
       ))}
     </section>
@@ -185,11 +181,11 @@ function PricingEditor({ token }: { token: string }) {
   };
 
   return (
-    <section style={{ marginBottom: 40 }}>
-      <h2>Pricing</h2>
-      <SaveBar status={status} error={error} onSave={() => save("Update pricing via /admin")} onReload={reload} />
+    <section className={styles.section}>
+      <h2 className={styles.sectionTitle}>Pricing</h2>
+      <SaveBar status={status} error={error} onSave={() => save("Update pricing via /staff-burhan-only")} onReload={reload} />
       {value.map((p, i) => (
-        <div key={i} style={{ border: "1px solid #ccc", padding: 10, marginBottom: 8, borderRadius: 6 }}>
+        <div key={i} className={styles.itemCard}>
           <Field label="Plan name" value={p.label} onChange={(v) => update(i, { label: v })} />
           <Field label="Price" value={p.price} onChange={(v) => update(i, { price: v })} />
           <Field label="Period (e.g. one-time, blank if none)" value={p.period} onChange={(v) => update(i, { period: v })} />
@@ -201,8 +197,8 @@ function PricingEditor({ token }: { token: string }) {
             textarea
           />
           <Field label="Button text" value={p.cta} onChange={(v) => update(i, { cta: v })} />
-          <label style={{ fontSize: 13 }}>
-            <input type="checkbox" checked={p.featured} onChange={(e) => update(i, { featured: e.target.checked })} />{" "}
+          <label className={styles.checkboxLabel}>
+            <input type="checkbox" checked={p.featured} onChange={(e) => update(i, { featured: e.target.checked })} />
             Featured (&ldquo;Most Popular&rdquo;)
           </label>
         </div>
@@ -223,20 +219,20 @@ function ServicesEditor({ token }: { token: string }) {
   };
 
   return (
-    <section style={{ marginBottom: 40 }}>
-      <h2>Services</h2>
-      <p style={{ fontSize: 13, opacity: 0.7 }}>
+    <section className={styles.section}>
+      <h2 className={styles.sectionTitle}>Services</h2>
+      <p className={styles.helpText} style={{ marginBottom: "0.9rem" }}>
         Note: the scroll-in animation on this section was tuned for exactly 9 cards. Adding or
         removing cards still works, it just won&apos;t get the same hand-placed entrance positions.
       </p>
-      <SaveBar status={status} error={error} onSave={() => save("Update services via /admin")} onReload={reload} />
+      <SaveBar status={status} error={error} onSave={() => save("Update services via /staff-burhan-only")} onReload={reload} />
       {value.map((s, i) => (
-        <div key={i} style={{ border: "1px solid #ccc", padding: 10, marginBottom: 8, borderRadius: 6 }}>
+        <div key={i} className={styles.itemCard}>
           <Field label="Label" value={s.label} onChange={(v) => update(i, { label: v })} />
           <Field label="Subtitle" value={s.sub} onChange={(v) => update(i, { sub: v })} />
-          <label style={{ display: "block", marginBottom: 8, fontSize: 13 }}>
-            <span style={{ display: "block", opacity: 0.7, marginBottom: 2 }}>Theme</span>
-            <select value={s.theme} onChange={(e) => update(i, { theme: e.target.value })}>
+          <label className={styles.field}>
+            <span className={styles.fieldLabel}>Theme</span>
+            <select className={styles.select} value={s.theme} onChange={(e) => update(i, { theme: e.target.value })}>
               {THEMES.map((t) => (
                 <option key={t} value={t}>
                   {t}
@@ -244,12 +240,12 @@ function ServicesEditor({ token }: { token: string }) {
               ))}
             </select>
           </label>
-          <label style={{ fontSize: 13 }}>
+          <label className={styles.checkboxLabel}>
             <input
               type="checkbox"
               checked={!!s.featured}
               onChange={(e) => update(i, { featured: e.target.checked })}
-            />{" "}
+            />
             Featured (larger card)
           </label>
         </div>
@@ -279,38 +275,43 @@ function LoginGate({ onUnlock }: { onUnlock: () => void }) {
   };
 
   return (
-    <main style={{ maxWidth: 360, margin: "80px auto", padding: 20, fontFamily: "sans-serif" }}>
-      <h1 style={{ fontSize: 20 }}>Staff Login</h1>
-      <form onSubmit={submit}>
-        <label style={{ display: "block", marginBottom: 8, fontSize: 13 }}>
-          <span style={{ display: "block", opacity: 0.7, marginBottom: 2 }}>Username</span>
-          <input
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            style={{ width: "100%", padding: 8 }}
-            autoComplete="username"
-          />
-        </label>
-        <label style={{ display: "block", marginBottom: 12, fontSize: 13 }}>
-          <span style={{ display: "block", opacity: 0.7, marginBottom: 2 }}>Password</span>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            style={{ width: "100%", padding: 8 }}
-            autoComplete="current-password"
-          />
-        </label>
-        <button type="submit" disabled={checking} style={{ width: "100%", padding: 8 }}>
-          {checking ? "Checking…" : "Log in"}
-        </button>
-        {failed && <p style={{ color: "crimson", fontSize: 13 }}>Wrong username or password.</p>}
-      </form>
-      <p style={{ fontSize: 12, opacity: 0.6, marginTop: 16 }}>
-        This is a client-side gate, not a real server login — see the note on the editor page for
-        what that means.
-      </p>
-    </main>
+    <div className={styles.page}>
+      <div className={styles.loginWrap}>
+        <div className={styles.card}>
+          <p className={styles.eyebrow}>BURHANDEV</p>
+          <h1 className={styles.heading}>Staff Login</h1>
+          <form onSubmit={submit}>
+            <label className={styles.field}>
+              <span className={styles.fieldLabel}>Username</span>
+              <input
+                className={styles.input}
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                autoComplete="username"
+              />
+            </label>
+            <label className={styles.field} style={{ marginBottom: "1.1rem" }}>
+              <span className={styles.fieldLabel}>Password</span>
+              <input
+                type="password"
+                className={styles.input}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                autoComplete="current-password"
+              />
+            </label>
+            <button type="submit" className={styles.btnFull} disabled={checking}>
+              {checking ? "Checking…" : "Log In"}
+            </button>
+            {failed && <p className={styles.statusError} style={{ marginTop: "0.6rem" }}>Wrong username or password.</p>}
+          </form>
+          <p className={styles.helpText} style={{ marginTop: "1.25rem" }}>
+            Client-side gate, not a real server login — see the note on the editor page for what
+            that means.
+          </p>
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -366,42 +367,57 @@ export default function AdminPage() {
   if (!unlocked) return <LoginGate onUnlock={() => setUnlocked(true)} />;
 
   return (
-    <main style={{ maxWidth: 720, margin: "0 auto", padding: "40px 20px", fontFamily: "sans-serif" }}>
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-        <h1>BURHANDEV Content Admin</h1>
-        <button onClick={logout}>Log out</button>
-      </div>
-      <div style={{ background: "#fff6dc", border: "1px solid #7f1d1d33", padding: 12, borderRadius: 6, marginBottom: 24, fontSize: 13 }}>
-        <strong>How this works:</strong> this site has no backend, so there is nothing behind this
-        page enforcing access — the GitHub Personal Access Token below is the real security
-        boundary (the login above just keeps the editor UI from casual visitors). Create a{" "}
-        <em>fine-grained</em> token scoped only to the BURHANDEV-ENTERPRISE/BURHAN-WEB-DEV repo,
-        with <strong>Contents: Read and write</strong> permission and nothing else. It&apos;s
-        stored only in this browser&apos;s local storage and sent only to api.github.com. Saving
-        here commits straight to <code>main</code> and redeploys automatically — there&apos;s no
-        review step like the rest of this project&apos;s workflow.
-      </div>
+    <div className={styles.page}>
+      <div className={styles.wrap}>
+        <div className={styles.topBar}>
+          <div>
+            <p className={styles.eyebrow}>BURHANDEV</p>
+            <h1 className={styles.heading} style={{ marginBottom: 0 }}>
+              Content Admin
+            </h1>
+          </div>
+          <button className={styles.btnGhost} onClick={logout}>
+            Log Out
+          </button>
+        </div>
 
-      <div style={{ display: "flex", gap: 8, marginBottom: 32 }}>
-        <input
-          type="password"
-          placeholder="GitHub personal access token"
-          value={tokenInput}
-          onChange={(e) => setTokenInput(e.target.value)}
-          style={{ flex: 1, padding: 8 }}
-        />
-        <button onClick={saveToken}>Use token</button>
-        <button onClick={clearToken}>Clear</button>
-      </div>
+        <div className={styles.infoBox}>
+          <strong>How this works:</strong> this site has no backend, so there is nothing behind
+          this page enforcing access — the GitHub Personal Access Token below is the real
+          security boundary (the login above just keeps the editor UI from casual visitors).
+          Create a <em>fine-grained</em> token scoped only to the
+          BURHANDEV-ENTERPRISE/BURHAN-WEB-DEV repo, with <strong>Contents: Read and write</strong>{" "}
+          permission and nothing else. It&apos;s stored only in this browser&apos;s local storage
+          and sent only to api.github.com. Saving here commits straight to <code>main</code> and
+          redeploys automatically — there&apos;s no review step like the rest of this
+          project&apos;s workflow.
+        </div>
 
-      {!token && <p>Paste a token above to load and edit content.</p>}
-      {token && (
-        <>
-          <ServicesEditor token={token} />
-          <PricingEditor token={token} />
-          <TestimonialsEditor token={token} />
-        </>
-      )}
-    </main>
+        <div className={styles.tokenRow}>
+          <input
+            type="password"
+            className={styles.input}
+            placeholder="GitHub personal access token"
+            value={tokenInput}
+            onChange={(e) => setTokenInput(e.target.value)}
+          />
+          <button className={styles.btnPrimary} onClick={saveToken}>
+            Use Token
+          </button>
+          <button className={styles.btnGhost} onClick={clearToken}>
+            Clear
+          </button>
+        </div>
+
+        {!token && <p className={styles.helpText}>Paste a token above to load and edit content.</p>}
+        {token && (
+          <>
+            <ServicesEditor token={token} />
+            <PricingEditor token={token} />
+            <TestimonialsEditor token={token} />
+          </>
+        )}
+      </div>
+    </div>
   );
 }

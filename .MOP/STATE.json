@@ -6,13 +6,13 @@
   "ownerCodename": "moon",
   "activeMember": "amad",
   "activeAgents": {
-    "amad": "agent-anisweb"
+    "amad": "agent-qih"
   },
   "session": {
     "actor": "amad",
     "authenticatedAt": "2026-09-06T08:35:14.927Z",
-    "lastActiveAt": "2026-09-06T13:52:42.630Z",
-    "expiresAt": "2026-09-07T13:52:42.631Z"
+    "lastActiveAt": "2026-09-06T14:06:23.698Z",
+    "expiresAt": "2026-09-07T14:06:23.699Z"
   },
   "sessionPolicy": {
     "enabled": true,
@@ -4781,7 +4781,40 @@
       "actor": "BURHAN-MOP",
       "kind": "merge-approved",
       "summary": "origin/dev/amad approved and merged to main."
+    },
+    {
+      "at": "2026-09-06T14:02:45.831Z",
+      "actor": "amad",
+      "agent": "anisweb",
+      "agentRole": "browser",
+      "agentId": "agent-anisweb",
+      "kind": "memory",
+      "summary": "Hardened content editor to main@53fc7c1 per Amad's request: moved /admin to hidden /staff-burhan-only (old path now 404s, excluded from robots.txt), added client-side login gate (username AdminBurhan, PBKDF2-SHA256 hashed password, session-scoped unlock, no plaintext in source). Verified live: login gate blocks access without credentials, real credentials unlock it, secret scan passed"
+    },
+    {
+      "at": "2026-09-06T14:06:23.615Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "agent-route",
+      "summary": "Routed task to qih: New or broad system task routed to System Architect for high-reasoning planning before implementation."
+    },
+    {
+      "at": "2026-09-06T14:10:12.112Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "restyle /staff-burhan-only login gate and content editor with the BURHANDEV brand design system (maroon/cream/orange palette, Bebas Neue headings, dot-grid card texture, Space Grotesk body font) instead of generic inline styles - moved styling into a proper CSS module (admin.module.css) matching the pattern used by the rest of the site's components. Verified locally: login/unlock/logout flow unchanged, no visual/behavioral regressions"
+    },
+    {
+      "at": "2026-09-06T14:11:28.904Z",
+      "actor": "BURHAN-MOP",
+      "kind": "merge-approved",
+      "summary": "origin/dev/amad approved and merged to main."
     }
   ],
-  "lastActiveAt": "2026-09-06T13:52:42.630Z"
+  "lastActiveAt": "2026-09-06T14:06:23.698Z"
 }
