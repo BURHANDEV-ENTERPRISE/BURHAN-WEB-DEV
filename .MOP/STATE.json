@@ -6,13 +6,13 @@
   "ownerCodename": "moon",
   "activeMember": "amad",
   "activeAgents": {
-    "amad": "agent-qihplan"
+    "amad": "agent-anisweb"
   },
   "session": {
     "actor": "amad",
     "authenticatedAt": "2026-09-06T08:35:14.927Z",
-    "lastActiveAt": "2026-09-06T12:12:34.879Z",
-    "expiresAt": "2026-09-07T12:12:34.889Z"
+    "lastActiveAt": "2026-09-06T13:52:42.630Z",
+    "expiresAt": "2026-09-07T13:52:42.631Z"
   },
   "sessionPolicy": {
     "enabled": true,
@@ -4739,7 +4739,49 @@
       "actor": "BURHAN-MOP",
       "kind": "merge-approved",
       "summary": "origin/dev/amad approved and merged to main."
+    },
+    {
+      "at": "2026-09-06T13:46:19.315Z",
+      "actor": "amad",
+      "agent": "qihplan",
+      "agentRole": "planner",
+      "agentId": "agent-qihplan",
+      "kind": "memory",
+      "summary": "Shipped self-service content editing to main@7ad786d: testimonials/pricing/services now in src/content/*.json, /admin page (GitHub PAT-gated, commits via GitHub Contents API) lets Amad edit them without code changes. Also shipped critique-website skill. Verified live: homepage zero regressions, admin page loads correctly, robots.txt excludes /admin, secret scan passed"
+    },
+    {
+      "at": "2026-09-06T13:52:36.188Z",
+      "actor": "amad",
+      "agent": "anisweb",
+      "agentRole": "browser",
+      "agentId": "agent-anisweb",
+      "kind": "agent-route",
+      "summary": "Routed task to anisweb: Matched keywords for Browser Automation Agent: login, password, secret."
+    },
+    {
+      "at": "2026-09-06T13:52:42.527Z",
+      "actor": "amad",
+      "agent": "anisweb",
+      "agentRole": "browser",
+      "agentId": "agent-anisweb",
+      "kind": "agent-route",
+      "summary": "Routed task to anisweb: Matched keywords for Browser Automation Agent: login, password, secret."
+    },
+    {
+      "at": "2026-09-06T13:59:18.283Z",
+      "actor": "amad",
+      "agent": "anisweb",
+      "agentRole": "browser",
+      "agentId": "agent-anisweb",
+      "kind": "memory",
+      "summary": "harden the content-editor page per Amad's request: moved it from the guessable /admin to a hidden path (/staff-burhan-only, excluded from robots.txt/search index), and added a client-side login gate (PBKDF2-SHA256 hashed credentials, no plaintext password anywhere in source, session-scoped unlock) so a casual visitor who finds the URL still can't see the editor UI. The GitHub PAT entered in the editor remains the actual write-access boundary regardless - this login only gates visibility of the form"
+    },
+    {
+      "at": "2026-09-06T14:01:16.552Z",
+      "actor": "BURHAN-MOP",
+      "kind": "merge-approved",
+      "summary": "origin/dev/amad approved and merged to main."
     }
   ],
-  "lastActiveAt": "2026-09-06T12:12:34.879Z"
+  "lastActiveAt": "2026-09-06T13:52:42.630Z"
 }

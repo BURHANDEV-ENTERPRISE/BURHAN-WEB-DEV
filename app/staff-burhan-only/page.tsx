@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { fetchContentFile, saveContentFile } from "../../src/lib/githubContent";
+import { checkCredentials, isUnlockedThisSession, markUnlockedThisSession, lockSession } from "../../src/lib/adminAuth";
 import testimonialsDefault from "../../src/content/testimonials.json";
 import pricingDefault from "../../src/content/pricing.json";
 import servicesDefault from "../../src/content/services.json";
@@ -257,11 +258,75 @@ function ServicesEditor({ token }: { token: string }) {
   );
 }
 
+function LoginGate({ onUnlock }: { onUnlock: () => void }) {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [checking, setChecking] = useState(false);
+  const [failed, setFailed] = useState(false);
+
+  const submit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setChecking(true);
+    setFailed(false);
+    const ok = await checkCredentials(username, password);
+    setChecking(false);
+    if (ok) {
+      markUnlockedThisSession();
+      onUnlock();
+    } else {
+      setFailed(true);
+    }
+  };
+
+  return (
+    <main style={{ maxWidth: 360, margin: "80px auto", padding: 20, fontFamily: "sans-serif" }}>
+      <h1 style={{ fontSize: 20 }}>Staff Login</h1>
+      <form onSubmit={submit}>
+        <label style={{ display: "block", marginBottom: 8, fontSize: 13 }}>
+          <span style={{ display: "block", opacity: 0.7, marginBottom: 2 }}>Username</span>
+          <input
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            style={{ width: "100%", padding: 8 }}
+            autoComplete="username"
+          />
+        </label>
+        <label style={{ display: "block", marginBottom: 12, fontSize: 13 }}>
+          <span style={{ display: "block", opacity: 0.7, marginBottom: 2 }}>Password</span>
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            style={{ width: "100%", padding: 8 }}
+            autoComplete="current-password"
+          />
+        </label>
+        <button type="submit" disabled={checking} style={{ width: "100%", padding: 8 }}>
+          {checking ? "Checking…" : "Log in"}
+        </button>
+        {failed && <p style={{ color: "crimson", fontSize: 13 }}>Wrong username or password.</p>}
+      </form>
+      <p style={{ fontSize: 12, opacity: 0.6, marginTop: 16 }}>
+        This is a client-side gate, not a real server login — see the note on the editor page for
+        what that means.
+      </p>
+    </main>
+  );
+}
+
 export default function AdminPage() {
+  const [unlocked, setUnlocked] = useState(false);
+  const [checkedSession, setCheckedSession] = useState(false);
   const [token, setToken] = useState("");
   const [tokenInput, setTokenInput] = useState("");
 
   useEffect(() => {
+    setUnlocked(isUnlockedThisSession());
+    setCheckedSession(true);
+  }, []);
+
+  useEffect(() => {
+    if (!unlocked) return;
     try {
       const stored = localStorage.getItem(TOKEN_KEY);
       if (stored) {
@@ -271,7 +336,7 @@ export default function AdminPage() {
     } catch {
       // localStorage unavailable (private mode etc.) — token stays empty
     }
-  }, []);
+  }, [unlocked]);
 
   const saveToken = () => {
     setToken(tokenInput);
@@ -292,17 +357,29 @@ export default function AdminPage() {
     }
   };
 
+  const logout = () => {
+    lockSession();
+    setUnlocked(false);
+  };
+
+  if (!checkedSession) return null;
+  if (!unlocked) return <LoginGate onUnlock={() => setUnlocked(true)} />;
+
   return (
     <main style={{ maxWidth: 720, margin: "0 auto", padding: "40px 20px", fontFamily: "sans-serif" }}>
-      <h1>BURHANDEV Content Admin</h1>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+        <h1>BURHANDEV Content Admin</h1>
+        <button onClick={logout}>Log out</button>
+      </div>
       <div style={{ background: "#fff6dc", border: "1px solid #7f1d1d33", padding: 12, borderRadius: 6, marginBottom: 24, fontSize: 13 }}>
         <strong>How this works:</strong> this site has no backend, so there is nothing behind this
         page enforcing access — the GitHub Personal Access Token below is the real security
-        boundary. Create a <em>fine-grained</em> token scoped only to the
-        BURHANDEV-ENTERPRISE/BURHAN-WEB-DEV repo, with <strong>Contents: Read and write</strong> permission and
-        nothing else. It&apos;s stored only in this browser&apos;s local storage and sent only to
-        api.github.com. Saving here commits straight to <code>main</code> and redeploys
-        automatically — there&apos;s no review step like the rest of this project&apos;s workflow.
+        boundary (the login above just keeps the editor UI from casual visitors). Create a{" "}
+        <em>fine-grained</em> token scoped only to the BURHANDEV-ENTERPRISE/BURHAN-WEB-DEV repo,
+        with <strong>Contents: Read and write</strong> permission and nothing else. It&apos;s
+        stored only in this browser&apos;s local storage and sent only to api.github.com. Saving
+        here commits straight to <code>main</code> and redeploys automatically — there&apos;s no
+        review step like the rest of this project&apos;s workflow.
       </div>
 
       <div style={{ display: "flex", gap: 8, marginBottom: 32 }}>
