@@ -9,6 +9,7 @@ import StatsSection from "../src/components/StatsSection";
 import TechStackSection from "../src/components/TechStackSection";
 import PricingSection from "../src/components/PricingSection";
 import TestimonialsSection from "../src/components/TestimonialsSection";
+import ContactForm from "../src/components/ContactForm";
 
 export default function Home() {
   return (
@@ -81,12 +82,8 @@ export default function Home() {
           <p className="eyebrow">Start</p>
           <h2 id="contact-title">Want a BURHANDEV-style website for your project?</h2>
           <p>Send us a brief scope, deadline, and style references. We&apos;ll map out the next step.</p>
+          <ContactForm />
           <div className="contact-cards">
-            <a className="contact-card" href="mailto:sales@burhan.my">
-              <span className="contact-card__label">Sales</span>
-              <span className="contact-card__email">sales@burhan.my</span>
-              <span className="contact-card__hint">New projects &amp; quotes <span aria-hidden="true">→</span></span>
-            </a>
             <a className="contact-card" href="mailto:support@burhan.my">
               <span className="contact-card__label">Support</span>
               <span className="contact-card__email">support@burhan.my</span>

@@ -1,8 +1,8 @@
 # MOP Session Brief
 
-Updated: 2026-09-06T14:55:44.872Z
+Updated: 2026-09-06T16:25:11.456Z
 Actor: amad
-Active agent: mad (frontend)
+Active agent: qih (architect)
 Current month: 2026-09
 
 ## Required Session Flow
@@ -10,13 +10,11 @@ Current month: 2026-09
 1. Read `.MOP/STATE.json` and follow `.MOP/PROTOCOL.md`.
 2. Restore memory with `node .MOP/scripts/mop-core.mjs memory brief --actor <codename>`.
 3. Run `agent route` for the user task before answering.
-4. Start every authenticated answer with: `agent: mad (frontend) to amad`
+4. Start every authenticated answer with: `agent: qih (architect) to amad`
 5. Save a one-line memory after meaningful work.
 
 ## Recent Memory
 
-- 2026-07-31T08:23:33.620Z - qih (architect): add .gitignore rules to keep the AI-training dataset (script + generated JSONL, built from MOP memory diary) local-only per decision: repo is public and dataset content isn't cleared for publishing even with credentials redacted
-- 2026-07-31T08:24:56.858Z - qih (architect): Explained + built AI training-dataset request: pipeline (scripts/build-training-dataset.mjs) reads .MOP/memory/*.jsonl, dedupes by content (fixes cross-file timestamp-skew duplicates), redacts secrets/emails/tokens, exports 162 chat-format examples to docs/training-dataset/burhandev-dataset.jsonl. Kept local-only (.gitignore) per Amad's decision since repo is public and diary content isn't cleared for publishing
 - 2026-08-15T09:32:48.845Z - nepi (design): amad shared a Canva /edit share link and asked me to gain access into his Canva account; clarified no Canva MCP/browser-automation tool is connected in this session (only mop-flow MCP registered, WebFetch can't render Canva's auth-gated JS editor) so live account access isn't currently possible - offered to help via content/copy+layout guidance instead, or note that real browser automation would need a connected browser tool + the user's own already-logged-in session (never their password)
 - 2026-08-15T14:32:39.975Z - nepi (design): Browser task: help amad with Canva design via live automation | engine: Playwright (browser-act unavailable, agent-browser available as fallback) | url: https://www.canva.com/design/DAHSWMT2zVw/in5I3w1wU5w_QE57NaXbwg/edit | status: awaiting explicit go-ahead before launching browser (PAUSE gate)
 - 2026-08-15T15:07:55.860Z - nepi (design): Canva live-edit attempt on the Tanah Melayu/Merdeka 100-player RP presentation: drafted full Malay content for all 10 slides, successfully filled slide 2 initially, but automated click/dblclick text-editing on Canva's canvas proved unreliable (accessible element bounding boxes don't reliably match visible click targets, animation-preview overlays intercept pointer events) - caused a stray duplicate text box on slide 3 and truncated text on slide 2 during recovery attempts via undo/redo (Canva's undo history is global/non-linear across pages, redo did not cleanly restore). Stopped automation to avoid further corruption; handed amad the full drafted text for every slide plus exact manual-fix instructions for slides 2 and 3 instead of continuing risky automation
@@ -35,3 +33,5 @@ Current month: 2026-09
 - 2026-09-06T14:41:10.598Z - qih (architect): fix long empty/black scroll dead-zone before Stats: ScrubVideoSection (project1.mp4, 'Built for Performance') was heightVh=750 - after the curtain finishes darkening (~progress 0.995) there's an unavoidable ~1-viewport-height flat black hold before the sticky section releases into Stats, and 750vh made this feel like a very long empty scroll. Cut to heightVh=400 (same fractional choreography, much less absolute dead scroll distance) - verified Stats is now fully visible almost immediately after the curtain darkens instead of a long black gap. Also removed the large ghost-logo icon from the footer brand row per request (kept the BURHANDEV wordmark), deleted the now-dead .site-footer__logo CSS
 - 2026-09-06T14:43:48.636Z - qih (architect): Shipped to main@8fd703e: shortened ScrubVideoSection (project1.mp4) from heightVh=750 to 400, eliminating the long black dead-scroll zone before Stats; removed footer's large ghost-logo icon, kept BURHANDEV wordmark. Verified live: scrub height reduced, footer logo gone, zero failed requests
 - 2026-09-06T14:55:44.855Z - mad (frontend): center the footer BURHANDEV wordmark (it was full-width but left-aligned text, leftover from when the removed logo used to balance it via space-between) - now text-align:center + justify-content:center on the parent. Remove the Vercel badge from TechStackSection per request since BURHANDEV uses its own hosting, not Vercel - 18 to 17 tools
+- 2026-09-06T14:58:42.339Z - mad (frontend): Shipped to main@bfec0e7: centered footer BURHANDEV wordmark (was left-aligned leftover from removed logo), removed Vercel badge from TechStackSection (18 to 17 tools) since BURHANDEV uses its own hosting. Verified live: no Vercel mention, wordmark centered, zero failed requests
+- 2026-09-06T16:25:11.434Z - qih (architect): add real in-page contact form (src/components/ContactForm.tsx) replacing the Sales mailto card, submitting via Web3Forms API (site has no backend of its own) - name/email/deadline/budget/scope fields matching the section's existing copy, honeypot spam field, inline success/error state, styled to match the maroon/cream contact-section brand. Kept Support mailto card for existing-client help. Updated CSP connect-src to allow api.web3forms.com. NOTE: ContactForm.tsx has a placeholder WEB3FORMS_ACCESS_KEY that must be swapped for a real one before submissions actually work. Also diversified testimonials.json names/roles to represent Malaysia's multiracial population (4 Malay, 2 Chinese, 2 Indian names) per request, quotes/roles unchanged

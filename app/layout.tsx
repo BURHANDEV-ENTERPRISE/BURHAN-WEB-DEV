@@ -55,7 +55,9 @@ const CSP = [
   "media-src 'self'",
   // api.github.com: /admin's content editor commits content/*.json via the
   // GitHub Contents API directly from the browser (no backend to proxy it).
-  "connect-src 'self' https://api.github.com",
+  // api.web3forms.com: the contact form submits directly to this relay
+  // service since there's no backend of our own to receive it.
+  "connect-src 'self' https://api.github.com https://api.web3forms.com",
   "object-src 'none'",
   "base-uri 'self'",
   "form-action 'self'",
