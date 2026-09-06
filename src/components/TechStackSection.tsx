@@ -11,7 +11,6 @@ const TECHS = [
   { name: "CSS Modules", mark: "⬡",  color: "#6897bb" },
   { name: "Node.js",     mark: "⬢",  color: "#86efac" },
   { name: "Figma",       mark: "✦",  color: "#f97316" },
-  { name: "Vercel",      mark: "▴",  color: "#e2e2e2" },
   { name: "GitHub",      mark: "◉",  color: "#c4b5fd" },
   { name: "Tailwind",    mark: "~",  color: "#38bdf8" },
   { name: "Framer",      mark: "◇",  color: "#e879f9" },
