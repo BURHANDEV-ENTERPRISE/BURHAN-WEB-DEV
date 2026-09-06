@@ -11,8 +11,8 @@
   "session": {
     "actor": "amad",
     "authenticatedAt": "2026-09-06T08:35:14.927Z",
-    "lastActiveAt": "2026-09-06T14:25:39.876Z",
-    "expiresAt": "2026-09-07T14:25:39.877Z"
+    "lastActiveAt": "2026-09-06T14:30:54.864Z",
+    "expiresAt": "2026-09-07T14:30:54.864Z"
   },
   "sessionPolicy": {
     "enabled": true,
@@ -4847,7 +4847,31 @@
       "actor": "BURHAN-MOP",
       "kind": "merge-approved",
       "summary": "origin/dev/amad approved and merged to main."
+    },
+    {
+      "at": "2026-09-06T14:30:54.867Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "Shipped TechStackSection interactivity to main@1808636: magnetic cursor-tilt + brand-color spotlight glow per badge, 6 new tools added (Playwright, ESLint, GitHub Actions, Docker, PostgreSQL, Stripe) - 12 to 18 total. Verified live: 18 badges render, zero failed requests"
+    },
+    {
+      "at": "2026-09-06T14:41:10.598Z",
+      "actor": "amad",
+      "agent": "qih",
+      "agentRole": "architect",
+      "agentId": "agent-qih",
+      "kind": "memory",
+      "summary": "fix long empty/black scroll dead-zone before Stats: ScrubVideoSection (project1.mp4, 'Built for Performance') was heightVh=750 - after the curtain finishes darkening (~progress 0.995) there's an unavoidable ~1-viewport-height flat black hold before the sticky section releases into Stats, and 750vh made this feel like a very long empty scroll. Cut to heightVh=400 (same fractional choreography, much less absolute dead scroll distance) - verified Stats is now fully visible almost immediately after the curtain darkens instead of a long black gap. Also removed the large ghost-logo icon from the footer brand row per request (kept the BURHANDEV wordmark), deleted the now-dead .site-footer__logo CSS"
+    },
+    {
+      "at": "2026-09-06T14:42:11.498Z",
+      "actor": "BURHAN-MOP",
+      "kind": "merge-approved",
+      "summary": "origin/dev/amad approved and merged to main."
     }
   ],
-  "lastActiveAt": "2026-09-06T14:25:39.876Z"
+  "lastActiveAt": "2026-09-06T14:30:54.864Z"
 }

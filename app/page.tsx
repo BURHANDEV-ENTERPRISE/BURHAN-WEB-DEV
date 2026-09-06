@@ -31,7 +31,7 @@ export default function Home() {
         <HeroSection />
         <ScrubVideoSection
           src="/videos/project1.mp4"
-          heightVh={750}
+          heightVh={400}
           ariaLabel="BURHANDEV keyboard transition"
           heading="Built for Performance."
           subheading="Real hardware, real focus. The setup behind every line we ship."
@@ -122,13 +122,6 @@ export default function Home() {
           </div>
           <div className="site-footer__brand">
             <h2 className="site-footer__wordmark">BURHANDEV</h2>
-            <Image
-              className="site-footer__logo"
-              src="/brand/burhan-logo2.webp"
-              alt="BURHANDEV logo"
-              width={64}
-              height={64}
-            />
           </div>
           <div className="site-footer__bottom">
             <p className="site-footer__tagline">DESIGN TO DISRUPT.</p>

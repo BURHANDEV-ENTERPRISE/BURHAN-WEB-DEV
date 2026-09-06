@@ -531,18 +531,6 @@ p {
   color: #fff6dc;
 }
 
-.site-footer__logo {
-  flex-shrink: 0;
-  height: 3.25rem;
-  width: 3.25rem;
-  object-fit: contain;
-  transition: transform 180ms ease;
-}
-
-.site-footer__logo:hover {
-  transform: scale(1.06);
-}
-
 .site-footer__bottom {
   display: flex;
   flex-wrap: wrap;
