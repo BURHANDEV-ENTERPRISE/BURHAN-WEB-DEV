@@ -1,8 +1,8 @@
 # MOP Session Brief
 
-Updated: 2026-09-06T14:41:10.611Z
+Updated: 2026-09-06T14:55:44.872Z
 Actor: amad
-Active agent: qih (architect)
+Active agent: mad (frontend)
 Current month: 2026-09
 
 ## Required Session Flow
@@ -10,13 +10,11 @@ Current month: 2026-09
 1. Read `.MOP/STATE.json` and follow `.MOP/PROTOCOL.md`.
 2. Restore memory with `node .MOP/scripts/mop-core.mjs memory brief --actor <codename>`.
 3. Run `agent route` for the user task before answering.
-4. Start every authenticated answer with: `agent: qih (architect) to amad`
+4. Start every authenticated answer with: `agent: mad (frontend) to amad`
 5. Save a one-line memory after meaningful work.
 
 ## Recent Memory
 
-- 2026-07-29T13:53:48.653Z - qih (architect): perf: re-encode both videos with libx264 CRF-based compression (project1.mp4 CRF30, gaming-monitor.mp4 CRF27, tight GOP kept for scrub smoothness) cutting video weight from 8.27MB to 3.78MB (54% smaller); resize+convert oversized 1660px logo PNG to a 256px WebP (107KB->6.3KB); delete unreferenced 326KB box_2048px_Normal.png
-- 2026-07-29T13:55:48.599Z - qih (architect): shipped to main (5f20f72): site optimization pass - re-encoded both videos (project1.mp4 CRF30, gaming-monitor.mp4 CRF27, kept tight GOP for scrub smoothness), total video weight 8.27MB->3.78MB (54% smaller), verified visually via extracted frames including the hero's burned-in BURHAN text (no visible artifacts); shrunk oversized 1660px logo PNG to a 256px WebP (107KB->6.3KB); deleted unreferenced 326KB box_2048px_Normal.png. JS bundle was already lean (~115KB) so left untouched
 - 2026-07-31T08:23:33.620Z - qih (architect): add .gitignore rules to keep the AI-training dataset (script + generated JSONL, built from MOP memory diary) local-only per decision: repo is public and dataset content isn't cleared for publishing even with credentials redacted
 - 2026-07-31T08:24:56.858Z - qih (architect): Explained + built AI training-dataset request: pipeline (scripts/build-training-dataset.mjs) reads .MOP/memory/*.jsonl, dedupes by content (fixes cross-file timestamp-skew duplicates), redacts secrets/emails/tokens, exports 162 chat-format examples to docs/training-dataset/burhandev-dataset.jsonl. Kept local-only (.gitignore) per Amad's decision since repo is public and diary content isn't cleared for publishing
 - 2026-08-15T09:32:48.845Z - nepi (design): amad shared a Canva /edit share link and asked me to gain access into his Canva account; clarified no Canva MCP/browser-automation tool is connected in this session (only mop-flow MCP registered, WebFetch can't render Canva's auth-gated JS editor) so live account access isn't currently possible - offered to help via content/copy+layout guidance instead, or note that real browser automation would need a connected browser tool + the user's own already-logged-in session (never their password)
@@ -35,3 +33,5 @@ Current month: 2026-09
 - 2026-09-06T14:28:32.537Z - qih (architect): TechStackSection: add magnetic cursor-tilt + brand-color spotlight glow on hover for each badge (mouse-position-driven rotateX/rotateY + radial-gradient glow using each tool's own color), and add 6 more tool badges (Playwright, ESLint, GitHub Actions, Docker, PostgreSQL, Stripe) - 12 to 18 total. Respects prefers-reduced-motion (tilt/glow disabled)
 - 2026-09-06T14:30:54.867Z - qih (architect): Shipped TechStackSection interactivity to main@1808636: magnetic cursor-tilt + brand-color spotlight glow per badge, 6 new tools added (Playwright, ESLint, GitHub Actions, Docker, PostgreSQL, Stripe) - 12 to 18 total. Verified live: 18 badges render, zero failed requests
 - 2026-09-06T14:41:10.598Z - qih (architect): fix long empty/black scroll dead-zone before Stats: ScrubVideoSection (project1.mp4, 'Built for Performance') was heightVh=750 - after the curtain finishes darkening (~progress 0.995) there's an unavoidable ~1-viewport-height flat black hold before the sticky section releases into Stats, and 750vh made this feel like a very long empty scroll. Cut to heightVh=400 (same fractional choreography, much less absolute dead scroll distance) - verified Stats is now fully visible almost immediately after the curtain darkens instead of a long black gap. Also removed the large ghost-logo icon from the footer brand row per request (kept the BURHANDEV wordmark), deleted the now-dead .site-footer__logo CSS
+- 2026-09-06T14:43:48.636Z - qih (architect): Shipped to main@8fd703e: shortened ScrubVideoSection (project1.mp4) from heightVh=750 to 400, eliminating the long black dead-scroll zone before Stats; removed footer's large ghost-logo icon, kept BURHANDEV wordmark. Verified live: scrub height reduced, footer logo gone, zero failed requests
+- 2026-09-06T14:55:44.855Z - mad (frontend): center the footer BURHANDEV wordmark (it was full-width but left-aligned text, leftover from when the removed logo used to balance it via space-between) - now text-align:center + justify-content:center on the parent. Remove the Vercel badge from TechStackSection per request since BURHANDEV uses its own hosting, not Vercel - 18 to 17 tools
