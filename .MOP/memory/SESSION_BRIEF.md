@@ -1,8 +1,8 @@
 # MOP Session Brief
 
-Updated: 2026-09-06T16:25:11.456Z
+Updated: 2026-09-07T14:13:50.771Z
 Actor: amad
-Active agent: qih (architect)
+Active agent: nix (tester)
 Current month: 2026-09
 
 ## Required Session Flow
@@ -10,13 +10,11 @@ Current month: 2026-09
 1. Read `.MOP/STATE.json` and follow `.MOP/PROTOCOL.md`.
 2. Restore memory with `node .MOP/scripts/mop-core.mjs memory brief --actor <codename>`.
 3. Run `agent route` for the user task before answering.
-4. Start every authenticated answer with: `agent: qih (architect) to amad`
+4. Start every authenticated answer with: `agent: nix (tester) to amad`
 5. Save a one-line memory after meaningful work.
 
 ## Recent Memory
 
-- 2026-08-15T09:32:48.845Z - nepi (design): amad shared a Canva /edit share link and asked me to gain access into his Canva account; clarified no Canva MCP/browser-automation tool is connected in this session (only mop-flow MCP registered, WebFetch can't render Canva's auth-gated JS editor) so live account access isn't currently possible - offered to help via content/copy+layout guidance instead, or note that real browser automation would need a connected browser tool + the user's own already-logged-in session (never their password)
-- 2026-08-15T14:32:39.975Z - nepi (design): Browser task: help amad with Canva design via live automation | engine: Playwright (browser-act unavailable, agent-browser available as fallback) | url: https://www.canva.com/design/DAHSWMT2zVw/in5I3w1wU5w_QE57NaXbwg/edit | status: awaiting explicit go-ahead before launching browser (PAUSE gate)
 - 2026-08-15T15:07:55.860Z - nepi (design): Canva live-edit attempt on the Tanah Melayu/Merdeka 100-player RP presentation: drafted full Malay content for all 10 slides, successfully filled slide 2 initially, but automated click/dblclick text-editing on Canva's canvas proved unreliable (accessible element bounding boxes don't reliably match visible click targets, animation-preview overlays intercept pointer events) - caused a stray duplicate text box on slide 3 and truncated text on slide 2 during recovery attempts via undo/redo (Canva's undo history is global/non-linear across pages, redo did not cleanly restore). Stopped automation to avoid further corruption; handed amad the full drafted text for every slide plus exact manual-fix instructions for slides 2 and 3 instead of continuing risky automation
 - 2026-09-06T09:48:24.817Z - guard (security): SEO + security hardening: add favicon (app/icon.png + apple-icon.png generated from brand logo), Open Graph/Twitter Card meta tags, robots.txt + sitemap.xml (Next.js metadata routes, force-static for export compat); security - moved the boot-flash-prevention inline script to public/boot.js loaded via next/script beforeInteractive (removes the only dangerouslySetInnerHTML in the codebase), added a Content-Security-Policy meta tag (default-src self, blocks cross-origin script/style/img/connect - confirmed no API routes/forms/eval/fetch exist anywhere in the app) and a referrer-policy meta tag
 - 2026-09-06T09:51:05.160Z - guard (security): Shipped SEO+security hardening to main@a9ddece: favicon/OG/Twitter meta/robots.txt/sitemap.xml added, boot script moved out of dangerouslySetInnerHTML into public/boot.js, CSP+referrer-policy meta tags added (confirmed zero API routes/forms/eval/fetch in codebase already - low injection surface). Verified live: zero failed requests, zero CSP violations
@@ -35,3 +33,5 @@ Current month: 2026-09
 - 2026-09-06T14:55:44.855Z - mad (frontend): center the footer BURHANDEV wordmark (it was full-width but left-aligned text, leftover from when the removed logo used to balance it via space-between) - now text-align:center + justify-content:center on the parent. Remove the Vercel badge from TechStackSection per request since BURHANDEV uses its own hosting, not Vercel - 18 to 17 tools
 - 2026-09-06T14:58:42.339Z - mad (frontend): Shipped to main@bfec0e7: centered footer BURHANDEV wordmark (was left-aligned leftover from removed logo), removed Vercel badge from TechStackSection (18 to 17 tools) since BURHANDEV uses its own hosting. Verified live: no Vercel mention, wordmark centered, zero failed requests
 - 2026-09-06T16:25:11.434Z - qih (architect): add real in-page contact form (src/components/ContactForm.tsx) replacing the Sales mailto card, submitting via Web3Forms API (site has no backend of its own) - name/email/deadline/budget/scope fields matching the section's existing copy, honeypot spam field, inline success/error state, styled to match the maroon/cream contact-section brand. Kept Support mailto card for existing-client help. Updated CSP connect-src to allow api.web3forms.com. NOTE: ContactForm.tsx has a placeholder WEB3FORMS_ACCESS_KEY that must be swapped for a real one before submissions actually work. Also diversified testimonials.json names/roles to represent Malaysia's multiracial population (4 Malay, 2 Chinese, 2 Indian names) per request, quotes/roles unchanged
+- 2026-09-06T16:28:05.005Z - qih (architect): Shipped to main@bef04bd: real in-page contact form via Web3Forms (needs real access key from Amad to actually send - currently placeholder), diversified testimonial names (4 Malay, 2 Chinese, 2 Indian) for multiracial representation. Verified live: form renders, testimonial names correct, zero failed requests
+- 2026-09-07T14:13:50.758Z - nix (tester): rewrite testimonial quotes to sound more human/specific instead of generic marketing superlatives - each now references a concrete situation (Monday brief -> Thursday draft, mid-campaign redesign risk, updating the site themselves, comparing to past bad dev experiences) instead of vague praise like 'flawless' or 'impressive'. Names/roles unchanged from the multiracial diversification pass
