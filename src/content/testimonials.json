@@ -1,14 +1,14 @@
 {
   "rowA": [
-    { "quote": "Website delivered in 7 days, fast response, impressive results. Highly recommended.", "name": "Hafiz A.", "role": "Brand Owner" },
-    { "quote": "Our landing page conversion went up 3x after redesigning with BURHANDEV.", "name": "Michelle Tan", "role": "Founder, ML Studio" },
-    { "quote": "Clean code, easy to maintain ourselves. First web dev hire and we're already satisfied.", "name": "Kavitha Rajendran", "role": "SME Owner" },
-    { "quote": "The hero section animation is genuinely wow. Clients keep complimenting it.", "name": "Rizal M.", "role": "Startup Founder" }
+    { "quote": "Sent the brief on a Monday, had a live draft by Thursday. Didn't expect that fast, and it still looks better than what I asked for.", "name": "Hafiz A.", "role": "Brand Owner" },
+    { "quote": "We redesigned mid-campaign, which felt risky. Conversions moved the same week, so I'm glad we didn't wait.", "name": "Michelle Tan", "role": "Founder, ML Studio" },
+    { "quote": "My old site broke every time I touched it myself. I've updated this one twice now without calling anyone.", "name": "Kavitha Rajendran", "role": "SME Owner" },
+    { "quote": "Told them I didn't want another generic startup template. My co-founder actually stopped scrolling when he saw the hero.", "name": "Rizal M.", "role": "Startup Founder" }
   ],
   "rowB": [
-    { "quote": "The UI matched our brand 100%. Barely needed revisions, nailed it first try.", "name": "Jason Lim", "role": "Creative Director" },
-    { "quote": "Best web dev we've ever hired. On-time delivery, quality above expectations.", "name": "Farah B.", "role": "Agency Principal" },
-    { "quote": "From scope to launch in 2 weeks. Smooth process, communication always clear.", "name": "Suresh Kumar", "role": "E-commerce Founder" },
-    { "quote": "The mobile experience is flawless. Scroll animation is buttery smooth too.", "name": "Izzah M.", "role": "Content Creator" }
+    { "quote": "Gave them a mood board and barely any direction. What came back matched our brand better than agencies we briefed properly.", "name": "Jason Lim", "role": "Creative Director" },
+    { "quote": "Third dev we've hired for this. First time the handoff wasn't a 20-page doc on how to fix things ourselves.", "name": "Farah B.", "role": "Agency Principal" },
+    { "quote": "Two weeks, checkout included. I kept waiting for the delay. It never came.", "name": "Suresh Kumar", "role": "E-commerce Founder" },
+    { "quote": "I'm not technical at all, but even I noticed the mobile version wasn't an afterthought.", "name": "Izzah M.", "role": "Content Creator" }
   ]
 }
