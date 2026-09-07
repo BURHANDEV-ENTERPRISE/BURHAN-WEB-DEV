@@ -1,8 +1,8 @@
 # MOP Session Brief
 
-Updated: 2026-09-07T14:13:50.771Z
+Updated: 2026-09-07T14:27:56.910Z
 Actor: amad
-Active agent: nix (tester)
+Active agent: ellinar (mobile)
 Current month: 2026-09
 
 ## Required Session Flow
@@ -10,13 +10,11 @@ Current month: 2026-09
 1. Read `.MOP/STATE.json` and follow `.MOP/PROTOCOL.md`.
 2. Restore memory with `node .MOP/scripts/mop-core.mjs memory brief --actor <codename>`.
 3. Run `agent route` for the user task before answering.
-4. Start every authenticated answer with: `agent: nix (tester) to amad`
+4. Start every authenticated answer with: `agent: ellinar (mobile) to amad`
 5. Save a one-line memory after meaningful work.
 
 ## Recent Memory
 
-- 2026-08-15T15:07:55.860Z - nepi (design): Canva live-edit attempt on the Tanah Melayu/Merdeka 100-player RP presentation: drafted full Malay content for all 10 slides, successfully filled slide 2 initially, but automated click/dblclick text-editing on Canva's canvas proved unreliable (accessible element bounding boxes don't reliably match visible click targets, animation-preview overlays intercept pointer events) - caused a stray duplicate text box on slide 3 and truncated text on slide 2 during recovery attempts via undo/redo (Canva's undo history is global/non-linear across pages, redo did not cleanly restore). Stopped automation to avoid further corruption; handed amad the full drafted text for every slide plus exact manual-fix instructions for slides 2 and 3 instead of continuing risky automation
-- 2026-09-06T09:48:24.817Z - guard (security): SEO + security hardening: add favicon (app/icon.png + apple-icon.png generated from brand logo), Open Graph/Twitter Card meta tags, robots.txt + sitemap.xml (Next.js metadata routes, force-static for export compat); security - moved the boot-flash-prevention inline script to public/boot.js loaded via next/script beforeInteractive (removes the only dangerouslySetInnerHTML in the codebase), added a Content-Security-Policy meta tag (default-src self, blocks cross-origin script/style/img/connect - confirmed no API routes/forms/eval/fetch exist anywhere in the app) and a referrer-policy meta tag
 - 2026-09-06T09:51:05.160Z - guard (security): Shipped SEO+security hardening to main@a9ddece: favicon/OG/Twitter meta/robots.txt/sitemap.xml added, boot script moved out of dangerouslySetInnerHTML into public/boot.js, CSP+referrer-policy meta tags added (confirmed zero API routes/forms/eval/fetch in codebase already - low injection surface). Verified live: zero failed requests, zero CSP violations
 - 2026-09-06T11:59:02.111Z - guard (security): Amad declined Cloudflare recommendation - already has his own hosting/DDoS setup separately. Current GitHub Pages HTTPS/HSTS + Fastly edge CDN protection is sufficient for now; no further action needed on this thread
 - 2026-09-06T12:12:34.895Z - qihplan (planner): Delivered fix-list + content ideas from website critique (Services mockups, testimonials). Amad wants self-service content editing (testimonials/pricing/services) without needing code edits - scoping a lightweight admin page for a fully-static site (no backend/DB) before building
@@ -35,3 +33,5 @@ Current month: 2026-09
 - 2026-09-06T16:25:11.434Z - qih (architect): add real in-page contact form (src/components/ContactForm.tsx) replacing the Sales mailto card, submitting via Web3Forms API (site has no backend of its own) - name/email/deadline/budget/scope fields matching the section's existing copy, honeypot spam field, inline success/error state, styled to match the maroon/cream contact-section brand. Kept Support mailto card for existing-client help. Updated CSP connect-src to allow api.web3forms.com. NOTE: ContactForm.tsx has a placeholder WEB3FORMS_ACCESS_KEY that must be swapped for a real one before submissions actually work. Also diversified testimonials.json names/roles to represent Malaysia's multiracial population (4 Malay, 2 Chinese, 2 Indian names) per request, quotes/roles unchanged
 - 2026-09-06T16:28:05.005Z - qih (architect): Shipped to main@bef04bd: real in-page contact form via Web3Forms (needs real access key from Amad to actually send - currently placeholder), diversified testimonial names (4 Malay, 2 Chinese, 2 Indian) for multiracial representation. Verified live: form renders, testimonial names correct, zero failed requests
 - 2026-09-07T14:13:50.758Z - nix (tester): rewrite testimonial quotes to sound more human/specific instead of generic marketing superlatives - each now references a concrete situation (Monday brief -> Thursday draft, mid-campaign redesign risk, updating the site themselves, comparing to past bad dev experiences) instead of vague praise like 'flawless' or 'impressive'. Names/roles unchanged from the multiracial diversification pass
+- 2026-09-07T14:17:10.817Z - nix (tester): Shipped to main@872bfb2: rewrote all 8 testimonial quotes to sound more human/specific (concrete situations, natural phrasing) instead of generic marketing superlatives, per Amad's request. Verified live: new copy renders correctly, zero failed requests
+- 2026-09-07T14:27:56.878Z - ellinar (mobile): add mobile-optimization skill (.claude/skills) so future mobile/tablet fix requests get a real diagnostic checklist (horizontal overflow, touch target sizing, safe-area insets, fixed-header collision, input-zoom typography) and Playwright device-emulation verification across this project's established device set, instead of a guessed fix. Also covers the project-specific concern that HeroSection/ScrubVideoSection's tall (400-950vh) scroll-scrub sections behave differently under touch-scroll vs wheel-scroll and need mobile-specific verification
