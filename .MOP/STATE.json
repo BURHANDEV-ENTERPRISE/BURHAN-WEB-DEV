@@ -6,13 +6,13 @@
   "ownerCodename": "moon",
   "activeMember": "amad",
   "activeAgents": {
-    "amad": "agent-nix"
+    "amad": "agent-ellinar"
   },
   "session": {
     "actor": "amad",
     "authenticatedAt": "2026-09-06T08:35:14.927Z",
-    "lastActiveAt": "2026-09-07T14:10:18.045Z",
-    "expiresAt": "2026-09-08T14:10:18.046Z"
+    "lastActiveAt": "2026-09-07T14:26:10.740Z",
+    "expiresAt": "2026-09-08T14:26:10.741Z"
   },
   "sessionPolicy": {
     "enabled": true,
@@ -862,6 +862,17 @@
       ],
       "createdBy": "amad",
       "createdAt": "2026-09-06T09:01:32.560Z"
+    },
+    {
+      "id": "agent-ellinar",
+      "role": "mobile",
+      "title": "Mobile Developer",
+      "name": "ellinar",
+      "owners": [
+        "amad"
+      ],
+      "createdBy": "amad",
+      "createdAt": "2026-09-07T14:26:02.913Z"
     }
   ],
   "agentCatalog": [
@@ -4982,7 +4993,67 @@
       "agentId": "agent-nix",
       "kind": "memory",
       "summary": "rewrite testimonial quotes to sound more human/specific instead of generic marketing superlatives - each now references a concrete situation (Monday brief -> Thursday draft, mid-campaign redesign risk, updating the site themselves, comparing to past bad dev experiences) instead of vague praise like 'flawless' or 'impressive'. Names/roles unchanged from the multiracial diversification pass"
+    },
+    {
+      "at": "2026-09-07T14:15:14.384Z",
+      "actor": "BURHAN-MOP",
+      "kind": "merge-approved",
+      "summary": "origin/dev/amad approved and merged to main."
+    },
+    {
+      "at": "2026-09-07T14:17:10.817Z",
+      "actor": "amad",
+      "agent": "nix",
+      "agentRole": "tester",
+      "agentId": "agent-nix",
+      "kind": "memory",
+      "summary": "Shipped to main@872bfb2: rewrote all 8 testimonial quotes to sound more human/specific (concrete situations, natural phrasing) instead of generic marketing superlatives, per Amad's request. Verified live: new copy renders correctly, zero failed requests"
+    },
+    {
+      "at": "2026-09-07T14:20:59.664Z",
+      "actor": "amad",
+      "agent": "mad",
+      "agentRole": "frontend",
+      "agentId": "agent-mad",
+      "kind": "agent-route",
+      "summary": "Routed task to mad: New or broad system task routed to Frontend Developer for high-reasoning planning before implementation."
+    },
+    {
+      "at": "2026-09-07T14:21:05.807Z",
+      "actor": "amad",
+      "agent": "mad",
+      "agentRole": "frontend",
+      "agentId": "agent-mad",
+      "kind": "agent-route",
+      "summary": "Routed task to mad: New or broad system task routed to Frontend Developer for high-reasoning planning before implementation."
+    },
+    {
+      "at": "2026-09-07T14:26:02.913Z",
+      "actor": "amad",
+      "agent": "mad",
+      "agentRole": "frontend",
+      "agentId": "agent-mad",
+      "kind": "agent-activate",
+      "summary": "Named Mobile Developer as ellinar."
+    },
+    {
+      "at": "2026-09-07T14:26:02.913Z",
+      "actor": "amad",
+      "agent": "ellinar",
+      "agentRole": "mobile",
+      "agentId": "agent-ellinar",
+      "kind": "agent-use",
+      "summary": "Set active agent to ellinar."
+    },
+    {
+      "at": "2026-09-07T14:27:56.872Z",
+      "actor": "amad",
+      "agent": "ellinar",
+      "agentRole": "mobile",
+      "agentId": "agent-ellinar",
+      "kind": "memory",
+      "summary": "add mobile-optimization skill (.claude/skills) so future mobile/tablet fix requests get a real diagnostic checklist (horizontal overflow, touch target sizing, safe-area insets, fixed-header collision, input-zoom typography) and Playwright device-emulation verification across this project's established device set, instead of a guessed fix. Also covers the project-specific concern that HeroSection/ScrubVideoSection's tall (400-950vh) scroll-scrub sections behave differently under touch-scroll vs wheel-scroll and need mobile-specific verification"
     }
   ],
-  "lastActiveAt": "2026-09-07T14:10:18.045Z"
+  "lastActiveAt": "2026-09-07T14:26:10.740Z"
 }
