@@ -11,8 +11,8 @@
   "session": {
     "actor": "amad",
     "authenticatedAt": "2026-09-06T08:35:14.927Z",
-    "lastActiveAt": "2026-09-07T14:26:10.740Z",
-    "expiresAt": "2026-09-08T14:26:10.741Z"
+    "lastActiveAt": "2026-09-07T14:31:28.928Z",
+    "expiresAt": "2026-09-08T14:31:28.929Z"
   },
   "sessionPolicy": {
     "enabled": true,
@@ -5053,7 +5053,40 @@
       "agentId": "agent-ellinar",
       "kind": "memory",
       "summary": "add mobile-optimization skill (.claude/skills) so future mobile/tablet fix requests get a real diagnostic checklist (horizontal overflow, touch target sizing, safe-area insets, fixed-header collision, input-zoom typography) and Playwright device-emulation verification across this project's established device set, instead of a guessed fix. Also covers the project-specific concern that HeroSection/ScrubVideoSection's tall (400-950vh) scroll-scrub sections behave differently under touch-scroll vs wheel-scroll and need mobile-specific verification"
+    },
+    {
+      "at": "2026-09-07T14:28:57.472Z",
+      "actor": "BURHAN-MOP",
+      "kind": "merge-approved",
+      "summary": "origin/dev/amad approved and merged to main."
+    },
+    {
+      "at": "2026-09-07T14:29:11.666Z",
+      "actor": "amad",
+      "agent": "ellinar",
+      "agentRole": "mobile",
+      "agentId": "agent-ellinar",
+      "kind": "memory",
+      "summary": "Shipped mobile-optimization skill to main@3ed84ac - a repeatable diagnostic checklist + Playwright device-emulation methodology for future mobile/tablet fix requests, covering this project's established device set and its specific scroll-scrub component quirks"
+    },
+    {
+      "at": "2026-09-07T14:31:28.809Z",
+      "actor": "amad",
+      "agent": "ellinar",
+      "agentRole": "mobile",
+      "agentId": "agent-ellinar",
+      "kind": "agent-route",
+      "summary": "Routed task to ellinar: Matched keywords for Mobile Developer: mobile."
+    },
+    {
+      "at": "2026-09-08T13:36:12.866Z",
+      "actor": "amad",
+      "agent": "ellinar",
+      "agentRole": "mobile",
+      "agentId": "agent-ellinar",
+      "kind": "memory",
+      "summary": "mobile-optimization pass using the new skill: ran the full diagnostic checklist across the established device set on the live site. Found and fixed 2 real bugs: (1) contact form + admin panel input font-size was 14.72px/14.08px, under the 16px threshold that keeps iOS Safari from auto-zooming on input focus - bumped both to 16px; (2) footer 'X' social link had only 13.75px tap width (well under 44px touch target minimum) since it's a single-character label with 2.4px padding - added min-width:2.75rem so short labels still get a real tap target. Zero horizontal overflow found across all 8 device/orientation combos (iPhone SE/14, Pixel 7, Galaxy S9, iPad Mini/Pro portrait+landscape). Also found that the header/nav menu is intentionally hidden+unclickable until scrolled past the Hero+video intro to the Services section (same on desktop and mobile, not a parity gap) - confirmed with Amad this is deliberate, left as-is"
     }
   ],
-  "lastActiveAt": "2026-09-07T14:26:10.740Z"
+  "lastActiveAt": "2026-09-07T14:31:28.928Z"
 }
