@@ -127,7 +127,8 @@
 .select {
   width: 100%;
   font-family: "Space Grotesk", "Rajdhani", "Bahnschrift", "Segoe UI", sans-serif;
-  font-size: 0.88rem;
+  /* 16px minimum — anything smaller makes iOS Safari auto-zoom on focus */
+  font-size: 1rem;
   color: var(--ink, #1f1f1f);
   padding: 0.55rem 0.7rem;
   border: 1.5px solid rgba(127, 29, 29, 0.22);

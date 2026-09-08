@@ -499,6 +499,10 @@ p {
 .site-footer__social a {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
+  /* min-width keeps short labels (e.g. "X") at a real touch-target width
+     instead of shrinking to just the glyph + a couple px of padding */
+  min-width: 2.75rem;
   padding: 0.85rem 0.15rem;
   transition: color 180ms ease;
 }
