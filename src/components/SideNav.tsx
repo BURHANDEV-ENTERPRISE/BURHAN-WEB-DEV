@@ -46,7 +46,7 @@ export default function SideNav() {
     <div ref={wrapRef} className={styles.wrap}>
       <button
         type="button"
-        className={styles.toggle}
+        className={`${styles.toggle} sidenav-toggle`}
         aria-expanded={open}
         aria-haspopup="true"
         aria-label={open ? "Close menu" : "Open navigation menu"}

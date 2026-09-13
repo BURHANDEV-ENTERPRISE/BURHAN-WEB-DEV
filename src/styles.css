@@ -110,6 +110,16 @@ p {
   pointer-events: none;
 }
 
+.sidenav-toggle {
+  transition: opacity 0.45s ease, transform 0.45s ease;
+}
+
+.sidenav-toggle.is-hidden {
+  opacity: 0;
+  transform: translateY(-12px);
+  pointer-events: none;
+}
+
 .brand-lockup,
 .menu-capsule {
   display: inline-flex;

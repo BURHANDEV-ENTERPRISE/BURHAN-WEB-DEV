@@ -8,14 +8,18 @@ export default function ScrollEffects() {
     const serviceRows = document.querySelectorAll<HTMLElement>("[data-service-row]");
 
     // Header tersembunyi merentasi hero + section video; muncul sebaik
-    // section "Our Services" sampai ke atas viewport (bukan sekadar lepas hero)
+    // section "Our Services" sampai ke atas viewport (bukan sekadar lepas hero).
+    // SideNav's toggle button lives outside .top-shell but follows the same rule.
     const topShell = document.querySelector<HTMLElement>(".top-shell");
+    const sidenavToggle = document.querySelector<HTMLElement>(".sidenav-toggle");
     const servicesSection = document.getElementById("services");
     let onHeaderScroll: (() => void) | undefined;
-    if (topShell && servicesSection) {
+    if (servicesSection && (topShell || sidenavToggle)) {
       onHeaderScroll = () => {
         const rect = servicesSection.getBoundingClientRect();
-        topShell.classList.toggle("is-hidden", rect.top > 0);
+        const hidden = rect.top > 0;
+        topShell?.classList.toggle("is-hidden", hidden);
+        sidenavToggle?.classList.toggle("is-hidden", hidden);
       };
       window.addEventListener("scroll", onHeaderScroll, { passive: true });
       onHeaderScroll();
