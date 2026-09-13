@@ -1,7 +1,7 @@
 .section {
   position: relative;
   padding: 7rem 3rem;
-  background: var(--cream, #fff6dc);
+  background: var(--peach, #ffb078);
   border-top: 1px solid rgba(127, 29, 29, 0.14);
   overflow: hidden;
 }
