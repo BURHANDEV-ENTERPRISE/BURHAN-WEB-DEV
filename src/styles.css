@@ -466,6 +466,17 @@ p {
   border-top: 1px solid rgba(255, 246, 220, 0.12);
 }
 
+.contact-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(rgba(255, 246, 220, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 246, 220, 0.05) 1px, transparent 1px);
+  background-size: 9px 9px;
+  pointer-events: none;
+}
+
 .contact-section .eyebrow,
 .contact-actions {
   margin-inline: auto;
