@@ -74,3 +74,23 @@ export async function saveContentFile<T>(
   const json = await githubRequest(path, token, { method: "PUT", body: JSON.stringify(body) });
   return json.content.sha as string;
 }
+
+// Uploads a binary file (image) given already-base64-encoded content (e.g.
+// the payload half of a data: URL from FileReader.readAsDataURL). Callers
+// give each upload a unique path (e.g. a timestamp suffix) so this always
+// creates a new file — no need to look up an existing sha to overwrite one,
+// and it sidesteps browser/CDN caching an old image at a reused path.
+export async function saveBinaryFile(
+  path: string,
+  base64Content: string,
+  token: string,
+  message: string
+): Promise<string> {
+  const body = {
+    message,
+    content: base64Content,
+    branch: BRANCH,
+  };
+  const json = await githubRequest(path, token, { method: "PUT", body: JSON.stringify(body) });
+  return json.content.sha as string;
+}

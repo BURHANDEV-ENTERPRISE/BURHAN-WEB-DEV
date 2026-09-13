@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import styles from "./admin.module.css";
-import { fetchContentFile, saveContentFile } from "../../src/lib/githubContent";
+import { fetchContentFile, saveContentFile, saveBinaryFile } from "../../src/lib/githubContent";
 import { checkCredentials, isUnlockedThisSession, markUnlockedThisSession, lockSession } from "../../src/lib/adminAuth";
 import testimonialsDefault from "../../src/content/testimonials.json";
 import pricingDefault from "../../src/content/pricing.json";
@@ -21,7 +21,7 @@ type Plan = {
   cta: string;
   featured: boolean;
 };
-type Service = { label: string; sub: string; theme: string; featured?: boolean };
+type Service = { label: string; sub: string; theme: string; featured?: boolean; image?: string };
 type StaffMember = { name: string; role: string; tagline: string };
 
 const TOKEN_KEY = "burhandev_admin_pat";
@@ -209,15 +209,53 @@ function PricingEditor({ token }: { token: string }) {
   );
 }
 
+const IMAGE_EXT_BY_TYPE: Record<string, string> = {
+  "image/jpeg": "jpg",
+  "image/png": "png",
+  "image/webp": "webp",
+  "image/gif": "gif",
+};
+
+function fileToBase64(file: File): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      const result = reader.result as string;
+      resolve(result.slice(result.indexOf(",") + 1));
+    };
+    reader.onerror = () => reject(reader.error ?? new Error("Could not read file"));
+    reader.readAsDataURL(file);
+  });
+}
+
 function ServicesEditor({ token }: { token: string }) {
   const { value, setValue, status, error, save, reload } = useContentEditor<Service[]>(
     "src/content/services.json",
     servicesDefault as Service[],
     token
   );
+  const [uploadingIndex, setUploadingIndex] = useState<number | null>(null);
+  const [uploadError, setUploadError] = useState("");
 
   const update = (i: number, patch: Partial<Service>) => {
     setValue((v) => v.map((s, idx) => (idx === i ? { ...s, ...patch } : s)));
+  };
+
+  const uploadImage = async (i: number, file: File) => {
+    const ext = IMAGE_EXT_BY_TYPE[file.type] ?? file.name.split(".").pop() ?? "jpg";
+    if (!token) return;
+    setUploadingIndex(i);
+    setUploadError("");
+    try {
+      const base64 = await fileToBase64(file);
+      const path = `public/services/service-${i}-${Date.now()}.${ext}`;
+      await saveBinaryFile(path, base64, token, `Upload image for service ${i + 1} via /staff-burhan-only`);
+      update(i, { image: `/${path.replace(/^public\//, "")}` });
+    } catch (e) {
+      setUploadError(e instanceof Error ? e.message : String(e));
+    } finally {
+      setUploadingIndex(null);
+    }
   };
 
   return (
@@ -226,8 +264,12 @@ function ServicesEditor({ token }: { token: string }) {
       <p className={styles.helpText} style={{ marginBottom: "0.9rem" }}>
         Note: the scroll-in animation on this section was tuned for exactly 9 cards. Adding or
         removing cards still works, it just won&apos;t get the same hand-placed entrance positions.
+        Uploading an image replaces the placeholder mockup for that card; remember to hit
+        &quot;Save to GitHub&quot; below after uploading so the new image actually shows up on the
+        live site.
       </p>
       <SaveBar status={status} error={error} onSave={() => save("Update services via /staff-burhan-only")} onReload={reload} />
+      {uploadError && <p className={styles.statusError} style={{ marginBottom: "0.9rem" }}>{uploadError}</p>}
       {value.map((s, i) => (
         <div key={i} className={styles.itemCard}>
           <Field label="Label" value={s.label} onChange={(v) => update(i, { label: v })} />
@@ -249,6 +291,38 @@ function ServicesEditor({ token }: { token: string }) {
               onChange={(e) => update(i, { featured: e.target.checked })}
             />
             Featured (larger card)
+          </label>
+          <label className={styles.field}>
+            <span className={styles.fieldLabel}>Card image</span>
+            {s.image && (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src={s.image}
+                alt=""
+                style={{ display: "block", maxWidth: "160px", borderRadius: "8px", margin: "0.4rem 0" }}
+              />
+            )}
+            <input
+              type="file"
+              accept="image/*"
+              disabled={uploadingIndex === i}
+              onChange={(e) => {
+                const file = e.target.files?.[0];
+                if (file) uploadImage(i, file);
+                e.target.value = "";
+              }}
+            />
+            {uploadingIndex === i && <span className={styles.statusLoading}>Uploading…</span>}
+            {s.image && (
+              <button
+                type="button"
+                className={styles.btnGhost}
+                style={{ marginTop: "0.5rem" }}
+                onClick={() => update(i, { image: undefined })}
+              >
+                Remove image
+              </button>
+            )}
           </label>
         </div>
       ))}

@@ -1,8 +1,12 @@
 "use client";
 
 import { useEffect, useRef, useCallback } from "react";
+import Image from "next/image";
 import styles from "./WorkSection.module.css";
-import WORKS from "../content/services.json";
+import WORKS_JSON from "../content/services.json";
+
+type Service = { label: string; sub: string; theme: string; featured?: boolean; image?: string };
+const WORKS: Service[] = WORKS_JSON;
 
 // Start transform for each card: [translateX%, translateY%, scale, rotateDeg]
 // % is relative to each card's own size.
@@ -120,15 +124,27 @@ export default function WorkSection() {
                 <span className={styles.dot} style={{ background: "#28ca41" }} />
                 <span className={styles.urlBar} />
               </div>
-              <div className={styles.mock}>
-                <div className={styles.mockNav} />
-                <div className={styles.mockHero} />
-                <div className={styles.mockCols}>
-                  <div className={styles.mockCol} />
-                  <div className={styles.mockCol} />
-                  <div className={styles.mockCol} />
+              {w.image ? (
+                <div className={styles.mockImageWrap}>
+                  <Image
+                    src={w.image}
+                    alt=""
+                    fill
+                    sizes="(max-width: 768px) 50vw, 20vw"
+                    className={styles.mockImage}
+                  />
                 </div>
-              </div>
+              ) : (
+                <div className={styles.mock}>
+                  <div className={styles.mockNav} />
+                  <div className={styles.mockHero} />
+                  <div className={styles.mockCols}>
+                    <div className={styles.mockCol} />
+                    <div className={styles.mockCol} />
+                    <div className={styles.mockCol} />
+                  </div>
+                </div>
+              )}
               <div className={styles.info}>
                 <strong className={styles.cardTitle}>{w.label}</strong>
                 <span className={styles.cardSub}>{w.sub}</span>
