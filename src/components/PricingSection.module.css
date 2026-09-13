@@ -4,6 +4,10 @@
   position: relative;
 }
 
+@media (min-width: 1180px) {
+  .section { padding-right: 19rem; }
+}
+
 .section::before {
   content: "";
   position: absolute;

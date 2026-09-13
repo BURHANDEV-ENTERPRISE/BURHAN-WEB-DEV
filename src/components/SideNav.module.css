@@ -1,0 +1,151 @@
+/* Persistent right-side nav, desktop only — the existing top-shell +
+   hamburger dropdown already covers mobile/tablet, so this only shows at
+   widths wide enough to spare a fixed column without cramping content. */
+.sidebar {
+  display: none;
+}
+
+@media (min-width: 1180px) {
+  .sidebar {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 65;
+    width: 17rem;
+    height: 100vh;
+    padding: 1.5rem 1.25rem;
+    background: var(--maroon, #7f1d1d);
+    box-shadow: -8px 0 40px rgba(0, 0, 0, 0.25);
+    overflow-y: auto;
+  }
+}
+
+.brandRow {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.brandLogo {
+  height: 1.75rem;
+  width: 1.75rem;
+  object-fit: contain;
+}
+
+.navList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.navPill {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.85rem 0.75rem 0.85rem 1.1rem;
+  border-radius: 12px;
+  background: var(--peach, #ffb078);
+  color: var(--maroon, #7f1d1d);
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 800;
+  text-transform: lowercase;
+  transition: background 0.18s ease, transform 0.18s ease;
+}
+
+.navPill:hover {
+  background: var(--cream-2, #fffaf0);
+  transform: translateX(-3px);
+}
+
+.navBadge {
+  display: grid;
+  place-items: center;
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 999px;
+  background: var(--cream, #fff6dc);
+  color: var(--maroon, #7f1d1d);
+  font-family: var(--font-bebas), "Impact", sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.02em;
+}
+
+.ctaBlock {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 0.9rem;
+  padding-bottom: 1.5rem;
+}
+
+.ctaText {
+  font-family: var(--font-bebas), "Impact", sans-serif;
+  font-size: 1.4rem;
+  line-height: 1.05;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--cream, #fff6dc);
+  margin: 0;
+}
+
+.ctaBtn {
+  display: block;
+  text-align: center;
+  padding: 0.85rem 1rem;
+  border-radius: 10px;
+  background: var(--ink, #1f1f1f);
+  color: var(--cream, #fff6dc);
+  font-family: var(--font-bebas), "Impact", sans-serif;
+  font-size: 1rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: background 0.18s ease, transform 0.18s ease;
+}
+
+.ctaBtn:hover {
+  background: var(--green-2, #173a32);
+  transform: translateY(-2px);
+}
+
+.bottomRow {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(255, 246, 220, 0.15);
+}
+
+.copy {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: rgba(255, 246, 220, 0.55);
+}
+
+.socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.socials a {
+  padding: 0.35rem 0.6rem;
+  border-radius: 999px;
+  background: rgba(255, 246, 220, 0.1);
+  color: var(--cream, #fff6dc);
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  transition: background 0.18s ease;
+}
+
+.socials a:hover {
+  background: var(--peach, #ffb078);
+  color: var(--maroon, #7f1d1d);
+}
