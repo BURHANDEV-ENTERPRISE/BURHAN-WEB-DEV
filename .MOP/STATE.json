@@ -6,13 +6,13 @@
   "ownerCodename": "moon",
   "activeMember": "amad",
   "activeAgents": {
-    "amad": "agent-ellinar"
+    "amad": "agent-nepi"
   },
   "session": {
     "actor": "amad",
-    "authenticatedAt": "2026-09-06T08:35:14.927Z",
-    "lastActiveAt": "2026-09-07T14:31:28.928Z",
-    "expiresAt": "2026-09-08T14:31:28.929Z"
+    "authenticatedAt": "2026-09-13T10:02:27.152Z",
+    "lastActiveAt": "2026-09-13T13:07:58.478Z",
+    "expiresAt": "2026-09-14T13:07:58.479Z"
   },
   "sessionPolicy": {
     "enabled": true,
@@ -5086,7 +5086,94 @@
       "agentId": "agent-ellinar",
       "kind": "memory",
       "summary": "mobile-optimization pass using the new skill: ran the full diagnostic checklist across the established device set on the live site. Found and fixed 2 real bugs: (1) contact form + admin panel input font-size was 14.72px/14.08px, under the 16px threshold that keeps iOS Safari from auto-zooming on input focus - bumped both to 16px; (2) footer 'X' social link had only 13.75px tap width (well under 44px touch target minimum) since it's a single-character label with 2.4px padding - added min-width:2.75rem so short labels still get a real tap target. Zero horizontal overflow found across all 8 device/orientation combos (iPhone SE/14, Pixel 7, Galaxy S9, iPad Mini/Pro portrait+landscape). Also found that the header/nav menu is intentionally hidden+unclickable until scrolled past the Hero+video intro to the Services section (same on desktop and mobile, not a parity gap) - confirmed with Amad this is deliberate, left as-is"
+    },
+    {
+      "at": "2026-09-08T13:37:12.354Z",
+      "actor": "BURHAN-MOP",
+      "kind": "merge-approved",
+      "summary": "origin/dev/amad approved and merged to main."
+    },
+    {
+      "at": "2026-09-08T13:38:53.391Z",
+      "actor": "amad",
+      "agent": "ellinar",
+      "agentRole": "mobile",
+      "agentId": "agent-ellinar",
+      "kind": "memory",
+      "summary": "Shipped mobile-optimization fixes to main@08de06f: contact/admin input font-size 16px (fixes iOS zoom-on-focus), footer X link tap width 44px min. Zero horizontal overflow across full device set. Header-hidden-until-Services confirmed intentional per Amad, left unchanged. Verified live"
+    },
+    {
+      "at": "2026-09-08T13:50:53.956Z",
+      "actor": "amad",
+      "agent": "gito",
+      "agentRole": "github",
+      "agentId": "agent-gito",
+      "kind": "agent-route",
+      "summary": "Routed task to gito: Matched keywords for GitHub Coordinator: pr."
+    },
+    {
+      "at": "2026-09-08T13:52:32.926Z",
+      "actor": "amad",
+      "agent": "mad",
+      "agentRole": "frontend",
+      "agentId": "agent-mad",
+      "kind": "agent-route",
+      "summary": "Routed task to mad: Matched keywords for Frontend Developer: page."
+    },
+    {
+      "at": "2026-09-08T14:00:00.344Z",
+      "actor": "amad",
+      "agent": "gito",
+      "agentRole": "github",
+      "agentId": "agent-gito",
+      "kind": "agent-route",
+      "summary": "Routed task to gito: Matched keywords for GitHub Coordinator: github, git."
+    },
+    {
+      "at": "2026-09-13T10:02:27.160Z",
+      "actor": "amad",
+      "agent": "gito",
+      "agentRole": "github",
+      "agentId": "agent-gito",
+      "kind": "login",
+      "summary": "Member authenticated; new session started."
+    },
+    {
+      "at": "2026-09-13T10:03:13.644Z",
+      "actor": "amad",
+      "agent": "nepi",
+      "agentRole": "design",
+      "agentId": "agent-nepi",
+      "kind": "agent-route",
+      "summary": "Routed task to nepi: Matched keywords for Design: design."
+    },
+    {
+      "at": "2026-09-13T13:06:49.973Z",
+      "actor": "amad",
+      "agent": "anis",
+      "agentRole": "core",
+      "agentId": "agent-anis",
+      "kind": "agent-route",
+      "summary": "Routed task to anis: No strong specialist match; using Core Agent."
+    },
+    {
+      "at": "2026-09-13T13:07:58.332Z",
+      "actor": "amad",
+      "agent": "nepi",
+      "agentRole": "design",
+      "agentId": "agent-nepi",
+      "kind": "agent-route",
+      "summary": "Routed task to nepi: Matched keywords for Design: design."
+    },
+    {
+      "at": "2026-09-13T13:16:00.109Z",
+      "actor": "amad",
+      "agent": "nepi",
+      "agentRole": "design",
+      "agentId": "agent-nepi",
+      "kind": "memory",
+      "summary": "revert Web3Forms contact form per Amad's request - removed ContactForm.tsx/.module.css, restored the original two mailto cards (Sales/Support) in the contact section, reverted CSP connect-src to drop api.web3forms.com"
     }
   ],
-  "lastActiveAt": "2026-09-07T14:31:28.928Z"
+  "lastActiveAt": "2026-09-13T13:07:58.478Z"
 }

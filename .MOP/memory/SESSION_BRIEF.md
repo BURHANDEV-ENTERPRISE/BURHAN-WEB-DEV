@@ -1,8 +1,8 @@
 # MOP Session Brief
 
-Updated: 2026-09-08T13:36:12.878Z
+Updated: 2026-09-13T13:16:00.119Z
 Actor: amad
-Active agent: ellinar (mobile)
+Active agent: nepi (design)
 Current month: 2026-09
 
 ## Required Session Flow
@@ -10,13 +10,11 @@ Current month: 2026-09
 1. Read `.MOP/STATE.json` and follow `.MOP/PROTOCOL.md`.
 2. Restore memory with `node .MOP/scripts/mop-core.mjs memory brief --actor <codename>`.
 3. Run `agent route` for the user task before answering.
-4. Start every authenticated answer with: `agent: ellinar (mobile) to amad`
+4. Start every authenticated answer with: `agent: nepi (design) to amad`
 5. Save a one-line memory after meaningful work.
 
 ## Recent Memory
 
-- 2026-09-06T12:12:34.895Z - qihplan (planner): Delivered fix-list + content ideas from website critique (Services mockups, testimonials). Amad wants self-service content editing (testimonials/pricing/services) without needing code edits - scoping a lightweight admin page for a fully-static site (no backend/DB) before building
-- 2026-09-06T13:43:17.970Z - qihplan (planner): add self-service content editing: extracted testimonials/pricing/services from hardcoded arrays into src/content/*.json (components now import from JSON, same rendered output verified), added /admin page (client-side, GitHub PAT-gated since there is no backend to enforce access server-side - the PAT is the real security boundary) that edits and commits those JSON files straight to main via the GitHub Contents API, triggering the existing auto-deploy. Excluded /admin from robots.txt + added noindex. Also added a critique-website skill (.claude/skills) for repeatable design/UX/copy critique of the live site
 - 2026-09-06T13:46:19.315Z - qihplan (planner): Shipped self-service content editing to main@7ad786d: testimonials/pricing/services now in src/content/*.json, /admin page (GitHub PAT-gated, commits via GitHub Contents API) lets Amad edit them without code changes. Also shipped critique-website skill. Verified live: homepage zero regressions, admin page loads correctly, robots.txt excludes /admin, secret scan passed
 - 2026-09-06T13:59:18.284Z - anisweb (browser): harden the content-editor page per Amad's request: moved it from the guessable /admin to a hidden path (/staff-burhan-only, excluded from robots.txt/search index), and added a client-side login gate (PBKDF2-SHA256 hashed credentials, no plaintext password anywhere in source, session-scoped unlock) so a casual visitor who finds the URL still can't see the editor UI. The GitHub PAT entered in the editor remains the actual write-access boundary regardless - this login only gates visibility of the form
 - 2026-09-06T14:02:45.831Z - anisweb (browser): Hardened content editor to main@53fc7c1 per Amad's request: moved /admin to hidden /staff-burhan-only (old path now 404s, excluded from robots.txt), added client-side login gate (username AdminBurhan, PBKDF2-SHA256 hashed password, session-scoped unlock, no plaintext in source). Verified live: login gate blocks access without credentials, real credentials unlock it, secret scan passed
@@ -35,3 +33,5 @@ Current month: 2026-09
 - 2026-09-07T14:27:56.878Z - ellinar (mobile): add mobile-optimization skill (.claude/skills) so future mobile/tablet fix requests get a real diagnostic checklist (horizontal overflow, touch target sizing, safe-area insets, fixed-header collision, input-zoom typography) and Playwright device-emulation verification across this project's established device set, instead of a guessed fix. Also covers the project-specific concern that HeroSection/ScrubVideoSection's tall (400-950vh) scroll-scrub sections behave differently under touch-scroll vs wheel-scroll and need mobile-specific verification
 - 2026-09-07T14:29:11.666Z - ellinar (mobile): Shipped mobile-optimization skill to main@3ed84ac - a repeatable diagnostic checklist + Playwright device-emulation methodology for future mobile/tablet fix requests, covering this project's established device set and its specific scroll-scrub component quirks
 - 2026-09-08T13:36:12.867Z - ellinar (mobile): mobile-optimization pass using the new skill: ran the full diagnostic checklist across the established device set on the live site. Found and fixed 2 real bugs: (1) contact form + admin panel input font-size was 14.72px/14.08px, under the 16px threshold that keeps iOS Safari from auto-zooming on input focus - bumped both to 16px; (2) footer 'X' social link had only 13.75px tap width (well under 44px touch target minimum) since it's a single-character label with 2.4px padding - added min-width:2.75rem so short labels still get a real tap target. Zero horizontal overflow found across all 8 device/orientation combos (iPhone SE/14, Pixel 7, Galaxy S9, iPad Mini/Pro portrait+landscape). Also found that the header/nav menu is intentionally hidden+unclickable until scrolled past the Hero+video intro to the Services section (same on desktop and mobile, not a parity gap) - confirmed with Amad this is deliberate, left as-is
+- 2026-09-08T13:38:53.391Z - ellinar (mobile): Shipped mobile-optimization fixes to main@08de06f: contact/admin input font-size 16px (fixes iOS zoom-on-focus), footer X link tap width 44px min. Zero horizontal overflow across full device set. Header-hidden-until-Services confirmed intentional per Amad, left unchanged. Verified live
+- 2026-09-13T13:16:00.109Z - nepi (design): revert Web3Forms contact form per Amad's request - removed ContactForm.tsx/.module.css, restored the original two mailto cards (Sales/Support) in the contact section, reverted CSP connect-src to drop api.web3forms.com
