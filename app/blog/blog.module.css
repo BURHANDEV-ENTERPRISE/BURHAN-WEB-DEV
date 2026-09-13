@@ -1,0 +1,124 @@
+.section {
+  position: relative;
+  min-height: 100vh;
+  padding: 9rem clamp(1.5rem, 6vw, 7rem) 6rem;
+  background: var(--cream, #fff6dc);
+}
+
+.section::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    linear-gradient(rgba(127, 29, 29, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(33, 73, 63, 0.04) 1px, transparent 1px);
+  background-size: 9px 9px;
+  pointer-events: none;
+}
+
+.heading {
+  position: relative;
+  font-family: var(--font-bebas), "Impact", sans-serif;
+  font-size: clamp(2.8rem, 7vw, 5.5rem);
+  font-weight: 400;
+  line-height: 0.95;
+  text-transform: uppercase;
+  color: var(--maroon, #7f1d1d);
+  margin: 0.3rem 0 0.75rem;
+}
+
+.sub {
+  position: relative;
+  font-size: 1rem;
+  color: rgba(127, 29, 29, 0.7);
+  margin: 0 0 3.5rem;
+  max-width: 34rem;
+}
+
+.grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+  gap: 1.75rem;
+  max-width: 72rem;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  padding: 1.75rem;
+  border: 2px solid var(--maroon, #7f1d1d);
+  border-radius: 14px;
+  background: var(--cream-2, #fffaf0);
+  box-shadow: 0.7rem 0.7rem 0 rgba(127, 29, 29, 0.16);
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0.95rem 0.95rem 0 rgba(127, 29, 29, 0.24);
+}
+
+.date {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--orange, #ff5a2a);
+  margin-bottom: 0.6rem;
+}
+
+.title {
+  font-family: var(--font-bebas), "Impact", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 1.05;
+  text-transform: uppercase;
+  color: var(--maroon, #7f1d1d);
+  margin: 0 0 0.75rem;
+}
+
+.excerpt {
+  flex: 1;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: rgba(127, 29, 29, 0.75);
+  margin: 0;
+}
+
+.readMore {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-top: 1.1rem;
+  font-family: var(--font-bebas), "Impact", sans-serif;
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--maroon, #7f1d1d);
+  border-bottom: 1.5px solid currentColor;
+  width: fit-content;
+}
+
+.backLink {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 4rem;
+  font-family: var(--font-bebas), "Impact", sans-serif;
+  font-size: 1rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--maroon, #7f1d1d);
+  transition: opacity 0.18s ease;
+}
+
+.backLink:hover {
+  opacity: 0.65;
+}
+
+@media (max-width: 560px) {
+  .section { padding: 7rem 1.25rem 4rem; }
+}

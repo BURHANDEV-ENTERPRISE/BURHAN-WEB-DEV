@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import styles from "./SideNav.module.css";
 
 const LINKS = [
@@ -20,8 +21,12 @@ const SOCIALS = [
   { href: "https://www.tiktok.com/@burhanbistro", label: "TT" },
 ];
 
+// Section ids to watch for scrollspy — matches LINKS minus the synthetic "top".
+const SPY_IDS = ["services", "pricing", "work", "contact"];
+
 export default function SideNav() {
   const [open, setOpen] = useState(false);
+  const [activeHref, setActiveHref] = useState("#top");
   const wrapRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -41,6 +46,35 @@ export default function SideNav() {
       document.removeEventListener("keydown", onKey);
     };
   }, [open]);
+
+  // Scrollspy: highlight whichever section pill matches what's in view.
+  useEffect(() => {
+    const sections = SPY_IDS
+      .map((id) => document.getElementById(id))
+      .filter((el): el is HTMLElement => !!el);
+    if (!sections.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setActiveHref(`#${entry.target.id}`);
+        });
+      },
+      { rootMargin: "-45% 0px -45% 0px", threshold: 0 }
+    );
+    sections.forEach((s) => observer.observe(s));
+
+    const onScroll = () => {
+      if (window.scrollY < window.innerHeight * 0.5) setActiveHref("#top");
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, []);
 
   return (
     <div ref={wrapRef} className={styles.wrap}>
@@ -76,13 +110,25 @@ export default function SideNav() {
 
         <nav className={styles.navList} aria-label="Section navigation">
           {LINKS.map((l, i) => (
-            <a key={l.href} href={l.href} className={styles.navPill} onClick={() => setOpen(false)}>
+            <a
+              key={l.href}
+              href={l.href}
+              className={styles.navPill}
+              data-active={l.href === activeHref}
+              onClick={() => setOpen(false)}
+            >
               <span>{l.label}</span>
               <span className={styles.navBadge} aria-hidden="true">
                 {String(i + 1).padStart(2, "0")}
               </span>
             </a>
           ))}
+          <Link href="/blog/" className={styles.navPill} onClick={() => setOpen(false)}>
+            <span>Blog</span>
+            <span className={styles.navBadge} aria-hidden="true">
+              06
+            </span>
+          </Link>
         </nav>
 
         <div className={styles.ctaBlock}>

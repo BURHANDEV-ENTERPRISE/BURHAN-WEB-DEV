@@ -113,6 +113,13 @@
   transition: background 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
 }
 
+.navPill[data-active="true"] {
+  outline: 2.5px solid var(--cream, #fff6dc);
+  outline-offset: 2px;
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0 rgba(31, 31, 31, 0.35);
+}
+
 .navPill:hover {
   transform: translate(-2px, -2px);
   box-shadow: 5px 5px 0 rgba(31, 31, 31, 0.35);

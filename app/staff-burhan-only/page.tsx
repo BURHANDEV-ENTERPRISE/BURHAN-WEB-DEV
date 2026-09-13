@@ -8,6 +8,7 @@ import testimonialsDefault from "../../src/content/testimonials.json";
 import pricingDefault from "../../src/content/pricing.json";
 import servicesDefault from "../../src/content/services.json";
 import staffDefault from "../../src/content/staff.json";
+import blogDefault from "../../src/content/blog.json";
 
 type Testimonial = { quote: string; name: string; role: string };
 type Testimonials = { rowA: Testimonial[]; rowB: Testimonial[] };
@@ -22,7 +23,8 @@ type Plan = {
   featured: boolean;
 };
 type Service = { label: string; sub: string; theme: string; featured?: boolean; image?: string };
-type StaffMember = { name: string; role: string; tagline: string };
+type StaffMember = { name: string; role: string; tagline: string; portfolio?: string };
+type BlogPost = { title: string; date: string; excerpt: string; link?: string };
 
 const TOKEN_KEY = "burhandev_admin_pat";
 const THEMES = ["maroon", "navy", "teal", "amber", "slate"];
@@ -344,7 +346,7 @@ function StaffEditor({ token }: { token: string }) {
     setValue((v) => v.filter((_, idx) => idx !== i));
   };
   const add = () => {
-    setValue((v) => [...v, { name: "", role: "", tagline: "" }]);
+    setValue((v) => [...v, { name: "", role: "", tagline: "", portfolio: "" }]);
   };
 
   return (
@@ -359,6 +361,11 @@ function StaffEditor({ token }: { token: string }) {
           <Field label="Name" value={s.name} onChange={(v) => update(i, { name: v })} />
           <Field label="Role" value={s.role} onChange={(v) => update(i, { role: v })} />
           <Field label="Tagline" value={s.tagline} onChange={(v) => update(i, { tagline: v })} textarea />
+          <Field
+            label="Portfolio link (optional)"
+            value={s.portfolio ?? ""}
+            onChange={(v) => update(i, { portfolio: v })}
+          />
           <button className={styles.btnGhost} onClick={() => remove(i)}>
             Remove
           </button>
@@ -366,6 +373,49 @@ function StaffEditor({ token }: { token: string }) {
       ))}
       <button className={styles.btnGhost} onClick={add}>
         + Add team member
+      </button>
+    </section>
+  );
+}
+
+function BlogEditor({ token }: { token: string }) {
+  const { value, setValue, status, error, save, reload } = useContentEditor<BlogPost[]>(
+    "src/content/blog.json",
+    blogDefault as BlogPost[],
+    token
+  );
+
+  const update = (i: number, patch: Partial<BlogPost>) => {
+    setValue((v) => v.map((p, idx) => (idx === i ? { ...p, ...patch } : p)));
+  };
+  const remove = (i: number) => {
+    setValue((v) => v.filter((_, idx) => idx !== i));
+  };
+  const add = () => {
+    setValue((v) => [...v, { title: "", date: new Date().toISOString().slice(0, 10), excerpt: "", link: "" }]);
+  };
+
+  return (
+    <section className={styles.section}>
+      <h2 className={styles.sectionTitle}>Blog</h2>
+      <p className={styles.helpText} style={{ marginBottom: "0.9rem" }}>
+        Only linked from the sidebar drawer, not shown on the home page. Leave &quot;Link&quot;
+        blank for a post with no full write-up yet.
+      </p>
+      <SaveBar status={status} error={error} onSave={() => save("Update blog via /staff-burhan-only")} onReload={reload} />
+      {value.map((p, i) => (
+        <div key={i} className={styles.itemCard}>
+          <Field label="Title" value={p.title} onChange={(v) => update(i, { title: v })} />
+          <Field label="Date (YYYY-MM-DD)" value={p.date} onChange={(v) => update(i, { date: v })} />
+          <Field label="Excerpt" value={p.excerpt} onChange={(v) => update(i, { excerpt: v })} textarea />
+          <Field label="Link (optional)" value={p.link ?? ""} onChange={(v) => update(i, { link: v })} />
+          <button className={styles.btnGhost} onClick={() => remove(i)}>
+            Remove
+          </button>
+        </div>
+      ))}
+      <button className={styles.btnGhost} onClick={add}>
+        + Add blog post
       </button>
     </section>
   );
@@ -532,6 +582,7 @@ export default function AdminPage() {
             <ServicesEditor token={token} />
             <PricingEditor token={token} />
             <StaffEditor token={token} />
+            <BlogEditor token={token} />
             <TestimonialsEditor token={token} />
           </>
         )}

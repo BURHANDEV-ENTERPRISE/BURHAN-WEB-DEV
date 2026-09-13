@@ -20,6 +20,16 @@ export default function StaffSection() {
               <strong className={styles.name}>{s.name}</strong>
               <span className={styles.role}>{s.role}</span>
               <p className={styles.tagline}>{s.tagline}</p>
+              {s.portfolio && (
+                <a
+                  className={styles.portfolioLink}
+                  href={s.portfolio}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  View Portfolio <span aria-hidden="true">→</span>
+                </a>
+              )}
             </div>
           </article>
         ))}
