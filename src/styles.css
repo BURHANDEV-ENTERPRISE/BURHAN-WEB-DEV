@@ -358,13 +358,6 @@ p {
   padding: 7rem 3rem;
 }
 
-@media (min-width: 1180px) {
-  .work-section,
-  .contact-section {
-    padding-right: 19rem;
-  }
-}
-
 .contact-section .eyebrow {
   background: rgba(255, 246, 220, 0.08);
 }
@@ -528,12 +521,6 @@ p {
 .site-footer__inner {
   width: 100%;
   padding: 2.5rem 1.5rem 1.5rem;
-}
-
-@media (min-width: 1180px) {
-  .site-footer__inner {
-    padding-right: 18.5rem;
-  }
 }
 
 .site-footer__top {

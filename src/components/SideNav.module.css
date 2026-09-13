@@ -1,31 +1,87 @@
 /* Persistent right-side nav, desktop only — the existing top-shell +
    hamburger dropdown already covers mobile/tablet, so this only shows at
-   widths wide enough to spare a fixed column without cramping content. */
-.sidebar {
+   widths wide enough to spare a slide-in panel without cramping content.
+   Closed by default; opens only when the toggle button is clicked. */
+.wrap {
   display: none;
 }
 
 @media (min-width: 1180px) {
-  .sidebar {
-    display: flex;
-    flex-direction: column;
-    position: fixed;
-    top: 0;
-    right: 0;
-    z-index: 65;
-    width: 17rem;
-    height: 100vh;
-    padding: 1.5rem 1.25rem;
-    background: var(--maroon, #7f1d1d);
-    box-shadow: -8px 0 40px rgba(0, 0, 0, 0.25);
-    overflow-y: auto;
+  .wrap {
+    display: block;
   }
+}
+
+.toggle {
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
+  z-index: 70;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  padding: 0;
+  border: 2px solid var(--maroon, #7f1d1d);
+  border-radius: 999px;
+  background: var(--cream-2, #fffaf0);
+  box-shadow: 4px 4px 0 rgba(127, 29, 29, 0.85);
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.toggle:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 rgba(127, 29, 29, 0.85);
+}
+
+.toggleIcon {
+  display: grid;
+  gap: 0.42rem;
+  width: 1.2rem;
+}
+
+.toggleIcon i {
+  display: block;
+  height: 2px;
+  background: var(--ink, #1f1f1f);
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.toggleIcon[data-open="true"] i:first-child {
+  transform: translateY(4px) rotate(45deg);
+}
+
+.toggleIcon[data-open="true"] i:last-child {
+  transform: translateY(-2px) rotate(-45deg);
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 65;
+  width: 17rem;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem 1.25rem;
+  background: var(--maroon, #7f1d1d);
+  box-shadow: -8px 0 40px rgba(0, 0, 0, 0.25);
+  overflow-y: auto;
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+}
+
+.sidebar[data-open="true"] {
+  transform: translateX(0);
 }
 
 .brandRow {
   display: flex;
   align-items: center;
-  margin-bottom: 1.5rem;
+  margin: 3rem 0 1.5rem;
 }
 
 .brandLogo {
