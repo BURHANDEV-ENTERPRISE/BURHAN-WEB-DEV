@@ -77,7 +77,9 @@
 /* Alternate a bold color per card instead of three identical cream
    cards — same rotating-color language as the Why-Us panels. */
 .grid > .card:nth-child(1) {
-  background: var(--peach, #ffb078);
+  background:
+    radial-gradient(rgba(127, 29, 29, 0.12) 1px, transparent 1px) 0 0 / 10px 10px,
+    var(--peach, #ffb078);
   border-color: rgba(127, 29, 29, 0.35);
 }
 
@@ -96,12 +98,16 @@
 }
 
 .grid > .card:nth-child(2) {
-  background: var(--maroon, #7f1d1d);
+  background:
+    radial-gradient(rgba(255, 246, 220, 0.14) 1px, transparent 1px) 0 0 / 10px 10px,
+    var(--maroon, #7f1d1d);
   border-color: var(--maroon-2, #963232);
 }
 
 .grid > .card:nth-child(3) {
-  background: var(--green, #21493f);
+  background:
+    radial-gradient(rgba(255, 246, 220, 0.14) 1px, transparent 1px) 0 0 / 10px 10px,
+    var(--green, #21493f);
   border-color: var(--green-2, #173a32);
 }
 
