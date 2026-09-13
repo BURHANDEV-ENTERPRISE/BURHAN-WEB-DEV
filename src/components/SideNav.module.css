@@ -100,20 +100,23 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.85rem 0.75rem 0.85rem 1.1rem;
-  border-radius: 12px;
+  padding: 0.8rem 0.7rem 0.8rem 1rem;
+  border: 2px solid var(--maroon, #7f1d1d);
+  border-radius: 10px;
   background: var(--peach, #ffb078);
   color: var(--maroon, #7f1d1d);
-  font-family: "Space Grotesk", sans-serif;
-  font-size: 0.95rem;
-  font-weight: 800;
-  text-transform: lowercase;
-  transition: background 0.18s ease, transform 0.18s ease;
+  box-shadow: 3px 3px 0 rgba(31, 31, 31, 0.35);
+  font-family: var(--font-bebas), "Impact", sans-serif;
+  font-size: 1.05rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  transition: background 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
 }
 
 .navPill:hover {
   background: var(--cream-2, #fffaf0);
-  transform: translateX(-3px);
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0 rgba(31, 31, 31, 0.35);
 }
 
 .navBadge {
@@ -121,6 +124,7 @@
   place-items: center;
   width: 1.6rem;
   height: 1.6rem;
+  border: 1.5px solid var(--maroon, #7f1d1d);
   border-radius: 999px;
   background: var(--cream, #fff6dc);
   color: var(--maroon, #7f1d1d);
@@ -152,19 +156,22 @@
   display: block;
   text-align: center;
   padding: 0.85rem 1rem;
+  border: 2px solid var(--cream, #fff6dc);
   border-radius: 10px;
   background: var(--ink, #1f1f1f);
   color: var(--cream, #fff6dc);
+  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.4);
   font-family: var(--font-bebas), "Impact", sans-serif;
   font-size: 1rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  transition: background 0.18s ease, transform 0.18s ease;
+  transition: background 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
 }
 
 .ctaBtn:hover {
   background: var(--green-2, #173a32);
-  transform: translateY(-2px);
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.4);
 }
 
 .bottomRow {
