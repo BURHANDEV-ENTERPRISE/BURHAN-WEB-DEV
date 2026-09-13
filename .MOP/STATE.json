@@ -11,8 +11,8 @@
   "session": {
     "actor": "amad",
     "authenticatedAt": "2026-09-13T10:02:27.152Z",
-    "lastActiveAt": "2026-09-13T14:49:23.659Z",
-    "expiresAt": "2026-09-14T14:49:23.665Z"
+    "lastActiveAt": "2026-09-13T15:16:36.544Z",
+    "expiresAt": "2026-09-14T15:16:36.553Z"
   },
   "sessionPolicy": {
     "enabled": true,
@@ -5356,7 +5356,31 @@
       "actor": "BURHAN-MOP",
       "kind": "merge-approved",
       "summary": "origin/dev/amad approved and merged to main."
+    },
+    {
+      "at": "2026-09-13T15:16:36.556Z",
+      "actor": "amad",
+      "agent": "nepi",
+      "agentRole": "design",
+      "agentId": "agent-nepi",
+      "kind": "memory",
+      "summary": "Shipped to main@059031c: reverted peach sections (Pricing/Team/Testimonials) back to neutral cream/sand per Amad, keeping Why-Us=green and Contact=maroon untouched as he wanted. Also shipped real image upload for Services: admin ServicesEditor now has a file input per service that uploads straight to GitHub (public/services/service-<i>-<timestamp>.<ext>, via new saveBinaryFile in githubContent.ts) and WorkSection.tsx renders the uploaded image via next/image fill in place of the fake browser-mockup wireframe, falling back to the wireframe when no image is set. Verified live: pricing bg back to rgb(255,246,220), zero errors on both main site and admin page"
+    },
+    {
+      "at": "2026-09-13T16:23:00.953Z",
+      "actor": "amad",
+      "agent": "nepi",
+      "agentRole": "design",
+      "agentId": "agent-nepi",
+      "kind": "memory",
+      "summary": "per Amad: CONVERT panel in Why-Us should be green, not peach. Used var(--green-2), a darker shade than the section's own var(--green) background, so the card still reads as a distinct shape thanks to the existing 2px maroon border + hard offset shadow rather than blending into the backdrop"
+    },
+    {
+      "at": "2026-09-13T16:23:53.664Z",
+      "actor": "BURHAN-MOP",
+      "kind": "merge-approved",
+      "summary": "origin/dev/amad approved and merged to main."
     }
   ],
-  "lastActiveAt": "2026-09-13T14:49:23.659Z"
+  "lastActiveAt": "2026-09-13T15:16:36.544Z"
 }

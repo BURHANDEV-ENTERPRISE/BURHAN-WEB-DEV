@@ -431,8 +431,8 @@ p {
 
 .work-panels article:nth-child(3) {
   margin-left: 4.8rem;
-  background: var(--peach);
-  color: var(--maroon);
+  background: var(--green-2);
+  color: var(--cream);
   transform: rotate(-1deg);
 }
 
