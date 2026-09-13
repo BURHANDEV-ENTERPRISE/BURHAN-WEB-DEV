@@ -14,7 +14,7 @@
 
 .toggle {
   position: fixed;
-  top: 1.5rem;
+  top: 1.25rem;
   right: 1.5rem;
   z-index: 70;
   display: inline-flex;

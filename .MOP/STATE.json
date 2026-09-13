@@ -11,8 +11,8 @@
   "session": {
     "actor": "amad",
     "authenticatedAt": "2026-09-13T10:02:27.152Z",
-    "lastActiveAt": "2026-09-13T16:45:06.210Z",
-    "expiresAt": "2026-09-14T16:45:06.211Z"
+    "lastActiveAt": "2026-09-13T16:53:59.031Z",
+    "expiresAt": "2026-09-14T16:53:59.032Z"
   },
   "sessionPolicy": {
     "enabled": true,
@@ -5452,7 +5452,31 @@
       "actor": "BURHAN-MOP",
       "kind": "merge-approved",
       "summary": "origin/dev/amad approved and merged to main."
+    },
+    {
+      "at": "2026-09-13T16:53:59.034Z",
+      "actor": "amad",
+      "agent": "nepi",
+      "agentRole": "design",
+      "agentId": "agent-nepi",
+      "kind": "memory",
+      "summary": "Shipped to main@8bccdd1: SideNav is now a toggle-triggered slide-in drawer (closed by default, opens only via its own toggle button) rather than a permanently visible column, per Amad. Reverted the padding-right bumps on Stats/TechStack/Pricing/Staff/WhyUs/Contact/Footer since content is full-width again by default with the drawer overlaying on top when opened. Verified live: closed transform translateX(272px), opens to translateX(0) on click, zero errors"
+    },
+    {
+      "at": "2026-09-13T16:57:28.833Z",
+      "actor": "amad",
+      "agent": "nepi",
+      "agentRole": "design",
+      "agentId": "agent-nepi",
+      "kind": "memory",
+      "summary": "per Amad: 'nav bar make it like the old one' - restored the BURHANDEV brand-lockup chip so it stays visible at desktop widths too (previously the entire top-shell was hidden at >=1180px). Only the small hamburger dropdown (NavMenu) is now hidden at that breakpoint instead, since SideNav's own toggle button takes over that role there - repositioned it to sit exactly where the old hamburger button used to (top:1.25rem instead of 1.5rem) so the header reads identically to before, just with the button now opening the new right-side drawer on wide screens"
+    },
+    {
+      "at": "2026-09-13T16:58:25.525Z",
+      "actor": "BURHAN-MOP",
+      "kind": "merge-approved",
+      "summary": "origin/dev/amad approved and merged to main."
     }
   ],
-  "lastActiveAt": "2026-09-13T16:45:06.210Z"
+  "lastActiveAt": "2026-09-13T16:53:59.031Z"
 }
