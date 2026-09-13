@@ -11,8 +11,8 @@
   "session": {
     "actor": "amad",
     "authenticatedAt": "2026-09-13T10:02:27.152Z",
-    "lastActiveAt": "2026-09-13T14:16:20.098Z",
-    "expiresAt": "2026-09-14T14:16:20.103Z"
+    "lastActiveAt": "2026-09-13T14:31:00.304Z",
+    "expiresAt": "2026-09-14T14:31:00.309Z"
   },
   "sessionPolicy": {
     "enabled": true,
@@ -5278,7 +5278,31 @@
       "agentId": "agent-nepi",
       "kind": "memory",
       "summary": "correction per Amad: the color variation he asked for was meant for SECTION backgrounds, not individual cards - reverted the pricing card per-card color rotation back to uniform cream, and instead alternate the section backgrounds themselves (Pricing=cream, Why-Us=sand, Team=cream, Testimonials=sand) so consecutive light sections no longer look identical. Also left-aligned the footer BURHANDEV wordmark (was centered) to match the nav row above it, with the back-to-top button now anchored to the right via justify-content:space-between instead of absolute positioning"
+    },
+    {
+      "at": "2026-09-13T14:28:57.595Z",
+      "actor": "BURHAN-MOP",
+      "kind": "merge-approved",
+      "summary": "origin/dev/amad approved and merged to main."
+    },
+    {
+      "at": "2026-09-13T14:31:00.314Z",
+      "actor": "amad",
+      "agent": "nepi",
+      "agentRole": "design",
+      "agentId": "agent-nepi",
+      "kind": "memory",
+      "summary": "Shipped correction to main@c6a6b07 per Amad clarifying his 'rotate the colors, not boring' feedback was about SECTION backgrounds, not card backgrounds. Reverted pricing cards to uniform cream (removed the peach/maroon/green per-card rotation). Instead alternate section backgrounds: Pricing=cream, Why-Us=sand, Team=cream, Testimonials=sand, using existing palette tokens so no two consecutive light sections share the same flat color. Also left-aligned the footer BURHANDEV wordmark to match the nav row above (was centered), back-to-top button now anchored right via flex space-between. Verified live: pricing bg rgb(255,246,220), why-us bg rgb(243,231,200), footer wordmark text-align left, zero errors"
+    },
+    {
+      "at": "2026-09-13T14:41:06.147Z",
+      "actor": "amad",
+      "agent": "nepi",
+      "agentRole": "design",
+      "agentId": "agent-nepi",
+      "kind": "memory",
+      "summary": "rotate section backgrounds through the BURHANDEV theme colors per Amad's request (peach, green, maroon) instead of just neutral cream/sand: Pricing=peach, Why-Us=green (dark, text flipped to cream, 2 of the 3 panel cards recolored maroon/peach so they don't blend into the new green backdrop), Team=peach, Contact=maroon (already was), Testimonials=peach (not green, since Testimonials sits directly above the footer which is already solid green - picking green there would have made 2 sections in a row match again)"
     }
   ],
-  "lastActiveAt": "2026-09-13T14:16:20.098Z"
+  "lastActiveAt": "2026-09-13T14:31:00.304Z"
 }
