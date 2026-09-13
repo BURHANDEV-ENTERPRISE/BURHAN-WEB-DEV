@@ -11,8 +11,8 @@
   "session": {
     "actor": "amad",
     "authenticatedAt": "2026-09-13T10:02:27.152Z",
-    "lastActiveAt": "2026-09-13T16:32:58.747Z",
-    "expiresAt": "2026-09-14T16:32:58.747Z"
+    "lastActiveAt": "2026-09-13T16:45:06.210Z",
+    "expiresAt": "2026-09-14T16:45:06.211Z"
   },
   "sessionPolicy": {
     "enabled": true,
@@ -5428,7 +5428,31 @@
       "actor": "BURHAN-MOP",
       "kind": "merge-approved",
       "summary": "origin/dev/amad approved and merged to main."
+    },
+    {
+      "at": "2026-09-13T16:45:06.214Z",
+      "actor": "amad",
+      "agent": "nepi",
+      "agentRole": "design",
+      "agentId": "agent-nepi",
+      "kind": "memory",
+      "summary": "Shipped to main@b09581a: new persistent right-side desktop sidebar (SideNav.tsx/.module.css) per Amad, modeled on https://three-circles-wbs.framer.website/ but mirrored right and restyled BURHANDEV maroon/peach/ink. Shows only at >=1180px, existing top-shell hamburger nav (unchanged) hides itself at the same breakpoint so only one nav shows at a time. Bumped padding-right on Stats/TechStack/Pricing/Staff/WhyUs/Contact/Footer at that breakpoint so content clears the sidebar; Hero/ScrubVideoSection left full-bleed, sidebar just overlays them like the existing header already does. Verified live at 1600px and 390px, zero errors, zero overflow"
+    },
+    {
+      "at": "2026-09-13T16:51:26.309Z",
+      "actor": "amad",
+      "agent": "nepi",
+      "agentRole": "design",
+      "agentId": "agent-nepi",
+      "kind": "memory",
+      "summary": "per Amad: the new right-side SideNav should only open when he opens it, not be permanently visible - converted it from a persistent always-on column to a toggle-triggered slide-in drawer (closed by default, translateX(100%) off-screen, animates in on click of a small circular toggle button fixed top-right that morphs into an X when open, closes on outside-click/Escape/link-click same as the existing hamburger dropdown pattern). Reverted the padding-right bumps added earlier on Stats/TechStack/Pricing/Staff/WhyUs/Contact/Footer since the drawer is now an overlay rather than permanent layout space - sections are back to full width by default"
+    },
+    {
+      "at": "2026-09-13T16:52:28.515Z",
+      "actor": "BURHAN-MOP",
+      "kind": "merge-approved",
+      "summary": "origin/dev/amad approved and merged to main."
     }
   ],
-  "lastActiveAt": "2026-09-13T16:32:58.747Z"
+  "lastActiveAt": "2026-09-13T16:45:06.210Z"
 }

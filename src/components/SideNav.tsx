@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import styles from "./SideNav.module.css";
 
@@ -18,46 +21,88 @@ const SOCIALS = [
 ];
 
 export default function SideNav() {
+  const [open, setOpen] = useState(false);
+  const wrapRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!open) return;
+    const onDown = (e: PointerEvent) => {
+      if (wrapRef.current && !wrapRef.current.contains(e.target as Node)) {
+        setOpen(false);
+      }
+    };
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    document.addEventListener("pointerdown", onDown);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("pointerdown", onDown);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [open]);
+
   return (
-    <aside className={styles.sidebar} aria-label="Primary navigation">
-      <div className={styles.brandRow}>
-        <Image
-          className={styles.brandLogo}
-          src="/brand/burhan-logo2.webp"
-          alt="BURHANDEV"
-          width={28}
-          height={28}
-        />
-      </div>
+    <div ref={wrapRef} className={styles.wrap}>
+      <button
+        type="button"
+        className={styles.toggle}
+        aria-expanded={open}
+        aria-haspopup="true"
+        aria-label={open ? "Close menu" : "Open navigation menu"}
+        onClick={() => setOpen((o) => !o)}
+      >
+        <span className={styles.toggleIcon} data-open={open} aria-hidden="true">
+          <i></i>
+          <i></i>
+        </span>
+      </button>
 
-      <nav className={styles.navList} aria-label="Section navigation">
-        {LINKS.map((l, i) => (
-          <a key={l.href} href={l.href} className={styles.navPill}>
-            <span>{l.label}</span>
-            <span className={styles.navBadge} aria-hidden="true">
-              {String(i + 1).padStart(2, "0")}
-            </span>
-          </a>
-        ))}
-      </nav>
+      <aside
+        className={styles.sidebar}
+        data-open={open}
+        aria-label="Primary navigation"
+        aria-hidden={!open}
+      >
+        <div className={styles.brandRow}>
+          <Image
+            className={styles.brandLogo}
+            src="/brand/burhan-logo2.webp"
+            alt="BURHANDEV"
+            width={28}
+            height={28}
+          />
+        </div>
 
-      <div className={styles.ctaBlock}>
-        <p className={styles.ctaText}>Got a project in mind?</p>
-        <a href="#contact" className={styles.ctaBtn}>
-          Start a project
-        </a>
-      </div>
-
-      <div className={styles.bottomRow}>
-        <span className={styles.copy}>&copy; 2026 BURHANDEV</span>
-        <div className={styles.socials}>
-          {SOCIALS.map((s) => (
-            <a key={s.label} href={s.href} target="_blank" rel="noreferrer" aria-label={s.label}>
-              {s.label}
+        <nav className={styles.navList} aria-label="Section navigation">
+          {LINKS.map((l, i) => (
+            <a key={l.href} href={l.href} className={styles.navPill} onClick={() => setOpen(false)}>
+              <span>{l.label}</span>
+              <span className={styles.navBadge} aria-hidden="true">
+                {String(i + 1).padStart(2, "0")}
+              </span>
             </a>
           ))}
+        </nav>
+
+        <div className={styles.ctaBlock}>
+          <p className={styles.ctaText}>Got a project in mind?</p>
+          <a href="#contact" className={styles.ctaBtn} onClick={() => setOpen(false)}>
+            Start a project
+          </a>
         </div>
-      </div>
-    </aside>
+
+        <div className={styles.bottomRow}>
+          <span className={styles.copy}>&copy; 2026 BURHANDEV</span>
+          <div className={styles.socials}>
+            {SOCIALS.map((s) => (
+              <a key={s.label} href={s.href} target="_blank" rel="noreferrer" aria-label={s.label}>
+                {s.label}
+              </a>
+            ))}
+          </div>
+        </div>
+      </aside>
+    </div>
   );
 }
