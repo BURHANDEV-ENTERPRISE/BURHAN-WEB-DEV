@@ -1,0 +1,20 @@
+[
+  {
+    "title": "Why we build websites like products, not brochures",
+    "date": "2026-01-12",
+    "excerpt": "A brochure sits there. A product has a job: get the visitor to act. Here's how that shift changes every decision we make, from layout to copy.",
+    "link": ""
+  },
+  {
+    "title": "The 5-day scope call that saves 3 weeks later",
+    "date": "2026-02-03",
+    "excerpt": "Most delays don't come from design or code. They come from scope nobody wrote down. Here's the one call we never skip anymore.",
+    "link": ""
+  },
+  {
+    "title": "Mobile-first isn't a checkbox, it's a different site",
+    "date": "2026-03-01",
+    "excerpt": "Shrinking a desktop layout down isn't mobile-first design. What we actually test on real devices before a single line of copy is final.",
+    "link": ""
+  }
+]
