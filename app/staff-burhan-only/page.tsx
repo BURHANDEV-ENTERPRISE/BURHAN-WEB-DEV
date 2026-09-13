@@ -7,6 +7,7 @@ import { checkCredentials, isUnlockedThisSession, markUnlockedThisSession, lockS
 import testimonialsDefault from "../../src/content/testimonials.json";
 import pricingDefault from "../../src/content/pricing.json";
 import servicesDefault from "../../src/content/services.json";
+import staffDefault from "../../src/content/staff.json";
 
 type Testimonial = { quote: string; name: string; role: string };
 type Testimonials = { rowA: Testimonial[]; rowB: Testimonial[] };
@@ -21,6 +22,7 @@ type Plan = {
   featured: boolean;
 };
 type Service = { label: string; sub: string; theme: string; featured?: boolean };
+type StaffMember = { name: string; role: string; tagline: string };
 
 const TOKEN_KEY = "burhandev_admin_pat";
 const THEMES = ["maroon", "navy", "teal", "amber", "slate"];
@@ -114,7 +116,7 @@ function SaveBar({
         Reload from GitHub
       </button>
       {status === "loading" && <span className={styles.statusLoading}>Loading…</span>}
-      {status === "saved" && <span className={styles.statusSaved}>Saved — site redeploys in ~1 min</span>}
+      {status === "saved" && <span className={styles.statusSaved}>Saved. Site redeploys in ~1 min</span>}
       {status === "error" && <span className={styles.statusError}>{error}</span>}
     </div>
   );
@@ -254,6 +256,47 @@ function ServicesEditor({ token }: { token: string }) {
   );
 }
 
+function StaffEditor({ token }: { token: string }) {
+  const { value, setValue, status, error, save, reload } = useContentEditor<StaffMember[]>(
+    "src/content/staff.json",
+    staffDefault as StaffMember[],
+    token
+  );
+
+  const update = (i: number, patch: Partial<StaffMember>) => {
+    setValue((v) => v.map((s, idx) => (idx === i ? { ...s, ...patch } : s)));
+  };
+  const remove = (i: number) => {
+    setValue((v) => v.filter((_, idx) => idx !== i));
+  };
+  const add = () => {
+    setValue((v) => [...v, { name: "", role: "", tagline: "" }]);
+  };
+
+  return (
+    <section className={styles.section}>
+      <h2 className={styles.sectionTitle}>Team</h2>
+      <p className={styles.helpText} style={{ marginBottom: "0.9rem" }}>
+        Shown on the site as a bold monogram card (first letters of the name), no photo needed.
+      </p>
+      <SaveBar status={status} error={error} onSave={() => save("Update team via /staff-burhan-only")} onReload={reload} />
+      {value.map((s, i) => (
+        <div key={i} className={styles.itemCard}>
+          <Field label="Name" value={s.name} onChange={(v) => update(i, { name: v })} />
+          <Field label="Role" value={s.role} onChange={(v) => update(i, { role: v })} />
+          <Field label="Tagline" value={s.tagline} onChange={(v) => update(i, { tagline: v })} textarea />
+          <button className={styles.btnGhost} onClick={() => remove(i)}>
+            Remove
+          </button>
+        </div>
+      ))}
+      <button className={styles.btnGhost} onClick={add}>
+        + Add team member
+      </button>
+    </section>
+  );
+}
+
 function LoginGate({ onUnlock }: { onUnlock: () => void }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -306,7 +349,7 @@ function LoginGate({ onUnlock }: { onUnlock: () => void }) {
             {failed && <p className={styles.statusError} style={{ marginTop: "0.6rem" }}>Wrong username or password.</p>}
           </form>
           <p className={styles.helpText} style={{ marginTop: "1.25rem" }}>
-            Client-side gate, not a real server login — see the note on the editor page for what
+            Client-side gate, not a real server login. See the note on the editor page for what
             that means.
           </p>
         </div>
@@ -382,15 +425,15 @@ export default function AdminPage() {
         </div>
 
         <div className={styles.infoBox}>
-          <strong>How this works:</strong> this site has no backend, so there is nothing behind
-          this page enforcing access — the GitHub Personal Access Token below is the real
-          security boundary (the login above just keeps the editor UI from casual visitors).
+          <strong>How this works:</strong> this site has no backend, so nothing behind this page
+          actually enforces access. The GitHub Personal Access Token below is the real security
+          boundary; the login above just keeps the editor UI away from casual visitors.
           Create a <em>fine-grained</em> token scoped only to the
           BURHANDEV-ENTERPRISE/BURHAN-WEB-DEV repo, with <strong>Contents: Read and write</strong>{" "}
           permission and nothing else. It&apos;s stored only in this browser&apos;s local storage
           and sent only to api.github.com. Saving here commits straight to <code>main</code> and
-          redeploys automatically — there&apos;s no review step like the rest of this
-          project&apos;s workflow.
+          redeploys automatically, with no review step like the rest of this project&apos;s
+          workflow.
         </div>
 
         <div className={styles.tokenRow}>
@@ -414,6 +457,7 @@ export default function AdminPage() {
           <>
             <ServicesEditor token={token} />
             <PricingEditor token={token} />
+            <StaffEditor token={token} />
             <TestimonialsEditor token={token} />
           </>
         )}

@@ -99,10 +99,6 @@ export default function WorkSection() {
 
         <div className={styles.header}>
           <h2 className={styles.heading}>Our<br />Services</h2>
-          <a href="#contact" className={styles.ctaBtn} aria-label="Contact BURHANDEV">
-            <div className={styles.ctaBorder} />
-            <span className={styles.ctaLabel}>Say Hello</span>
-          </a>
         </div>
 
         <div className={styles.grid}>
