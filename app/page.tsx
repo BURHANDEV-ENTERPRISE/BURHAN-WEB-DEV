@@ -3,6 +3,7 @@ import ScrollEffects from "../src/components/ScrollEffects";
 import HeroSection from "../src/components/HeroSection";
 import ScrubVideoSection from "../src/components/ScrubVideoSection";
 import NavMenu from "../src/components/NavMenu";
+import SideNav from "../src/components/SideNav";
 import WorkSection from "../src/components/WorkSection";
 import MarqueeStrip from "../src/components/MarqueeStrip";
 import StatsSection from "../src/components/StatsSection";
@@ -27,6 +28,8 @@ export default function Home() {
         </a>
         <NavMenu />
       </header>
+
+      <SideNav />
 
       <main>
         <HeroSection />
