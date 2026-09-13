@@ -286,6 +286,28 @@ p {
   outline: none;
 }
 
+.contact-card__icon {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  margin-bottom: 0.3rem;
+  border: 1.5px solid rgba(255, 246, 220, 0.35);
+  border-radius: 999px;
+  font-family: var(--font-bebas), "Impact", sans-serif;
+  font-size: 1.3rem;
+  color: var(--peach, #ffb078);
+  background: rgba(255, 246, 220, 0.08);
+  transition: background 0.22s ease, border-color 0.22s ease, color 0.22s ease;
+}
+
+.contact-card:hover .contact-card__icon,
+.contact-card:focus-visible .contact-card__icon {
+  background: rgba(127, 29, 29, 0.08);
+  border-color: rgba(127, 29, 29, 0.3);
+  color: var(--maroon, #7f1d1d);
+}
+
 .contact-card__label {
   font-family: var(--font-bebas), "Impact", sans-serif;
   font-size: 0.78rem;
@@ -562,6 +584,30 @@ p {
   letter-spacing: -0.04em;
   text-transform: uppercase;
   color: #fff6dc;
+}
+
+.site-footer__top-link {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  flex-shrink: 0;
+  border: 2px solid rgba(255, 246, 220, 0.4);
+  border-radius: 999px;
+  font-size: 1.1rem;
+  color: #fff6dc;
+  transition: border-color 0.2s ease, transform 0.2s ease, background 0.2s ease;
+}
+
+.site-footer__top-link:hover {
+  border-color: #fff6dc;
+  background: rgba(255, 246, 220, 0.1);
+  transform: translateY(-50%) translateY(-3px);
 }
 
 .site-footer__bottom {

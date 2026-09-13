@@ -86,11 +86,13 @@ export default function Home() {
           <p>Send us a brief scope, deadline, and style references. We&apos;ll map out the next step.</p>
           <div className="contact-cards">
             <a className="contact-card" href="mailto:sales@burhan.my">
+              <span className="contact-card__icon" aria-hidden="true">$</span>
               <span className="contact-card__label">Sales</span>
               <span className="contact-card__email">sales@burhan.my</span>
               <span className="contact-card__hint">New projects &amp; quotes <span aria-hidden="true">→</span></span>
             </a>
             <a className="contact-card" href="mailto:support@burhan.my">
+              <span className="contact-card__icon" aria-hidden="true">?</span>
               <span className="contact-card__label">Support</span>
               <span className="contact-card__email">support@burhan.my</span>
               <span className="contact-card__hint">Existing projects &amp; help <span aria-hidden="true">→</span></span>
@@ -125,6 +127,9 @@ export default function Home() {
           </div>
           <div className="site-footer__brand">
             <h2 className="site-footer__wordmark">BURHANDEV</h2>
+            <a href="#top" className="site-footer__top-link" aria-label="Back to top">
+              <span aria-hidden="true">&uarr;</span>
+            </a>
           </div>
           <div className="site-footer__bottom">
             <p className="site-footer__tagline">DESIGN TO DISRUPT.</p>
