@@ -374,7 +374,7 @@ p {
   gap: 2.5rem;
   align-items: center;
   min-height: 90vh;
-  background: var(--cream);
+  background: var(--sand);
   border-top: 1px solid rgba(127, 29, 29, 0.14);
 }
 
@@ -567,17 +567,16 @@ p {
 }
 
 .site-footer__brand {
-  position: relative;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  gap: 1rem;
   border-top: 1px solid rgba(255, 246, 220, 0.15);
   padding-top: 1.5rem;
 }
 
 .site-footer__wordmark {
-  width: 100%;
-  text-align: center;
+  text-align: left;
   font-size: 7vw;
   font-weight: 900;
   line-height: 1;
@@ -587,10 +586,6 @@ p {
 }
 
 .site-footer__top-link {
-  position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -607,7 +602,7 @@ p {
 .site-footer__top-link:hover {
   border-color: #fff6dc;
   background: rgba(255, 246, 220, 0.1);
-  transform: translateY(-50%) translateY(-3px);
+  transform: translateY(-3px);
 }
 
 .site-footer__bottom {
