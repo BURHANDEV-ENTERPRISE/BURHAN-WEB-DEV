@@ -11,8 +11,8 @@
   "session": {
     "actor": "amad",
     "authenticatedAt": "2026-09-13T10:02:27.152Z",
-    "lastActiveAt": "2026-09-13T13:19:25.275Z",
-    "expiresAt": "2026-09-14T13:19:25.276Z"
+    "lastActiveAt": "2026-09-13T13:39:03.038Z",
+    "expiresAt": "2026-09-14T13:39:03.039Z"
   },
   "sessionPolicy": {
     "enabled": true,
@@ -5212,7 +5212,31 @@
       "actor": "BURHAN-MOP",
       "kind": "merge-approved",
       "summary": "origin/dev/amad approved and merged to main."
+    },
+    {
+      "at": "2026-09-13T13:39:03.041Z",
+      "actor": "amad",
+      "agent": "nepi",
+      "agentRole": "design",
+      "agentId": "agent-nepi",
+      "kind": "memory",
+      "summary": "Shipped design pass to main@c6a3de2: bold neo-brutalist header/hamburger + numbered dropdown nav (thick border + hard offset shadow, matching Why-Us panel language), subtle divider borders between flat-color sections, higher-contrast pricing cards, removed generic 'Say Hello' CTA from Services, rewrote em-dash sentences in admin copy to sound less AI, and added a new Team section (monogram-block card for founder NAIM, no real photo, content-driven via new staff.json + admin StaffEditor for future team members). Verified live on dev.burhan.my, zero console errors, zero failed requests"
+    },
+    {
+      "at": "2026-09-13T13:55:37.764Z",
+      "actor": "amad",
+      "agent": "nepi",
+      "agentRole": "design",
+      "agentId": "agent-nepi",
+      "kind": "memory",
+      "summary": "rotate pricing card colors instead of three identical cream cards - card 1 peach, card 2 (featured) solid maroon, card 3 solid green, same rotating bold-color language as the Why-Us panels, per Amad's feedback that the pricing contrast fix looked monotonous"
+    },
+    {
+      "at": "2026-09-13T13:56:22.178Z",
+      "actor": "BURHAN-MOP",
+      "kind": "merge-approved",
+      "summary": "origin/dev/amad approved and merged to main."
     }
   ],
-  "lastActiveAt": "2026-09-13T13:19:25.275Z"
+  "lastActiveAt": "2026-09-13T13:39:03.038Z"
 }

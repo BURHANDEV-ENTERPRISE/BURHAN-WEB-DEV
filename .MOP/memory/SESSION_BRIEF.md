@@ -1,6 +1,6 @@
 # MOP Session Brief
 
-Updated: 2026-09-13T13:36:51.294Z
+Updated: 2026-09-13T13:55:37.777Z
 Actor: amad
 Active agent: nepi (design)
 Current month: 2026-09
@@ -15,8 +15,6 @@ Current month: 2026-09
 
 ## Recent Memory
 
-- 2026-09-06T14:02:45.831Z - anisweb (browser): Hardened content editor to main@53fc7c1 per Amad's request: moved /admin to hidden /staff-burhan-only (old path now 404s, excluded from robots.txt), added client-side login gate (username AdminBurhan, PBKDF2-SHA256 hashed password, session-scoped unlock, no plaintext in source). Verified live: login gate blocks access without credentials, real credentials unlock it, secret scan passed
-- 2026-09-06T14:10:12.113Z - qih (architect): restyle /staff-burhan-only login gate and content editor with the BURHANDEV brand design system (maroon/cream/orange palette, Bebas Neue headings, dot-grid card texture, Space Grotesk body font) instead of generic inline styles - moved styling into a proper CSS module (admin.module.css) matching the pattern used by the rest of the site's components. Verified locally: login/unlock/logout flow unchanged, no visual/behavioral regressions
 - 2026-09-06T14:13:05.900Z - qih (architect): Restyled /staff-burhan-only to match BURHANDEV brand (main@48da8cd): maroon/cream/orange palette, Bebas Neue headings, dot-grid card texture, proper CSS module instead of inline styles. Verified live: login/unlock flow works correctly, matches site's visual identity
 - 2026-09-06T14:28:32.537Z - qih (architect): TechStackSection: add magnetic cursor-tilt + brand-color spotlight glow on hover for each badge (mouse-position-driven rotateX/rotateY + radial-gradient glow using each tool's own color), and add 6 more tool badges (Playwright, ESLint, GitHub Actions, Docker, PostgreSQL, Stripe) - 12 to 18 total. Respects prefers-reduced-motion (tilt/glow disabled)
 - 2026-09-06T14:30:54.867Z - qih (architect): Shipped TechStackSection interactivity to main@1808636: magnetic cursor-tilt + brand-color spotlight glow per badge, 6 new tools added (Playwright, ESLint, GitHub Actions, Docker, PostgreSQL, Stripe) - 12 to 18 total. Verified live: 18 badges render, zero failed requests
@@ -35,3 +33,5 @@ Current month: 2026-09
 - 2026-09-13T13:16:00.109Z - nepi (design): revert Web3Forms contact form per Amad's request - removed ContactForm.tsx/.module.css, restored the original two mailto cards (Sales/Support) in the contact section, reverted CSP connect-src to drop api.web3forms.com
 - 2026-09-13T13:18:37.154Z - nepi (design): Reverted the Web3Forms contact form per Amad's explicit request: deleted ContactForm.tsx/.module.css, restored the original two mailto cards (Sales/Support) in the #contact section, removed api.web3forms.com from CSP connect-src. Verified locally (lint/tsc/build clean, bundle size back to 12.4kB) and live on dev.burhan.my (2 mailto cards present, no form fields, zero CSP violations). Shipped main@96fd681
 - 2026-09-13T13:36:51.282Z - nepi (design): design pass: bold neo-brutalist redesign of the floating header/hamburger nav + numbered dropdown menu, subtle section-divider borders between flat-color sections, higher-contrast pricing cards (stronger borders + text opacity), removed the generic 'Say Hello' CTA from Services, rewrote AI-sounding em-dash sentences in the admin panel to plain punctuation, and added a new Team section (monogram-block card, no real photo, content-driven via a new staff.json + admin StaffEditor)
+- 2026-09-13T13:39:03.042Z - nepi (design): Shipped design pass to main@c6a3de2: bold neo-brutalist header/hamburger + numbered dropdown nav (thick border + hard offset shadow, matching Why-Us panel language), subtle divider borders between flat-color sections, higher-contrast pricing cards, removed generic 'Say Hello' CTA from Services, rewrote em-dash sentences in admin copy to sound less AI, and added a new Team section (monogram-block card for founder NAIM, no real photo, content-driven via new staff.json + admin StaffEditor for future team members). Verified live on dev.burhan.my, zero console errors, zero failed requests
+- 2026-09-13T13:55:37.765Z - nepi (design): rotate pricing card colors instead of three identical cream cards - card 1 peach, card 2 (featured) solid maroon, card 3 solid green, same rotating bold-color language as the Why-Us panels, per Amad's feedback that the pricing contrast fix looked monotonous
