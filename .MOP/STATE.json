@@ -11,8 +11,8 @@
   "session": {
     "actor": "amad",
     "authenticatedAt": "2026-09-13T10:02:27.152Z",
-    "lastActiveAt": "2026-09-13T17:08:48.431Z",
-    "expiresAt": "2026-09-14T17:08:48.432Z"
+    "lastActiveAt": "2026-09-13T17:19:47.915Z",
+    "expiresAt": "2026-09-14T17:19:47.916Z"
   },
   "sessionPolicy": {
     "enabled": true,
@@ -5518,7 +5518,31 @@
       "agentId": "agent-nepi",
       "kind": "memory",
       "summary": "per Amad: hide the new SideNav toggle button during the Hero + intro video, same as the existing header always did - extended ScrollEffects.tsx's existing header-hide scroll listener (was only targeting .top-shell) to also toggle is-hidden on the new .sidenav-toggle button, reusing the exact same single source of truth instead of duplicating scroll-listener logic. Button now stays hidden until the 'Our Services' section reaches the top of the viewport, matching the original header's behavior exactly"
+    },
+    {
+      "at": "2026-09-13T17:18:28.780Z",
+      "actor": "BURHAN-MOP",
+      "kind": "merge-approved",
+      "summary": "origin/dev/amad approved and merged to main."
+    },
+    {
+      "at": "2026-09-13T17:19:47.920Z",
+      "actor": "amad",
+      "agent": "nepi",
+      "agentRole": "design",
+      "agentId": "agent-nepi",
+      "kind": "memory",
+      "summary": "Shipped to main@e7347c5 per Amad: SideNav toggle button now hides during the Hero+intro video and only appears once 'Our Services' reaches the top of viewport, matching the original header's exact behavior. Extended ScrollEffects.tsx's existing single scroll-listener (was only targeting .top-shell) to also toggle .sidenav-toggle, avoiding duplicated scroll logic. Verified live: opacity 0 during hero, opacity 1 at services, zero errors"
+    },
+    {
+      "at": "2026-09-13T17:24:00.513Z",
+      "actor": "amad",
+      "agent": "nepi",
+      "agentRole": "design",
+      "agentId": "agent-nepi",
+      "kind": "memory",
+      "summary": "per Amad: sidebar nav pills should rotate through the full BURHANDEV palette (hijau/merah/sand/peach), not stay one flat peach color for all 5 - cycled the 5 pills through peach, green, sand, maroon-2 (a lighter red than the sidebar's own maroon bg so it stays visually distinct), peach, with matching cream/maroon text flips per pill for contrast"
     }
   ],
-  "lastActiveAt": "2026-09-13T17:08:48.431Z"
+  "lastActiveAt": "2026-09-13T17:19:47.915Z"
 }
