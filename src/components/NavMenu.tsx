@@ -52,8 +52,11 @@ export default function NavMenu() {
       </button>
       {open && (
         <nav className="nav-menu__panel" aria-label="Section navigation">
-          {LINKS.map((l) => (
+          {LINKS.map((l, i) => (
             <a key={l.href} href={l.href} onClick={() => setOpen(false)}>
+              <span className="nav-menu__index" aria-hidden="true">
+                {String(i + 1).padStart(2, "0")}
+              </span>
               {l.label}
             </a>
           ))}

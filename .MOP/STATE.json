@@ -11,8 +11,8 @@
   "session": {
     "actor": "amad",
     "authenticatedAt": "2026-09-13T10:02:27.152Z",
-    "lastActiveAt": "2026-09-13T13:07:58.478Z",
-    "expiresAt": "2026-09-14T13:07:58.479Z"
+    "lastActiveAt": "2026-09-13T13:19:25.275Z",
+    "expiresAt": "2026-09-14T13:19:25.276Z"
   },
   "sessionPolicy": {
     "enabled": true,
@@ -5173,7 +5173,40 @@
       "agentId": "agent-nepi",
       "kind": "memory",
       "summary": "revert Web3Forms contact form per Amad's request - removed ContactForm.tsx/.module.css, restored the original two mailto cards (Sales/Support) in the contact section, reverted CSP connect-src to drop api.web3forms.com"
+    },
+    {
+      "at": "2026-09-13T13:17:03.031Z",
+      "actor": "BURHAN-MOP",
+      "kind": "merge-approved",
+      "summary": "origin/dev/amad approved and merged to main."
+    },
+    {
+      "at": "2026-09-13T13:18:37.154Z",
+      "actor": "amad",
+      "agent": "nepi",
+      "agentRole": "design",
+      "agentId": "agent-nepi",
+      "kind": "memory",
+      "summary": "Reverted the Web3Forms contact form per Amad's explicit request: deleted ContactForm.tsx/.module.css, restored the original two mailto cards (Sales/Support) in the #contact section, removed api.web3forms.com from CSP connect-src. Verified locally (lint/tsc/build clean, bundle size back to 12.4kB) and live on dev.burhan.my (2 mailto cards present, no form fields, zero CSP violations). Shipped main@96fd681"
+    },
+    {
+      "at": "2026-09-13T13:19:25.281Z",
+      "actor": "amad",
+      "agent": "nepi",
+      "agentRole": "design",
+      "agentId": "agent-nepi",
+      "kind": "agent-route",
+      "summary": "Routed task to nepi: Matched keywords for Design: design, color."
+    },
+    {
+      "at": "2026-09-13T13:36:51.281Z",
+      "actor": "amad",
+      "agent": "nepi",
+      "agentRole": "design",
+      "agentId": "agent-nepi",
+      "kind": "memory",
+      "summary": "design pass: bold neo-brutalist redesign of the floating header/hamburger nav + numbered dropdown menu, subtle section-divider borders between flat-color sections, higher-contrast pricing cards (stronger borders + text opacity), removed the generic 'Say Hello' CTA from Services, rewrote AI-sounding em-dash sentences in the admin panel to plain punctuation, and added a new Team section (monogram-block card, no real photo, content-driven via a new staff.json + admin StaffEditor)"
     }
   ],
-  "lastActiveAt": "2026-09-13T13:07:58.478Z"
+  "lastActiveAt": "2026-09-13T13:19:25.275Z"
 }

@@ -8,6 +8,7 @@ import MarqueeStrip from "../src/components/MarqueeStrip";
 import StatsSection from "../src/components/StatsSection";
 import TechStackSection from "../src/components/TechStackSection";
 import PricingSection from "../src/components/PricingSection";
+import StaffSection from "../src/components/StaffSection";
 import TestimonialsSection from "../src/components/TestimonialsSection";
 
 export default function Home() {
@@ -76,6 +77,8 @@ export default function Home() {
             </article>
           </div>
         </section>
+
+        <StaffSection />
 
         <section id="contact" className="contact-section reveal" aria-labelledby="contact-title">
           <p className="eyebrow">Start</p>

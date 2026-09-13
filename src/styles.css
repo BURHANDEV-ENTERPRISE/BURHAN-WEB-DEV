@@ -113,14 +113,23 @@ p {
   justify-self: start;
   gap: 0.7rem;
   min-height: 3rem;
-  padding: 0.42rem 0.8rem 0.42rem 0.42rem;
-  border: 1px solid rgba(127, 29, 29, 0.24);
+  padding: 0.42rem 1rem 0.42rem 0.42rem;
+  border: 2px solid var(--maroon);
+  border-radius: 10px;
   /* Header fixed: backdrop-filter dibuang (re-blur setiap frame scroll);
      latar hampir legap memberi rupa sama. */
-  background: rgba(255, 250, 240, 0.94);
+  background: var(--cream-2);
+  box-shadow: 4px 4px 0 rgba(127, 29, 29, 0.85);
   color: var(--maroon);
   font-size: 0.9rem;
   font-weight: 950;
+  letter-spacing: 0.02em;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.brand-lockup:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 rgba(127, 29, 29, 0.85);
 }
 
 .brand-lockup__logo {
@@ -138,17 +147,17 @@ p {
   width: 3rem;
   height: 3rem;
   padding: 0;
-  border: 1px solid rgba(127, 29, 29, 0.16);
+  border: 2px solid var(--maroon);
   border-radius: 999px;
   background: var(--cream-2);
-  box-shadow: 0 1rem 2.8rem rgba(127, 29, 29, 0.12);
+  box-shadow: 4px 4px 0 rgba(127, 29, 29, 0.85);
   cursor: pointer;
-  transition: transform 0.15s ease, box-shadow 0.2s ease;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
 .menu-capsule:hover {
-  transform: scale(1.06);
-  box-shadow: 0 1rem 3rem rgba(127, 29, 29, 0.2);
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 rgba(127, 29, 29, 0.85);
 }
 
 /* Wrapper menu + panel pilihan section */
@@ -160,32 +169,50 @@ p {
 
 .nav-menu__panel {
   position: absolute;
-  top: calc(100% + 10px);
+  top: calc(100% + 12px);
   right: 0;
-  min-width: 12.5rem;
+  min-width: 14.5rem;
   display: flex;
   flex-direction: column;
-  padding: 0.45rem;
-  background: rgba(255, 250, 240, 0.97);
-  border: 1px solid rgba(127, 29, 29, 0.22);
-  border-radius: 12px;
-  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.3);
+  gap: 0.15rem;
+  padding: 0.6rem;
+  background: var(--cream-2);
+  border: 2px solid var(--maroon);
+  border-radius: 14px;
+  box-shadow: 5px 5px 0 rgba(127, 29, 29, 0.85);
   animation: navPanelIn 0.18s ease;
 }
 
 .nav-menu__panel a {
-  padding: 0.68rem 0.95rem;
-  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.85rem 1rem;
+  border-radius: 9px;
   color: var(--maroon);
-  font-size: 0.92rem;
-  font-weight: 850;
-  letter-spacing: 0.06em;
+  font-size: 1rem;
+  font-weight: 900;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
-  transition: background 0.15s ease;
+  transition: background 0.15s ease, color 0.15s ease, padding-left 0.15s ease;
 }
 
 .nav-menu__panel a:hover {
-  background: rgba(127, 29, 29, 0.09);
+  background: var(--maroon);
+  color: var(--cream);
+  padding-left: 1.2rem;
+}
+
+.nav-menu__panel a:hover .nav-menu__index {
+  color: var(--peach);
+}
+
+.nav-menu__index {
+  font-family: var(--font-bebas), "Impact", sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  color: var(--orange);
+  transition: color 0.15s ease;
 }
 
 @keyframes navPanelIn {
@@ -326,6 +353,7 @@ p {
   align-items: center;
   min-height: 90vh;
   background: var(--cream);
+  border-top: 1px solid rgba(127, 29, 29, 0.14);
 }
 
 .work-section::before {
@@ -413,6 +441,7 @@ p {
   text-align: center;
   background: var(--maroon);
   color: var(--cream);
+  border-top: 1px solid rgba(255, 246, 220, 0.12);
 }
 
 .contact-section .eyebrow,

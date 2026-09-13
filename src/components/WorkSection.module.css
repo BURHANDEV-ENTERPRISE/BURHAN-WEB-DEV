@@ -56,48 +56,6 @@
   margin: 0;
 }
 
-/* ── "Say Hello" CTA ── */
-.ctaBtn {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 120px;
-  padding: 10px 20px;
-  border-radius: 6px;
-  cursor: pointer;
-  text-decoration: none;
-  flex-shrink: 0;
-  align-self: flex-start;
-}
-
-@media (min-width: 768px) { .ctaBtn { align-self: center; } }
-
-.ctaBorder {
-  position: absolute;
-  inset: 0;
-  border-radius: 6px;
-  border: 1px solid rgba(255,255,255,0.55);
-  backdrop-filter: blur(10px);
-  background: rgba(255,255,255,0.04);
-  transition: background 0.2s, border-color 0.2s;
-}
-
-.ctaBtn:hover .ctaBorder {
-  background: rgba(255,255,255,0.10);
-  border-color: rgba(255,255,255,0.85);
-}
-
-.ctaLabel {
-  position: relative;
-  z-index: 1;
-  font-family: var(--font-bebas), "Impact", sans-serif;
-  font-size: 1.15rem;
-  letter-spacing: 0.1em;
-  color: #fff;
-  white-space: nowrap;
-}
-
 /* ── 5-col bento grid — this defines end positions ── */
 .grid {
   flex: 1;
