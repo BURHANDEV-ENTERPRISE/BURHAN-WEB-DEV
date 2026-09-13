@@ -114,9 +114,41 @@
 }
 
 .navPill:hover {
-  background: var(--cream-2, #fffaf0);
   transform: translate(-2px, -2px);
   box-shadow: 5px 5px 0 rgba(31, 31, 31, 0.35);
+}
+
+/* Rotate through the BURHANDEV palette instead of one flat color per pill */
+.navList > .navPill:nth-child(2) {
+  background: var(--green, #21493f);
+  color: var(--cream, #fff6dc);
+  border-color: var(--cream, #fff6dc);
+}
+
+.navList > .navPill:nth-child(3) {
+  background: var(--sand, #f3e7c8);
+}
+
+.navList > .navPill:nth-child(4) {
+  background: var(--maroon-2, #963232);
+  color: var(--cream, #fff6dc);
+  border-color: var(--cream, #fff6dc);
+}
+
+.navList > .navPill:nth-child(2):hover,
+.navList > .navPill:nth-child(4):hover {
+  background: var(--peach, #ffb078);
+  color: var(--maroon, #7f1d1d);
+  border-color: var(--maroon, #7f1d1d);
+}
+
+.navList > .navPill:nth-child(3):hover {
+  background: var(--cream-2, #fffaf0);
+}
+
+.navList > .navPill:nth-child(1):hover,
+.navList > .navPill:nth-child(5):hover {
+  background: var(--cream-2, #fffaf0);
 }
 
 .navBadge {
@@ -131,6 +163,11 @@
   font-family: var(--font-bebas), "Impact", sans-serif;
   font-size: 0.7rem;
   letter-spacing: 0.02em;
+}
+
+.navList > .navPill:nth-child(2) .navBadge,
+.navList > .navPill:nth-child(4) .navBadge {
+  border-color: var(--cream, #fff6dc);
 }
 
 .ctaBlock {
