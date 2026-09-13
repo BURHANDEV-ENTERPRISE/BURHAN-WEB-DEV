@@ -91,10 +91,10 @@ p {
   transition: opacity 0.45s ease, transform 0.45s ease;
 }
 
-/* SideNav takes over navigation from here up — same single-nav rule as the
-   reference this was modeled on, which also just showed one or the other. */
+/* SideNav's own toggle takes over from the hamburger dropdown here up —
+   the brand chip stays put, exactly like the header always looked. */
 @media (min-width: 1180px) {
-  .top-shell {
+  .nav-menu {
     display: none;
   }
 }
