@@ -11,8 +11,8 @@
   "session": {
     "actor": "amad",
     "authenticatedAt": "2026-09-13T10:02:27.152Z",
-    "lastActiveAt": "2026-09-13T13:57:46.525Z",
-    "expiresAt": "2026-09-14T13:57:46.526Z"
+    "lastActiveAt": "2026-09-13T14:16:20.098Z",
+    "expiresAt": "2026-09-14T14:16:20.103Z"
   },
   "sessionPolicy": {
     "enabled": true,
@@ -5254,7 +5254,31 @@
       "agentId": "agent-nepi",
       "kind": "memory",
       "summary": "restored a footer back-to-top button beside the wordmark (matching the site's original fuller footer design before it was progressively stripped to a lone wordmark), added small icon badges to the two Contact mailto cards for more visual weight without turning them into a form, and added the site's small dot-grid texture to the pricing cards (peach/maroon/green) so the two solid-color cards read as more than flat blocks, per Amad's feedback"
+    },
+    {
+      "at": "2026-09-13T14:14:40.673Z",
+      "actor": "BURHAN-MOP",
+      "kind": "merge-approved",
+      "summary": "origin/dev/amad approved and merged to main."
+    },
+    {
+      "at": "2026-09-13T14:16:20.108Z",
+      "actor": "amad",
+      "agent": "nepi",
+      "agentRole": "design",
+      "agentId": "agent-nepi",
+      "kind": "memory",
+      "summary": "Shipped to main@74492c5 per Amad's follow-up feedback on the design pass: (1) restored a back-to-top button beside the footer wordmark - git history showed the footer originally had nav+social+wordmark+back-to-top, which had been progressively stripped down to a lone wordmark; (2) added small circular icon badges ($/?) to the Contact Sales/Support mailto cards for more visual weight, explicitly avoiding form-like input fields; (3) added the site's small dot-grid texture to all 3 pricing cards so the solid maroon/green cards read as textured blocks rather than flat color, addressing feedback that 2 of the 3 rotated colors still felt too similar/boring. Verified live, zero errors, zero failed requests, no mobile overflow"
+    },
+    {
+      "at": "2026-09-13T14:28:02.028Z",
+      "actor": "amad",
+      "agent": "nepi",
+      "agentRole": "design",
+      "agentId": "agent-nepi",
+      "kind": "memory",
+      "summary": "correction per Amad: the color variation he asked for was meant for SECTION backgrounds, not individual cards - reverted the pricing card per-card color rotation back to uniform cream, and instead alternate the section backgrounds themselves (Pricing=cream, Why-Us=sand, Team=cream, Testimonials=sand) so consecutive light sections no longer look identical. Also left-aligned the footer BURHANDEV wordmark (was centered) to match the nav row above it, with the back-to-top button now anchored to the right via justify-content:space-between instead of absolute positioning"
     }
   ],
-  "lastActiveAt": "2026-09-13T13:57:46.525Z"
+  "lastActiveAt": "2026-09-13T14:16:20.098Z"
 }
