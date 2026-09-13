@@ -11,8 +11,8 @@
   "session": {
     "actor": "amad",
     "authenticatedAt": "2026-09-13T10:02:27.152Z",
-    "lastActiveAt": "2026-09-13T16:53:59.031Z",
-    "expiresAt": "2026-09-14T16:53:59.032Z"
+    "lastActiveAt": "2026-09-13T17:00:20.088Z",
+    "expiresAt": "2026-09-14T17:00:20.088Z"
   },
   "sessionPolicy": {
     "enabled": true,
@@ -5470,7 +5470,31 @@
       "agentId": "agent-nepi",
       "kind": "memory",
       "summary": "per Amad: 'nav bar make it like the old one' - restored the BURHANDEV brand-lockup chip so it stays visible at desktop widths too (previously the entire top-shell was hidden at >=1180px). Only the small hamburger dropdown (NavMenu) is now hidden at that breakpoint instead, since SideNav's own toggle button takes over that role there - repositioned it to sit exactly where the old hamburger button used to (top:1.25rem instead of 1.5rem) so the header reads identically to before, just with the button now opening the new right-side drawer on wide screens"
+    },
+    {
+      "at": "2026-09-13T16:58:25.525Z",
+      "actor": "BURHAN-MOP",
+      "kind": "merge-approved",
+      "summary": "origin/dev/amad approved and merged to main."
+    },
+    {
+      "at": "2026-09-13T17:00:20.092Z",
+      "actor": "amad",
+      "agent": "nepi",
+      "agentRole": "design",
+      "agentId": "agent-nepi",
+      "kind": "memory",
+      "summary": "Shipped to main@ca2d3cd per Amad's 'nav bar make it like the old one': restored the BURHANDEV brand-lockup chip on desktop widths (was fully hidden at >=1180px alongside the hamburger dropdown). Now only the small NavMenu dropdown hides at that breakpoint, SideNav's own toggle button takes its place at the exact same position (top:1.25rem right:1.5rem), so the header looks identical to before at every screen size. Verified live, zero errors, mobile unaffected"
+    },
+    {
+      "at": "2026-09-13T17:06:13.225Z",
+      "actor": "amad",
+      "agent": "nepi",
+      "agentRole": "design",
+      "agentId": "agent-nepi",
+      "kind": "memory",
+      "summary": "per Amad's 'make it use the burhan theme': restyled the SideNav's nav pills and CTA button to match the neo-brutalist look used everywhere else on the site (2px maroon/cream borders, hard offset box-shadow, Bebas Neue uppercase text) instead of the plain borderless rounded pills copied directly from the reference site, which read too soft/generic against the rest of the page"
     }
   ],
-  "lastActiveAt": "2026-09-13T16:53:59.031Z"
+  "lastActiveAt": "2026-09-13T17:00:20.088Z"
 }
