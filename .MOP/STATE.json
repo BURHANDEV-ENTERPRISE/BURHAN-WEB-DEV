@@ -11,8 +11,8 @@
   "session": {
     "actor": "amad",
     "authenticatedAt": "2026-09-13T10:02:27.152Z",
-    "lastActiveAt": "2026-09-13T14:31:00.304Z",
-    "expiresAt": "2026-09-14T14:31:00.309Z"
+    "lastActiveAt": "2026-09-13T14:43:55.561Z",
+    "expiresAt": "2026-09-14T14:43:55.563Z"
   },
   "sessionPolicy": {
     "enabled": true,
@@ -5302,7 +5302,31 @@
       "agentId": "agent-nepi",
       "kind": "memory",
       "summary": "rotate section backgrounds through the BURHANDEV theme colors per Amad's request (peach, green, maroon) instead of just neutral cream/sand: Pricing=peach, Why-Us=green (dark, text flipped to cream, 2 of the 3 panel cards recolored maroon/peach so they don't blend into the new green backdrop), Team=peach, Contact=maroon (already was), Testimonials=peach (not green, since Testimonials sits directly above the footer which is already solid green - picking green there would have made 2 sections in a row match again)"
+    },
+    {
+      "at": "2026-09-13T14:42:05.844Z",
+      "actor": "BURHAN-MOP",
+      "kind": "merge-approved",
+      "summary": "origin/dev/amad approved and merged to main."
+    },
+    {
+      "at": "2026-09-13T14:43:55.569Z",
+      "actor": "amad",
+      "agent": "nepi",
+      "agentRole": "design",
+      "agentId": "agent-nepi",
+      "kind": "memory",
+      "summary": "Shipped section-background theme rotation to main@92beefb per Amad: Pricing=peach, Why-Us=green (dark, heading/body flipped to cream, work-panels cards recolored so 2 of 3 don't blend into the new green backdrop - green card became maroon, maroon card became peach), Team=peach, Contact=maroon (unchanged), Testimonials=peach (deliberately not green since it sits right above the solid-green footer). No two adjacent sections share a color anywhere on the page now. Verified live: pricing rgb(255,176,120), why-us rgb(33,73,63), contact rgb(127,29,29), zero errors, zero failed requests, no mobile overflow"
+    },
+    {
+      "at": "2026-09-13T14:46:51.099Z",
+      "actor": "amad",
+      "agent": "nepi",
+      "agentRole": "design",
+      "agentId": "agent-nepi",
+      "kind": "memory",
+      "summary": "team card layout: put the monogram badge on top of the name/role/tagline instead of beside it - changed .card from flex-row to flex-column with centered text, per Amad's request"
     }
   ],
-  "lastActiveAt": "2026-09-13T14:31:00.304Z"
+  "lastActiveAt": "2026-09-13T14:43:55.561Z"
 }
