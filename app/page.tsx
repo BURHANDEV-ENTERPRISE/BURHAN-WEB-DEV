@@ -35,12 +35,14 @@ export default function Home() {
         <HeroSection />
         <ScrubVideoSection
           src="/videos/project1.mp4"
-          heightVh={400}
+          heightVh={260}
           ariaLabel="BURHANDEV keyboard transition"
-          heading="Built for Performance."
-          subheading="Real hardware, real focus. The setup behind every line we ship."
+          chapterLabel="02 / 02 — The craft behind the screen"
+          exitHref="#services"
+          heading="Good design. Every detail."
+          subheading="From a bold first impression to the final line of code. Built around your business."
           headingWindow={[0.04, 0.13, 0.32, 0.4]}
-          endTag="Loading the Next Level."
+          endTag="Your next chapter starts here."
           endTagWindow={[0.85, 0.91, 0.97, 0.995]}
           curtainWindow={[0.95, 0.045]}
         />

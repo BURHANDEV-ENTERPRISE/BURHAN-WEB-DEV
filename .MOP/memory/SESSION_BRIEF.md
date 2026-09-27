@@ -1,6 +1,6 @@
 # MOP Session Brief
 
-Updated: 2026-09-27T13:06:50.318Z
+Updated: 2026-09-27T13:21:36.357Z
 Actor: amad
 Active agent: mad (frontend)
 Current month: 2026-09
@@ -8,16 +8,13 @@ Current month: 2026-09
 ## Required Session Flow
 
 1. Read `.MOP/STATE.json` and follow `.MOP/PROTOCOL.md`.
-2. Authenticate if required.
+2. Restore memory with `node .MOP/scripts/mop-core.mjs memory brief --actor <codename>`.
 3. Run `agent route` for the user task before answering.
 4. Start every authenticated answer with: `agent: mad (frontend) to amad`
 5. Save a one-line memory after meaningful work.
 
 ## Recent Memory
 
-- 2026-09-13T15:13:59.495Z - nepi (design): per Amad: reverted the peach section backgrounds back to neutral cream/sand (Pricing, Team, Testimonials) - only Why-Us (green) and Contact (maroon) stay as vivid theme colors, which he wanted untouched. Also built real image upload for the Services section: added saveBinaryFile to githubContent.ts (uploads a base64-encoded file straight to the GitHub repo under public/services/, using a timestamped filename per upload so there's no need to look up or juggle an existing blob sha), added a file input + thumbnail + remove button to each service in the admin ServicesEditor, and updated WorkSection.tsx to render the uploaded image (via next/image with fill) in place of the fake browser-mockup wireframe whenever a service has one set - falls back to the existing wireframe placeholder when it doesn't, so untouched services are unaffected
-- 2026-09-13T15:16:36.556Z - nepi (design): Shipped to main@059031c: reverted peach sections (Pricing/Team/Testimonials) back to neutral cream/sand per Amad, keeping Why-Us=green and Contact=maroon untouched as he wanted. Also shipped real image upload for Services: admin ServicesEditor now has a file input per service that uploads straight to GitHub (public/services/service-<i>-<timestamp>.<ext>, via new saveBinaryFile in githubContent.ts) and WorkSection.tsx renders the uploaded image via next/image fill in place of the fake browser-mockup wireframe, falling back to the wireframe when no image is set. Verified live: pricing bg back to rgb(255,246,220), zero errors on both main site and admin page
-- 2026-09-13T16:23:00.954Z - nepi (design): per Amad: CONVERT panel in Why-Us should be green, not peach. Used var(--green-2), a darker shade than the section's own var(--green) background, so the card still reads as a distinct shape thanks to the existing 2px maroon border + hard offset shadow rather than blending into the backdrop
 - 2026-09-13T16:25:21.885Z - nepi (design): Shipped to main@8955ae6 per Amad: CONVERT panel in Why-Us changed from peach back to green (var(--green-2), darker than the section's own var(--green) bg so the maroon-bordered card still reads as distinct). Verified live: CONVERT card bg rgb(23,58,50), zero errors, zero failed requests
 - 2026-09-13T16:30:33.256Z - nepi (design): add the site's dot-grid texture overlay to the Contact section per Amad - it was the only major section missing it (light cream-tinted dots since the section bg is dark maroon, matching the same treatment used on Why-Us)
 - 2026-09-13T16:32:58.753Z - nepi (design): Shipped to main@2e43a08 per Amad: added the dot-grid texture overlay to the Contact section (::before, light cream-tinted dots matching the Why-Us dark-section treatment) - it was the only major section still missing this texture. Verified live, zero errors, zero failed requests
@@ -35,3 +32,6 @@ Current month: 2026-09
 - 2026-09-13T17:26:35.790Z - nepi (design): Shipped to main@2f3513d per Amad: sidebar nav pills now rotate through the full BURHANDEV palette (peach/green/sand/maroon-2/peach) instead of one flat peach for all 5, with cream/maroon text flips per pill for contrast. Verified live: pill backgrounds confirmed rgb(255,176,120)/rgb(33,73,63)/rgb(243,231,200)/rgb(150,50,50)/rgb(255,176,120), zero errors
 - 2026-09-13T17:37:12.353Z - nepi (design): per Amad's 3-part request: (1) sidebar nav pills now scrollspy-highlight the section currently in view via IntersectionObserver, with a cream outline ring marking the active pill; (2) added a hidden Blog section - new /blog route with its own page+layout, seeded with 3 placeholder posts in blog.json (title/date/excerpt/optional link), admin-editable via a new BlogEditor, linked ONLY from the SideNav drawer (not in the mobile hamburger, not in the footer, not in the sitemap) so it stays off the home page but reachable; (3) added an optional portfolio URL field to staff.json/StaffMember, rendered as a 'View Portfolio' link on each Team card when set, editable via the admin StaffEditor
 - 2026-09-13T17:39:45.381Z - nepi (design): Shipped to main@cab1d68, Amad's 3-part request: scrollspy active-pill highlighting on the sidebar (IntersectionObserver on #services/#pricing/#work/#contact + scroll-position check for #top), a new hidden Blog section at /blog (own page+layout, blog.json content, admin BlogEditor, linked only from the SideNav drawer - not in mobile nav, footer, or sitemap), and an optional portfolio URL field on Team members rendered as a 'View Portfolio' link when set. Caught and fixed a real bug during testing: the blog page initially rendered fully blank because it was missing <ScrollEffects/>, which is what removes the is-booting class that keeps #app hidden until boot - not just a home-page thing, any page using the #app/top-shell chrome needs it. Verified live: scrollspy correctly marks Pricing active while scrolled there, blog page renders with all 3 placeholder posts, zero errors
+- 2026-09-27T13:09:15.297Z - mad (frontend): mad: Chrome preflight passed; inspect local homepage video and verify cinematic studio presentation with Playwright.
+- 2026-09-27T13:20:57.331Z - mad (frontend): mad: Implemented homepage cinematic studio presentation using existing monitor and keyboard footage, cream/peach editorial typography, chapter labels, progress and keyboard-accessible services links. Desktop intro shortened 1350vh to 740vh; mobile 580vh; reduced motion static. Production build, tsc, ESLint and Chrome desktop/mobile/reduced-motion checks passed with zero console/page errors. Original video binaries unchanged.
+- 2026-09-27T13:21:36.345Z - mad (frontend): Polish homepage studio video presentation; shorten scroll journey and verify desktop mobile accessibility

@@ -11,8 +11,8 @@
   "session": {
     "actor": "amad",
     "authenticatedAt": "2026-09-27T13:06:49.671Z",
-    "lastActiveAt": "2026-09-27T13:06:50.301Z",
-    "expiresAt": "2026-09-28T13:06:50.302Z"
+    "lastActiveAt": "2026-09-27T13:20:57.327Z",
+    "expiresAt": "2026-09-28T13:20:57.327Z"
   },
   "sessionPolicy": {
     "enabled": true,
@@ -5635,7 +5635,34 @@
       "agentId": "agent-mad",
       "kind": "agent-route",
       "summary": "Routed task to mad: Matched keywords for Frontend Developer: page."
+    },
+    {
+      "at": "2026-09-27T13:09:15.297Z",
+      "actor": "amad",
+      "agent": "mad",
+      "agentRole": "frontend",
+      "agentId": "agent-mad",
+      "kind": "memory",
+      "summary": "mad: Chrome preflight passed; inspect local homepage video and verify cinematic studio presentation with Playwright."
+    },
+    {
+      "at": "2026-09-27T13:20:57.331Z",
+      "actor": "amad",
+      "agent": "mad",
+      "agentRole": "frontend",
+      "agentId": "agent-mad",
+      "kind": "memory",
+      "summary": "mad: Implemented homepage cinematic studio presentation using existing monitor and keyboard footage, cream/peach editorial typography, chapter labels, progress and keyboard-accessible services links. Desktop intro shortened 1350vh to 740vh; mobile 580vh; reduced motion static. Production build, tsc, ESLint and Chrome desktop/mobile/reduced-motion checks passed with zero console/page errors. Original video binaries unchanged."
+    },
+    {
+      "at": "2026-09-27T13:21:36.343Z",
+      "actor": "amad",
+      "agent": "mad",
+      "agentRole": "frontend",
+      "agentId": "agent-mad",
+      "kind": "memory",
+      "summary": "Polish homepage studio video presentation; shorten scroll journey and verify desktop mobile accessibility"
     }
   ],
-  "lastActiveAt": "2026-09-27T13:06:50.301Z"
+  "lastActiveAt": "2026-09-27T13:20:57.327Z"
 }

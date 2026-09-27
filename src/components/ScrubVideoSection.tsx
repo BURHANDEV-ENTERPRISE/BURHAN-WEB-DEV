@@ -31,6 +31,8 @@ interface ScrubVideoSectionProps {
   shade?: boolean;
   children?: React.ReactNode;
   ariaLabel?: string;
+  chapterLabel?: string;
+  exitHref?: string;
   /** Heading utama — fade in awal, fade out sebelum pertengahan journey. */
   heading?: string;
   subheading?: string;
@@ -62,6 +64,8 @@ export default function ScrubVideoSection({
   shade = true,
   children,
   ariaLabel,
+  chapterLabel,
+  exitHref,
   heading,
   subheading,
   headingWindow = [0.05, 0.15, 0.42, 0.52],
@@ -71,6 +75,7 @@ export default function ScrubVideoSection({
   overlays = [],
 }: ScrubVideoSectionProps) {
   const sectionRef = useRef<HTMLElement>(null);
+  const stageRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const blendRef = useRef<HTMLDivElement>(null);
   const headingRef = useRef<HTMLDivElement>(null);
@@ -83,6 +88,7 @@ export default function ScrubVideoSection({
   // topBlend melembutkan garis sempadan semasa handoff, kemudian larut.
   // heading/endTag ialah teks scroll-triggered — fade in/out ikut progress.
   const onProgress = useCallback((p: number) => {
+    stageRef.current?.style.setProperty("--journey", String(p));
     const v = videoRef.current;
     if (v) {
       v.style.transform = `scale(${(1 + p * 0.07).toFixed(3)})`;
@@ -105,7 +111,7 @@ export default function ScrubVideoSection({
     if (e) {
       const f = windowedFade(p, endTagWindow);
       e.style.opacity = String(f);
-      e.style.transform = `translateY(${((1 - f) * 14).toFixed(1)}px)`;
+      e.style.transform = `translate(-50%, ${((1 - f) * 14).toFixed(1)}px)`;
     }
 
     overlays.forEach((ov, i) => {
@@ -130,7 +136,7 @@ export default function ScrubVideoSection({
       style={{ height: `${heightVh}vh` }}
       aria-label={ariaLabel}
     >
-      <div className={styles.sticky}>
+      <div ref={stageRef} className={styles.sticky}>
         <video
           ref={videoRef}
           className={styles.video}
@@ -142,6 +148,13 @@ export default function ScrubVideoSection({
         />
         {shade && <div className={styles.shade} aria-hidden="true" />}
         <div ref={blendRef} className={styles.topBlend} aria-hidden="true" />
+
+        {chapterLabel && (
+          <div className={styles.chapterBar}>
+            <span>{chapterLabel}</span>
+            {exitHref && <a href={exitHref}>Explore services <span aria-hidden="true">↗</span></a>}
+          </div>
+        )}
 
         {heading && (
           <div ref={headingRef} className={styles.textBlock} style={{ opacity: 0 }}>
@@ -221,6 +234,7 @@ export default function ScrubVideoSection({
         })}
 
         {children && <div className={styles.overlay}>{children}</div>}
+        {chapterLabel && <div className={styles.progress} aria-hidden="true"><span /></div>}
       </div>
     </section>
   );

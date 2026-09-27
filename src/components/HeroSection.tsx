@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useRef, useCallback } from "react";
 import styles from "./HeroSection.module.css";
@@ -8,76 +8,57 @@ export default function HeroSection() {
   const contentRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
-  const textCoverRef = useRef<HTMLDivElement>(null);
+  const stageRef = useRef<HTMLDivElement>(null);
 
-  // Overlay ikut progress terlembut: headline hilang awal (video ada teks
-  // "BURHAN" terbakar dalam footage dari saat pertama — headline mesti
-  // pudar sebelum kamera zoom bawa teks tu jadi besar & bertindih),
-  // video zoom halus sepanjang journey, tirai akhir digelapkan beransur.
   const onScrubProgress = useCallback((p: number) => {
-    const el = contentRef.current;
-    if (el) {
-      const fade = Math.min(1, Math.max(0, (p - 0.01) / 0.09));
-      el.style.setProperty("--fade-lift", `${(fade * 40).toFixed(1)}px`);
-      el.style.opacity = String(Math.max(0, 1 - fade * 1.15));
+    const fade = Math.min(1, Math.max(0, (p - 0.02) / 0.18));
+    if (contentRef.current) {
+      contentRef.current.style.opacity = String(1 - fade);
+      contentRef.current.style.transform = `translateY(${-fade * 24}px)`;
     }
-    // Tutup kawasan monitor (teks "BURHAN" terbakar dalam video) pada
-    // permulaan — larut hanya SELEPAS headline dah hilang, supaya tiada
-    // waktu kedua-dua teks kelihatan serentak.
-    const cover = textCoverRef.current;
-    if (cover) {
-      const clear = Math.min(1, Math.max(0, (p - 0.04) / 0.1));
-      cover.style.opacity = String(1 - clear);
+    if (stageRef.current) {
+      stageRef.current.style.setProperty("--journey", String(p));
+      stageRef.current.style.setProperty("--intro", String(1 - fade));
     }
-    const v = videoRef.current;
-    if (v) {
-      v.style.transform = `scale(${(1 + p * 0.07).toFixed(3)})`;
-      // Tirai akhir digelapkan beransur atas jarak lebih panjang (bukan
-      // dimampatkan ke saat terakhir sahaja) — handoff rasa lebih licin,
-      // sepadan tempoh topBlend section seterusnya.
-      const dim = Math.min(1, Math.max(0, (p - 0.88) / 0.11));
-      v.style.opacity = String(Math.max(0, 1 - dim));
+    if (videoRef.current) {
+      videoRef.current.style.transform = `scale(${1.03 + p * 0.04})`;
+      const dim = Math.min(1, Math.max(0, (p - 0.87) / 0.13));
+      videoRef.current.style.opacity = String(1 - dim);
     }
   }, []);
 
-  // Enjin scrub dikongsi (seek-aware + IO gate + reduced-motion safe)
-  useVideoScrub(sectionRef, videoRef, {
-    enabled: true,
-    onProgress: onScrubProgress,
-  });
+  useVideoScrub(sectionRef, videoRef, { onProgress: onScrubProgress });
 
   return (
-    <section
-      ref={sectionRef}
-      className={styles.videoScrubSection}
-      aria-label="BURHANDEV hero"
-    >
-      <div className={styles.videoSticky}>
-        {/* Video Gaming Monitor — frame dipandu scroll */}
-        <div className={styles.roomWrap} aria-hidden="true">
-          <video
-            ref={videoRef}
-            className={styles.heroVideo}
-            src="/videos/gaming-monitor.mp4"
-            muted
-            playsInline
-            preload="auto"
-          />
-          <div className={styles.videoShade} />
-          <div ref={textCoverRef} className={styles.textCover} />
+    <section ref={sectionRef} className={styles.section} aria-label="Inside the BURHANDEV studio">
+      <div ref={stageRef} className={styles.stage}>
+        <div className={styles.media} aria-hidden="true">
+          <video ref={videoRef} className={styles.video} src="/videos/gaming-monitor.mp4"
+            muted playsInline preload="auto" />
+          <div className={styles.shade} />
+          <div className={styles.introShade} />
         </div>
 
-        {/* headline — dipindah dari OpenSection */}
-        <div ref={contentRef} className={styles.introContent}>
-          <h1 className={styles.introTitle} aria-label="Enter the World of BURHANDEV">
-            <span>ENTER THE</span>
-            <span>WORLD OF</span>
-            <span className={styles.introBrand}>BURHANDEV</span>
-          </h1>
-          <p className={styles.introSub}>
-            We don&apos;t just build sites. We build experiences that convert.
-          </p>
+        <div className={styles.masthead}>
+          <span className={styles.wordmark}>BURHAN<span>DEV</span><span className={styles.brandDot} aria-hidden="true">✳</span></span>
+          <span className={styles.studioLabel}>Independent digital studio<br />Made in Malaysia</span>
+          <a className={styles.skip} href="#services">Explore services <span aria-hidden="true">↗</span></a>
         </div>
+
+        <div ref={contentRef} className={styles.intro}>
+          <p className={styles.eyebrow}><span /> Big ideas. Built here.</p>
+          <h1 className={styles.title}>WE MAKE<br />DIGITAL<br /><span>FEEL REAL.</span></h1>
+          <p className={styles.description}>Bold websites. Thoughtful experiences.<br />From the first idea to your next big move.</p>
+        </div>
+
+        <div className={styles.frameLabel} aria-hidden="true"><span /> A look inside<br /><strong>THE STUDIO</strong></div>
+
+        <div className={styles.footer}>
+          <div className={styles.chapter}><span>01 / 02</span><strong>Inside the studio</strong></div>
+          <div className={styles.scrollCue}><span aria-hidden="true">↓</span> Scroll to step inside</div>
+          <span className={styles.disciplines}>Design / Develop / Deliver</span>
+        </div>
+        <div className={styles.progress} aria-hidden="true"><span /></div>
       </div>
     </section>
   );
