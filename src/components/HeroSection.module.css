@@ -1,130 +1,71 @@
-/* ── Hero scroll-scrub: section tinggi, video sticky ── */
-.videoScrubSection {
-  position: relative;
-  height: 950vh;
-  background: #0e0806;
-}
-
-.videoSticky {
+﻿.section { position: relative; height: 480vh; background: #0e0806; color: var(--cream); }
+.stage {
+  --journey: 0;
+  --intro: 1;
   position: sticky;
   top: 0;
   height: 100vh;
+  height: 100svh;
   overflow: hidden;
+  padding: clamp(24px, 4vw, 64px);
 }
-
-/* Reduced motion: tiada journey scrub — hero biasa 100vh. Vignette
-   monitor (.textCover) hanya larut melalui JS scroll-progress yang tidak
-   berjalan dalam mod ini, jadi sembunyikan terus — headline sudah ada
-   text-shadow sendiri, tak perlukan vignette tambahan bila statik. */
+.media, .video, .shade, .introShade { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.video { object-fit: cover; object-position: 62% center; transform: scale(1.03); will-change: transform; }
+.shade { background: linear-gradient(180deg, rgba(14, 8, 6, .75), transparent 28%, transparent 65%, rgba(14, 8, 6, .92)); }
+.introShade { opacity: var(--intro); background: linear-gradient(90deg, rgba(25, 9, 9, .96), rgba(25, 9, 9, .82) 28%, rgba(25, 9, 9, .18) 65%, transparent); }
+.masthead, .intro, .frameLabel, .footer { position: relative; z-index: 2; }
+.masthead { display: flex; align-items: center; justify-content: space-between; gap: 28px; }
+.wordmark { font-family: var(--font-bebas), Impact, sans-serif; font-size: 32px; letter-spacing: .025em; line-height: 1; white-space: nowrap; }
+.wordmark > span:first-child { color: var(--peach); }
+.brandDot { font: 11px sans-serif; vertical-align: top; margin-left: 5px; }
+.studioLabel { margin-right: auto; padding-left: 24px; border-left: 1px solid rgba(255, 246, 220, .3); font-size: 10px; line-height: 1.7; letter-spacing: .12em; text-transform: uppercase; }
+.skip { display: inline-flex; align-items: center; gap: 24px; min-height: 44px; padding: 8px 0; border-bottom: 1px solid rgba(255, 246, 220, .55); font-size: 12px; font-weight: 600; }
+.skip span { color: var(--peach); font-size: 23px; }
+.skip:hover { color: var(--peach); border-color: var(--peach); }
+.skip:focus-visible { outline: 2px solid var(--peach); outline-offset: 6px; }
+.intro { position: absolute; top: 26%; left: clamp(24px, 4vw, 64px); right: 24px; pointer-events: none; will-change: opacity, transform; }
+.eyebrow { display: flex; align-items: center; gap: 10px; margin: 0 0 22px; font-size: 10px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; }
+.eyebrow > span { width: 7px; height: 7px; background: var(--peach); }
+.title { margin: 0; font-family: var(--font-bebas), Impact, "Arial Narrow", sans-serif; font-size: clamp(4.8rem, 8.4vw, 9rem); font-weight: 400; line-height: .88; letter-spacing: -.015em; }
+.title > span { color: var(--peach); }
+.description { margin: 26px 0 0; color: rgba(255, 246, 220, .8); font-size: clamp(12px, 1.05vw, 15px); font-weight: 400; line-height: 1.8; }
+.frameLabel { position: absolute; right: clamp(24px, 4vw, 64px); bottom: 22%; padding: 14px 0 0 18px; border-left: 1px solid rgba(255, 246, 220, .4); font-size: 10px; line-height: 1.8; opacity: var(--intro); }
+.frameLabel > span { display: block; width: 25px; height: 1px; background: var(--peach); margin-bottom: 12px; }
+.frameLabel strong { font-weight: 500; letter-spacing: .18em; }
+.footer { position: absolute; bottom: 30px; left: clamp(24px, 4vw, 64px); right: clamp(24px, 4vw, 64px); padding-top: 18px; border-top: 1px solid rgba(255, 246, 220, .25); display: flex; align-items: center; justify-content: space-between; gap: 20px; font-size: 10px; letter-spacing: .08em; }
+.chapter { display: flex; align-items: center; gap: 20px; }
+.chapter > span { color: var(--peach); }
+.chapter > strong { font-weight: 500; text-transform: uppercase; }
+.scrollCue { display: flex; align-items: center; gap: 12px; }
+.scrollCue > span { font-size: 24px; }
+.disciplines { color: rgba(255, 246, 220, .65); }
+.progress { position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: rgba(255, 246, 220, .12); }
+.progress > span { display: block; height: 100%; background: var(--peach); transform: scaleX(var(--journey)); transform-origin: left; }
+@media (max-width: 700px) {
+  .section { height: 360vh; }
+  .stage { padding: 24px; }
+  .wordmark { font-size: 26px; }
+  .studioLabel, .frameLabel, .disciplines { display: none; }
+  .skip { font-size: 11px; gap: 12px; }
+  .intro { top: auto; bottom: 22%; }
+  .title { font-size: clamp(4.2rem, 16.8vw, 7rem); }
+  .eyebrow { margin-bottom: 18px; font-size: 9px; }
+  .description { font-size: 12px; margin-top: 20px; }
+  .introShade { background: linear-gradient(0deg, rgba(25, 9, 9, .95) 15%, rgba(25, 9, 9, .65) 48%, rgba(25, 9, 9, .1) 80%); }
+  .video { object-position: 56% center; }
+  .footer { bottom: 22px; gap: 12px; font-size: 9px; }
+  .chapter { align-items: flex-start; flex-direction: column; gap: 5px; }
+  .scrollCue { gap: 8px; letter-spacing: 0; }
+}
+@media (max-height: 600px) and (min-width: 701px) {
+  .intro { top: 24%; }
+  .title { font-size: 14vh; }
+  .eyebrow { margin-bottom: 12px; }
+  .description { margin-top: 12px; font-size: 12px; }
+}
 @media (prefers-reduced-motion: reduce) {
-  .videoScrubSection { height: 100vh; }
-  .textCover { display: none; }
-}
-
-/* ── Latar video penuh viewport ── */
-.roomWrap {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  overflow: hidden;
-}
-
-.heroVideo {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transform-origin: center;
-  will-change: transform;
-}
-
-/* Gelapkan sedikit supaya headline cream sentiasa terbaca */
-.videoShade {
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(
-      to bottom,
-      rgba(14, 8, 6, 0.5) 0%,
-      rgba(14, 8, 6, 0.18) 42%,
-      rgba(14, 8, 6, 0.55) 100%
-    );
-  pointer-events: none;
-}
-
-/* Tutup kawasan monitor (teks "BURHAN" terbakar dalam video) pada
-   permulaan journey — larut selepas headline hilang, elak dua teks
-   kelihatan serentak. Opacity dikawal oleh onScrubProgress (JS). */
-.textCover {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(
-    ellipse 46% 40% at 50% 40%,
-    rgba(14, 8, 6, 0.97) 0%,
-    rgba(14, 8, 6, 0.85) 45%,
-    rgba(14, 8, 6, 0) 78%
-  );
-  pointer-events: none;
-}
-
-/* ── Headline — di tengah viewport, tidak halang klik hotspot ──
-   --fade-lift dikawal oleh onScrubProgress (JS): headline naik sedikit
-   & pudar apabila scroll bermula, di atas kedudukan tengah asal. */
-.introContent {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, calc(-50% - var(--fade-lift, 0px)));
-  width: 100%;
-  z-index: 5;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 14px;
-  text-align: center;
-  padding: 0 24px;
-  pointer-events: none;
-}
-
-.introTitle {
-  font-family: var(--font-bebas), "Impact", sans-serif;
-  font-size: clamp(3rem, 8vw, 6.8rem);
-  font-weight: 400;
-  color: #ffffff;
-  line-height: 0.96;
-  letter-spacing: 0.02em;
-  margin: 0;
-  text-shadow:
-    0 2px 24px rgba(0, 0, 0, 0.65),
-    0 0 80px rgba(200, 80, 80, 0.35);
-}
-
-.introTitle span {
-  display: block;
-}
-
-/* BURHANDEV — cream + garis merah bawah (dari OpenSection) */
-.introBrand {
-  color: var(--cream, #fff6dc);
-  padding-bottom: 0.08em;
-  border-bottom: 4px solid #b91c1c;
-}
-
-.introSub {
-  font-family: inherit;
-  font-size: clamp(0.95rem, 1.6vw, 1.2rem);
-  color: rgba(255, 246, 220, 0.78);
-  letter-spacing: 0.01em;
-  line-height: 1.55;
-  max-width: 38ch;
-  margin: 10px 0 0;
-  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.6);
-}
-
-/* ── Responsive ── */
-@media (max-width: 640px) {
-  .introTitle   { font-size: clamp(3rem, 16vw, 5rem); }
-  .introSub     { font-size: clamp(1rem, 5vw, 2rem);  }
-  .introContent { margin-bottom: 24px; }
+  .section { height: 100svh; min-height: 600px; }
+  .stage { min-height: 600px; }
+  .scrollCue, .progress { display: none; }
+  .video { will-change: auto; }
 }

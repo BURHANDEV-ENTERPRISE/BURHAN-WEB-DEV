@@ -6,13 +6,13 @@
   "ownerCodename": "moon",
   "activeMember": "amad",
   "activeAgents": {
-    "amad": "agent-nepi"
+    "amad": "agent-mad"
   },
   "session": {
     "actor": "amad",
-    "authenticatedAt": "2026-09-13T10:02:27.152Z",
-    "lastActiveAt": "2026-09-13T17:26:35.786Z",
-    "expiresAt": "2026-09-14T17:26:35.787Z"
+    "authenticatedAt": "2026-09-27T13:06:49.671Z",
+    "lastActiveAt": "2026-09-27T13:20:57.327Z",
+    "expiresAt": "2026-09-28T13:20:57.327Z"
   },
   "sessionPolicy": {
     "enabled": true,
@@ -5572,7 +5572,103 @@
       "actor": "BURHAN-MOP",
       "kind": "merge-approved",
       "summary": "origin/dev/amad approved and merged to main."
+    },
+    {
+      "at": "2026-09-13T17:39:45.381Z",
+      "actor": "amad",
+      "agent": "nepi",
+      "agentRole": "design",
+      "agentId": "agent-nepi",
+      "kind": "memory",
+      "summary": "Shipped to main@cab1d68, Amad's 3-part request: scrollspy active-pill highlighting on the sidebar (IntersectionObserver on #services/#pricing/#work/#contact + scroll-position check for #top), a new hidden Blog section at /blog (own page+layout, blog.json content, admin BlogEditor, linked only from the SideNav drawer - not in mobile nav, footer, or sitemap), and an optional portfolio URL field on Team members rendered as a 'View Portfolio' link when set. Caught and fixed a real bug during testing: the blog page initially rendered fully blank because it was missing <ScrollEffects/>, which is what removes the is-booting class that keeps #app hidden until boot - not just a home-page thing, any page using the #app/top-shell chrome needs it. Verified live: scrollspy correctly marks Pricing active while scrolled there, blog page renders with all 3 placeholder posts, zero errors"
+    },
+    {
+      "at": "2026-09-14T14:35:02.872Z",
+      "actor": "amad",
+      "agent": "madszz",
+      "agentRole": "backend",
+      "agentId": "agent-madszz",
+      "kind": "agent-route",
+      "summary": "Routed task to madszz: Matched keywords for Backend Developer: webhook."
+    },
+    {
+      "at": "2026-09-14T14:35:17.771Z",
+      "actor": "amad",
+      "agent": "anis",
+      "agentRole": "core",
+      "agentId": "agent-anis",
+      "kind": "agent-route",
+      "summary": "Routed task to anis: No strong specialist match; using Core Agent."
+    },
+    {
+      "at": "2026-09-23T11:22:34.485Z",
+      "actor": "amad",
+      "agent": "anis",
+      "agentRole": "core",
+      "agentId": "agent-anis",
+      "kind": "login",
+      "summary": "Member authenticated; new session started."
+    },
+    {
+      "at": "2026-09-23T11:22:40.403Z",
+      "actor": "amad",
+      "agent": "mad",
+      "agentRole": "frontend",
+      "agentId": "agent-mad",
+      "kind": "agent-route",
+      "summary": "Routed task to mad: Matched keywords for Frontend Developer: page."
+    },
+    {
+      "at": "2026-09-27T13:06:49.672Z",
+      "actor": "amad",
+      "agent": "mad",
+      "agentRole": "frontend",
+      "agentId": "agent-mad",
+      "kind": "login",
+      "summary": "Member authenticated; new session started."
+    },
+    {
+      "at": "2026-09-27T13:06:50.238Z",
+      "actor": "amad",
+      "agent": "mad",
+      "agentRole": "frontend",
+      "agentId": "agent-mad",
+      "kind": "agent-route",
+      "summary": "Routed task to mad: Matched keywords for Frontend Developer: page."
+    },
+    {
+      "at": "2026-09-27T13:09:15.297Z",
+      "actor": "amad",
+      "agent": "mad",
+      "agentRole": "frontend",
+      "agentId": "agent-mad",
+      "kind": "memory",
+      "summary": "mad: Chrome preflight passed; inspect local homepage video and verify cinematic studio presentation with Playwright."
+    },
+    {
+      "at": "2026-09-27T13:20:57.331Z",
+      "actor": "amad",
+      "agent": "mad",
+      "agentRole": "frontend",
+      "agentId": "agent-mad",
+      "kind": "memory",
+      "summary": "mad: Implemented homepage cinematic studio presentation using existing monitor and keyboard footage, cream/peach editorial typography, chapter labels, progress and keyboard-accessible services links. Desktop intro shortened 1350vh to 740vh; mobile 580vh; reduced motion static. Production build, tsc, ESLint and Chrome desktop/mobile/reduced-motion checks passed with zero console/page errors. Original video binaries unchanged."
+    },
+    {
+      "at": "2026-09-27T13:21:36.343Z",
+      "actor": "amad",
+      "agent": "mad",
+      "agentRole": "frontend",
+      "agentId": "agent-mad",
+      "kind": "memory",
+      "summary": "Polish homepage studio video presentation; shorten scroll journey and verify desktop mobile accessibility"
+    },
+    {
+      "at": "2026-09-27T13:44:25.749Z",
+      "actor": "BURHAN-MOP",
+      "kind": "merge-approved",
+      "summary": "origin/dev/amad approved and merged to main."
     }
   ],
-  "lastActiveAt": "2026-09-13T17:26:35.786Z"
+  "lastActiveAt": "2026-09-27T13:20:57.327Z"
 }
