@@ -109,7 +109,7 @@ export default function ScrubVideoSection({
     if (e) {
       const f = windowedFade(p, endTagWindow);
       e.style.opacity = String(f);
-      e.style.transform = `translate(-50%, ${((1 - f) * 14).toFixed(1)}px)`;
+      e.style.transform = `translate(-50%, calc(-50% + ${((1 - f) * 14).toFixed(1)}px))`;
     }
 
     overlays.forEach((ov, i) => {

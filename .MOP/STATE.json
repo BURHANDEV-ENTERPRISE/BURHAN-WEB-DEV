@@ -11,8 +11,8 @@
   "session": {
     "actor": "amad",
     "authenticatedAt": "2026-10-14T12:23:37.399Z",
-    "lastActiveAt": "2026-10-14T12:31:33.067Z",
-    "expiresAt": "2026-10-15T12:31:33.073Z"
+    "lastActiveAt": "2026-10-14T12:37:45.510Z",
+    "expiresAt": "2026-10-15T12:37:45.510Z"
   },
   "sessionPolicy": {
     "enabled": true,
@@ -5752,7 +5752,31 @@
       "actor": "BURHAN-MOP",
       "kind": "merge-approved",
       "summary": "origin/dev/amad approved and merged to main."
+    },
+    {
+      "at": "2026-10-14T12:37:45.514Z",
+      "actor": "amad",
+      "agent": "nepi",
+      "agentRole": "design",
+      "agentId": "agent-nepi",
+      "kind": "memory",
+      "summary": "Shipped to main@e66db26 per Amad: removed the 'Explore services' exit link from the second video section (also dropped the now-unused exitHref prop + its CSS), and enlarged the 'Your next chapter starts here.' end tag to clamp(1.5rem,2.6vw,2.4rem) with bigger padding (1.15rem on mobile). Verified live desktop+mobile, no overflow, zero errors. Also reminded Amad the admin page is /staff-burhan-only"
+    },
+    {
+      "at": "2026-10-14T12:43:00.268Z",
+      "actor": "amad",
+      "agent": "nepi",
+      "agentRole": "design",
+      "agentId": "agent-nepi",
+      "kind": "memory",
+      "summary": "per Amad: moved the 'Your next chapter starts here.' end tag from the bottom of the second video section to the vertical middle of the screen (top:50% + translate -50%, JS fade offset kept)"
+    },
+    {
+      "at": "2026-10-14T12:43:10.792Z",
+      "actor": "BURHAN-MOP",
+      "kind": "merge-approved",
+      "summary": "origin/dev/amad approved and merged to main."
     }
   ],
-  "lastActiveAt": "2026-10-14T12:31:33.067Z"
+  "lastActiveAt": "2026-10-14T12:37:45.510Z"
 }
