@@ -25,6 +25,8 @@
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
+  /* Nav anchor jumps land below the fixed header chip, not under it */
+  scroll-padding-top: 88px;
 }
 
 body {
@@ -556,6 +558,7 @@ p {
 .site-footer__nav a {
   display: inline-flex;
   align-items: center;
+  min-height: 44px;
   padding: 0.85rem 0.15rem;
   transition: color 180ms ease;
 }
@@ -583,6 +586,7 @@ p {
   /* min-width keeps short labels (e.g. "X") at a real touch-target width
      instead of shrinking to just the glyph + a couple px of padding */
   min-width: 2.75rem;
+  min-height: 44px;
   padding: 0.85rem 0.15rem;
   transition: color 180ms ease;
 }
@@ -646,7 +650,7 @@ p {
 }
 
 .site-footer__tagline {
-  font-size: 0.65rem;
+  font-size: 0.72rem;
   font-weight: 700;
   font-style: italic;
   letter-spacing: 0.2em;
@@ -654,7 +658,7 @@ p {
 }
 
 .site-footer__copy {
-  font-size: 0.65rem;
+  font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.18em;
   line-height: 1.6;
@@ -738,6 +742,17 @@ p {
     top: 0.8rem;
     left: 0.7rem;
     right: 0.7rem;
+  }
+
+  /* "|" separators wrap onto their own lines at phone width — spacing alone reads cleaner */
+  .site-footer__sep {
+    display: none;
+  }
+
+  .site-footer__nav,
+  .site-footer__social {
+    column-gap: 1.5rem;
+    row-gap: 0;
   }
 
   .brand-lockup {

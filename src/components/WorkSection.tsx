@@ -41,7 +41,8 @@ export default function WorkSection() {
   }, []);
 
   const render = useCallback(() => {
-    const t = easeOut(getProgress());
+    // Section isn't pinned on phones (see .module.css) — show the final grid.
+    const t = window.matchMedia("(max-width: 600px)").matches ? 1 : easeOut(getProgress());
     cardRefs.current.forEach((card, i) => {
       if (!card || !START[i]) return;
       const [sx, sy, ss, sr] = START[i];
@@ -72,9 +73,11 @@ export default function WorkSection() {
       rafRef.current = requestAnimationFrame(render);
     };
     window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
     render();
     return () => {
       window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
       cancelAnimationFrame(rafRef.current);
       io.disconnect();
     };
