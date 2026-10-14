@@ -226,7 +226,7 @@
   align-items: center;
   gap: 20px;
   color: var(--cream);
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: .12em;
   text-transform: uppercase;
 }
@@ -238,7 +238,7 @@
   .section { height: 220vh !important; }
   .textBlock { width: calc(100% - 48px); bottom: 25%; }
   .heading2 { font-size: clamp(3rem, 13vw, 4.5rem); }
-  .chapterBar { font-size: 9px; letter-spacing: .04em; }
+  .chapterBar { font-size: 11px; letter-spacing: .04em; }
   .chapterBar > span { max-width: 18ch; line-height: 1.6; }
   .endTag { font-size: 1.15rem; padding: 14px 20px; white-space: normal; text-align: center; width: max-content; max-width: calc(100% - 48px); }
 }

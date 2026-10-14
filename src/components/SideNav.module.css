@@ -228,7 +228,7 @@
 
 .copy {
   font-family: "Space Grotesk", sans-serif;
-  font-size: 0.68rem;
+  font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.06em;
   color: rgba(255, 246, 220, 0.55);
@@ -241,12 +241,17 @@
 }
 
 .socials a {
-  padding: 0.35rem 0.6rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0 0.75rem;
   border-radius: 999px;
   background: rgba(255, 246, 220, 0.1);
   color: var(--cream, #fff6dc);
   font-family: "Space Grotesk", sans-serif;
-  font-size: 0.68rem;
+  font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.04em;
   transition: background 0.18s ease;

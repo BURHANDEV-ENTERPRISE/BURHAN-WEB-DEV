@@ -106,6 +106,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
+  min-height: 44px;
   margin-top: 4rem;
   font-family: var(--font-bebas), "Impact", sans-serif;
   font-size: 1rem;
