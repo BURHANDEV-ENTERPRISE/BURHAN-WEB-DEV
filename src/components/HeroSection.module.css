@@ -15,14 +15,10 @@
 .introShade { opacity: var(--intro); background: linear-gradient(90deg, rgba(25, 9, 9, .96), rgba(25, 9, 9, .82) 28%, rgba(25, 9, 9, .18) 65%, transparent); }
 .masthead, .intro, .frameLabel, .footer { position: relative; z-index: 2; }
 .masthead { display: flex; align-items: center; justify-content: space-between; gap: 28px; }
-.wordmark { font-family: var(--font-bebas), Impact, sans-serif; font-size: 32px; letter-spacing: .025em; line-height: 1; white-space: nowrap; }
-.wordmark > span:first-child { color: var(--peach); }
-.brandDot { font: 11px sans-serif; vertical-align: top; margin-left: 5px; }
+.wordmark { display: inline-flex; align-items: center; gap: 12px; font-family: var(--font-bebas), Impact, sans-serif; font-size: 32px; letter-spacing: .025em; line-height: 1; white-space: nowrap; }
+.dev { color: var(--peach); }
+.logo { width: 40px; height: 40px; object-fit: contain; }
 .studioLabel { margin-right: auto; padding-left: 24px; border-left: 1px solid rgba(255, 246, 220, .3); font-size: 10px; line-height: 1.7; letter-spacing: .12em; text-transform: uppercase; }
-.skip { display: inline-flex; align-items: center; gap: 24px; min-height: 44px; padding: 8px 0; border-bottom: 1px solid rgba(255, 246, 220, .55); font-size: 12px; font-weight: 600; }
-.skip span { color: var(--peach); font-size: 23px; }
-.skip:hover { color: var(--peach); border-color: var(--peach); }
-.skip:focus-visible { outline: 2px solid var(--peach); outline-offset: 6px; }
 .intro { position: absolute; top: 26%; left: clamp(24px, 4vw, 64px); right: 24px; pointer-events: none; will-change: opacity, transform; }
 .eyebrow { display: flex; align-items: center; gap: 10px; margin: 0 0 22px; font-size: 10px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; }
 .eyebrow > span { width: 7px; height: 7px; background: var(--peach); }
@@ -44,9 +40,9 @@
 @media (max-width: 700px) {
   .section { height: 360vh; }
   .stage { padding: 24px; }
-  .wordmark { font-size: 26px; }
+  .wordmark { font-size: 26px; gap: 10px; }
+  .logo { width: 32px; height: 32px; }
   .studioLabel, .frameLabel, .disciplines { display: none; }
-  .skip { font-size: 11px; gap: 12px; }
   .intro { top: auto; bottom: 22%; }
   .title { font-size: clamp(4.2rem, 16.8vw, 7rem); }
   .eyebrow { margin-bottom: 18px; font-size: 9px; }

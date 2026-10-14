@@ -6,13 +6,13 @@
   "ownerCodename": "moon",
   "activeMember": "amad",
   "activeAgents": {
-    "amad": "agent-mad"
+    "amad": "agent-nepi"
   },
   "session": {
     "actor": "amad",
-    "authenticatedAt": "2026-09-27T13:06:49.671Z",
-    "lastActiveAt": "2026-09-27T13:54:13.346Z",
-    "expiresAt": "2026-09-28T13:54:13.356Z"
+    "authenticatedAt": "2026-10-14T12:23:37.399Z",
+    "lastActiveAt": "2026-10-14T12:23:37.561Z",
+    "expiresAt": "2026-10-15T12:23:37.562Z"
   },
   "sessionPolicy": {
     "enabled": true,
@@ -5686,7 +5686,34 @@
       "agentId": "agent-mad",
       "kind": "agent-route",
       "summary": "Routed task to mad: Matched keywords for Frontend Developer: frontend, page."
+    },
+    {
+      "at": "2026-10-14T12:23:37.400Z",
+      "actor": "amad",
+      "agent": "mad",
+      "agentRole": "frontend",
+      "agentId": "agent-mad",
+      "kind": "login",
+      "summary": "Member authenticated; new session started."
+    },
+    {
+      "at": "2026-10-14T12:23:37.567Z",
+      "actor": "amad",
+      "agent": "nepi",
+      "agentRole": "design",
+      "agentId": "agent-nepi",
+      "kind": "agent-route",
+      "summary": "Routed task to nepi: Matched keywords for Design: design."
+    },
+    {
+      "at": "2026-10-14T12:28:52.114Z",
+      "actor": "amad",
+      "agent": "nepi",
+      "agentRole": "design",
+      "agentId": "agent-nepi",
+      "kind": "memory",
+      "summary": "hero masthead per Amad: removed the 'Explore services' link and the ✳ beside the wordmark, added the BURHANDEV ghost logo next to the BURHANDEV wordmark"
     }
   ],
-  "lastActiveAt": "2026-09-27T13:54:13.346Z"
+  "lastActiveAt": "2026-10-14T12:23:37.561Z"
 }
