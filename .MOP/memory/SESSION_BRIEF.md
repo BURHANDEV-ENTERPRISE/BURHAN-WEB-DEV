@@ -1,21 +1,20 @@
 # MOP Session Brief
 
-Updated: 2026-09-27T13:21:36.357Z
+Updated: 2026-10-14T12:28:52.145Z
 Actor: amad
-Active agent: mad (frontend)
-Current month: 2026-09
+Active agent: nepi (design)
+Current month: 2026-10
 
 ## Required Session Flow
 
 1. Read `.MOP/STATE.json` and follow `.MOP/PROTOCOL.md`.
 2. Restore memory with `node .MOP/scripts/mop-core.mjs memory brief --actor <codename>`.
 3. Run `agent route` for the user task before answering.
-4. Start every authenticated answer with: `agent: mad (frontend) to amad`
+4. Start every authenticated answer with: `agent: nepi (design) to amad`
 5. Save a one-line memory after meaningful work.
 
 ## Recent Memory
 
-- 2026-09-13T16:25:21.885Z - nepi (design): Shipped to main@8955ae6 per Amad: CONVERT panel in Why-Us changed from peach back to green (var(--green-2), darker than the section's own var(--green) bg so the maroon-bordered card still reads as distinct). Verified live: CONVERT card bg rgb(23,58,50), zero errors, zero failed requests
 - 2026-09-13T16:30:33.256Z - nepi (design): add the site's dot-grid texture overlay to the Contact section per Amad - it was the only major section missing it (light cream-tinted dots since the section bg is dark maroon, matching the same treatment used on Why-Us)
 - 2026-09-13T16:32:58.753Z - nepi (design): Shipped to main@2e43a08 per Amad: added the dot-grid texture overlay to the Contact section (::before, light cream-tinted dots matching the Why-Us dark-section treatment) - it was the only major section still missing this texture. Verified live, zero errors, zero failed requests
 - 2026-09-13T16:42:26.685Z - nepi (design): added a persistent right-side desktop sidebar (SideNav.tsx), modeled on the layout from https://three-circles-wbs.framer.website/ per Amad's reference but mirrored to the right and restyled in the BURHANDEV theme: maroon sidebar bg, peach numbered nav pills (home/services/pricing/why us/contact), a 'Got a project in mind? / Start a Project' CTA block, and a condensed copyright+socials row at the bottom. Only shows at >=1180px - the existing top-shell+hamburger dropdown already covers mobile/tablet exactly as before, and hides itself at that same breakpoint so only one nav shows at a time (matching how the reference site itself collapses to a hamburger on mobile). Bumped padding-right on Stats/TechStack/Pricing/Staff/WhyUs/Contact/Footer sections at that breakpoint so their content clears the sidebar - left the Hero and ScrubVideoSection full-bleed video sections untouched so the sidebar simply overlays them like the existing header already does
@@ -35,3 +34,4 @@ Current month: 2026-09
 - 2026-09-27T13:09:15.297Z - mad (frontend): mad: Chrome preflight passed; inspect local homepage video and verify cinematic studio presentation with Playwright.
 - 2026-09-27T13:20:57.331Z - mad (frontend): mad: Implemented homepage cinematic studio presentation using existing monitor and keyboard footage, cream/peach editorial typography, chapter labels, progress and keyboard-accessible services links. Desktop intro shortened 1350vh to 740vh; mobile 580vh; reduced motion static. Production build, tsc, ESLint and Chrome desktop/mobile/reduced-motion checks passed with zero console/page errors. Original video binaries unchanged.
 - 2026-09-27T13:21:36.345Z - mad (frontend): Polish homepage studio video presentation; shorten scroll journey and verify desktop mobile accessibility
+- 2026-10-14T12:28:52.119Z - nepi (design): hero masthead per Amad: removed the 'Explore services' link and the ✳ beside the wordmark, added the BURHANDEV ghost logo next to the BURHANDEV wordmark

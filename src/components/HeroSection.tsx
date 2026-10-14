@@ -1,6 +1,7 @@
 ﻿"use client";
 
 import { useRef, useCallback } from "react";
+import Image from "next/image";
 import styles from "./HeroSection.module.css";
 import useVideoScrub from "./useVideoScrub";
 
@@ -40,9 +41,11 @@ export default function HeroSection() {
         </div>
 
         <div className={styles.masthead}>
-          <span className={styles.wordmark}>BURHAN<span>DEV</span><span className={styles.brandDot} aria-hidden="true">✳</span></span>
+          <span className={styles.wordmark}>
+            <Image className={styles.logo} src="/brand/burhan-logo2.webp" alt="" width={40} height={40} priority />
+            <span>BURHAN<span className={styles.dev}>DEV</span></span>
+          </span>
           <span className={styles.studioLabel}>Independent digital studio<br />Made in Malaysia</span>
-          <a className={styles.skip} href="#services">Explore services <span aria-hidden="true">↗</span></a>
         </div>
 
         <div ref={contentRef} className={styles.intro}>
