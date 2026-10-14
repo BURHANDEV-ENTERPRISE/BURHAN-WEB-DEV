@@ -32,7 +32,6 @@ interface ScrubVideoSectionProps {
   children?: React.ReactNode;
   ariaLabel?: string;
   chapterLabel?: string;
-  exitHref?: string;
   /** Heading utama — fade in awal, fade out sebelum pertengahan journey. */
   heading?: string;
   subheading?: string;
@@ -65,7 +64,6 @@ export default function ScrubVideoSection({
   children,
   ariaLabel,
   chapterLabel,
-  exitHref,
   heading,
   subheading,
   headingWindow = [0.05, 0.15, 0.42, 0.52],
@@ -152,7 +150,6 @@ export default function ScrubVideoSection({
         {chapterLabel && (
           <div className={styles.chapterBar}>
             <span>{chapterLabel}</span>
-            {exitHref && <a href={exitHref}>Explore services <span aria-hidden="true">↗</span></a>}
           </div>
         )}
 

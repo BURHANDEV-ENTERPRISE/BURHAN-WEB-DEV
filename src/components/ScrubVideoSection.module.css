@@ -125,14 +125,14 @@
   z-index: 3;
   pointer-events: none;
   will-change: opacity, transform;
-  padding: 10px 22px;
+  padding: 18px 40px;
   border: 1px solid rgba(255, 246, 220, 0.4);
   border-radius: 0;
   background: var(--maroon);
   color: #fff6dc;
   font-family: var(--font-bebas), "Impact", sans-serif;
-  font-size: clamp(0.8rem, 1.4vw, 1rem);
-  letter-spacing: 0.14em;
+  font-size: clamp(1.5rem, 2.6vw, 2.4rem);
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   white-space: nowrap;
 }
@@ -231,20 +231,6 @@
   text-transform: uppercase;
 }
 
-.chapterBar a {
-  display: inline-flex;
-  align-items: center;
-  gap: 18px;
-  min-height: 44px;
-  border-bottom: 1px solid rgba(255, 246, 220, .55);
-  text-transform: none;
-  letter-spacing: 0;
-  font-size: 12px;
-}
-
-.chapterBar a span { color: var(--peach); font-size: 23px; }
-.chapterBar a:hover { color: var(--peach); }
-.chapterBar a:focus-visible { outline: 2px solid var(--peach); outline-offset: 6px; }
 .progress { position: absolute; z-index: 5; bottom: 0; left: 0; right: 0; height: 3px; background: rgba(255, 246, 220, .12); }
 .progress > span { display: block; height: 100%; background: var(--peach); transform: scaleX(var(--journey)); transform-origin: left; }
 
@@ -254,8 +240,7 @@
   .heading2 { font-size: clamp(3rem, 13vw, 4.5rem); }
   .chapterBar { font-size: 9px; letter-spacing: .04em; }
   .chapterBar > span { max-width: 18ch; line-height: 1.6; }
-  .chapterBar a { font-size: 11px; gap: 10px; }
-  .endTag { font-size: .85rem; padding: 12px 16px; }
+  .endTag { font-size: 1.15rem; padding: 14px 20px; white-space: normal; text-align: center; width: max-content; max-width: calc(100% - 48px); }
 }
 
 @media (prefers-reduced-motion: reduce) {
