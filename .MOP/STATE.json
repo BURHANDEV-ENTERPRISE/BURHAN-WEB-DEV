@@ -11,8 +11,8 @@
   "session": {
     "actor": "amad",
     "authenticatedAt": "2026-10-14T12:23:37.399Z",
-    "lastActiveAt": "2026-10-14T12:44:41.432Z",
-    "expiresAt": "2026-10-15T12:44:41.436Z"
+    "lastActiveAt": "2026-10-14T13:05:27.951Z",
+    "expiresAt": "2026-10-15T13:05:27.955Z"
   },
   "sessionPolicy": {
     "enabled": true,
@@ -5800,7 +5800,25 @@
       "actor": "BURHAN-MOP",
       "kind": "merge-approved",
       "summary": "origin/dev/amad approved and merged to main."
+    },
+    {
+      "at": "2026-10-14T13:05:27.961Z",
+      "actor": "amad",
+      "agent": "nepi",
+      "agentRole": "design",
+      "agentId": "agent-nepi",
+      "kind": "memory",
+      "summary": "Shipped full mobile/tablet pass to main@3df7abe (mobile-optimization skill, 8 viewports x home+blog). Real bugs fixed: (1) Services section was pinned at 100vh on phones so only ~6 of 9 cards were ever visible - now unpinned at <=600px (CSS static layout + WorkSection.tsx forces final grid t=1 via matchMedia, resize listener added); (2) fixed header chip covered the 'OUR SERVICES' heading on phones/tablets - sticky padding-top 96px below 1180px; (3) html scroll-padding-top 88px so nav anchor jumps don't land under the header; (4) footer links 41px, blog back link 21px, sidebar socials ~25px -> all 44px min; (5) footer '|' separators hidden on phones; (6) all 9-10px labels -> >=11px. Tried env(safe-area-inset) but reverted: no-op without viewport-fit=cover, iOS already keeps content clear. Live result: 0 overflow, 0 sub-44px targets, 0 sub-11px text, 0 errors on all 16 checks"
+    },
+    {
+      "at": "2026-10-14T13:21:29.149Z",
+      "actor": "amad",
+      "agent": "nepi",
+      "agentRole": "design",
+      "agentId": "agent-nepi",
+      "kind": "memory",
+      "summary": "per Amad: moved the dark Services + Tools sections onto the BURHANDEV light theme - Services is now cream with the 9px grid texture and a maroon heading (colored service cards kept, hover shadow retinted maroon), Tools is now green with the cream grid texture and darker-green badges; maroon marquee stays between them so the page alternates cream / maroon / green / cream"
     }
   ],
-  "lastActiveAt": "2026-10-14T12:44:41.432Z"
+  "lastActiveAt": "2026-10-14T13:05:27.951Z"
 }

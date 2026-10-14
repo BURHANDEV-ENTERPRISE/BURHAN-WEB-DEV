@@ -1,5 +1,5 @@
 .section {
-  background: #080f0f;
+  background: var(--green, #21493f);
   padding: 96px clamp(1.5rem, 6vw, 7rem);
   position: relative;
   overflow: hidden;
@@ -9,20 +9,11 @@
   content: "";
   position: absolute;
   inset: 0;
-  background-image:
-    repeating-linear-gradient(90deg, rgba(255,246,220,0.02) 0, rgba(255,246,220,0.02) 1px, transparent 1px, transparent 64px),
-    repeating-linear-gradient(0deg, rgba(255,246,220,0.02) 0, rgba(255,246,220,0.02) 1px, transparent 1px, transparent 64px);
+  background:
+    linear-gradient(rgba(255, 246, 220, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 246, 220, 0.05) 1px, transparent 1px);
+  background-size: 9px 9px;
   pointer-events: none;
-}
-
-.section::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255, 246, 220, 0.08), transparent);
 }
 
 .eyebrow {
@@ -56,9 +47,9 @@
   align-items: center;
   gap: 0.55rem;
   padding: 0.65rem 1.3rem;
-  border: 1px solid rgba(255, 246, 220, 0.1);
+  border: 1px solid rgba(255, 246, 220, 0.2);
   border-radius: 999px;
-  background: rgba(255, 246, 220, 0.03);
+  background: rgba(12, 32, 27, 0.55);
   cursor: default;
   overflow: hidden;
   animation: floatBadge 3.8s ease-in-out infinite;
@@ -101,7 +92,7 @@
   font-size: 0.88rem;
   font-weight: 600;
   letter-spacing: 0.04em;
-  color: rgba(255, 246, 220, 0.75);
+  color: rgba(255, 246, 220, 0.88);
   white-space: nowrap;
 }
 
