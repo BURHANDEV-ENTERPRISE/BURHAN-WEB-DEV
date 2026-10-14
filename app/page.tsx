@@ -38,7 +38,6 @@ export default function Home() {
           heightVh={260}
           ariaLabel="BURHANDEV keyboard transition"
           chapterLabel="02 / 02 — The craft behind the screen"
-          exitHref="#services"
           heading="Good design. Every detail."
           subheading="From a bold first impression to the final line of code. Built around your business."
           headingWindow={[0.04, 0.13, 0.32, 0.4]}
